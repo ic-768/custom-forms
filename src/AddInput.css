@@ -1,0 +1,63 @@
+.edit-panel {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  outline: 1px solid black;
+  position: absolute;
+  height: 100vh;
+  animation-name: fade-in-right;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  width: 300px;
+}
+
+.edit-panel-options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 90%;
+  width: 90%;
+}
+
+.edit-panel-option-label {
+  font-size: 14px;
+}
+
+.edit-panel-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.edit-panel-save,
+.edit-panel-cancel {
+  width: 100%;
+  height: 40px;
+  font-size: 14px;
+  color: white;
+  border-width: 0px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px 2px gray;
+}
+
+.edit-panel-save {
+  background-color: green;
+}
+
+.edit-panel-cancel {
+  background-color: red;
+}
+
+@keyframes fade-in-right {
+  from {
+    right: -310px;
+  }
+  to {
+    right: 0px;
+  }
+}
