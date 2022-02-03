@@ -1,0 +1,75 @@
+.dropdown-input-container {
+  position: relative;
+}
+
+.dropdown-input-container:hover .dropdown-input-placeholder {
+  box-shadow: inset var(--input-box-shadow-dark) 0 0 0 1px;
+}
+
+.dropdown-input-placeholder {
+  transition: box-shadow 0.15s ease;
+  display: flex;
+  background-color: white;
+  align-items: center;
+  padding: var(--input-padding);
+  box-shadow: inset var(--input-box-shadow-light) 0 0 0 1px;
+  border-radius: var(--input-border-radius);
+  text-align: center;
+  font-size: var(--input-placeholder-font-size);
+  color: var(--input-placeholder-fg);
+}
+
+.dropdown-input-placeholder.is-option-selected {
+  color: black;
+}
+
+.dropdown-input-placeholder.showing-options {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.dropdown-input-chevron-icon {
+  margin-left: auto;
+}
+
+.dropdown-input-icon {
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.dropdown-input-placeholder-icon {
+  font-size: 18px;
+}
+
+.dropdown-input-options {
+  position: absolute;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+  list-style: none;
+  transform-origin: top;
+  border-bottom-left-radius: var(--input-border-radius);
+  border-bottom-right-radius: var(--input-border-radius);
+  font-size: var(--input-font-size);
+  left: 0px;
+  right: 0px;
+  box-shadow: inset var(--input-box-shadow-dark) 0 -1px 0 1px;
+}
+
+.dropdown-input-options.showing-options {
+  display: block;
+}
+
+.dropdown-input-placeholder,
+.dropdown-input-option {
+  cursor: pointer;
+}
+
+.dropdown-input-option {
+  padding: var(--input-padding);
+  display: flex;
+}
+
+.dropdown-input-option:hover {
+  color: var(--highlight-blue);
+}

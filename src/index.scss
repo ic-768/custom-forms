@@ -3,6 +3,17 @@
   padding: 0px;
 }
 
+:root {
+  --highlight-blue: #06f;
+  --input-box-shadow-light: #d8d8da;
+  --input-box-shadow-dark: #b6b6b6;
+  --input-placeholder-fg: #b1b0b5;
+  --input-placeholder-font-size: 14px;
+  --input-font-size: 12px;
+  --input-border-radius: 5px;
+  --input-padding: 8px;
+}
+
 body {
   margin: 0;
   overflow-x: hidden;

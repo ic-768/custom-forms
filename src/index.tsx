@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import App from "./App";
 import AddInput from "./AddInput";
-import "./index.css";
+import "./index.scss";
 
 ReactDom.render(
   <BrowserRouter>

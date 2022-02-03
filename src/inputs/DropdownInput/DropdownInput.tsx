@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
 
-import IDropdown from "./IDropdown";
-import "./Dropdown.css";
+import { classIfProvided } from "../../helpers/classes";
 
-const Dropdown = ({
+import IDropdownInput from "./IDropdownInput";
+import "./DropdownInput.scss";
+
+const DropdownInput = ({
   className,
   id,
   placeholder,
@@ -14,13 +16,13 @@ const Dropdown = ({
   onChange,
   selection,
   selectionIcon,
-}: IDropdown) => {
+}: IDropdownInput) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
   const onOptionSelect = (e: MouseEvent<HTMLLIElement>): void => {
     const target = e.target as HTMLLIElement;
     const inputType = target.textContent;
-    onChange(inputType || "");
+    if (inputType) onChange(inputType);
     setShowOptions(false);
   };
 
@@ -29,18 +31,18 @@ const Dropdown = ({
   };
 
   const dropdownClasses = classNames({
-    "dropdown-container": true,
-    ...(typeof className === "string" ? { [className]: true } : {}),
+    "dropdown-input-container": true,
+    ...classIfProvided(className),
   });
 
   const placeholderClasses = classNames({
-    "dropdown-placeholder": true,
+    "dropdown-input-placeholder": true,
     "showing-options": showOptions,
     "is-option-selected": selection,
   });
 
   const dropdownOptionsClasses = classNames({
-    "dropdown-options": true,
+    "dropdown-input-options": true,
     "showing-options": showOptions,
   });
 
@@ -57,26 +59,26 @@ const Dropdown = ({
       >
         {selectionIcon && (
           <FontAwesomeIcon
-            className="dropdown-icon dropdown-placeholder-icon"
+            className="dropdown-input-icon dropdown-input-placeholder-icon"
             icon={selectionIcon}
           />
         )}
         {selection || placeholder}
         <FontAwesomeIcon
-          className="dropdown-chevron-icon"
+          className="dropdown-input-chevron-icon"
           icon={showOptions ? faChevronUp : faChevronDown}
         />
       </div>
       <ul className={dropdownOptionsClasses}>
         {options.map((o) => (
           <li
-            className="dropdown-option"
+            className="dropdown-input-option"
             key={o.value}
             value={o.value}
             onClick={onOptionSelect}
           >
             {o.icon && (
-              <FontAwesomeIcon className="dropdown-icon" icon={o.icon} />
+              <FontAwesomeIcon className="dropdown-input-icon" icon={o.icon} />
             )}
             {o.label}
           </li>
@@ -85,4 +87,4 @@ const Dropdown = ({
     </div>
   );
 };
-export default Dropdown;
+export default DropdownInput;

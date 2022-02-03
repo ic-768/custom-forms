@@ -1,0 +1,9 @@
+.number-input {
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  padding: var(--input-padding);
+  border-radius: var(--input-border-radius);
+  box-shadow: inset var(--input-box-shadow-light) 0 0 0 1px;
+  font-size: var(--input-font-size);
+}
