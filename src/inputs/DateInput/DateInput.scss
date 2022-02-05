@@ -23,3 +23,7 @@
 .DatePicker__calendarContainer {
   left: 135px;
 }
+
+.DatePicker__input::placeholder {
+  color: var(--input-placeholder-fg);
+}

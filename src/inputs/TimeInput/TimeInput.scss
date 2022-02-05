@@ -1,16 +1,21 @@
-.number-input {
+.react-time-picker__wrapper {
   width: 100%;
-  border: none;
   box-sizing: border-box;
+  border: none;
   padding: var(--input-padding);
   border-radius: var(--input-border-radius);
   box-shadow: inset var(--input-box-shadow-light) 0 0 0 1px;
   font-size: var(--input-font-size);
 }
 
-.number-input:focus {
-  outline: none;
+.time-input.has-placeholder {
+  input,
+  span,
+  select {
+    color: var(--input-placeholder-fg);
+  }
 }
-.number-input::placeholder {
-  color: var(--input-placeholder-fg);
+
+.react-time-picker__inputGroup__input {
+  outline: none;
 }
