@@ -7,7 +7,6 @@ import INumberInput from "./INumberInput";
 import "./NumberInput.scss";
 
 const NumberInput = ({
-  id,
   placeholder,
   className,
   min,
@@ -23,7 +22,6 @@ const NumberInput = ({
     <input
       type="number"
       className={inputClasses}
-      id={id}
       placeholder={placeholder}
       min={min}
       max={max}

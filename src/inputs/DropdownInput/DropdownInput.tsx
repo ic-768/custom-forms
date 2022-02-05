@@ -10,7 +10,6 @@ import "./DropdownInput.scss";
 
 const DropdownInput = ({
   className,
-  id,
   placeholder,
   options,
   onChange,
@@ -47,11 +46,7 @@ const DropdownInput = ({
   });
 
   return (
-    <div
-      id={id}
-      className={dropdownClasses}
-      onMouseLeave={() => setShowOptions(false)}
-    >
+    <div className={dropdownClasses} onMouseLeave={() => setShowOptions(false)}>
       <div
         className={placeholderClasses}
         onClick={toggleOptionsVisibility}

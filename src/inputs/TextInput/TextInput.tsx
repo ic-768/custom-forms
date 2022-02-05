@@ -6,7 +6,7 @@ import { classIfProvided } from "../../helpers/classes";
 import ITextInput from "./ITextInput";
 import "./TextInput.scss";
 
-const TextInput = ({ className, placeholder, maxLength, id }: ITextInput) => {
+const TextInput = ({ className, placeholder, maxLength }: ITextInput) => {
   const inputClasses = classNames({
     "text-input": true,
     ...classIfProvided(className),
@@ -14,7 +14,6 @@ const TextInput = ({ className, placeholder, maxLength, id }: ITextInput) => {
 
   return (
     <input
-      id={id}
       className={inputClasses}
       type="text"
       placeholder={placeholder}

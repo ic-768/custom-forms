@@ -1,5 +1,4 @@
 interface INumberInput {
-  id?: string;
   placeholder?: string;
   className?: string;
   min?: number;

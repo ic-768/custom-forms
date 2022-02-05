@@ -43,6 +43,7 @@
 
 .dropdown-input-options {
   position: absolute;
+  z-index: 101;
   display: none;
   background-color: white;
   overflow: hidden;
