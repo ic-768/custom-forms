@@ -1,0 +1,25 @@
+.multiple-choice-input {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  padding: var(--input-padding);
+  border-radius: var(--input-border-radius);
+  box-shadow: inset var(--input-box-shadow-light) 0 0 0 1px;
+  font-size: var(--input-font-size);
+}
+
+.multiple-choice-input-choice-container {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: var(--input-padding) 0;
+}
+
+.multiple-choice-input-choice-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 20px;
+  height: 20px;
+}

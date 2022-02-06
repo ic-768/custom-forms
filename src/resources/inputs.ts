@@ -17,7 +17,7 @@ export const inputTypes: string[] = [
   "Number",
   "Date",
   "Time",
-  "Multiple Selection",
+  "Multiple Choice",
 ];
 
 /**

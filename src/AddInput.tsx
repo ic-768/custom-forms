@@ -1,21 +1,26 @@
 import React, { useState } from "react";
 import { DayValue } from "react-modern-calendar-datepicker";
+import { TimePickerValue } from "react-time-picker";
 
 import DropdownInput from "./inputs/DropdownInput";
 import TextInput from "./inputs/TextInput";
 import NumberInput from "./inputs/NumberInput";
 import DateInput from "./inputs/DateInput";
 import TimeInput from "./inputs/TimeInput";
+import MultipleChoiceInput, { IChoice } from "./inputs/MultipleChoiceInput";
 
 import { getInputIcon, inputsForDropdown } from "./helpers/inputs";
 
 import "./AddInput.scss";
-import { TimePickerValue } from "react-time-picker";
 
 const Edit = () => {
   const [inputType, setInputType] = useState<string | null>(null);
   const [day, setDay] = React.useState<DayValue>(null);
   const [time, setTime] = React.useState<TimePickerValue>("");
+  const [choices, setChoices] = React.useState<IChoice[]>([
+    { label: "choice1" },
+    { label: "choice2" },
+  ]);
 
   return (
     <div className="edit-panel">
@@ -48,6 +53,9 @@ const Edit = () => {
             onChange={(e) => setTime(e)}
             maxDetail="minute"
           />
+        </div>
+        <div className="edit-panel-option-container">
+          <MultipleChoiceInput choices={choices} onChange={setChoices} />
         </div>
         <div className="edit-panel-buttons-container">
           <button className="edit-panel-save">Save</button>
