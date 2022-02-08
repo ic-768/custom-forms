@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Dispatch } from "react";
 import { DayValue } from "react-modern-calendar-datepicker";
 import { TimePickerValue } from "react-time-picker";
 
@@ -10,10 +10,16 @@ import TimeInput from "./inputs/TimeInput";
 import MultipleChoiceInput, { IChoice } from "./inputs/MultipleChoiceInput";
 
 import { getInputIcon, inputsForDropdown } from "./helpers/inputs";
+import { ICustomInput } from "./resources/inputs";
 
-import "./AddInput.scss";
+import "./AddInputForm.scss";
 
-const Edit = () => {
+interface IAddInputForm {
+  // TODO define input shape
+  addInput: (input: ICustomInput) => void;
+}
+
+const AddInputForm = ({ addInput }: IAddInputForm) => {
   const [inputType, setInputType] = useState<string | null>(null);
   const [day, setDay] = React.useState<DayValue>(null);
   const [time, setTime] = React.useState<TimePickerValue>("");
@@ -21,6 +27,10 @@ const Edit = () => {
     { label: "choice1" },
     { label: "choice2" },
   ]);
+
+  const onSave = () => {
+    if (inputType) addInput({ inputType: inputType, styles: {} });
+  };
 
   return (
     <div className="edit-panel">
@@ -58,7 +68,9 @@ const Edit = () => {
           <MultipleChoiceInput choices={choices} onChange={setChoices} />
         </div>
         <div className="edit-panel-buttons-container">
-          <button className="edit-panel-save">Save</button>
+          <button onClick={onSave} className="edit-panel-save">
+            Save
+          </button>
           <button className="edit-panel-cancel">Cancel</button>
         </div>
       </div>
@@ -66,4 +78,4 @@ const Edit = () => {
   );
 };
 
-export default Edit;
+export default AddInputForm;

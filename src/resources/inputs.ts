@@ -31,3 +31,11 @@ export const inputIcons: IconDefinition[] = [
   faStopwatch,
   faEllipsisV,
 ];
+
+/**
+ *Type definition for custom inputs
+ */
+export interface ICustomInput {
+  inputType: typeof inputTypes[number];
+  styles: object;
+}

@@ -7,7 +7,6 @@
 }
 
 .dropdown-input-placeholder {
-  transition: box-shadow 0.15s ease;
   display: flex;
   background-color: white;
   align-items: center;
@@ -17,6 +16,7 @@
   text-align: center;
   font-size: var(--input-font-size);
   color: var(--input-placeholder-fg);
+  transition: box-shadow 0.15s ease;
 }
 
 .dropdown-input-placeholder.is-option-selected {
@@ -35,6 +35,7 @@
 .dropdown-input-icon {
   margin-right: 20px;
   font-size: 16px;
+  min-width: 16px;
 }
 
 .dropdown-input-placeholder-icon {

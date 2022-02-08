@@ -19,7 +19,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  box-shadow: inset var(--input-box-shadow-light) 0 0 0 1px;
   width: 20px;
   height: 20px;
+  transition: box-shadow 0.15s ease;
+  &:hover {
+    box-shadow: inset var(--input-box-shadow-dark) 0 0 0 1px;
+  }
 }
