@@ -47,7 +47,6 @@ const DropdownInput = ({
     "showing-options": showOptions,
   });
 
-  console.log(label);
   return (
     <InputContainer
       label={label}

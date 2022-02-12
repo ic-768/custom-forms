@@ -8,6 +8,8 @@ import INumberInput from "./INumberInput";
 import "./NumberInput.scss";
 
 const NumberInput = ({
+  value,
+  onChange,
   label,
   placeholder,
   className,
@@ -25,6 +27,8 @@ const NumberInput = ({
       label={label}
       component={
         <input
+          value={value}
+          onChange={onChange}
           type="number"
           className={inputClasses}
           placeholder={placeholder}

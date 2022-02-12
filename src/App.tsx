@@ -54,7 +54,15 @@ const App = (): ReactElement => {
           />
         );
       case "Number":
-        return <NumberInput label="Please enter a number" />;
+        return (
+          <NumberInput
+            label="Please enter a number"
+            value={2}
+            onChange={() => {
+              "a";
+            }}
+          />
+        );
       case "Text":
         return <TextInput label="Please type your answer" />;
       case "Time":

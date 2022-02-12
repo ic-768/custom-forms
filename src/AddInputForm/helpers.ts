@@ -1,6 +1,8 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { inputTypes } from "./resources";
-import { inputLabelToIcon } from "../AddInputForm/resources";
+
+import { inputLabelToIcon } from "./resources";
+import { inputTypes } from "../inputs/resources";
+
 /**
  * Function that takes the input type and returns its corresponding icon
  */
