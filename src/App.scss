@@ -1,4 +1,11 @@
 .app-container {
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  padding: 10px;
+}
+
+.form-container {
+  padding: 50px;
+  width: 50vw;
 }

@@ -1,12 +1,14 @@
 import React from "react";
 import classNames from "classnames";
 
-import { classIfProvided } from "../../helpers/classes";
+import { classIfProvided } from "../../../helpers/classes";
+import InputContainer from "../../InputContainer";
 
 import INumberInput from "./INumberInput";
 import "./NumberInput.scss";
 
 const NumberInput = ({
+  label,
   placeholder,
   className,
   min,
@@ -19,13 +21,18 @@ const NumberInput = ({
   });
 
   return (
-    <input
-      type="number"
-      className={inputClasses}
-      placeholder={placeholder}
-      min={min}
-      max={max}
-      width={width}
+    <InputContainer
+      label={label}
+      component={
+        <input
+          type="number"
+          className={inputClasses}
+          placeholder={placeholder}
+          min={min}
+          max={max}
+          width={width}
+        />
+      }
     />
   );
 };

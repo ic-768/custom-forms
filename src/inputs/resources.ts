@@ -8,9 +8,6 @@ import {
   faEllipsisV,
 } from "@fortawesome/free-solid-svg-icons";
 
-/**
- * List of all input types
- */
 export const inputTypes: string[] = [
   "Dropdown",
   "Text",
@@ -20,10 +17,7 @@ export const inputTypes: string[] = [
   "Multiple Choice",
 ];
 
-/**
- * List of corresponding icons for input types
- */
-export const inputIcons: IconDefinition[] = [
+const inputIcons: IconDefinition[] = [
   faListUl,
   faPencilAlt,
   faCalculator,
@@ -33,7 +27,18 @@ export const inputIcons: IconDefinition[] = [
 ];
 
 /**
- *Type definition for custom inputs
+ * Object mapping each input to its corresponding icon
+ */
+export const inputLabelToIcon: { [key: string]: IconDefinition } =
+  Object.fromEntries(inputTypes.map((_, i) => [inputTypes[i], inputIcons[i]]));
+
+/**
+ * Type definition for input labels
+ */
+export type inputTypeLabel = typeof inputTypes[number];
+
+/**
+ *Type definition for custom input data  (used to render user-made inputs)
  */
 export interface ICustomInput {
   inputType: typeof inputTypes[number];

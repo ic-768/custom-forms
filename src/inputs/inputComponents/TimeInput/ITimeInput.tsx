@@ -6,6 +6,7 @@ interface ITimeInput {
   value: TimePickerValue;
   className?: string;
   maxDetail?: "hour" | "minute" | "second";
+  label?: string;
 }
 
 export default ITimeInput;
