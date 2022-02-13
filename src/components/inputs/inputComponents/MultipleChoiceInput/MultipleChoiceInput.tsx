@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { classIfProvided } from "../../../helpers/classes";
+import { classIfProvided } from "../../../../helpers/classes";
 import InputContainer from "../../InputContainer";
 
 import IMultipleChoiceInput, { IChoice } from "./IMultipleChoiceInput";

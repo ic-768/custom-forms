@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 
-import { classIfProvided } from "../../../helpers/classes";
+import { classIfProvided } from "../../../../helpers/classes";
 import InputContainer from "../../InputContainer";
 
 import INumberInput from "./INumberInput";

@@ -3,9 +3,8 @@ import { Outlet, Link, Routes, Route } from "react-router-dom";
 import { DayValue } from "react-modern-calendar-datepicker";
 import { TimePickerValue } from "react-time-picker";
 
-import AddInputForm from "./AddInputForm";
-import "./App.scss";
-import { ICustomInput, inputTypeLabel } from "./inputs/resources";
+import AddInputForm from "./components/AddInputForm";
+import { ICustomInput, inputTypeLabel } from "./components/inputs/resources";
 import {
   DateInput,
   DropdownInput,
@@ -13,24 +12,31 @@ import {
   NumberInput,
   TextInput,
   TimeInput,
-} from "./inputs/inputComponents";
+} from "./components/inputs/inputComponents";
+
+import "./App.scss";
+import { IInputOption } from "./components/options/types";
 
 const App = (): ReactElement => {
+  // saved inputs
   const [formInputs, setFormInputs] = useState<Array<ICustomInput>>([]);
+  // currently edited input
+  const [editedInput, setEditedInput] = useState<ICustomInput | null>(null);
+
   const [dummyDate, setDummyDate] = useState({
     year: 1992,
     month: 2,
     day: 23,
   } as DayValue);
   const [dummyChoice, setDummyChoice] = useState([{ label: "a" }]);
-  const [dummyTime, setDummyTime] = useState("1" as TimePickerValue);
+  const [dummyTime, setDummyTime] = useState(new Date() as TimePickerValue);
 
   const addInput = (input: ICustomInput) => {
     setFormInputs([...formInputs, input]);
   };
 
-  const renderInput = (inputName: inputTypeLabel) => {
-    switch (inputName) {
+  const renderInput = (input: ICustomInput) => {
+    switch (input.inputType) {
       case "Date":
         return (
           <DateInput label="Please choose a date" onChange={setDummyDate} />
@@ -38,6 +44,7 @@ const App = (): ReactElement => {
       case "Dropdown":
         return (
           <DropdownInput
+            styles={input.options}
             label="Please choose an option"
             placeholder="a"
             options={[{ value: "asd", label: "sf" }]}
@@ -85,7 +92,8 @@ const App = (): ReactElement => {
         element={
           <div className="app-container">
             <div className="form-container">
-              {formInputs.map((f) => renderInput(f.inputType))}
+              {formInputs.map((i) => renderInput(i))}
+              {editedInput && renderInput(editedInput)}
               <Link to="/">Form view!</Link>
               <Link to="/add">Add an input!</Link>
             </div>
@@ -93,7 +101,28 @@ const App = (): ReactElement => {
           </div>
         }
       >
-        <Route path="add" element={<AddInputForm addInput={addInput} />} />
+        <Route
+          path="add"
+          element={
+            <AddInputForm
+              addInput={addInput}
+              editedInputType={editedInput?.inputType || ""}
+              editInputType={(inputType) => {
+                setEditedInput({
+                  options: editedInput?.options || {},
+                  inputType: inputType || "",
+                });
+              }}
+              editedInputOptions={editedInput?.options}
+              editInputOptions={(options: IInputOption) => {
+                setEditedInput({
+                  options,
+                  inputType: editedInput?.inputType || "",
+                });
+              }}
+            />
+          }
+        />
       </Route>
     </Routes>
   );

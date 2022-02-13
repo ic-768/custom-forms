@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import InputOptions from "./InputOptions";
@@ -12,22 +12,39 @@ import { IInputOption } from "../options/types";
 import "./AddInputForm.scss";
 
 interface IAddInputForm {
+  // add input to the form
   addInput: (input: ICustomInput) => void;
+  // currently edited input type
+  editedInputType: typeof inputTypes[number];
+  // change currently edited input type
+  editInputType: (type: typeof inputTypes[number]) => void;
+  // currently edited input options
+  editedInputOptions?: IInputOption;
+  // change edited input options
+  editInputOptions: (options: IInputOption) => void;
 }
 
-const AddInputForm = ({ addInput }: IAddInputForm) => {
-  const navigate = useNavigate();
-  const [inputType, setInputType] = useState<typeof inputTypes[number] | null>(
-    null
-  );
+const AddInputForm = ({
+  addInput,
+  editedInputType,
+  editInputType,
+  editedInputOptions,
+  editInputOptions,
+}: IAddInputForm) => {
+  useEffect(() => {
+    editInputOptions({});
+  }, [editedInputType]);
 
-  // to hold all style modifications for currently edited input
-  const [inputOptions, setInputOptions] = useState<IInputOption | null>({
-    borderRadius: 0,
-  });
+  const navigate = useNavigate();
 
   const onSave = () => {
-    if (inputType) addInput({ inputType: inputType, options: {} });
+    if (editedInputType) {
+      addInput({
+        inputType: editedInputType,
+        options: editedInputOptions || {},
+      });
+      editInputType("");
+    }
   };
 
   const onCancel = () => navigate("/");
@@ -39,15 +56,15 @@ const AddInputForm = ({ addInput }: IAddInputForm) => {
           label="Choose an input type"
           placeholder="-- Choose an input type --"
           options={inputsForDropdown}
-          onChange={setInputType}
-          selection={inputType}
-          selectionIcon={getInputIcon(inputType)}
+          onChange={editInputType}
+          selection={editedInputType}
+          selectionIcon={getInputIcon(editedInputType)}
         />
-        {inputType && (
+        {editedInputType && (
           <InputOptions
-            input={inputType}
-            options={inputOptions}
-            onChange={setInputOptions}
+            input={editedInputType}
+            options={editedInputOptions || null}
+            onChange={editInputOptions}
           />
         )}
         <div className="edit-panel-buttons-container">

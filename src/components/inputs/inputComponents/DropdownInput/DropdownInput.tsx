@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
 
-import { classIfProvided } from "../../../helpers/classes";
+import { classIfProvided } from "../../../../helpers/classes";
 import InputContainer from "../../InputContainer";
 
 import IDropdownInput from "./IDropdownInput";
@@ -13,6 +13,7 @@ const DropdownInput = ({
   label,
   className,
   placeholder,
+  styles,
   options,
   onChange,
   selection,
@@ -23,7 +24,7 @@ const DropdownInput = ({
   const onOptionSelect = (e: MouseEvent<HTMLLIElement>): void => {
     const target = e.target as HTMLLIElement;
     const inputType = target.textContent;
-    if (inputType) onChange(inputType);
+    onChange(inputType || "");
     setShowOptions(false);
   };
 
@@ -59,6 +60,7 @@ const DropdownInput = ({
             className={placeholderClasses}
             onClick={toggleOptionsVisibility}
             onMouseEnter={() => setShowOptions(true)}
+            style={styles}
           >
             {selectionIcon && (
               <FontAwesomeIcon
