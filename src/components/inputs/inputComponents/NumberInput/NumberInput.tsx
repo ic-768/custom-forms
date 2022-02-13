@@ -16,6 +16,7 @@ const NumberInput = ({
   min,
   max,
   width,
+  modifiers,
 }: INumberInput) => {
   const inputClasses = classNames({
     "number-input": true,
@@ -27,6 +28,7 @@ const NumberInput = ({
       label={label}
       component={
         <input
+          style={modifiers}
           value={value}
           onChange={onChange}
           type="number"

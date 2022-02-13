@@ -1,3 +1,5 @@
+import { IInputModifiers } from "./inputModifiers/types";
+
 export const inputTypes: string[] = [
   "Dropdown",
   "Text",
@@ -16,6 +18,7 @@ export type inputTypeLabel = typeof inputTypes[number];
  *Type definition for custom input data  (used to render user-made inputs)
  */
 export interface ICustomInput {
+  // one of input types
   inputType: typeof inputTypes[number];
-  options: object;
+  modifiers: IInputModifiers;
 }

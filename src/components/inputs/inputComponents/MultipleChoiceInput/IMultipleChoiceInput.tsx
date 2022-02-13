@@ -10,6 +10,7 @@ interface IMultipleChoiceInput {
   onChange: Dispatch<SetStateAction<IChoice[]>>;
   className?: string;
   label?: string;
+  modifiers?: object;
 }
 
 export default IMultipleChoiceInput;

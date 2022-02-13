@@ -7,9 +7,9 @@ interface INumberInput {
   className?: string;
   min?: number;
   max?: number;
-  // optionally let user choose a custom width - defaults to 100%
   width?: number;
   label?: string;
+  modifiers?: object;
 }
 
 export default INumberInput;

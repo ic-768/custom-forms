@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import { NumberInput } from "../../inputs/inputComponents";
+import { NumberInput } from "../../../inputs/inputComponents";
 
 const BorderRadius = ({
   radius,
@@ -9,6 +9,8 @@ const BorderRadius = ({
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }) => (
   <NumberInput
+    min={0}
+    max={20}
     value={radius}
     onChange={onChange}
     label="Add a border radius"

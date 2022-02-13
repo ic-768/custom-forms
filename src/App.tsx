@@ -4,7 +4,7 @@ import { DayValue } from "react-modern-calendar-datepicker";
 import { TimePickerValue } from "react-time-picker";
 
 import AddInputForm from "./components/AddInputForm";
-import { ICustomInput, inputTypeLabel } from "./components/inputs/resources";
+import { ICustomInput } from "./components/inputs/resources";
 import {
   DateInput,
   DropdownInput,
@@ -15,7 +15,7 @@ import {
 } from "./components/inputs/inputComponents";
 
 import "./App.scss";
-import { IInputOption } from "./components/options/types";
+import { IInputModifiers } from "./components/inputs/inputModifiers/types";
 
 const App = (): ReactElement => {
   // saved inputs
@@ -44,7 +44,7 @@ const App = (): ReactElement => {
       case "Dropdown":
         return (
           <DropdownInput
-            styles={input.options}
+            modifiers={input.modifiers}
             label="Please choose an option"
             placeholder="a"
             options={[{ value: "asd", label: "sf" }]}
@@ -55,6 +55,7 @@ const App = (): ReactElement => {
       case "Multiple Choice":
         return (
           <MultipleChoiceInput
+            modifiers={input.modifiers}
             label="Choose as many as you'd like"
             choices={[{ label: "s", isSelected: true }, { label: "f" }]}
             onChange={setDummyChoice}
@@ -63,6 +64,7 @@ const App = (): ReactElement => {
       case "Number":
         return (
           <NumberInput
+            modifiers={input.modifiers}
             label="Please enter a number"
             value={2}
             onChange={() => {
@@ -71,7 +73,12 @@ const App = (): ReactElement => {
           />
         );
       case "Text":
-        return <TextInput label="Please type your answer" />;
+        return (
+          <TextInput
+            modifiers={input.modifiers}
+            label="Please type your answer"
+          />
+        );
       case "Time":
         return (
           <TimeInput
@@ -109,14 +116,14 @@ const App = (): ReactElement => {
               editedInputType={editedInput?.inputType || ""}
               editInputType={(inputType) => {
                 setEditedInput({
-                  options: editedInput?.options || {},
+                  modifiers: editedInput?.modifiers || {},
                   inputType: inputType || "",
                 });
               }}
-              editedInputOptions={editedInput?.options}
-              editInputOptions={(options: IInputOption) => {
+              editedInputModifiers={editedInput?.modifiers}
+              editInputModifiers={(modifiers: IInputModifiers) => {
                 setEditedInput({
-                  options,
+                  modifiers,
                   inputType: editedInput?.inputType || "",
                 });
               }}
