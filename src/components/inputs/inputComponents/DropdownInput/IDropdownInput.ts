@@ -1,5 +1,5 @@
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { IInputModifiers } from "../../inputModifiers/types";
+import { IInputStyles } from "../../inputModifiers/types";
 
 /**
  * Single option of the dropdown list
@@ -25,7 +25,7 @@ interface IDropdownInput {
   className?: string;
   // icon of the currently selected option
   selectionIcon?: IconDefinition;
-  modifiers?: IInputModifiers;
+  styles?: IInputStyles;
   label?: string;
 }
 

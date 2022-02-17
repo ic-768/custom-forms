@@ -12,7 +12,7 @@ const TextInput = ({
   className,
   placeholder,
   maxLength,
-  modifiers,
+  styles,
 }: ITextInput) => {
   const inputClasses = classNames({
     "text-input": true,
@@ -24,7 +24,7 @@ const TextInput = ({
       label={label}
       component={
         <input
-          style={modifiers}
+          style={styles}
           className={inputClasses}
           type="text"
           placeholder={placeholder}

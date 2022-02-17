@@ -1,4 +1,4 @@
-import { IInputModifiers } from "./inputModifiers/types";
+import { IInputProps, IInputStyles } from "./inputModifiers/types";
 
 export const inputTypes: string[] = [
   "Dropdown",
@@ -20,5 +20,8 @@ export type inputTypeLabel = typeof inputTypes[number];
 export interface ICustomInput {
   // one of input types
   inputType: typeof inputTypes[number];
-  modifiers?: IInputModifiers;
+  // functional props
+  props?: IInputProps;
+  // styles
+  styles?: IInputStyles;
 }

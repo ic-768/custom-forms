@@ -1,11 +1,11 @@
-import { IInputModifiers } from "../../inputModifiers/types";
+import { IInputStyles } from "../../inputModifiers/types";
 
 interface ITextInput {
   label?: string;
   className?: string;
   placeholder?: string;
   maxLength?: number;
-  modifiers?: IInputModifiers;
+  styles?: IInputStyles;
 }
 
 export default ITextInput;

@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { IInputStyles } from "../../inputModifiers/types";
 
 export interface IChoice {
   label: string;
@@ -10,7 +11,7 @@ interface IMultipleChoiceInput {
   onChange: Dispatch<SetStateAction<IChoice[]>>;
   className?: string;
   label?: string;
-  modifiers?: object;
+  styles?: IInputStyles;
 }
 
 export default IMultipleChoiceInput;

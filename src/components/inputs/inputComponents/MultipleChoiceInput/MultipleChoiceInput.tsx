@@ -15,7 +15,7 @@ const MultipleChoiceInput = ({
   choices,
   className,
   onChange,
-  modifiers,
+  styles,
 }: IMultipleChoiceInput) => {
   const inputClasses = classNames({
     "multiple-choice-input": true,
@@ -31,15 +31,14 @@ const MultipleChoiceInput = ({
     <InputContainer
       label={label}
       component={
-        // TODO destructure style and functional modifiers
-        <div style={modifiers} className={inputClasses}>
+        <div style={styles} className={inputClasses}>
           {choices.map((c) => (
             <div
               className="multiple-choice-input-choice-container"
               key={c.label}
             >
               <div
-                style={modifiers}
+                style={styles}
                 onClick={() => {
                   onChange(updateChoices(c));
                 }}

@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { IInputStyles } from "../../inputModifiers/types";
 
 interface INumberInput {
   value: number;
@@ -9,7 +10,7 @@ interface INumberInput {
   max?: number;
   width?: number;
   label?: string;
-  modifiers?: object;
+  styles?: IInputStyles;
 }
 
 export default INumberInput;

@@ -9,7 +9,7 @@ import { getInputIcon, inputsForDropdown } from "../inputs/helpers";
 import { inputTypes, ICustomInput } from "../inputs/resources";
 
 import "./AddInputForm.scss";
-import { IInputModifiers } from "../inputs/inputModifiers/types";
+import { IInputStyles } from "../inputs/inputModifiers/types";
 
 interface IAddInputForm {
   // add input to the form
@@ -18,21 +18,21 @@ interface IAddInputForm {
   editedInputType: typeof inputTypes[number];
   // change currently edited input type
   editInputType: (type: typeof inputTypes[number]) => void;
-  // currently edited input options
-  editedInputModifiers?: IInputModifiers;
+  // currently edited input style options
+  editedInputStyles?: IInputStyles;
   // change edited input options
-  editInputModifiers: (options: IInputModifiers) => void;
+  editInputStyles: (styles: IInputStyles) => void;
 }
 
 const AddInputForm = ({
   addInput,
   editedInputType,
   editInputType,
-  editedInputModifiers,
-  editInputModifiers,
+  editedInputStyles,
+  editInputStyles,
 }: IAddInputForm) => {
   useEffect(() => {
-    editInputModifiers({});
+    editInputStyles({});
   }, [editedInputType]);
 
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ const AddInputForm = ({
     if (editedInputType) {
       addInput({
         inputType: editedInputType,
-        modifiers: editedInputModifiers,
+        styles: editedInputStyles,
       });
       // clear previous data to start new input fresh
       editInputType("");
@@ -64,8 +64,8 @@ const AddInputForm = ({
         {editedInputType && (
           <InputModifiersList
             input={editedInputType}
-            onChange={editInputModifiers}
-            modifiers={editedInputModifiers}
+            onChangeStyles={editInputStyles}
+            styles={editedInputStyles}
           />
         )}
         <div className="edit-panel-buttons-container">

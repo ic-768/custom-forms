@@ -13,7 +13,7 @@ const DropdownInput = ({
   label,
   className,
   placeholder,
-  modifiers,
+  styles,
   options,
   onChange,
   selection,
@@ -60,7 +60,7 @@ const DropdownInput = ({
             className={placeholderClasses}
             onClick={toggleOptionsVisibility}
             onMouseEnter={() => setShowOptions(true)}
-            style={modifiers}
+            style={styles}
           >
             {selectionIcon && (
               <FontAwesomeIcon
@@ -75,22 +75,23 @@ const DropdownInput = ({
             />
           </div>
           <ul className={dropdownOptionsClasses}>
-            {options.map((o) => (
-              <li
-                className="dropdown-input-option"
-                key={o.value}
-                value={o.value}
-                onClick={onOptionSelect}
-              >
-                {o.icon && (
-                  <FontAwesomeIcon
-                    className="dropdown-input-icon"
-                    icon={o.icon}
-                  />
-                )}
-                {o.label}
-              </li>
-            ))}
+            {options &&
+              options.map((o) => (
+                <li
+                  className="dropdown-input-option"
+                  key={o.value}
+                  value={o.value}
+                  onClick={onOptionSelect}
+                >
+                  {o.icon && (
+                    <FontAwesomeIcon
+                      className="dropdown-input-icon"
+                      icon={o.icon}
+                    />
+                  )}
+                  {o.label}
+                </li>
+              ))}
           </ul>
         </div>
       }
