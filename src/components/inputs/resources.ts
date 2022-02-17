@@ -20,5 +20,5 @@ export type inputTypeLabel = typeof inputTypes[number];
 export interface ICustomInput {
   // one of input types
   inputType: typeof inputTypes[number];
-  modifiers: IInputModifiers;
+  modifiers?: IInputModifiers;
 }

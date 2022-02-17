@@ -4,7 +4,7 @@ import { IInputModifiers } from "../../inputModifiers/types";
 /**
  * Single option of the dropdown list
  */
-interface IOption {
+interface IDropdownOption {
   // value produced if option is selected
   value: string;
   label: string;
@@ -17,7 +17,7 @@ interface IOption {
 interface IDropdownInput {
   placeholder: string;
   // options for the list to display
-  options: IOption[];
+  options: IDropdownOption[];
   // callback for when an option is selected
   onChange: (v: string) => void;
   // label of the currently selected option
@@ -30,3 +30,4 @@ interface IDropdownInput {
 }
 
 export default IDropdownInput;
+export { type IDropdownOption };

@@ -2,6 +2,7 @@ import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 import { inputLabelToIcon } from "./resources";
 import { inputTypes } from "../inputs/resources";
+import { IDropdownOption } from "../inputs/inputComponents/DropdownInput/IDropdownInput";
 
 /**
  * Function that takes the input type and returns its corresponding icon
@@ -14,8 +15,10 @@ export const getInputIcon = (
 /**
  * Format the inputs to be displayed in the dropdown menu
  */
-export const inputsForDropdown = inputTypes.map((type: string) => ({
-  value: type,
-  label: type,
-  icon: getInputIcon(type),
-}));
+export const inputsForDropdown = inputTypes.map(
+  (type: string): IDropdownOption => ({
+    value: type,
+    label: type,
+    icon: getInputIcon(type),
+  })
+);

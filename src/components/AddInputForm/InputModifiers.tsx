@@ -4,14 +4,19 @@ import BorderRadius from "../inputs/inputModifiers/BorderRadius";
 import { IInputModifiers } from "../inputs/inputModifiers/types";
 import { inputTypes } from "../inputs/resources";
 
+interface IInputModifiersList {
+  input: typeof inputTypes[number];
+  onChange: (modifiers: IInputModifiers) => void;
+  modifiers?: IInputModifiers;
+}
 /**
  * Renders all available options for a specific input type
  */
-const renderInputModifiers = (
-  input: typeof inputTypes[number],
-  onChange: (modifiers: IInputModifiers) => void,
-  modifiers?: IInputModifiers
-) => {
+const InputModifiersList = ({
+  input,
+  onChange,
+  modifiers,
+}: IInputModifiersList) => {
   switch (input) {
     case inputTypes[0]:
       return (
@@ -57,4 +62,4 @@ const renderInputModifiers = (
       return null;
   }
 };
-export default renderInputModifiers;
+export default InputModifiersList;

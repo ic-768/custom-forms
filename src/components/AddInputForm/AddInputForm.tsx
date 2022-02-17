@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import renderInputModifiers from "./renderInputModifiers";
+import InputModifiersList from "./InputModifiersList";
 
 import DropdownInput from "../inputs/inputComponents/DropdownInput";
 
@@ -41,8 +41,9 @@ const AddInputForm = ({
     if (editedInputType) {
       addInput({
         inputType: editedInputType,
-        modifiers: editedInputModifiers || {},
+        modifiers: editedInputModifiers,
       });
+      // clear previous data to start new input fresh
       editInputType("");
     }
   };
@@ -60,12 +61,13 @@ const AddInputForm = ({
           selection={editedInputType}
           selectionIcon={getInputIcon(editedInputType)}
         />
-        {editedInputType &&
-          renderInputModifiers(
-            editedInputType,
-            editInputModifiers,
-            editedInputModifiers
-          )}
+        {editedInputType && (
+          <InputModifiersList
+            input={editedInputType}
+            onChange={editInputModifiers}
+            modifiers={editedInputModifiers}
+          />
+        )}
         <div className="edit-panel-buttons-container">
           <button onClick={onSave} className="edit-panel-save">
             Save
