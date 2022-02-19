@@ -1,12 +1,12 @@
 import React, { useState, ReactElement } from "react";
 import { Outlet, Link, Routes, Route } from "react-router-dom";
+
 import AddInputForm from "./components/AddInputForm";
 import { ICustomInput } from "./components/inputs/resources";
 import CustomInput from "./CustomInput";
+import { tempData } from "./tempData";
 
 import "./App.scss";
-import { IInputStyles } from "./components/inputs/inputModifiers/types";
-import { tempData } from "./tempData";
 
 const App = (): ReactElement => {
   // initial test inputs
@@ -40,19 +40,14 @@ const App = (): ReactElement => {
           element={
             <AddInputForm
               addInput={addInput}
-              editedInputType={editedInput?.inputType || ""}
-              editInputType={(inputType) => {
-                setEditedInput({
-                  styles: editedInput?.styles || {},
-                  inputType: inputType || "",
-                });
-              }}
-              editedInputStyles={editedInput?.styles}
-              editInputStyles={(styles: IInputStyles) => {
-                setEditedInput({
-                  styles,
-                  inputType: editedInput?.inputType || "",
-                });
+              editedInput={editedInput}
+              editInput={(input) => {
+                if (input)
+                  setEditedInput({
+                    styles: input?.styles,
+                    inputType: input?.inputType,
+                  });
+                else setEditedInput(null);
               }}
             />
           }

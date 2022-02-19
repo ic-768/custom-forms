@@ -32,24 +32,25 @@ const MultipleChoiceInput = ({
       label={label}
       component={
         <div style={styles} className={inputClasses}>
-          {choices.map((c) => (
-            <div
-              className="multiple-choice-input-choice-container"
-              key={c.label}
-            >
+          {choices &&
+            choices.map((c) => (
               <div
-                style={styles}
-                onClick={() => {
-                  onChange(updateChoices(c));
-                }}
-                className="multiple-choice-input-choice-icon-container"
+                className="multiple-choice-input-choice-container"
+                key={c.label}
               >
-                {c.isSelected && <FontAwesomeIcon icon={faCheck} />}
-              </div>
+                <div
+                  style={styles}
+                  onClick={() => {
+                    onChange(updateChoices(c));
+                  }}
+                  className="multiple-choice-input-choice-icon-container"
+                >
+                  {c.isSelected && <FontAwesomeIcon icon={faCheck} />}
+                </div>
 
-              <span>{c.label}</span>
-            </div>
-          ))}
+                <span>{c.label}</span>
+              </div>
+            ))}
         </div>
       }
     />

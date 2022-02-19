@@ -1,53 +1,42 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { getInputIcon, inputsForDropdown } from "../inputs/helpers";
 import InputModifiersList from "./InputModifiersList";
-
 import DropdownInput from "../inputs/inputComponents/DropdownInput";
 
-import { getInputIcon, inputsForDropdown } from "../inputs/helpers";
-import { inputTypes, ICustomInput } from "../inputs/resources";
+import { ICustomInput } from "../inputs/resources";
+import { IInputStyles } from "../inputs/inputModifiers/types";
 
 import "./AddInputForm.scss";
-import { IInputStyles } from "../inputs/inputModifiers/types";
 
 interface IAddInputForm {
   // add input to the form
   addInput: (input: ICustomInput) => void;
-  // currently edited input type
-  editedInputType: typeof inputTypes[number];
-  // change currently edited input type
-  editInputType: (type: typeof inputTypes[number]) => void;
-  // currently edited input style options
-  editedInputStyles?: IInputStyles;
-  // change edited input options
-  editInputStyles: (styles: IInputStyles) => void;
+  // currently edited input
+  editedInput: ICustomInput | null;
+  // change currently edited input
+  editInput: (input: ICustomInput | null) => void;
 }
 
-const AddInputForm = ({
-  addInput,
-  editedInputType,
-  editInputType,
-  editedInputStyles,
-  editInputStyles,
-}: IAddInputForm) => {
+const AddInputForm = ({ addInput, editedInput, editInput }: IAddInputForm) => {
   useEffect(() => {
-    editInputStyles({});
-  }, [editedInputType]);
+    if (editedInput) editInput({ ...editedInput, styles: {} });
+  }, [editedInput?.inputType]);
 
-  const navigate = useNavigate();
+  const editInputStyles = (styles: IInputStyles) => {
+    if (editedInput) editInput({ ...editedInput, styles });
+  };
 
   const onSave = () => {
-    if (editedInputType) {
-      addInput({
-        inputType: editedInputType,
-        styles: editedInputStyles,
-      });
+    if (editedInput) {
+      addInput(editedInput);
       // clear previous data to start new input fresh
-      editInputType("");
+      editInput(null);
     }
   };
 
+  const navigate = useNavigate();
   const onCancel = () => navigate("/");
 
   return (
@@ -57,15 +46,14 @@ const AddInputForm = ({
           label="Choose an input type"
           placeholder="-- Choose an input type --"
           options={inputsForDropdown}
-          onChange={editInputType}
-          selection={editedInputType}
-          selectionIcon={getInputIcon(editedInputType)}
+          onChange={(t) => editInput({ inputType: t })}
+          selection={editedInput?.inputType || null}
+          selectionIcon={getInputIcon(editedInput?.inputType || null)}
         />
-        {editedInputType && (
+        {editedInput && (
           <InputModifiersList
-            input={editedInputType}
+            input={editedInput}
             onChangeStyles={editInputStyles}
-            styles={editedInputStyles}
           />
         )}
         <div className="edit-panel-buttons-container">
