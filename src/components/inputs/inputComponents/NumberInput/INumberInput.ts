@@ -2,6 +2,7 @@ import { ChangeEvent } from "react";
 import { IInputStyles } from "../../inputModifiers/types";
 
 interface INumberInput {
+  type?: "Number";
   value: number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;

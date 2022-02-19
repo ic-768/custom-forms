@@ -17,7 +17,7 @@ const InputModifiersList = ({
   onChangeStyles,
   onChangeProps,
 }: IInputModifiersList) => {
-  switch (input.inputType) {
+  switch (input.type) {
     case "Dropdown":
       return (
         <>

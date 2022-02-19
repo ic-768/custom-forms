@@ -15,6 +15,8 @@ const DateInput = ({
   placeholder,
   date,
   onChange,
+  // TODO
+  styles,
 }: IDateInput) => {
   const inputClasses = classNames({
     "date-input": true,

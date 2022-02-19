@@ -10,7 +10,9 @@ import "./App.scss";
 
 const App = (): ReactElement => {
   // initial test inputs
-  const [formInputs, setFormInputs] = useState<Array<ICustomInput>>(tempData); // currently edited input
+  const [formInputs, setFormInputs] = useState<Array<ICustomInput>>(
+    tempData as ICustomInput[]
+  ); // currently edited input
   const [editedInput, setEditedInput] = useState<ICustomInput | null>(null);
 
   const addInput = (input: ICustomInput) => {
@@ -24,9 +26,9 @@ const App = (): ReactElement => {
         element={
           <div className="app-container">
             <div className="form-container">
-              {formInputs.map((input, i) => (
-                <CustomInput key={i} input={input} {...input.props} />
-              ))}
+              {formInputs.map((input, i) => {
+                return <CustomInput key={i} input={input} />;
+              })}
               {editedInput && <CustomInput input={editedInput} />}
               <Link to="/">Form view!</Link>
               <Link to="/add">Add an input!</Link>
@@ -42,11 +44,7 @@ const App = (): ReactElement => {
               addInput={addInput}
               editedInput={editedInput}
               editInput={(input) => {
-                if (input)
-                  setEditedInput({
-                    styles: input?.styles,
-                    inputType: input?.inputType,
-                  });
+                if (input) setEditedInput({ ...input });
                 else setEditedInput(null);
               }}
             />

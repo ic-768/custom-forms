@@ -1,6 +1,7 @@
 import { IInputStyles } from "../../inputModifiers/types";
 
 interface ITextInput {
+  type?: "Text";
   label?: string;
   className?: string;
   placeholder?: string;

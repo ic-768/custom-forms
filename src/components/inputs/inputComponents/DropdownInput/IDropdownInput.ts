@@ -15,6 +15,7 @@ interface IDropdownOption {
  * Dropdown list of selectable options
  */
 interface IDropdownInput {
+  type?: "Dropdown";
   placeholder: string;
   // options for the list to display
   options: IDropdownOption[];

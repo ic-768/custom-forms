@@ -14,6 +14,8 @@ const TimeInput = ({
   value,
   onChange,
   maxDetail,
+  // TODO
+  styles,
 }: ITimeInput) => {
   const inputClasses = classNames({
     "time-input": true,

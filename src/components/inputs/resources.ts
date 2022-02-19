@@ -1,4 +1,11 @@
-import { IInputProps, IInputStyles } from "./inputModifiers/types";
+import {
+  IDropdownInput,
+  ITextInput,
+  INumberInput,
+  IDateInput,
+  ITimeInput,
+  IMultipleChoiceInput,
+} from "./inputComponents/types";
 
 export const inputTypes: string[] = [
   "Dropdown",
@@ -17,11 +24,10 @@ export type inputTypeLabel = typeof inputTypes[number];
 /**
  *Type definition for custom input data  (used to render user-made inputs)
  */
-export interface ICustomInput {
-  // one of input types
-  inputType: typeof inputTypes[number];
-  // functional props
-  props?: IInputProps;
-  // styles
-  styles?: IInputStyles;
-}
+export type ICustomInput =
+  | IDropdownInput
+  | ITextInput
+  | INumberInput
+  | IDateInput
+  | ITimeInput
+  | IMultipleChoiceInput;

@@ -8,13 +8,6 @@ import {
   TextInput,
   TimeInput,
 } from "./components/inputs/inputComponents";
-import {
-  IDateInput,
-  IDropdownInput,
-  IMultipleChoiceInput,
-  INumberInput,
-  ITimeInput,
-} from "./components/inputs/inputComponents/types";
 import { ICustomInput } from "./components/inputs/resources";
 const CustomInput = ({
   input,
@@ -22,31 +15,20 @@ const CustomInput = ({
   // contains input type and modifiers
   input: ICustomInput;
 }) => {
-  switch (input.inputType) {
+  console.log(input.type);
+  switch (input.type) {
     case "Date":
-      return <DateInput {...(input.props as IDateInput)} />;
+      return <DateInput {...input} />;
     case "Dropdown":
-      return (
-        <DropdownInput
-          {...(input.props as IDropdownInput)}
-          styles={input.styles}
-        />
-      );
+      return <DropdownInput {...input} />;
     case "Multiple Choice":
-      return (
-        <MultipleChoiceInput
-          {...(input.props as IMultipleChoiceInput)}
-          styles={input.styles}
-        />
-      );
+      return <MultipleChoiceInput {...input} />;
     case "Number":
-      return (
-        <NumberInput {...(input.props as INumberInput)} styles={input.styles} />
-      );
+      return <NumberInput {...input} />;
     case "Text":
-      return <TextInput styles={input.styles} {...input.props} />;
+      return <TextInput {...input} />;
     case "Time":
-      return <TimeInput {...(input.props as ITimeInput)} />;
+      return <TimeInput {...input} />;
     default:
       return null;
   }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { getInputIcon, inputsForDropdown } from "../inputs/helpers";
@@ -20,10 +20,6 @@ interface IAddInputForm {
 }
 
 const AddInputForm = ({ addInput, editedInput, editInput }: IAddInputForm) => {
-  useEffect(() => {
-    if (editedInput) editInput({ ...editedInput, styles: {} });
-  }, [editedInput?.inputType]);
-
   const editInputStyles = (styles: IInputStyles) => {
     if (editedInput) editInput({ ...editedInput, styles });
   };
@@ -46,9 +42,9 @@ const AddInputForm = ({ addInput, editedInput, editInput }: IAddInputForm) => {
           label="Choose an input type"
           placeholder="-- Choose an input type --"
           options={inputsForDropdown}
-          onChange={(t) => editInput({ inputType: t })}
-          selection={editedInput?.inputType || null}
-          selectionIcon={getInputIcon(editedInput?.inputType || null)}
+          onChange={(t) => editInput({ type: t } as ICustomInput)}
+          selection={editedInput?.type || null}
+          selectionIcon={getInputIcon(editedInput?.type || null)}
         />
         {editedInput && (
           <InputModifiersList
