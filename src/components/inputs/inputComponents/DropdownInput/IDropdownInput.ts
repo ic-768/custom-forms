@@ -4,7 +4,7 @@ import { IInputStyles } from "../../inputModifiers/types";
 /**
  * Single option of the dropdown list
  */
-interface IDropdownOption {
+export interface IDropdownOption {
   // value produced if option is selected
   value: string;
   label: string;
@@ -31,4 +31,3 @@ interface IDropdownInput {
 }
 
 export default IDropdownInput;
-export { type IDropdownOption };

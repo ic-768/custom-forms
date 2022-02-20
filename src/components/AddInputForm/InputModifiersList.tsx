@@ -1,13 +1,14 @@
 import React, { ChangeEvent } from "react";
 
 import BorderRadius from "../inputs/inputModifiers/BorderRadius";
+import DropdownOptions from "../inputs/inputModifiers/DropdownOptions";
 import { IInputStyles, IInputProps } from "../inputs/inputModifiers/types";
 import { ICustomInput } from "../inputs/resources";
 
 interface IInputModifiersList {
   input: ICustomInput;
   onChangeStyles: (styles: IInputStyles) => void;
-  onChangeProps?: (props: IInputProps) => void;
+  onChangeProps: (props: IInputProps) => void;
 }
 /**
  * Renders all available options for a specific input type
@@ -28,6 +29,12 @@ const InputModifiersList = ({
                 ...input.styles,
                 borderRadius: Number(e.target.value),
               });
+            }}
+          />
+          <DropdownOptions
+            onChange={(options) => {
+              onChangeProps({ ...input, options });
+              console.log(options);
             }}
           />
         </>

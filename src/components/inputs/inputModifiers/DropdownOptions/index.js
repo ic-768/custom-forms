@@ -1,3 +1,3 @@
-import BorderRadius from "./BorderRadius";
+import DropdownOptions from "./DropdownOptions";
 
-export default BorderRadius;
+export default DropdownOptions;

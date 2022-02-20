@@ -1,5 +1,7 @@
-export const tempData = [
-  { type: "Date" },
+import { ICustomInput } from "./components/inputs/resources";
+
+export const tempData: ICustomInput[] = [
+  { type: "Date", onChange: () => null },
   {
     type: "Dropdown",
     placeholder: "Choose one",
@@ -12,17 +14,19 @@ export const tempData = [
     selection: "option 2",
   },
   {
+    onChange: () => null,
     type: "Multiple Choice",
     label: "Choose s many as you'd like",
     choices: [{ label: "s", isSelected: true }, { label: "f" }],
   },
-  { type: "Number" },
+  { type: "Number", value: 0, onChange: () => null },
   {
     type: "Text",
     placeholder: "Please type!",
     styles: { borderRadius: 20 },
   },
   {
+    onChange: () => null,
     type: "Time",
     value: new Date(),
     label: "Choose a time",

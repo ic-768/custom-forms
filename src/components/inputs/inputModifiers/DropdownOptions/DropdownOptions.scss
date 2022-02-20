@@ -1,0 +1,31 @@
+.dropdown-options-add-button {
+  cursor: pointer;
+  width: 100%;
+  font-size: 22px;
+  text-align: center;
+  transition: color 0.2s;
+  &:hover {
+    color: var(--highlight-blue);
+  }
+}
+
+.dropdown-options-dropdown-options {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.dropdown-options-dropdown-option {
+  position: relative;
+}
+
+.dropdown-options-remove-option-button {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  transition: color 0.2s;
+  &:hover {
+    color: var(--highlight-blue);
+  }
+}

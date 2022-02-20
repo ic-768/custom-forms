@@ -8,14 +8,10 @@ import {
   TextInput,
   TimeInput,
 } from "./components/inputs/inputComponents";
+
 import { ICustomInput } from "./components/inputs/resources";
-const CustomInput = ({
-  input,
-}: {
-  // contains input type and modifiers
-  input: ICustomInput;
-}) => {
-  console.log(input.type);
+
+const CustomInput = ({ input }: { input: ICustomInput }) => {
   switch (input.type) {
     case "Date":
       return <DateInput {...input} />;

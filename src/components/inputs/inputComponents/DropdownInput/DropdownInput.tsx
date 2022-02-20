@@ -77,10 +77,10 @@ const DropdownInput = ({
           </div>
           <ul className={dropdownOptionsClasses}>
             {options &&
-              options.map((o) => (
+              options.map((o, i) => (
                 <li
                   className="dropdown-input-option"
-                  key={o.value}
+                  key={`dropdown-input-${i}`}
                   value={o.value}
                   onClick={onOptionSelect}
                 >

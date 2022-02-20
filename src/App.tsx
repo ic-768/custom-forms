@@ -9,11 +9,8 @@ import { tempData } from "./tempData";
 import "./App.scss";
 
 const App = (): ReactElement => {
-  // initial test inputs
-  const [formInputs, setFormInputs] = useState<Array<ICustomInput>>(
-    tempData as ICustomInput[]
-  ); // currently edited input
-  const [editedInput, setEditedInput] = useState<ICustomInput | null>(null);
+  const [formInputs, setFormInputs] = useState<Array<ICustomInput>>(tempData); // initial test inputs
+  const [editedInput, setEditedInput] = useState<ICustomInput | null>(null); // currently edited input
 
   const addInput = (input: ICustomInput) => {
     setFormInputs([...formInputs, input]);
@@ -26,9 +23,9 @@ const App = (): ReactElement => {
         element={
           <div className="app-container">
             <div className="form-container">
-              {formInputs.map((input, i) => {
-                return <CustomInput key={i} input={input} />;
-              })}
+              {formInputs.map((input, i) => (
+                <CustomInput key={i} input={input} />
+              ))}
               {editedInput && <CustomInput input={editedInput} />}
               <Link to="/">Form view!</Link>
               <Link to="/add">Add an input!</Link>
@@ -41,11 +38,11 @@ const App = (): ReactElement => {
           path="add"
           element={
             <AddInputForm
+              inputs={formInputs}
               addInput={addInput}
               editedInput={editedInput}
               editInput={(input) => {
-                if (input) setEditedInput({ ...input });
-                else setEditedInput(null);
+                setEditedInput({ ...input });
               }}
             />
           }

@@ -8,6 +8,8 @@ import ITextInput from "./ITextInput";
 import "./TextInput.scss";
 
 const TextInput = ({
+  onChange,
+  value,
   label,
   className,
   placeholder,
@@ -24,6 +26,8 @@ const TextInput = ({
       label={label}
       component={
         <input
+          onChange={onChange}
+          value={value}
           style={styles}
           className={inputClasses}
           type="text"
