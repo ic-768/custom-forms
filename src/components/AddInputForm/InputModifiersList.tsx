@@ -2,21 +2,19 @@ import React, { ChangeEvent } from "react";
 
 import BorderRadius from "../inputs/inputModifiers/BorderRadius";
 import DropdownOptions from "../inputs/inputModifiers/DropdownOptions";
-import { IInputStyles, IInputProps } from "../inputs/inputModifiers/types";
+import { IInputProps } from "../inputs/inputModifiers/types";
 import { ICustomInput } from "../inputs/resources";
 
 interface IInputModifiersList {
   input: ICustomInput;
-  onChangeStyles: (styles: IInputStyles) => void;
-  onChangeProps: (props: IInputProps) => void;
+  onChangeModifiers: (props: IInputProps) => void;
 }
 /**
  * Renders all available options for a specific input type
  */
 const InputModifiersList = ({
   input,
-  onChangeStyles,
-  onChangeProps,
+  onChangeModifiers,
 }: IInputModifiersList) => {
   switch (input.type) {
     case "Dropdown":
@@ -25,15 +23,18 @@ const InputModifiersList = ({
           <BorderRadius
             radius={input.styles?.borderRadius || 0}
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              onChangeStyles({
-                ...input.styles,
-                borderRadius: Number(e.target.value),
+              onChangeModifiers({
+                ...input,
+                styles: {
+                  ...input.styles,
+                  borderRadius: Number(e.target.value),
+                },
               });
             }}
           />
           <DropdownOptions
             onChange={(options) => {
-              onChangeProps({ ...input, options });
+              onChangeModifiers({ ...input, options });
               console.log(options);
             }}
           />
@@ -44,9 +45,9 @@ const InputModifiersList = ({
         <BorderRadius
           radius={input.styles?.borderRadius || 0}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            onChangeStyles({
-              ...input.styles,
-              borderRadius: Number(e.target.value),
+            onChangeModifiers({
+              ...input,
+              styles: { ...input.styles, borderRadius: Number(e.target.value) },
             });
           }}
         />
@@ -56,9 +57,9 @@ const InputModifiersList = ({
         <BorderRadius
           radius={input.styles?.borderRadius || 0}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            onChangeStyles({
-              ...input.styles,
-              borderRadius: Number(e.target.value),
+            onChangeModifiers({
+              ...input,
+              styles: { ...input.styles, borderRadius: Number(e.target.value) },
             });
           }}
         />
@@ -72,9 +73,9 @@ const InputModifiersList = ({
         <BorderRadius
           radius={input.styles?.borderRadius || 0}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            onChangeStyles({
+            onChangeModifiers({
               ...input.styles,
-              borderRadius: Number(e.target.value),
+              styles: { ...input.styles, borderRadius: Number(e.target.value) },
             });
           }}
         />

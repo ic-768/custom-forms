@@ -6,7 +6,7 @@ import InputModifiersList from "./InputModifiersList";
 import DropdownInput from "../inputs/inputComponents/DropdownInput";
 
 import { ICustomInput } from "../inputs/resources";
-import { IInputProps, IInputStyles } from "../inputs/inputModifiers/types";
+import { IInputProps } from "../inputs/inputModifiers/types";
 
 import "./AddInputForm.scss";
 
@@ -31,9 +31,6 @@ const AddInputForm = ({
     editInput(null);
   }, [inputs]);
 
-  const editInputStyles = (styles: IInputStyles) =>
-    editInput({ ...editedInput, styles });
-
   const editInputProps = (props: IInputProps) => editInput({ ...props });
 
   const onSave = () => {
@@ -54,13 +51,12 @@ const AddInputForm = ({
           options={inputsForDropdown}
           onChange={(t) => editInput({ type: t } as ICustomInput)}
           selection={editedInput?.type || null}
-          selectionIcon={getInputIcon(editedInput?.type || null)}
+          selectionIcon={editedInput?.type && getInputIcon(editedInput.type)}
         />
         {editedInput && (
           <InputModifiersList
             input={editedInput}
-            onChangeStyles={editInputStyles}
-            onChangeProps={editInputProps}
+            onChangeModifiers={editInputProps}
           />
         )}
         <div className="edit-panel-buttons-container">

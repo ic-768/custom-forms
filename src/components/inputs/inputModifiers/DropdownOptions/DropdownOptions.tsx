@@ -9,27 +9,28 @@ interface IDropdownOptions {
   onChange: (options: IDropdownOption[]) => void;
 }
 
-// TODO give option to also change the value (what is produced for form owner when an option is selected)
 const DropdownOptions = ({ onChange }: IDropdownOptions) => {
-  // when options are changed, update outer state
-
   const [dropdownOptions, setDropdownOptions] = useState<IDropdownOption[]>([
     { value: "", label: "" },
   ]);
 
+  // when options are changed, update outer state
+  // TODO simplify logic and improve UX
   useEffect(() => {
-    onChange(dropdownOptions);
+    dropdownOptions.length &&
+      dropdownOptions[dropdownOptions.length - 1].label &&
+      onChange(dropdownOptions);
   }, [dropdownOptions]);
 
   return (
     <InputContainer
       label="Add as many options as you'd like"
       component={
-        <div className="dropdown-options-dropdown-options">
+        <div className="dropdown-options-modifier-options">
           {dropdownOptions.map((o, i) => (
             <div
-              key={`dropdown-options-input-${i}`}
-              className="dropdown-options-dropdown-option"
+              key={`dropdown-options-modifier-input-${i}`}
+              className="dropdown-options-modifier-option"
             >
               <TextInput
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
