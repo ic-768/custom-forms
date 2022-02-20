@@ -35,7 +35,6 @@ const InputModifiersList = ({
           <DropdownOptions
             onChange={(options) => {
               onChangeModifiers({ ...input, options });
-              console.log(options);
             }}
           />
         </>

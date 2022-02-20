@@ -31,7 +31,7 @@ const AddInputForm = ({
     editInput(null);
   }, [inputs]);
 
-  const editInputProps = (props: IInputProps) => editInput({ ...props });
+  const editInputProps = (props: IInputProps) => editInput(props);
 
   const onSave = () => {
     if (editedInput) {

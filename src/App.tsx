@@ -1,54 +1,13 @@
-import React, { useState, ReactElement } from "react";
-import { Outlet, Link, Routes, Route } from "react-router-dom";
+import React, { ReactElement } from "react";
+import { Routes, Route } from "react-router-dom";
 
-import AddInputForm from "./components/AddInputForm";
-import { ICustomInput } from "./components/inputs/resources";
-import CustomInput from "./CustomInput";
-import { tempData } from "./tempData";
+import LandingPage from "./pages/LandingPage";
+import FormBuilder from "./pages/FormBuilder/FormBuilder";
 
-import "./App.scss";
-
-const App = (): ReactElement => {
-  const [formInputs, setFormInputs] = useState<Array<ICustomInput>>(tempData); // initial test inputs
-  const [editedInput, setEditedInput] = useState<ICustomInput | null>(null); // currently edited input
-
-  const addInput = (input: ICustomInput) => {
-    setFormInputs([...formInputs, input]);
-  };
-
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <div className="app-container">
-            <div className="form-container">
-              {formInputs.map((input, i) => (
-                <CustomInput key={i} input={input} />
-              ))}
-              {editedInput && <CustomInput input={editedInput} />}
-              <Link to="/">Form view!</Link>
-              <Link to="/add">Add an input!</Link>
-            </div>
-            <Outlet />
-          </div>
-        }
-      >
-        <Route
-          path="add"
-          element={
-            <AddInputForm
-              inputs={formInputs}
-              addInput={addInput}
-              editedInput={editedInput}
-              editInput={(input) => {
-                setEditedInput({ ...input });
-              }}
-            />
-          }
-        />
-      </Route>
-    </Routes>
-  );
-};
+const App = (): ReactElement => (
+  <Routes>
+    <Route path="/" element={<LandingPage />} />
+    <Route path="form/*" element={<FormBuilder />} />
+  </Routes>
+);
 export default App;
