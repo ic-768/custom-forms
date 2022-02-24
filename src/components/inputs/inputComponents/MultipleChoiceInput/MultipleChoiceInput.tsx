@@ -30,6 +30,7 @@ const MultipleChoiceInput = ({
   return (
     <InputContainer
       label={label}
+      className={className}
       component={
         <div style={styles} className={inputClasses}>
           {choices &&

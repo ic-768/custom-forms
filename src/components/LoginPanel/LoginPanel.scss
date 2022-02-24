@@ -1,0 +1,33 @@
+.login-panel-container {
+  background-color: white;
+  height: 280px;
+  width: 400px;
+  position: absolute;
+  box-sizing: border-box;
+  animation: fade-in 1s;
+
+  padding: 40px;
+  inset: 0px;
+  margin: auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  gap: 10px;
+}
+
+.login-panel-container-title {
+  font-size: 18px;
+}
+
+@keyframes fade-in {
+  from {
+    right: -500px;
+    opacity: 0;
+  }
+  to {
+    right: 0px;
+    opacity: 1;
+  }
+}

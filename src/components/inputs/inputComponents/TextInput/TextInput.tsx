@@ -24,6 +24,7 @@ const TextInput = ({
   return (
     <InputContainer
       label={label}
+      className={className}
       component={
         <input
           onChange={onChange}

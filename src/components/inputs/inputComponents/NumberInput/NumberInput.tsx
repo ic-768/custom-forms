@@ -26,6 +26,7 @@ const NumberInput = ({
   return (
     <InputContainer
       label={label}
+      className={className}
       component={
         <input
           style={styles}

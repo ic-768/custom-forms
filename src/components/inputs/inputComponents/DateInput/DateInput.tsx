@@ -26,6 +26,7 @@ const DateInput = ({
   return (
     <InputContainer
       label={label}
+      className={className}
       component={
         <Calendar
           inputPlaceholder={placeholder}

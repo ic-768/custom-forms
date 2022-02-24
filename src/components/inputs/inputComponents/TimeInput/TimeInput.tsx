@@ -26,6 +26,7 @@ const TimeInput = ({
   return (
     <InputContainer
       label={label}
+      className={className}
       component={
         <TimePicker
           onChange={onChange}

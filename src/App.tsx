@@ -6,7 +6,7 @@ import FormBuilder from "./pages/FormBuilder/FormBuilder";
 
 const App = (): ReactElement => (
   <Routes>
-    <Route path="/" element={<LandingPage />} />
+    <Route path="/*" element={<LandingPage />} />
     <Route path="form/*" element={<FormBuilder />} />
   </Routes>
 );

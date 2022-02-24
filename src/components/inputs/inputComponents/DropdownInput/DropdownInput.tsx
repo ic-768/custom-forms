@@ -52,6 +52,7 @@ const DropdownInput = ({
   return (
     <InputContainer
       label={label}
+      className={className}
       component={
         <div
           className={dropdownClasses}
