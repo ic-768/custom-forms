@@ -15,7 +15,11 @@ const LandingPage = () => (
     }}
   >
     <div className="landing-page-header">
-      <img className="landing-page-header-logo" src="/images/logo.png" />
+      <img
+        className="landing-page-header-logo"
+        src="/images/logo.png"
+        alt="logo"
+      />
       <nav className="landing-page-navigation-links">
         <Link className="landing-page-header-link" to={"/"}>
           <span className="landing-page-header-link-text">Home</span>
