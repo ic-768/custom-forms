@@ -1,17 +1,18 @@
 import React from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, Navigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import LoginPanel from "../../components/LoginPanel";
+import SignupPanel from "../../components/SignupPanel";
 
 import "./LandingPage.scss";
 
-const LandingPage = () => (
+const LandingPage = ({ setUser }: { setUser: any }) => (
   <div
     className="landing-page-container"
     style={{
-      backgroundImage: "url(images/background.png)",
+      backgroundImage: "url(/images/background.png)",
     }}
   >
     <div className="landing-page-header">
@@ -27,6 +28,9 @@ const LandingPage = () => (
         <Link className="landing-page-header-link" to={"/login"}>
           <span className="landing-page-header-link-text">Log in</span>
         </Link>
+        <Link className="landing-page-header-link" to={"/signup"}>
+          <span className="landing-page-header-link-text">Sign up</span>
+        </Link>
         <Link
           className="landing-page-header-link github-link"
           to={"//github.com/ic-768"}
@@ -40,7 +44,8 @@ const LandingPage = () => (
       </nav>
     </div>
     <Routes>
-      <Route path="login" element={<LoginPanel />} />
+      <Route path="login" element={<LoginPanel setUser={setUser} />} />
+      <Route path="signup" element={<SignupPanel />} />
     </Routes>
   </div>
 );
