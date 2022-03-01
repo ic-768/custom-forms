@@ -4,6 +4,7 @@ import cors from "cors";
 import { port, client } from "./config";
 import userRouter from "./controllers/users";
 import loginRouter from "./controllers/login";
+import formsRouter from "./controllers/forms";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use("/add-user", userRouter);
 app.use("/login", loginRouter);
+app.use("/forms", formsRouter);
 
 async function main(): Promise<void> {
   try {

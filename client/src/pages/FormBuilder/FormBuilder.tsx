@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Routes, Route, Link, Outlet } from "react-router-dom";
+import { token } from "../../services/forms";
 
 import AddInputForm from "../../components/AddInputForm";
 import { ICustomInput } from "../../components/inputs/resources";
 import CustomInput from "../../CustomInput";
 import { tempData } from "../../tempData";
+import { postForm } from "../../services/forms";
 
 import "./FormBuilder.scss";
 
@@ -16,12 +18,17 @@ const FormBuilder = () => {
     setFormInputs([...formInputs, input]);
   };
 
+  const onPost = () => {
+    if (token) postForm(formInputs, token);
+  };
+
   return (
     <Routes>
       <Route
         path=":id"
         element={
           <div className="form-builder-container">
+            <button onClick={onPost}>post</button>
             <div className="form-container">
               {formInputs.map((input, i) => (
                 <CustomInput key={i} input={input} />

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { setToken } from "../../services/forms";
 
 import { login } from "../../services/login";
 import { TextInput } from "../inputs/inputComponents";
@@ -13,6 +14,7 @@ const LoginPanel = ({ setUser }: { setUser: any }) => {
 
   const onLogin = async () => {
     const loginData = await login({ username, password });
+    setToken(loginData.token);
     window.localStorage.setItem("loggedUser", JSON.stringify(loginData));
     navigate("/forms");
   };
