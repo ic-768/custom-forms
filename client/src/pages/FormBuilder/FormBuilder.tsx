@@ -12,7 +12,13 @@ import { postForm } from "../../services/forms";
 
 import "./FormBuilder.scss";
 
-const FormBuilder = ({ user, setUser }: { user: string; setUser: any }) => {
+const FormBuilder = ({
+  user,
+  setUser,
+}: {
+  user: string;
+  setUser: (username: string) => void;
+}) => {
   const navigate = useNavigate();
   const [formInputs, setFormInputs] = useState<Array<ICustomInput>>(tempData); // initial test inputs
   const [editedInput, setEditedInput] = useState<ICustomInput | null>(null); // currently edited input
@@ -23,7 +29,7 @@ const FormBuilder = ({ user, setUser }: { user: string; setUser: any }) => {
 
   const onLogOut = () => {
     window.localStorage.removeItem("loggedUser");
-    setUser(null);
+    setUser("");
     setToken("");
     navigate("/");
   };

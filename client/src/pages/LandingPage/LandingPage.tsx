@@ -8,7 +8,7 @@ import SignupPanel from "../../components/SignupPanel";
 
 import "./LandingPage.scss";
 
-const LandingPage = ({ setUser }: { setUser: any }) => {
+const LandingPage = ({ setUser }: { setUser: (username: string) => void }) => {
   return (
     <div
       className="landing-page-container"

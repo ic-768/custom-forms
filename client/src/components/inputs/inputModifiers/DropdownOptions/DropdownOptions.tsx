@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { TextInput } from "../../inputComponents";
 import { IDropdownOption } from "../../inputComponents/DropdownInput";
 import InputContainer from "../../InputContainer";
@@ -14,13 +14,11 @@ const DropdownOptions = ({ onChange }: IDropdownOptions) => {
     { value: "", label: "" },
   ]);
 
-  // when options are changed, update outer state
-  // TODO simplify logic and improve UX
-  useEffect(() => {
-    dropdownOptions.length &&
-      dropdownOptions[dropdownOptions.length - 1].label &&
-      onChange(dropdownOptions);
-  }, [dropdownOptions]);
+  // update local and outer state
+  const updateOptions = (options: IDropdownOption[]) => {
+    setDropdownOptions(options);
+    onChange(options);
+  };
 
   return (
     <InputContainer
@@ -33,20 +31,20 @@ const DropdownOptions = ({ onChange }: IDropdownOptions) => {
               className="dropdown-options-modifier-option"
             >
               <TextInput
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setDropdownOptions(
-                    dropdownOptions.map((option, idx) =>
-                      i === idx ? { ...option, label: e.target.value } : option
-                    )
-                  )
-                }
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  const updatedOptions = dropdownOptions.map((option, idx) =>
+                    i === idx ? { ...option, label: e.target.value } : option
+                  );
+                  updateOptions(updatedOptions);
+                }}
                 value={o.label}
               />
               <div
                 onClick={() => {
-                  setDropdownOptions(
-                    dropdownOptions.filter((_, idx) => i !== idx)
+                  const updatedOptions = dropdownOptions.filter(
+                    (_, idx) => i !== idx
                   );
+                  updateOptions(updatedOptions);
                 }}
                 className="dropdown-options-remove-option-button"
               >

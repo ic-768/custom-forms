@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { getInputIcon, inputsForDropdown } from "../inputs/helpers";
@@ -27,15 +27,12 @@ const AddInputForm = ({
   editInput,
 }: IAddInputForm) => {
   // Clear old data to start editing new input
-  useEffect(() => {
-    editInput(null);
-  }, [inputs]);
-
   const editInputProps = (props: IInputProps) => editInput(props);
 
   const onSave = () => {
     if (editedInput) {
       addInput(editedInput);
+      editInput(null);
     }
   };
 

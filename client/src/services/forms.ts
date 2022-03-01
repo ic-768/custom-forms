@@ -1,12 +1,12 @@
 import axios from "axios";
+import { ICustomInput } from "../components/inputs/resources";
 
 let token: string | null = null;
 const setToken = (newToken: string) => {
   token = `bearer ${newToken}`;
 };
 
-// TODO formData type
-const postForm = async (formData: any, token: string) => {
+const postForm = async (formData: ICustomInput[], token: string) => {
   try {
     const config = { headers: { Authorization: token } };
     const response = await axios.post("/forms", { formData }, config);

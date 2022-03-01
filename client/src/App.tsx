@@ -6,7 +6,7 @@ import LandingPage from "./pages/LandingPage";
 import FormBuilder from "./pages/FormBuilder/FormBuilder";
 
 const App = (): ReactElement => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedUser");
@@ -22,10 +22,10 @@ const App = (): ReactElement => {
       <Route
         path="*"
         element={
-          !user ? (
-            <LandingPage setUser={setUser} />
-          ) : (
+          user ? (
             <FormBuilder user={user} setUser={setUser} />
+          ) : (
+            <LandingPage setUser={setUser} />
           )
         }
       />
