@@ -5,7 +5,7 @@ const setToken = (newToken: string) => {
   token = `bearer ${newToken}`;
 };
 
-// TODO replace with actual form data type
+// TODO formData type
 const postForm = async (formData: any, token: string) => {
   try {
     const config = { headers: { Authorization: token } };

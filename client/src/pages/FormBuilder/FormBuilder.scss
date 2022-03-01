@@ -4,6 +4,41 @@
   flex-direction: column;
 }
 
+.form-builder-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+  gap: 10px;
+  height: 20px;
+  box-shadow: rgba(0, 0, 0, 0.075) 0 1px;
+}
+
+.form-builder-header-user-details {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+}
+
+.form-builder-header-user-icon {
+  font-size: 20px;
+}
+
+.form-builder-header-sign-out-button {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+
+  &:hover {
+    color: var(--highlight-blue);
+  }
+}
+
 .form-container {
   padding: 50px;
   width: 50vw;

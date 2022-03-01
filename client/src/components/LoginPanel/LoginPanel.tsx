@@ -16,7 +16,8 @@ const LoginPanel = ({ setUser }: { setUser: any }) => {
     const loginData = await login({ username, password });
     setToken(loginData.token);
     window.localStorage.setItem("loggedUser", JSON.stringify(loginData));
-    navigate("/forms");
+    setUser(loginData.username);
+    navigate("/");
   };
 
   return (

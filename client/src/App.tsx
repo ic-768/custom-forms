@@ -19,11 +19,16 @@ const App = (): ReactElement => {
 
   return (
     <Routes>
-      <Route path="*" element={<LandingPage setUser={setUser} />} />
-      {/* Route for individual form editing*/}
-      {user && <Route path="form/*" element={<FormBuilder />} />}
-      {/* Route for general forms overview*/}
-      {user && <Route path="forms/*" element={<FormBuilder />} />}
+      <Route
+        path="*"
+        element={
+          !user ? (
+            <LandingPage setUser={setUser} />
+          ) : (
+            <FormBuilder user={user} setUser={setUser} />
+          )
+        }
+      />
     </Routes>
   );
 };
