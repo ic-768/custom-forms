@@ -1,5 +1,4 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
 import { setToken } from "./services/forms";
 
 import LandingPage from "./pages/LandingPage";
@@ -17,19 +16,10 @@ const App = (): ReactElement => {
     }
   }, []);
 
-  return (
-    <Routes>
-      <Route
-        path="*"
-        element={
-          user ? (
-            <FormBuilder user={user} setUser={setUser} />
-          ) : (
-            <LandingPage setUser={setUser} />
-          )
-        }
-      />
-    </Routes>
+  return user ? (
+    <FormBuilder user={user} setUser={setUser} />
+  ) : (
+    <LandingPage setUser={setUser} />
   );
 };
 export default App;

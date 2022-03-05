@@ -1,12 +1,12 @@
 import axios from "axios";
-import { ICustomInput } from "../components/inputs/resources";
+import IForm from "../resources/IForm";
 
 let token: string | null = null;
 const setToken = (newToken: string) => {
   token = `bearer ${newToken}`;
 };
 
-const postForm = async (formData: ICustomInput[], token: string) => {
+const postForm = async (formData: IForm, token: string) => {
   try {
     const config = { headers: { Authorization: token } };
     const response = await axios.post("/forms", { formData }, config);
@@ -16,4 +16,14 @@ const postForm = async (formData: ICustomInput[], token: string) => {
   }
 };
 
-export { token, setToken, postForm };
+const updateForm = async (formData: IForm, token: string) => {
+  try {
+    const config = { headers: { Authorization: token } };
+    const response = await axios.put("/forms", { formData }, config);
+    return response.data;
+  } catch (e) {
+    console.log("error logging in: " + e);
+  }
+};
+
+export { token, setToken, postForm, updateForm };

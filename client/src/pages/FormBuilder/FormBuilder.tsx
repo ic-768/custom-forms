@@ -1,15 +1,22 @@
-import React, { useState } from "react";
-import { useNavigate, Routes, Route, Link, Outlet } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useState } from "react";
+import {
+  useNavigate,
+  useLocation,
+  Routes,
+  Route,
+  Outlet,
+} from "react-router-dom";
+
+import { matchPath } from "react-router";
 
 import { token, setToken } from "../../services/forms";
 import AddInputForm from "../../components/AddInputForm";
 import { ICustomInput } from "../../components/inputs/resources";
 import CustomInput from "../../CustomInput";
-import { tempData } from "../../tempData";
-import { postForm } from "../../services/forms";
+import { postForm, updateForm } from "../../services/forms";
+import IForm from "../../resources/IForm";
 
+import FormBuilderHeader from "./FormBuilderHeader";
 import "./FormBuilder.scss";
 
 const FormBuilder = ({
@@ -20,11 +27,27 @@ const FormBuilder = ({
   setUser: (username: string) => void;
 }) => {
   const navigate = useNavigate();
-  const [formInputs, setFormInputs] = useState<Array<ICustomInput>>(tempData); // initial test inputs
+  const location = useLocation();
+
+  // TODO get all user forms here
+  const [forms, setForms] = useState<IForm[]>([]);
+  // TODO setForm based on formId
+  const [form, setForm] = useState<IForm>({ name: "", inputs: [] });
   const [editedInput, setEditedInput] = useState<ICustomInput | null>(null); // currently edited input
 
+  // set form using ID param
+  useEffect(() => {
+    const formIdFromRoute = matchPath({ path: "/:id/*" }, location.pathname)
+      ?.params.id;
+    const foundForm = forms.find((f) => f.id === formIdFromRoute);
+
+    if (foundForm) {
+      setForm(foundForm);
+    }
+  }, [forms, location.pathname]);
+
   const addInput = (input: ICustomInput) => {
-    setFormInputs([...formInputs, input]);
+    setForm({ ...form, inputs: [...form.inputs, input] });
   };
 
   const onLogOut = () => {
@@ -34,8 +57,17 @@ const FormBuilder = ({
     navigate("/");
   };
 
+  /**
+   * Create new form or update
+   */
   const onPost = () => {
-    if (token) postForm(formInputs, token);
+    if (token)
+      if (form.id) {
+        // form already exists in db
+        updateForm(form, token);
+      } else {
+        postForm(form, token);
+      }
   };
 
   return (
@@ -44,49 +76,35 @@ const FormBuilder = ({
         path=""
         element={
           <div className="form-builder-container">
-            <div className="form-builder-header">
-              <div className="form-builder-header-user-details">
-                <FontAwesomeIcon
-                  className="form-builder-header-user-icon"
-                  icon={faUserAstronaut}
-                />
-                <div>Logged in as {user}</div>
-              </div>
-              <button
-                className="form-builder-header-sign-out-button"
-                onClick={onLogOut}
-              >
-                Sign out
-              </button>
-            </div>
+            <FormBuilderHeader user={user} onLogOut={onLogOut} />
+            <button onClick={onPost}>post</button>
             <Outlet />
           </div>
         }
       >
+        {/* View all forms */}
         <Route path="" element={<div>User can view all forms here</div>} />
+
+        {/* New forms will have id of 'new', existing will have mongo Id */}
         <Route
           path=":id"
           element={
             <div>
-              <button onClick={onPost}>post</button>
               <div className="form-container">
-                {formInputs.map((input, i) => (
+                {form.inputs.map((input, i) => (
                   <CustomInput key={i} input={input} />
                 ))}
                 {editedInput && <CustomInput input={editedInput} />}
               </div>
-              <Link to="/">Home!</Link>
-              <Link to="/2">Form view!</Link>
-              <Link to="/2/add">Add an input!</Link>
               <Outlet />
             </div>
           }
         >
           <Route
-            path="add"
+            path="edit"
             element={
               <AddInputForm
-                inputs={formInputs}
+                inputs={form.inputs}
                 addInput={addInput}
                 editedInput={editedInput}
                 editInput={setEditedInput}
