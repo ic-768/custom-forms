@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from "react";
-import {
-  useNavigate,
-  useLocation,
-  Routes,
-  Route,
-  Outlet,
-} from "react-router-dom";
-
-import { matchPath } from "react-router";
+import { useEffect, useState } from "react";
+import { Routes, Route, Outlet } from "react-router-dom";
 
 import { token, setToken } from "../../services/forms";
-import AddInputForm from "../../components/AddInputForm";
+import ExistingInputEditor from "../../components/InputEditor/ExistingInputEditor";
+import NewInputEditor from "../../components/InputEditor/NewInputEditor";
 import { ICustomInput } from "../../components/inputs/resources";
-import CustomInput from "../../CustomInput";
-import { getForms, postForm, updateForm } from "../../services/forms";
 import IForm from "../../resources/IForm";
+import { getForms } from "../../services/forms";
 
 import FormBuilderHeader from "./FormBuilderHeader";
+import FormList from "./FormList";
+import FormContainer from "./FormContainer/FormContainer";
+
 import "./FormBuilder.scss";
 
 const FormBuilder = ({
@@ -26,59 +21,23 @@ const FormBuilder = ({
   user: string;
   setUser: (username: string) => void;
 }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
   // All user forms retrieved from DB
   const [forms, setForms] = useState<IForm[]>([]);
   // Currently edited form
   const [form, setForm] = useState<IForm>({ name: "", inputs: [] });
-  // currently edited input
-  const [editedInput, setEditedInput] = useState<ICustomInput | null>(null);
-
-  // set form using ID param
-  useEffect(() => {
-    const formIdFromRoute = matchPath({ path: "/:id/*" }, location.pathname)
-      ?.params.id;
-    const foundForm = forms.find((f) => f._id === formIdFromRoute);
-
-    if (foundForm) {
-      setForm(foundForm);
-    }
-  }, [forms, location.pathname]);
-
-  // populate user's forms
-  useEffect(() => {
-    if (token) {
-      getForms(token).then((userForms) => {
-        setForms(userForms);
-      });
-    }
-  }, []);
+  // Input currently being created
+  const [newInput, setNewInput] = useState<ICustomInput | null>(null);
 
   const addInput = (input: ICustomInput) => {
     setForm({ ...form, inputs: [...form.inputs, input] });
   };
 
-  const onLogOut = () => {
-    window.localStorage.removeItem("loggedUser");
-    setUser("");
-    setToken("");
-    navigate("/");
-  };
-
-  /**
-   * Create new form or update
-   */
-  const onPost = () => {
-    if (token)
-      if (form._id) {
-        // form already exists in db
-        updateForm(form, token);
-      } else {
-        postForm(form, token);
-      }
-  };
+  // populate user's forms
+  useEffect(() => {
+    if (token) {
+      getForms(token).then(setForms);
+    }
+  }, []);
 
   return (
     <Routes>
@@ -86,50 +45,44 @@ const FormBuilder = ({
         path=""
         element={
           <div className="form-builder-container">
-            <FormBuilderHeader user={user} onLogOut={onLogOut} />
-            <button onClick={onPost}>post</button>
+            <FormBuilderHeader
+              user={user}
+              setUser={setUser}
+              setToken={setToken}
+            />
             <Outlet />
           </div>
         }
       >
         {/* View all forms */}
-        <Route
-          path=""
-          element={
-            <div>
-              <h1>All Forms</h1>
-              {forms.map((f) => (
-                <div onClick={() => f._id && navigate(f._id)}>{f.name}</div>
-              ))}
-            </div>
-          }
-        />
+        <Route path="" element={<FormList forms={forms} />} />
 
         {/* New forms will have id of 'new', existing will have mongo Id */}
         <Route
           path=":id"
           element={
-            <div>
-              <div className="form-container">
-                {form.inputs.map((input, i) => (
-                  <CustomInput key={i} input={input} />
-                ))}
-                {editedInput && <CustomInput input={editedInput} />}
-              </div>
-              <Outlet />
-            </div>
+            <FormContainer
+              form={form}
+              forms={forms}
+              setForm={setForm}
+              editedInput={newInput}
+              token={token}
+            />
           }
         >
           <Route
-            path="edit"
+            path="add"
             element={
-              <AddInputForm
-                inputs={form.inputs}
+              <NewInputEditor
                 addInput={addInput}
-                editedInput={editedInput}
-                editInput={setEditedInput}
+                newInput={newInput}
+                setNewInput={setNewInput}
               />
             }
+          />
+          <Route
+            path="edit-input/:index"
+            element={<ExistingInputEditor form={form} setForm={setForm} />}
           />
         </Route>
       </Route>

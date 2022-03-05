@@ -46,6 +46,7 @@ const LandingPage = ({ setUser }: { setUser: (username: string) => void }) => (
     <Routes>
       <Route path="signup" element={<SignupPanel />} />
       <Route path="login" element={<LoginPanel setUser={setUser} />} />
+      <Route path="*" element={null} />
     </Routes>
   </div>
 );

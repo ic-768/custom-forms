@@ -1,6 +1,3 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-
 import { getInputIcon, inputsForDropdown } from "../inputs/helpers";
 import InputModifiersList from "./InputModifiersList";
 import DropdownInput from "../inputs/inputComponents/DropdownInput";
@@ -8,40 +5,29 @@ import DropdownInput from "../inputs/inputComponents/DropdownInput";
 import { ICustomInput } from "../inputs/resources";
 import { IInputProps } from "../inputs/inputModifiers/types";
 
-import "./AddInputForm.scss";
+import "./InputEditor.scss";
 
-interface IAddInputForm {
-  inputs: ICustomInput[];
-  // add input to the form
-  addInput: (input: ICustomInput) => void;
+interface IInputEditor {
   // currently edited input
   editedInput: ICustomInput | null;
   // modify currently edited input
   editInput: (input: ICustomInput | null) => void;
+  onSave: () => void;
+  onCancel: () => void;
 }
 
-const AddInputForm = ({
-  inputs,
-  addInput,
+const InputEditor = ({
   editedInput,
   editInput,
-}: IAddInputForm) => {
+  onSave,
+  onCancel,
+}: IInputEditor) => {
   // Clear old data to start editing new input
   const editInputProps = (props: IInputProps) => editInput(props);
 
-  const onSave = () => {
-    if (editedInput) {
-      addInput(editedInput);
-      editInput(null);
-    }
-  };
-
-  const navigate = useNavigate();
-  const onCancel = () => navigate("/");
-
   return (
-    <div className="edit-panel">
-      <div className="edit-panel-options-container">
+    <div className="input-editor">
+      <div className="input-editor-options-container">
         <DropdownInput
           label="Choose an input type"
           placeholder="-- Choose an input type --"
@@ -56,11 +42,11 @@ const AddInputForm = ({
             onChangeModifiers={editInputProps}
           />
         )}
-        <div className="edit-panel-buttons-container">
-          <button onClick={onSave} className="edit-panel-save">
+        <div className="input-editor-buttons-container">
+          <button onClick={onSave} className="input-editor-save">
             Save
           </button>
-          <button onClick={onCancel} className="edit-panel-cancel">
+          <button onClick={onCancel} className="input-editor-cancel">
             Cancel
           </button>
         </div>
@@ -69,4 +55,4 @@ const AddInputForm = ({
   );
 };
 
-export default AddInputForm;
+export default InputEditor;
