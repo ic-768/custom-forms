@@ -19,6 +19,36 @@ const getTokenFromRequest = (request: Request): string | null => {
 };
 
 /*
+ * Endpoint for user to get all their forms
+ */
+formsRouter.get("/", async (request, response) => {
+  const token = getTokenFromRequest(request);
+
+  const decodedToken = token
+    ? (jwt.verify(token, secret as Secret) as JwtPayload)
+    : null;
+
+  if (!token || !decodedToken?.id) {
+    return response.status(401).json({ error: "token missing or invalid" });
+  }
+
+  const userForms = (
+    await userCollection.findOne(
+      {
+        _id: new ObjectId(decodedToken.id),
+      },
+      { projection: { _id: 0, forms: 1 } }
+    )
+  )?.forms;
+
+  if (!userForms) {
+    return response.status(401).json({ error: "Couldn't find user" });
+  }
+
+  response.status(201).json(userForms);
+});
+
+/*
  * Endpoint for user to create a new form
  */
 formsRouter.post("/", async (request, response) => {

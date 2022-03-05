@@ -10,7 +10,10 @@ const userCollection = client.db("Custom-Forms").collection("Users");
 loginRouter.post("/", async (request, response) => {
   const { username, password } = request.body;
 
-  const user = await userCollection.findOne({ username });
+  const user = await userCollection.findOne(
+    { username },
+    { projection: { username: 1, passwordHash: 1 } }
+  );
   const isPasswordCorrect =
     user === null ? false : await bcrypt.compare(password, user.passwordHash);
 

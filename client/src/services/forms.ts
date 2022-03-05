@@ -6,6 +6,16 @@ const setToken = (newToken: string) => {
   token = `bearer ${newToken}`;
 };
 
+const getForms = async (token: string) => {
+  try {
+    const config = { headers: { Authorization: token } };
+    const response = await axios.get("/forms", config);
+    return response.data;
+  } catch (e) {
+    console.log("error logging in: " + e);
+  }
+};
+
 const postForm = async (formData: IForm, token: string) => {
   try {
     const config = { headers: { Authorization: token } };
@@ -26,4 +36,4 @@ const updateForm = async (formData: IForm, token: string) => {
   }
 };
 
-export { token, setToken, postForm, updateForm };
+export { token, setToken, getForms, postForm, updateForm };

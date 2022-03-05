@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { setToken } from "./services/forms";
 
 import LandingPage from "./pages/LandingPage";
