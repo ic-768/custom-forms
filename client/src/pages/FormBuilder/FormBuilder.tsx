@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { token, setToken } from "../../services/forms";
+import { token } from "../../services/forms";
 import ExistingInputEditor from "../../components/InputEditor/ExistingInputEditor";
 import NewInputEditor from "../../components/InputEditor/NewInputEditor";
 import { ICustomInput } from "../../components/inputs/resources";
 import IForm from "../../resources/IForm";
 import { getForms } from "../../services/forms";
+import { useAppSelector } from "../../store/hooks";
+import { setForms } from "../../store/features/forms/formsSlice";
 
 import FormBuilderHeader from "./FormBuilderHeader";
 import FormList from "./FormList";
@@ -14,15 +19,10 @@ import FormContainer from "./FormContainer/FormContainer";
 
 import "./FormBuilder.scss";
 
-const FormBuilder = ({
-  user,
-  setUser,
-}: {
-  user: string;
-  setUser: (username: string) => void;
-}) => {
-  // All user forms retrieved from DB
-  const [forms, setForms] = useState<IForm[]>([]);
+const FormBuilder = () => {
+  const dispatch = useDispatch();
+  const forms = useAppSelector((state) => state.forms.forms);
+
   // Currently edited form
   const [form, setForm] = useState<IForm>({ name: "", inputs: [] });
   // Input currently being created
@@ -35,9 +35,11 @@ const FormBuilder = ({
   // populate user's forms
   useEffect(() => {
     if (token) {
-      getForms(token).then(setForms);
+      getForms(token).then((f) => {
+        dispatch(setForms({ forms: f }));
+      });
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <Routes>
@@ -45,11 +47,7 @@ const FormBuilder = ({
         path=""
         element={
           <div className="form-builder-container">
-            <FormBuilderHeader
-              user={user}
-              setUser={setUser}
-              setToken={setToken}
-            />
+            <FormBuilderHeader />
             <Outlet />
           </div>
         }
@@ -71,11 +69,21 @@ const FormBuilder = ({
             />
           }
         >
+          {/* Show floating 'add form' button */}
+          <Route
+            path=""
+            element={
+              <Link to="add" className="form-builder-add-form-button">
+                <FontAwesomeIcon icon={faPlus} />
+              </Link>
+            }
+          />
           {/* add a new input to the form */}
           <Route
             path="add"
             element={
               <NewInputEditor
+                formId={form._id || "new"}
                 addInput={addInput}
                 newInput={newInput}
                 setNewInput={setNewInput}

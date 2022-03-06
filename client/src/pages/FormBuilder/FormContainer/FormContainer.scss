@@ -32,8 +32,9 @@
   box-shadow: 0px 0px 10px 4px #bebebe;
   border-radius: 50%;
   transition: color 0.15s ease;
-
+  cursor: pointer;
   background-color: #ffffff;
+
   &:hover {
     color: var(--highlight-blue);
   }

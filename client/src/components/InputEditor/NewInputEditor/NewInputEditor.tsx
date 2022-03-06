@@ -4,6 +4,7 @@ import { ICustomInput } from "../../inputs/resources";
 import AddInputForm from "..";
 
 interface INewInputEditor {
+  formId: string;
   // add input to form
   addInput: (input: ICustomInput) => void;
   // currently edited input
@@ -13,6 +14,7 @@ interface INewInputEditor {
 }
 
 const NewInputEditor = ({
+  formId,
   addInput,
   newInput,
   setNewInput,
@@ -24,9 +26,10 @@ const NewInputEditor = ({
       addInput(newInput);
       setNewInput(null);
     }
+    navigate(`/${formId}`);
   };
 
-  const onCancel = () => navigate("/");
+  const onCancel = () => navigate(`/${formId}`);
 
   return (
     <AddInputForm

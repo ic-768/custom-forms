@@ -1,9 +1,8 @@
 import classNames from "classnames";
 
-import { classIfProvided } from "../../../../helpers/classes";
 import InputContainer from "../../InputContainer";
-
 import INumberInput from "./INumberInput";
+
 import "./NumberInput.scss";
 
 const NumberInput = ({
@@ -19,7 +18,7 @@ const NumberInput = ({
 }: INumberInput) => {
   const inputClasses = classNames({
     "number-input": true,
-    ...classIfProvided(className),
+    [className!]: !!className,
   });
 
   return (

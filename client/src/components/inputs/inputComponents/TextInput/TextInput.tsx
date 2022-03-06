@@ -1,9 +1,8 @@
 import classNames from "classnames";
 
-import { classIfProvided } from "../../../../helpers/classes";
 import InputContainer from "../../InputContainer";
-
 import ITextInput from "./ITextInput";
+
 import "./TextInput.scss";
 
 const TextInput = ({
@@ -17,7 +16,7 @@ const TextInput = ({
 }: ITextInput) => {
   const inputClasses = classNames({
     "text-input": true,
-    ...classIfProvided(className),
+    [className!]: !!className,
   });
 
   return (

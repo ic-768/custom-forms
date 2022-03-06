@@ -1,7 +1,6 @@
 import TimePicker from "react-time-picker";
 import classNames from "classnames";
 
-import { classIfProvided } from "../../../../helpers/classes";
 import InputContainer from "../../InputContainer";
 
 import ITimeInput from "./ITimeInput";
@@ -19,7 +18,7 @@ const TimeInput = ({
   const inputClasses = classNames({
     "time-input": true,
     "has-placeholder": !value,
-    ...classIfProvided(className),
+    [className!]: !!className,
   });
 
   return (

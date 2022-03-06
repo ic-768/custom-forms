@@ -1,22 +1,25 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setToken } from "../../services/forms";
 
+import { setToken } from "../../services/forms";
 import { login } from "../../services/login";
+import { setUser } from "../../store/features/user/userSlice";
 import { TextInput } from "../inputs/inputComponents";
 
 import "./LoginPanel.scss";
 
-const LoginPanel = ({ setUser }: { setUser: any }) => {
+const LoginPanel = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onLogin = async () => {
     const loginData = await login({ username, password });
-    setToken(loginData.token);
     window.localStorage.setItem("loggedUser", JSON.stringify(loginData));
-    setUser(loginData.username);
+    dispatch(setUser(loginData));
+    setToken(loginData.token);
     navigate("/");
   };
 

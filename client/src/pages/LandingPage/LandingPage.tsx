@@ -7,7 +7,7 @@ import SignupPanel from "../../components/SignupPanel";
 
 import "./LandingPage.scss";
 
-const LandingPage = ({ setUser }: { setUser: (username: string) => void }) => (
+const LandingPage = () => (
   <div
     className="landing-page-container"
     style={{
@@ -44,7 +44,7 @@ const LandingPage = ({ setUser }: { setUser: (username: string) => void }) => (
     </div>
     <Routes>
       <Route path="signup" element={<SignupPanel />} />
-      <Route path="login" element={<LoginPanel setUser={setUser} />} />
+      <Route path="login" element={<LoginPanel />} />
       <Route path="*" element={null} />
     </Routes>
   </div>

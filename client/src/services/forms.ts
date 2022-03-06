@@ -12,7 +12,7 @@ const getForms = async (token: string) => {
     const response = await axios.get("/forms", config);
     return response.data;
   } catch (e) {
-    console.log("error logging in: " + e);
+    console.log("Error fetching forms " + e);
   }
 };
 
@@ -22,7 +22,7 @@ const postForm = async (formData: IForm, token: string) => {
     const response = await axios.post("/forms", { formData }, config);
     return response.data;
   } catch (e) {
-    console.log("error logging in: " + e);
+    console.log("Error posting form: " + e);
   }
 };
 
@@ -32,7 +32,7 @@ const updateForm = async (formData: IForm, token: string) => {
     const response = await axios.put("/forms", { formData }, config);
     return response.data;
   } catch (e) {
-    console.log("error logging in: " + e);
+    console.log("Error updating form: " + e);
   }
 };
 

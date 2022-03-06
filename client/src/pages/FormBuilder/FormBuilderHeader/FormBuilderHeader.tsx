@@ -2,22 +2,20 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { setToken } from "../../../services/forms";
+import { removeUser } from "../../../store/features/user/userSlice";
+
 import "./FormBuilderHeader.scss";
 
-const FormBuilderHeader = ({
-  user,
-  setUser,
-  setToken,
-}: {
-  user: string;
-  setUser: (user: string) => void;
-  setToken: (token: string) => void;
-}) => {
+const FormBuilderHeader = () => {
+  const username = useAppSelector((state) => state.user.username);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const onLogOut = () => {
     window.localStorage.removeItem("loggedUser");
-    setUser("");
+    dispatch(removeUser());
     setToken("");
     navigate("/");
   };
@@ -28,7 +26,7 @@ const FormBuilderHeader = ({
           className="form-builder-header-user-icon"
           icon={faUserAstronaut}
         />
-        <div>Logged in as {user}</div>
+        <div>Logged in as {username}</div>
       </div>
       <button
         className="form-builder-header-sign-out-button"

@@ -1,6 +1,5 @@
 import classNames from "classnames";
 
-import { classIfProvided } from "../../../helpers/classes";
 import * as InputTypes from "../inputComponents/types";
 
 import "./InputContainer.scss";
@@ -17,7 +16,7 @@ interface IInputContainer {
 const InputContainer = ({ component, label, className }: IInputContainer) => {
   const inputContainerClasses = classNames({
     "input-container": true,
-    ...classIfProvided(className),
+    [className!]: !!className,
   });
 
   return (

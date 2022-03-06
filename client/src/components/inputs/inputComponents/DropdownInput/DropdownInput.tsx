@@ -3,9 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
 
-import { classIfProvided } from "../../../../helpers/classes";
 import InputContainer from "../../InputContainer";
-
 import IDropdownInput from "./IDropdownInput";
 
 import "./DropdownInput.scss";
@@ -35,7 +33,7 @@ const DropdownInput = ({
 
   const dropdownClasses = classNames({
     "dropdown-input-container": true,
-    ...classIfProvided(className),
+    [className!]: !!className,
   });
 
   const placeholderClasses = classNames({
