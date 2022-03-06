@@ -57,7 +57,8 @@ const FormBuilder = ({
         {/* View all forms */}
         <Route path="" element={<FormList forms={forms} />} />
 
-        {/* New forms will have id of 'new', existing will have mongo Id */}
+        {/* View specific form */}
+        {/* id will be default mongoDB id or 'new' if it's new */}
         <Route
           path=":id"
           element={
@@ -70,6 +71,7 @@ const FormBuilder = ({
             />
           }
         >
+          {/* add a new input to the form */}
           <Route
             path="add"
             element={
@@ -80,6 +82,7 @@ const FormBuilder = ({
               />
             }
           />
+          {/* edit form input */}
           <Route
             path="edit-input/:index"
             element={<ExistingInputEditor form={form} setForm={setForm} />}

@@ -38,21 +38,31 @@
 
 .input-editor-save,
 .input-editor-cancel {
+  box-shadow: 0px 1px 5px #b1b0b5;
+  cursor: pointer;
   width: 100%;
   height: 40px;
   font-size: 14px;
   color: white;
   border-width: 0px;
   border-radius: 5px;
-  box-shadow: 0px 0px 2px 2px gray;
 }
 
 .input-editor-save {
-  background-color: green;
+  background-color: var(--highlight-blue);
+
+  &:hover {
+    background-color: var(--highlight-dark-blue);
+  }
 }
 
 .input-editor-cancel {
-  background-color: red;
+  background-color: var(--disabled-gray);
+  color: black;
+
+  &:hover {
+    background-color: var(--disabled-dark-gray);
+  }
 }
 
 @keyframes fade-in-right {

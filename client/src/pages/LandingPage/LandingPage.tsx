@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";

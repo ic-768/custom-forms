@@ -1,7 +1,9 @@
 import classNames from "classnames";
-import React from "react";
+
 import { classIfProvided } from "../../../helpers/classes";
 import * as InputTypes from "../inputComponents/types";
+
+import "./InputContainer.scss";
 
 interface IInputContainer {
   component: typeof InputTypes;

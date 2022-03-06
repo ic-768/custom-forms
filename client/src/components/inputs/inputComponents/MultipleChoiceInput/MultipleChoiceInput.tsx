@@ -1,5 +1,3 @@
-import React from "react";
-
 import classNames from "classnames";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

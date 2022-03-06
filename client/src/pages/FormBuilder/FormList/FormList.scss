@@ -1,0 +1,66 @@
+.form-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 10px;
+}
+
+.form-list-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: var(--input-padding);
+  min-width: 100px;
+  font-size: var(--input-font-size);
+  border-radius: var(--input-border-radius);
+  box-shadow: inset var(--input-box-shadow-light) 0 0 0 1px;
+  transition: all 0.15s ease;
+  animation: fade-in 1s;
+  text-decoration: none;
+
+  &:visited {
+    color: unset;
+  }
+
+  &:hover {
+    box-shadow: inset var(--input-box-shadow-dark) 0 0 0 1px;
+    color: var(--highlight-blue);
+  }
+}
+
+.form-list-new-form-button {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  width: 70px;
+  font-size: 30px;
+  box-shadow: 0px 0px 10px 4px #bebebe;
+  border-radius: 50%;
+  transition: color 0.15s ease;
+
+  background-color: #ffffff;
+  text-decoration: none;
+
+  &:visited {
+    color: unset;
+  }
+  &:hover {
+    color: var(--highlight-blue);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    right: -100px;
+    opacity: 0;
+  }
+  to {
+    right: 0px;
+    opacity: 1;
+  }
+}

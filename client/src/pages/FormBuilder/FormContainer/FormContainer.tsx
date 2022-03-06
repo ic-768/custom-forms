@@ -1,5 +1,10 @@
 import { useEffect } from "react";
-import { useNavigate, Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams, Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPencilAlt,
+  faCloudUploadAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { TextInput } from "../../../components/inputs/inputComponents";
 import { ICustomInput } from "../../../components/inputs/resources";
@@ -25,7 +30,6 @@ const FormContainer = ({
   editedInput: ICustomInput | null;
   token: string | null;
 }) => {
-  const navigate = useNavigate();
   const formId = useParams().id;
 
   // Set form based on url param
@@ -57,15 +61,22 @@ const FormContainer = ({
           onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
         {form.inputs.map((input, i) => (
-          <div key={i}>
+          <div className="form-container-input-container" key={i}>
             <CustomInput input={input} />
             {/* link to edit this specific input */}
-            <div onClick={() => navigate(`edit-input/${i}`)}>edit input</div>
+            <Link
+              className="form-container-input-edit-link"
+              to={`edit-input/${i}`}
+            >
+              <FontAwesomeIcon icon={faPencilAlt} />
+            </Link>
           </div>
         ))}
         {editedInput && <CustomInput input={editedInput} />}
       </div>
-      <button onClick={onPublish}>PUBLISH CHANGES</button>
+      <div className="form-container-upload-form-button" onClick={onPublish}>
+        <FontAwesomeIcon icon={faCloudUploadAlt} />
+      </div>
       <Outlet />
     </div>
   );

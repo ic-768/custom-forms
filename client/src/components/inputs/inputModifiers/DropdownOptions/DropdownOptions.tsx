@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { TextInput } from "../../inputComponents";
 import { IDropdownOption } from "../../inputComponents/DropdownInput";
 import InputContainer from "../../InputContainer";

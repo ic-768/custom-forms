@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 
 import BorderRadius from "../inputs/inputModifiers/BorderRadius";
 import DropdownOptions from "../inputs/inputModifiers/DropdownOptions";

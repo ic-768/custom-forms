@@ -4,7 +4,10 @@
 }
 
 :root {
+  --disabled-gray: #f2f2f3;
+  --disabled-dark-gray: #ededee;
   --highlight-blue: #06f;
+  --highlight-dark-blue: #005ce6;
   --input-box-shadow-light: #d8d8da;
   --input-box-shadow-dark: #b6b6b6;
   --input-placeholder-fg: #b1b0b5;
@@ -16,9 +19,9 @@
 body {
   margin: 0;
   overflow-x: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Roboto", sans-serif, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
