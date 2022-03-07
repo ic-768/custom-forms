@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import IForm from "../../../pages/FormBuilder/resources/IForm";
@@ -5,18 +6,39 @@ import { ICustomInput } from "../../inputs/CustomInput";
 
 import InputEditor from "..";
 
+/**
+ * Used to edit an existing input in a form
+ */
 interface IExistingInputEditor {
+  // Input and its index within the form
+  editedInput: { input: ICustomInput; index: number } | null;
+  setEditedInput: (
+    input: { input: ICustomInput; index: number } | null
+  ) => void;
+  // Currently edited form
   form: IForm;
   setForm: (form: IForm) => void;
 }
 
-const ExistingInputEditor = ({ form, setForm }: IExistingInputEditor) => {
+const ExistingInputEditor = ({
+  editedInput,
+  setEditedInput,
+  form,
+  setForm,
+}: IExistingInputEditor) => {
   const navigate = useNavigate();
+  // get index from url
   const inputIndex = Number(useParams().index);
-  const editedInput = form.inputs[inputIndex];
+  const currentInput = [...form.inputs][inputIndex];
+  // if form brand new, it won't have an id, so we give it 'new'
   const formId = `/${form._id || "new"}`;
 
-  const editInput = (input: ICustomInput | null) => {
+  // Set edited input based on index
+  useEffect(() => {
+    setEditedInput({ input: currentInput, index: inputIndex });
+  }, [currentInput, setEditedInput, inputIndex]);
+
+  const updateForm = (input: ICustomInput | null) => {
     if (input) {
       setForm({
         ...form,
@@ -27,17 +49,26 @@ const ExistingInputEditor = ({ form, setForm }: IExistingInputEditor) => {
 
   const onSave = () => {
     if (editedInput) {
-      editInput(editedInput);
+      updateForm(editedInput.input);
+      setEditedInput(null);
     }
     navigate(formId);
   };
 
-  const onCancel = () => navigate(formId);
+  const onCancel = () => {
+    navigate(formId);
+    if (editedInput) {
+      setEditedInput(null);
+    }
+  };
 
   return (
     <InputEditor
-      editedInput={editedInput}
-      editInput={editInput}
+      editedInput={editedInput?.input || null}
+      // update input, keep index as is
+      editInput={(input) => {
+        if (input) setEditedInput({ index: inputIndex, input });
+      }}
       onSave={onSave}
       onCancel={onCancel}
     />

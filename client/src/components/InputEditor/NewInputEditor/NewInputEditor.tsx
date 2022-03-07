@@ -29,7 +29,12 @@ const NewInputEditor = ({
     navigate(`/${formId}`);
   };
 
-  const onCancel = () => navigate(`/${formId}`);
+  const onCancel = () => {
+    if (newInput) {
+      setNewInput(null);
+    }
+    navigate(`/${formId}`);
+  };
 
   return (
     <InputEditor

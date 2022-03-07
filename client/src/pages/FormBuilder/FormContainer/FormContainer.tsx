@@ -22,13 +22,15 @@ const FormContainer = ({
   form,
   forms,
   setForm,
+  newInput,
   editedInput,
   token,
 }: {
   form: IForm;
   forms: IForm[];
   setForm: (form: IForm) => void;
-  editedInput: ICustomInput | null;
+  newInput: ICustomInput | null;
+  editedInput: { input: ICustomInput; index: number } | null;
   token: string | null;
 }) => {
   const formId = useParams().id;
@@ -63,7 +65,13 @@ const FormContainer = ({
         />
         {form.inputs.map((input, i) => (
           <div className="form-container-input-container" key={i}>
-            <CustomInput input={input} />
+            <CustomInput
+              input={
+                i === editedInput?.index && editedInput
+                  ? editedInput.input
+                  : input
+              }
+            />
             {/* link to edit this specific input */}
             <Link
               className="form-container-input-edit-link"
@@ -73,7 +81,7 @@ const FormContainer = ({
             </Link>
           </div>
         ))}
-        {editedInput && <CustomInput input={editedInput} />}
+        {newInput && <CustomInput input={newInput} />}
       </div>
       <div className="form-container-upload-form-button" onClick={onPublish}>
         <FontAwesomeIcon icon={faCloudUploadAlt} />

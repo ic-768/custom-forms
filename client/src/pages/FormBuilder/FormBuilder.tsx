@@ -23,9 +23,15 @@ const FormBuilder = () => {
   const dispatch = useDispatch();
   const forms = useAppSelector(selectForms);
 
-  // Currently edited form
+  // Currently edited form draft
   const [form, setForm] = useState<IForm>({ name: "", inputs: [] });
-  // Input currently being created
+  // Edited input draft for input editor. Contains the input and its index in the form
+  const [editedInput, setEditedInput] = useState<{
+    input: ICustomInput;
+    index: number;
+  } | null>(null);
+
+  // New input draft for input editor
   const [newInput, setNewInput] = useState<ICustomInput | null>(null);
 
   const addInput = (input: ICustomInput) => {
@@ -64,7 +70,8 @@ const FormBuilder = () => {
               form={form}
               forms={forms}
               setForm={setForm}
-              editedInput={newInput}
+              editedInput={editedInput}
+              newInput={newInput}
               token={token}
             />
           }
@@ -93,7 +100,14 @@ const FormBuilder = () => {
           {/* edit form input */}
           <Route
             path="edit-input/:index"
-            element={<ExistingInputEditor form={form} setForm={setForm} />}
+            element={
+              <ExistingInputEditor
+                editedInput={editedInput}
+                setEditedInput={setEditedInput}
+                form={form}
+                setForm={setForm}
+              />
+            }
           />
         </Route>
       </Route>
