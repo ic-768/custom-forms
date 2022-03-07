@@ -7,11 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { token } from "../../services/forms";
 import ExistingInputEditor from "../../components/InputEditor/ExistingInputEditor";
 import NewInputEditor from "../../components/InputEditor/NewInputEditor";
-import { ICustomInput } from "../../components/inputs/resources";
-import IForm from "../../resources/IForm";
+import { ICustomInput } from "../../components/inputs/CustomInput";
+import IForm from "./resources/IForm";
 import { getForms } from "../../services/forms";
 import { useAppSelector } from "../../store/hooks";
-import { setForms } from "../../store/features/forms/formsSlice";
+import { selectForms, setForms } from "../../store/features/forms/formsSlice";
 
 import FormBuilderHeader from "./FormBuilderHeader";
 import FormList from "./FormList";
@@ -21,7 +21,7 @@ import "./FormBuilder.scss";
 
 const FormBuilder = () => {
   const dispatch = useDispatch();
-  const forms = useAppSelector((state) => state.forms.forms);
+  const forms = useAppSelector(selectForms);
 
   // Currently edited form
   const [form, setForm] = useState<IForm>({ name: "", inputs: [] });

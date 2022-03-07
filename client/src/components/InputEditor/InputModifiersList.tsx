@@ -2,12 +2,11 @@ import { ChangeEvent } from "react";
 
 import BorderRadius from "../inputs/inputModifiers/BorderRadius";
 import DropdownOptions from "../inputs/inputModifiers/DropdownOptions";
-import { IInputProps } from "../inputs/inputModifiers/types";
-import { ICustomInput } from "../inputs/resources";
+import { ICustomInput } from "../inputs/CustomInput";
 
 interface IInputModifiersList {
   input: ICustomInput;
-  onChangeModifiers: (props: IInputProps) => void;
+  onChangeModifiers: (props: ICustomInput) => void;
 }
 /**
  * Renders all available options for a specific input type

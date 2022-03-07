@@ -1,4 +1,4 @@
-import { ICustomInput } from "../components/inputs/resources";
+import { ICustomInput } from "../../../components/inputs/CustomInput";
 
 interface IForm {
   name: string;

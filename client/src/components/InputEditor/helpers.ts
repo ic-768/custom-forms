@@ -1,14 +1,14 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 import { inputLabelToIcon } from "./resources";
-import { inputTypes } from "../inputs/resources";
+import { inputTypes } from "./resources";
 import { IDropdownOption } from "../inputs/inputComponents/DropdownInput/IDropdownInput";
 
 /**
  * Function that takes the input type and returns its corresponding icon
  */
 export const getInputIcon = (
-  inputType: string | null
+  inputType: typeof inputTypes[number] | null
 ): IconDefinition | undefined =>
   inputType ? inputLabelToIcon[inputType] : undefined;
 

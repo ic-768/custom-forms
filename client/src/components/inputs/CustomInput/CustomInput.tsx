@@ -1,13 +1,25 @@
 import {
   DateInput,
+  IDateInput,
   DropdownInput,
+  IDropdownInput,
   MultipleChoiceInput,
+  IMultipleChoiceInput,
   NumberInput,
+  INumberInput,
   TextInput,
+  ITextInput,
   TimeInput,
-} from "./components/inputs/inputComponents";
+  ITimeInput,
+} from "../inputComponents";
 
-import { ICustomInput } from "./components/inputs/resources";
+type ICustomInput =
+  | IDropdownInput
+  | ITextInput
+  | INumberInput
+  | IDateInput
+  | ITimeInput
+  | IMultipleChoiceInput;
 
 const CustomInput = ({ input }: { input: ICustomInput }) => {
   switch (input.type) {
@@ -29,3 +41,4 @@ const CustomInput = ({ input }: { input: ICustomInput }) => {
 };
 
 export default CustomInput;
+export type { ICustomInput };

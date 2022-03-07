@@ -1,5 +1,6 @@
 import { useState, ChangeEvent } from "react";
-import { TextInput } from "../../inputComponents";
+
+import TextInput from "../../inputComponents/TextInput";
 import { IDropdownOption } from "../../inputComponents/DropdownInput";
 import InputContainer from "../../InputContainer";
 

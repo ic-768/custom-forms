@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import { ICustomInput } from "../../inputs/resources";
-import AddInputForm from "..";
+import { ICustomInput } from "../../inputs/CustomInput";
+import InputEditor from "..";
 
 interface INewInputEditor {
   formId: string;
@@ -32,7 +32,7 @@ const NewInputEditor = ({
   const onCancel = () => navigate(`/${formId}`);
 
   return (
-    <AddInputForm
+    <InputEditor
       editedInput={newInput}
       editInput={setNewInput}
       onSave={onSave}

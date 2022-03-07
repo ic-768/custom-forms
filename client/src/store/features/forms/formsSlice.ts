@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import IForm from "../../../resources/IForm";
+
+import IForm from "../../../pages/FormBuilder/resources/IForm";
+import { RootState } from "../../store";
 
 export interface FormsState {
   forms: IForm[];
@@ -9,7 +11,7 @@ const initialState: FormsState = {
   forms: [],
 };
 
-export const formsSlice = createSlice({
+const formsSlice = createSlice({
   name: "forms",
   initialState,
   reducers: {
@@ -20,5 +22,8 @@ export const formsSlice = createSlice({
   },
 });
 
-export const { setForms } = formsSlice.actions;
+const selectForms = (state: RootState) => state.forms.forms;
+const { setForms } = formsSlice.actions;
+
 export default formsSlice.reducer;
+export { selectForms, setForms };

@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { NumberInput } from "../../../inputs/inputComponents";
+import NumberInput from "../../inputComponents/NumberInput";
 
 interface IBorderRadius {
   radius: number;

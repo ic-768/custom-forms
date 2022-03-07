@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-import { TextInput } from "../inputs/inputComponents";
+import TextInput from "../inputs/inputComponents/TextInput";
 
 import "./SignupPanel.scss";
 

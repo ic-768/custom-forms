@@ -6,10 +6,11 @@ import {
   faCloudUploadAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { TextInput } from "../../../components/inputs/inputComponents";
-import { ICustomInput } from "../../../components/inputs/resources";
-import CustomInput from "../../../CustomInput";
-import IForm from "../../../resources/IForm";
+import TextInput from "../../../components/inputs/inputComponents/TextInput";
+import CustomInput, {
+  ICustomInput,
+} from "../../../components/inputs/CustomInput";
+import IForm from "../resources/IForm";
 import { updateForm, postForm } from "../../../services/forms";
 
 import "./FormContainer.scss";

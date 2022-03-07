@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { setToken } from "../../services/forms";
 import { login } from "../../services/login";
 import { setUser } from "../../store/features/user/userSlice";
-import { TextInput } from "../inputs/inputComponents";
+import TextInput from "../inputs/inputComponents/TextInput";
 
 import "./LoginPanel.scss";
 
@@ -36,7 +36,9 @@ const LoginPanel = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={onLogin}>Submit</button>
+      <button className="login-panel-login-button" onClick={onLogin}>
+        Submit
+      </button>
     </div>
   );
 };

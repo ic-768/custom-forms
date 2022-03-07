@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
 
 export interface UserState {
   username: string;
@@ -8,7 +9,7 @@ const initialState: UserState = {
   username: "",
 };
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
@@ -21,6 +22,8 @@ export const userSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { removeUser, setUser } = userSlice.actions;
+const selectUser = (state: RootState) => state.user.username;
+const { removeUser, setUser } = userSlice.actions;
+
+export { selectUser, removeUser, setUser };
 export default userSlice.reducer;

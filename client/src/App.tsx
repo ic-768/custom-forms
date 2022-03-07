@@ -1,13 +1,14 @@
 import { ReactElement, useEffect } from "react";
+
 import { useAppDispatch, useAppSelector } from "./store/hooks";
-import { setUser } from "./store/features/user/userSlice";
+import { selectUser, setUser } from "./store/features/user/userSlice";
+import { setToken } from "./services/forms";
 
 import LandingPage from "./pages/LandingPage";
 import FormBuilder from "./pages/FormBuilder/FormBuilder";
-import { setToken } from "./services/forms";
 
 const App = (): ReactElement => {
-  const user = useAppSelector((state) => state.user.username);
+  const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

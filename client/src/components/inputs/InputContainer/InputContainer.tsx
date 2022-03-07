@@ -1,11 +1,11 @@
 import classNames from "classnames";
 
-import * as InputTypes from "../inputComponents/types";
+import { ICustomInput } from "../CustomInput";
 
 import "./InputContainer.scss";
 
 interface IInputContainer {
-  component: typeof InputTypes;
+  component: ICustomInput;
   className?: string;
   label?: string;
 }

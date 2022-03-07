@@ -7,7 +7,6 @@ import {
   IconDefinition,
   faEllipsisV,
 } from "@fortawesome/free-solid-svg-icons";
-import { inputTypes } from "../inputs/resources";
 
 /**
  * Icon counterparts for inputTypes
@@ -21,8 +20,20 @@ const inputIcons: IconDefinition[] = [
   faEllipsisV,
 ];
 
+export const inputTypes: string[] = [
+  "Dropdown",
+  "Text",
+  "Number",
+  "Date",
+  "Time",
+  "Multiple Choice",
+];
+
 /**
  * Object mapping each input to its corresponding icon
  */
-export const inputLabelToIcon: { [key: string]: IconDefinition } =
-  Object.fromEntries(inputTypes.map((_, i) => [inputTypes[i], inputIcons[i]]));
+export const inputLabelToIcon: {
+  [key: typeof inputTypes[number]]: IconDefinition;
+} = Object.fromEntries(
+  inputTypes.map((_, i) => [inputTypes[i], inputIcons[i]])
+);
