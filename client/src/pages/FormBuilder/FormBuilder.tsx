@@ -5,8 +5,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { token } from "../../services/forms";
-import ExistingInputEditor from "../../components/InputEditor/ExistingInputEditor";
-import NewInputEditor from "../../components/InputEditor/NewInputEditor";
+import InputEditor from "../../components/InputEditor";
 import { ICustomInput } from "../../components/inputs/CustomInput";
 import IForm from "./resources/IForm";
 import { getForms } from "../../services/forms";
@@ -30,13 +29,6 @@ const FormBuilder = () => {
     input: ICustomInput;
     index: number;
   } | null>(null);
-
-  // New input draft for input editor
-  const [newInput, setNewInput] = useState<ICustomInput | null>(null);
-
-  const addInput = (input: ICustomInput) => {
-    setForm({ ...form, inputs: [...form.inputs, input] });
-  };
 
   // populate user's forms
   useEffect(() => {
@@ -71,7 +63,6 @@ const FormBuilder = () => {
               forms={forms}
               setForm={setForm}
               editedInput={editedInput}
-              newInput={newInput}
               token={token}
             />
           }
@@ -87,21 +78,22 @@ const FormBuilder = () => {
           />
           {/* add a new input to the form */}
           <Route
-            path="add"
+            path=":action"
             element={
-              <NewInputEditor
-                formId={form._id || "new"}
-                addInput={addInput}
-                newInput={newInput}
-                setNewInput={setNewInput}
+              <InputEditor
+                editedInput={editedInput}
+                setEditedInput={setEditedInput}
+                form={form}
+                setForm={setForm}
               />
             }
           />
+
           {/* edit form input */}
           <Route
             path="edit-input/:index"
             element={
-              <ExistingInputEditor
+              <InputEditor
                 editedInput={editedInput}
                 setEditedInput={setEditedInput}
                 form={form}

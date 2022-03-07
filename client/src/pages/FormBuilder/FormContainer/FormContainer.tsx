@@ -22,14 +22,12 @@ const FormContainer = ({
   form,
   forms,
   setForm,
-  newInput,
   editedInput,
   token,
 }: {
   form: IForm;
   forms: IForm[];
   setForm: (form: IForm) => void;
-  newInput: ICustomInput | null;
   editedInput: { input: ICustomInput; index: number } | null;
   token: string | null;
 }) => {
@@ -63,25 +61,26 @@ const FormContainer = ({
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
-        {form.inputs.map((input, i) => (
-          <div className="form-container-input-container" key={i}>
-            <CustomInput
-              input={
-                i === editedInput?.index && editedInput
-                  ? editedInput.input
-                  : input
-              }
-            />
-            {/* link to edit this specific input */}
-            <Link
-              className="form-container-input-edit-link"
-              to={`edit-input/${i}`}
-            >
-              <FontAwesomeIcon icon={faPencilAlt} />
-            </Link>
-          </div>
-        ))}
-        {newInput && <CustomInput input={newInput} />}
+        {form.inputs.map((input, i) => {
+          return (
+            <div className="form-container-input-container" key={i}>
+              <CustomInput
+                input={
+                  i === editedInput?.index && editedInput
+                    ? editedInput.input
+                    : input
+                }
+              />
+              {/* link to edit this specific input */}
+              <Link
+                className="form-container-input-edit-link"
+                to={`edit-input/${i}`}
+              >
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </Link>
+            </div>
+          );
+        })}
       </div>
       <div className="form-container-upload-form-button" onClick={onPublish}>
         <FontAwesomeIcon icon={faCloudUploadAlt} />
