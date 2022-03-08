@@ -31,22 +31,21 @@ const FormContainer = ({
   editedInput: { input: ICustomInput; index: number } | null;
   token: string | null;
 }) => {
-  const formId = useParams().id;
+  const formIdFromUrl = useParams().id;
 
   // Set form based on url param
   useEffect(() => {
-    const foundForm = forms.find((f) => f._id === formId?.toString());
-
-    if (foundForm && foundForm._id !== form._id) {
-      setForm(foundForm);
+    if (forms) {
+      const foundForm = forms.find((f) => f._id === formIdFromUrl);
+      if (foundForm && foundForm._id !== form._id) {
+        setForm(foundForm);
+      }
     }
-  }, [formId, form._id, forms, setForm]);
+  }, [formIdFromUrl, form._id, forms, setForm]);
 
-  // Create or update form
   const onPublish = () => {
     if (token)
       if (form._id) {
-        // form already exists in db
         updateForm(form, token);
       } else {
         postForm(form, token);
@@ -62,16 +61,11 @@ const FormContainer = ({
           onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
         {form.inputs.map((input, i) => {
+          const useEditedInput = i === editedInput?.index && editedInput.input;
+
           return (
             <div className="form-container-input-container" key={i}>
-              <CustomInput
-                input={
-                  i === editedInput?.index && editedInput
-                    ? editedInput.input
-                    : input
-                }
-              />
-              {/* link to edit this specific input */}
+              <CustomInput input={useEditedInput ? editedInput.input : input} />
               <Link
                 className="form-container-input-edit-link"
                 to={`edit-input/${i}`}
@@ -85,6 +79,16 @@ const FormContainer = ({
       <div className="form-container-upload-form-button" onClick={onPublish}>
         <FontAwesomeIcon icon={faCloudUploadAlt} />
       </div>
+
+      <Link
+        // reset form to defaults
+        onClick={() => {
+          setForm({ name: "Your New Form!", inputs: [] });
+        }}
+        to="/"
+      >
+        Go Back
+      </Link>
       <Outlet />
     </div>
   );

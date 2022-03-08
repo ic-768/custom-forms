@@ -19,6 +19,7 @@ const FormBuilderHeader = () => {
     setToken("");
     navigate("/");
   };
+
   return (
     <div className="form-builder-header">
       <div className="form-builder-header-user-details">

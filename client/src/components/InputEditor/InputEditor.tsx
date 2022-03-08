@@ -11,9 +11,7 @@ import { ICustomInput } from "../inputs/CustomInput";
 import "./InputEditor.scss";
 
 /**
- * Used to edit an input form. Two cases are handled:
- *   1) input already exists on the form and is being edited
- *   2) input is brand new
+ * Used to customise a a form input.
  */
 interface IInputEditor {
   // Input and its index within the form
@@ -24,7 +22,6 @@ interface IInputEditor {
   // Currently edited form
   form: IForm;
   setForm: (form: IForm) => void;
-  // Used to remove brand new input on cancel
 }
 
 const InputEditor = ({
@@ -36,70 +33,39 @@ const InputEditor = ({
   const params = useParams();
   const navigate = useNavigate();
 
-  // get index from url. If NaN, we are adding a new input (so we use the last index)
-  const index = Number(params.index);
-  const inputIndex = !isNaN(index) ? index : form.inputs.length - 1;
-  const currentInput = [...form.inputs][inputIndex];
+  const index = Number(params.index); // input's index in the form
+  const currentInput = [...form.inputs][index];
 
-  // if adding a new input
-  const isNewInput = params.action === "add";
-
-  // Set edited input based on index
+  // Set edited input for user to customise it
   useEffect(() => {
-    setEditedInput({ input: currentInput, index: inputIndex });
-  }, [currentInput, setEditedInput, inputIndex]);
+    setEditedInput({ input: currentInput, index });
+  }, [index, currentInput, setEditedInput]);
 
-  useEffect(() => {
-    // if creating new input, append
-    if (isNewInput) {
-      setForm({
-        ...form,
-        inputs: form.inputs.concat({ type: "Text" }),
-      });
-    }
-  }, [form._id]);
-
-  const updateForm = (input: ICustomInput | null) => {
-    if (input) {
-      setForm({
-        ...form,
-        inputs: form.inputs.map((i, idx) => (idx === inputIndex ? input : i)),
-      });
-    }
+  const updateForm = (input: ICustomInput) => {
+    setForm({
+      ...form,
+      inputs: form.inputs.map((i, idx) => (idx === index ? input : i)),
+    });
   };
 
-  // if form is brand new, it won't have an id, so we give it 'new'
-  const formId = `/${form._id || "new"}`;
-
+  const goBack = () => navigate(`/${form._id || "new"}`);
   const onSave = () => {
-    if (editedInput) {
+    if (editedInput?.input) {
       updateForm(editedInput.input);
       setEditedInput(null);
     }
-
-    navigate(formId);
+    goBack();
   };
 
   const onCancel = () => {
     if (editedInput) {
       setEditedInput(null);
-
-      // remove input on cancel
-      if (isNewInput) {
-        setForm({
-          ...form,
-          inputs: form.inputs.filter(
-            (_, idx) => idx !== form.inputs.length - 1
-          ),
-        });
-      }
     }
-
-    navigate(formId);
+    goBack();
   };
 
   const editInput = (input: ICustomInput) => {
-    if (input) setEditedInput({ index: inputIndex, input });
+    if (input) setEditedInput({ index, input });
   };
 
   if (!editedInput?.input) return null;
