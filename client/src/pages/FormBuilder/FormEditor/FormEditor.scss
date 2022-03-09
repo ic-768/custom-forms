@@ -1,15 +1,15 @@
-.form-container {
+.form-editor {
   padding: 50px;
   width: 50vw;
 }
 
-.form-container-input-container {
+.form-editor-input-container {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.form-container-input-edit-link {
+.form-editor-input-edit-link {
   text-decoration: none;
   color: unset;
   transition: color 0.15s;
@@ -19,7 +19,7 @@
   }
 }
 
-.form-container-upload-form-button {
+.form-editor-upload-form-button {
   position: absolute;
   bottom: 50px;
   left: 50%;

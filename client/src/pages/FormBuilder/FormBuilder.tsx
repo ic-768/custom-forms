@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { token } from "../../services/forms";
-import InputEditor from "../../components/InputEditor";
 import { ICustomInput } from "../../components/inputs/CustomInput";
 import IForm from "./resources/IForm";
 import { getForms } from "../../services/forms";
@@ -14,7 +11,7 @@ import { selectForms, setForms } from "../../store/features/forms/formsSlice";
 
 import FormBuilderHeader from "./FormBuilderHeader";
 import FormList from "./FormList";
-import FormContainer from "./FormContainer/FormContainer";
+import FormEditor from "./FormEditor";
 
 import "./FormBuilder.scss";
 
@@ -22,19 +19,20 @@ const FormBuilder = () => {
   const dispatch = useDispatch();
   const forms = useAppSelector(selectForms);
 
-  // Currently edited form draft
+  // A draft of the currently edited form.
+  // Any time an input edit is saved, this'll be updated with the new input
   const [editedForm, setEditedForm] = useState<IForm>({
     name: "Your New Form!",
     inputs: [],
   });
 
-  // Edited input draft for input editor. Contains the input and its index in the form
+  // A draft input for input editor. Contains the input and its index in the form
   const [editedInput, setEditedInput] = useState<{
     input: ICustomInput;
     index: number;
   } | null>(null);
 
-  // populate user's forms
+  // populate user's forms on page load
   useEffect(() => {
     if (token && !forms.length) {
       getForms(token).then((f) => {
@@ -55,53 +53,25 @@ const FormBuilder = () => {
         }
       >
         {/* View all forms */}
-        <Route path="" element={<FormList forms={forms} />} />
-
-        {/* View specific form */}
-        {/* either an id or 'new' */}
         <Route
-          path=":id"
+          path=""
+          element={<FormList setEditedForm={setEditedForm} forms={forms} />}
+        />
+
+        {/* View/edit a form */}
+        <Route
+          path=":id" // either id or 'new'
           element={
-            <FormContainer
-              form={editedForm}
+            <FormEditor
               forms={forms}
-              setForm={setEditedForm}
+              editedForm={editedForm}
+              setEditedForm={setEditedForm}
               editedInput={editedInput}
+              setEditedInput={setEditedInput}
               token={token}
             />
           }
-        >
-          {/* Add a new form */}
-          <Route
-            path=""
-            element={
-              <div
-                onClick={() => {
-                  setEditedForm({
-                    ...editedForm,
-                    inputs: editedForm.inputs.concat({ type: "Text" }),
-                  });
-                }}
-                className="form-builder-add-form-button"
-              >
-                <FontAwesomeIcon icon={faPlus} />
-              </div>
-            }
-          />
-
-          {/* edit form input */}
-          <Route
-            path="edit-input/:index"
-            element={
-              <InputEditor
-                editedInput={editedInput}
-                setEditedInput={setEditedInput}
-                form={editedForm}
-                setForm={setEditedForm}
-              />
-            }
-          />
-        </Route>
+        ></Route>
       </Route>
     </Routes>
   );

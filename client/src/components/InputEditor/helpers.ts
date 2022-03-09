@@ -8,7 +8,7 @@ import { IDropdownOption } from "../inputs/inputComponents/DropdownInput/IDropdo
  * Function that takes the input type and returns its corresponding icon
  */
 export const getInputIcon = (
-  inputType: typeof inputTypes[number] | null
+  inputType: typeof inputTypes[number]
 ): IconDefinition | undefined =>
   inputType ? inputLabelToIcon[inputType] : undefined;
 

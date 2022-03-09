@@ -22,7 +22,7 @@ interface IDropdownInput {
   // callback for when an option is selected
   onChange: (t: string) => void;
   // label of the currently selected option
-  selection: string | null;
+  selection?: string | null;
   className?: string;
   // icon of the currently selected option
   selectionIcon?: IconDefinition;

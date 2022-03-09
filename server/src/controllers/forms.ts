@@ -92,10 +92,10 @@ formsRouter.put("/", async (request, response) => {
   }
 
   const userId = new ObjectId(decodedToken.id);
-  const formId = formToUpdate._id;
+  const formId = new ObjectId(formToUpdate._id);
 
   const { matchedCount } = await userCollection.updateOne(
-    { _id: userId, "forms._id": formId }, //not matching correctly
+    { _id: userId, "forms._id": formId },
     { $set: { "forms.$": { ...formToUpdate, _id: formId } } } // update form
   );
 
