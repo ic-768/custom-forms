@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { token } from "../../services/forms";
 import { ICustomInput } from "../../components/inputs/CustomInput";
-import IForm from "./resources/IForm";
+import { IForm } from "./resources/types";
 import { getForms } from "../../services/forms";
 import { useAppSelector } from "../../store/hooks";
 import { selectForms, setForms } from "../../store/features/forms/formsSlice";
@@ -26,7 +26,7 @@ const FormBuilder = () => {
     inputs: [],
   });
 
-  // A draft input for input editor. Contains the input and its index in the form
+  // A draft input for input editor. Contains the currently edited input and its index in the form
   const [editedInput, setEditedInput] = useState<{
     input: ICustomInput;
     index: number;

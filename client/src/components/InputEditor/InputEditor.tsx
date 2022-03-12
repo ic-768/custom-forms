@@ -1,10 +1,8 @@
-import { useNavigate } from "react-router-dom";
-
 import { getInputIcon } from "./helpers";
 import InputModifiersList from "./InputModifiersList";
 import DropdownInput from "../inputs/inputComponents/DropdownInput";
 import { inputsForDropdown } from "./helpers";
-import IForm from "../../pages/FormBuilder/resources/IForm";
+import { IForm } from "../../pages/FormBuilder/resources/types";
 import { ICustomInput } from "../inputs/CustomInput";
 
 import "./InputEditor.scss";
@@ -29,10 +27,8 @@ const InputEditor = ({
   form,
   setForm,
 }: IInputEditor) => {
-  const navigate = useNavigate();
-
   // replace form's input with newly edited one
-  const updateForm = (input: ICustomInput) => {
+  const onUpdateForm = (input: ICustomInput) => {
     setForm({
       ...form,
       inputs: form.inputs.map((i, idx) =>
@@ -41,17 +37,13 @@ const InputEditor = ({
     });
   };
 
-  const goBack = () => navigate(`/${form._id || "new"}`);
-
   const onSave = () => {
-    updateForm(editedInput.input);
+    onUpdateForm(editedInput.input);
     setEditedInput(null);
-    goBack();
   };
 
   const onCancel = () => {
     setEditedInput(null);
-    goBack();
   };
 
   // edit input - keep index

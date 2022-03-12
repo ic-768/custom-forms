@@ -1,4 +1,4 @@
-import IForm from "./IForm";
+import { IForm } from "./types";
 
 export const tempData: IForm = {
   name: "temp",

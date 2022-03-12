@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-import IForm from "../resources/IForm";
+import { IForm } from "../resources/types";
 
 import "./FormList.scss";
 
@@ -16,7 +16,6 @@ const FormList = ({
   setEditedForm: (form: IForm) => void;
   forms: IForm[];
 }) => {
-  // user clicked to add (and edit) a brand new form
   const onAddNewForm = () => {
     setEditedForm({ name: "Your New Form!", inputs: [] });
   };

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import IForm from "../pages/FormBuilder/resources/IForm";
+import { IForm } from "../pages/FormBuilder/resources/types";
 
 let token: string | null = null;
 const setToken = (newToken: string) => {
