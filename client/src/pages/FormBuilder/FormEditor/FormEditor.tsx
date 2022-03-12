@@ -1,4 +1,4 @@
-import { useEffect, Dispatch, ChangeEvent } from "react";
+import { useEffect, Dispatch, ChangeEvent, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -73,7 +73,10 @@ const FormEditor = ({
   // When adding a new input to the form
   const onAddNewInput = () => {
     setEditedInput({
-      input: { type: "Text" },
+      input: {
+        type: "Text",
+        label: `Input no.${editedForm.inputs.length.toString()}`,
+      },
       index: editedForm.inputs.length,
     });
 
@@ -114,6 +117,8 @@ const FormEditor = ({
           editedInput={editedInput}
           onSelectInput={onSelectInput}
           onDeleteInput={onDeleteInput}
+          editedForm={editedForm}
+          setEditedForm={setEditedForm}
         />
         {editedInput ? (
           <InputEditor

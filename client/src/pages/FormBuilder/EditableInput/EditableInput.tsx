@@ -1,10 +1,14 @@
-import { MouseEventHandler } from "react";
+import { forwardRef, MouseEventHandler } from "react";
 import {
   faBars,
   faMinusCircle,
   faPencilAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  DraggableProvidedDraggableProps,
+  DraggableProvidedDragHandleProps,
+} from "react-beautiful-dnd";
 
 import CustomInput, {
   ICustomInput,
@@ -12,27 +16,43 @@ import CustomInput, {
 
 import "./EditableInput.scss";
 
-const EditableInput = ({
-  input,
-  index,
-  showDragControl,
-  onSelectInput,
-  onDeleteInput,
-}: {
+/**
+ * Input that can be dragged to be reordered and edited by clicking accompanying buttons
+ */
+interface IEditableInput {
+  ref: any;
+  draggableProps: DraggableProvidedDraggableProps;
+  dragHandleProps?: DraggableProvidedDragHandleProps;
   input: ICustomInput;
-  index: number;
   showDragControl: boolean;
   onSelectInput: MouseEventHandler;
   onDeleteInput: MouseEventHandler;
-}) => {
-  return (
-    <div className="editable-input-container">
-      <CustomInput input={input} />
+}
+
+const EditableInput = forwardRef(
+  (
+    {
+      draggableProps,
+      dragHandleProps,
+      input,
+      showDragControl,
+      onSelectInput,
+      onDeleteInput,
+    }: IEditableInput,
+    ref: any
+  ) => (
+    <div
+      ref={ref}
+      {...draggableProps}
+      {...dragHandleProps}
+      className="editable-input-container"
+    >
       {showDragControl && (
         <div className="editable-input-reorder-control">
           <FontAwesomeIcon icon={faBars} />
         </div>
       )}
+      <CustomInput input={input} />
       <div className="editable-input-buttons">
         <button onClick={onSelectInput} className="editable-input-edit-link">
           <FontAwesomeIcon icon={faPencilAlt} />
@@ -42,7 +62,7 @@ const EditableInput = ({
         </button>
       </div>
     </div>
-  );
-};
+  )
+);
 
 export default EditableInput;
