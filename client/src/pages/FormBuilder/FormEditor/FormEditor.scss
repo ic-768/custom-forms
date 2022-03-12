@@ -6,103 +6,42 @@
   gap: 10px;
 }
 
-.form-editor-input-container {
-  display: flex;
-  align-items: center;
-}
-
 .form-editor-input-go-back-link {
-  margin: 5px;
+  position: absolute;
+  margin: 10px;
   font-size: 20px;
   transition: color 0.15s ease;
-
-  &:hover {
-    color: var(--highlight-blue);
-  }
-}
-
-.form-editor-input-reorder-control {
-  display: flex;
-  position: absolute;
-  left: -0px;
-  align-items: center;
-  justify-content: center;
-  cursor: ns-resize;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  font-size: 18px;
-  margin: 0px 15px;
-
-  &:hover {
-    color: var(--highlight-blue);
-  }
-}
-
-.form-editor-input-edit-link {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  padding: 6px;
-  background-color: white;
-  font-size: 14px;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 50%;
   color: unset;
-  transition: color 0.15s;
-  margin-left: 20px;
 
   &:hover {
     color: var(--highlight-blue);
-    box-shadow: inset var(--input-box-shadow-dark) 0 0 0 1px;
-  }
-}
-
-.form-editor-input-delete-link {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  padding: 6px;
-  background-color: white;
-  font-size: 14px;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 50%;
-  color: unset;
-  transition: color 0.15s;
-
-  &:hover {
-    color: var(--highlight-blue);
-    box-shadow: inset var(--input-box-shadow-dark) 0 0 0 1px;
   }
 }
 
 .form-editor-add-form-button {
   display: flex;
-  flex-shrink: 0px;
+  flex-shrink: 0;
+  align-self: center;
+  align-self: center;
+  margin-top: 10px;
+  margin-top: 10px;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
   text-align: center;
-  padding: 6px;
   border: none;
+  border-radius: 50%;
+  height: 26px;
+  width: 26px;
   background-color: white;
   font-size: 14px;
   text-decoration: none;
   cursor: pointer;
   color: unset;
   transition: color 0.15s;
-  align-self: center;
 
   &:hover {
     color: var(--highlight-blue);
     box-shadow: inset var(--input-box-shadow-dark) 0 0 0 1px;
-    border-radius: 50%;
   }
 }
 

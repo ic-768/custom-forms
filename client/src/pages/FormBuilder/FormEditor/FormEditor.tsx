@@ -2,21 +2,16 @@ import { useEffect, Dispatch, ChangeEvent } from "react";
 import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faPencilAlt,
   faCloudUploadAlt,
   faPlus,
   faArrowLeft,
-  faMinusCircle,
-  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
 import InputEditor from "../../../components/InputEditor";
 import TextInput from "../../../components/inputs/inputComponents/TextInput";
-import CustomInput, {
-  ICustomInput,
-} from "../../../components/inputs/CustomInput";
-import { IForm } from "../resources/types";
+import { IForm, IEditedInput } from "../resources/types";
 import { updateForm, postForm } from "../../../services/forms";
+import EditableInputList from "../EditableInputList/EditableInputList";
 
 import "./FormEditor.scss";
 
@@ -27,12 +22,9 @@ interface IFormEditor {
   forms: IForm[];
   editedForm: IForm;
   setEditedForm: (form: IForm) => void;
-  editedInput: { input: ICustomInput; index: number } | null;
+  editedInput: IEditedInput;
 
-  setEditedInput: Dispatch<{
-    input: ICustomInput;
-    index: number;
-  } | null>;
+  setEditedInput: Dispatch<IEditedInput>;
   token: string | null;
 }
 
@@ -106,41 +98,10 @@ const FormEditor = ({
     }
   };
 
-  const inputList = editedForm.inputs.map((input, i) => {
-    // if rendering at editedInput's index, display editedInput
-    const useEditedInput = i === editedInput?.index && editedInput.input;
-
-    return (
-      <div className="form-editor-input-container" key={i}>
-        <CustomInput input={useEditedInput ? editedInput.input : input} />
-        {editedForm.inputs.length > 1 && ( //usememo to cache this result
-          <div className="form-editor-input-reorder-control">
-            <FontAwesomeIcon icon={faBars} />
-          </div>
-        )}
-        <button
-          onClick={onSelectInput(i)}
-          className="form-editor-input-edit-link"
-        >
-          <FontAwesomeIcon icon={faPencilAlt} />
-        </button>
-        <button
-          onClick={onDeleteInput(i)}
-          className="form-editor-input-delete-link"
-        >
-          <FontAwesomeIcon icon={faMinusCircle} />
-        </button>
-      </div>
-    );
-  });
-
   return (
     <div>
-      <Link to="/">
-        <FontAwesomeIcon
-          className="form-editor-input-go-back-link"
-          icon={faArrowLeft}
-        />
+      <Link className="form-editor-input-go-back-link" to="/">
+        <FontAwesomeIcon icon={faArrowLeft} />
       </Link>
       <div className="form-editor">
         <TextInput
@@ -148,7 +109,12 @@ const FormEditor = ({
           value={editedForm.name}
           onChange={onEditFormName}
         />
-        {inputList}
+        <EditableInputList
+          inputs={editedForm.inputs}
+          editedInput={editedInput}
+          onSelectInput={onSelectInput}
+          onDeleteInput={onDeleteInput}
+        />
         {editedInput ? (
           <InputEditor
             editedInput={editedInput}
