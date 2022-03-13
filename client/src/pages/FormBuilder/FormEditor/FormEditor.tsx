@@ -73,19 +73,17 @@ const FormEditor = ({
 
   // When adding a new input to the form
   const onAddNewInput = () => {
-    const inputId = uuid();
     setEditedInput({
       input: {
         type: "Text",
         label: `Input no.${editedForm.inputs.length.toString()}`,
-        id: inputId,
       },
       index: editedForm.inputs.length,
     });
 
     setEditedForm({
       ...editedForm,
-      inputs: editedForm.inputs.concat({ type: "Text", id: inputId }),
+      inputs: editedForm.inputs.concat({ type: "Text" }),
     });
   };
 

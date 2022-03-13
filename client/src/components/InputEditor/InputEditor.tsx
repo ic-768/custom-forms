@@ -4,6 +4,7 @@ import DropdownInput from "../inputs/inputComponents/DropdownInput";
 import { inputsForDropdown } from "./helpers";
 import { IEditedInput, IForm } from "../../pages/FormBuilder/resources/types";
 import { ICustomInput } from "../inputs/CustomInput";
+import { v4 as uuid } from "uuid";
 
 import "./InputEditor.scss";
 
@@ -11,12 +12,11 @@ import "./InputEditor.scss";
  * Used to customise a a form input.
  */
 interface IInputEditor {
-  // Input and its index within the form
   editedInput: { input: ICustomInput; index: number };
   setEditedInput: (input: IEditedInput) => void;
   // Currently edited form
   form: IForm;
-  setForm: (form: IForm) => void;
+  setForm: (form: any) => void;
 }
 
 const InputEditor = ({
@@ -27,16 +27,18 @@ const InputEditor = ({
 }: IInputEditor) => {
   // replace form's input with newly edited one
   const onUpdateForm = (input: ICustomInput) => {
-    setForm({
-      ...form,
-      inputs: form.inputs.map((i, idx) =>
-        idx === editedInput.index ? input : i
-      ),
-    });
+    if (input) {
+      setForm({
+        ...form,
+        inputs: form.inputs.map((i, idx) =>
+          idx === editedInput.index ? input : i
+        ),
+      });
+    }
   };
 
   const onSave = () => {
-    onUpdateForm(editedInput.input);
+    onUpdateForm({ ...editedInput.input, id: uuid() });
     setEditedInput(null);
   };
 
@@ -46,7 +48,7 @@ const InputEditor = ({
 
   // edit input - keep index
   const editInput = (input: ICustomInput) => {
-    setEditedInput({ ...editedInput, input });
+    setEditedInput({ index: editedInput.index, input });
   };
 
   // set edited input's type
