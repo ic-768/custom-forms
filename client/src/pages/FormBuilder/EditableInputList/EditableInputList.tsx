@@ -11,6 +11,15 @@ import "./EditableInputList.scss";
  *  List of inputs that can be reordered through dragging and dropping,
  *  and edited/removed.
  */
+interface IEditableInputList {
+  inputs: ICustomInput[];
+  editedInput: IEditedInput;
+  onSelectInput: (index: number) => MouseEventHandler;
+  onDeleteInput: (index: number) => MouseEventHandler;
+  editedForm: IForm;
+  setEditedForm: (form: IForm) => void;
+}
+
 const EditableInputList = ({
   inputs,
   editedInput,
@@ -18,14 +27,7 @@ const EditableInputList = ({
   onDeleteInput,
   editedForm,
   setEditedForm,
-}: {
-  inputs: ICustomInput[];
-  editedInput: IEditedInput;
-  onSelectInput: (index: number) => MouseEventHandler;
-  onDeleteInput: (index: number) => MouseEventHandler;
-  editedForm: IForm;
-  setEditedForm: (form: IForm) => void;
-}) => {
+}: IEditableInputList) => {
   // function to reorder items in an array
   const reorder = (inputs: any[], startIndex: number, endIndex: number) => {
     const result = Array.from(inputs);
@@ -65,7 +67,11 @@ const EditableInputList = ({
                 i === editedInput?.index && editedInput.input;
 
               return (
-                <Draggable draggableId={i.toString()} key={i} index={i}>
+                <Draggable
+                  draggableId={input.id || i.toString()}
+                  key={input.id}
+                  index={i}
+                >
                   {(provided, _snapshot) => (
                     <EditableInput
                       ref={provided.innerRef}

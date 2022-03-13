@@ -3,8 +3,7 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { token } from "../../services/forms";
-import { ICustomInput } from "../../components/inputs/CustomInput";
-import { IForm } from "./resources/types";
+import { IEditedInput, IForm } from "./resources/types";
 import { getForms } from "../../services/forms";
 import { useAppSelector } from "../../store/hooks";
 import { selectForms, setForms } from "../../store/features/forms/formsSlice";
@@ -27,19 +26,16 @@ const FormBuilder = () => {
   });
 
   // A draft input for input editor. Contains the currently edited input and its index in the form
-  const [editedInput, setEditedInput] = useState<{
-    input: ICustomInput;
-    index: number;
-  } | null>(null);
+  const [editedInput, setEditedInput] = useState<IEditedInput>(null);
 
   // populate user's forms on page load
   useEffect(() => {
-    if (token && !forms.length) {
+    if (token) {
       getForms(token).then((f) => {
-        dispatch(setForms({ forms: f }));
+        dispatch(setForms({ forms: f || [] }));
       });
     }
-  }, [dispatch, forms.length]);
+  }, [dispatch]);
 
   return (
     <Routes>

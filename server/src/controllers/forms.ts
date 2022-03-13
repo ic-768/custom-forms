@@ -45,7 +45,7 @@ formsRouter.get("/", async (request, response) => {
     return response.status(401).json({ error: "Couldn't find user" });
   }
 
-  response.status(201).json(userForms);
+  response.status(200).json(userForms);
 });
 
 /*
@@ -93,6 +93,7 @@ formsRouter.put("/", async (request, response) => {
 
   const userId = new ObjectId(decodedToken.id);
   const formId = new ObjectId(formToUpdate._id);
+  console.log(formToUpdate);
 
   const { matchedCount } = await userCollection.updateOne(
     { _id: userId, "forms._id": formId },
@@ -103,7 +104,7 @@ formsRouter.put("/", async (request, response) => {
     return response.status(401).json({ error: "Couldn't find user" });
   }
 
-  response.status(201).json(formToUpdate);
+  response.status(200).json(formToUpdate);
 });
 
 export default formsRouter;

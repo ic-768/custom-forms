@@ -28,6 +28,7 @@ interface IDropdownInput {
   selectionIcon?: IconDefinition;
   styles?: IInputStyles;
   label?: string;
+  id?: string;
 }
 
 export default IDropdownInput;

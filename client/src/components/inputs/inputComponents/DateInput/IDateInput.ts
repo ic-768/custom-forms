@@ -10,6 +10,7 @@ interface IDateInput {
   placeholder?: string;
   date?: DayValue;
   styles?: IInputStyles;
+  id?: string;
 }
 
 export default IDateInput;

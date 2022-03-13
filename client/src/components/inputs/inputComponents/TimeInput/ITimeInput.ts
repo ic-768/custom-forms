@@ -10,6 +10,7 @@ interface ITimeInput {
   maxDetail?: "hour" | "minute" | "second";
   label?: string;
   styles?: IInputStyles;
+  id?: string;
 }
 
 export default ITimeInput;

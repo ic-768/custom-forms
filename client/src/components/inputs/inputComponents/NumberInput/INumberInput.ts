@@ -12,6 +12,7 @@ interface INumberInput {
   width?: number;
   label?: string;
   styles?: IInputStyles;
+  id?: string;
 }
 
 export default INumberInput;

@@ -1,5 +1,6 @@
-import { useEffect, Dispatch, ChangeEvent, useState } from "react";
+import { useEffect, Dispatch, ChangeEvent } from "react";
 import { useParams, Link } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCloudUploadAlt,
@@ -72,17 +73,19 @@ const FormEditor = ({
 
   // When adding a new input to the form
   const onAddNewInput = () => {
+    const inputId = uuid();
     setEditedInput({
       input: {
         type: "Text",
         label: `Input no.${editedForm.inputs.length.toString()}`,
+        id: inputId,
       },
       index: editedForm.inputs.length,
     });
 
     setEditedForm({
       ...editedForm,
-      inputs: editedForm.inputs.concat({ type: "Text" }),
+      inputs: editedForm.inputs.concat({ type: "Text", id: inputId }),
     });
   };
 

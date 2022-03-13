@@ -12,6 +12,9 @@ interface IForm {
 /**
  * Input being edited in FormBuilder, also contains its index in the form inputs
  */
-type IEditedInput = { input: ICustomInput; index: number } | null;
+type IEditedInput = {
+  input: ICustomInput;
+  index: number;
+} | null;
 
 export type { IForm, IEditedInput };

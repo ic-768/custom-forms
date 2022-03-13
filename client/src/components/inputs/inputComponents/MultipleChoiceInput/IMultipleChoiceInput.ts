@@ -13,6 +13,7 @@ interface IMultipleChoiceInput {
   className?: string;
   label?: string;
   styles?: IInputStyles;
+  id?: string;
 }
 
 export default IMultipleChoiceInput;

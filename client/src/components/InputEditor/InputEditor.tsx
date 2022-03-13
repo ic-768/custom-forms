@@ -2,7 +2,7 @@ import { getInputIcon } from "./helpers";
 import InputModifiersList from "./InputModifiersList";
 import DropdownInput from "../inputs/inputComponents/DropdownInput";
 import { inputsForDropdown } from "./helpers";
-import { IForm } from "../../pages/FormBuilder/resources/types";
+import { IEditedInput, IForm } from "../../pages/FormBuilder/resources/types";
 import { ICustomInput } from "../inputs/CustomInput";
 
 import "./InputEditor.scss";
@@ -13,9 +13,7 @@ import "./InputEditor.scss";
 interface IInputEditor {
   // Input and its index within the form
   editedInput: { input: ICustomInput; index: number };
-  setEditedInput: (
-    input: { input: ICustomInput; index: number } | null
-  ) => void;
+  setEditedInput: (input: IEditedInput) => void;
   // Currently edited form
   form: IForm;
   setForm: (form: IForm) => void;
