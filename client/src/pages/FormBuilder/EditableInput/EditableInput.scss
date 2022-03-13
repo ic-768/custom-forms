@@ -4,8 +4,10 @@
   gap: 10px;
 }
 
-.editable-input-reorder-control {
+.editable-input-drag-handle {
   display: flex;
+  position: absolute;
+  left: 0px;
   align-items: center;
   justify-content: center;
   cursor: grab;
@@ -13,7 +15,6 @@
   width: 32px;
   height: 32px;
   font-size: 18px;
-  margin: 0px 15px;
 
   &:hover {
     color: var(--highlight-blue);

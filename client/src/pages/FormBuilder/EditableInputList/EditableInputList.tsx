@@ -14,6 +14,7 @@ import "./EditableInputList.scss";
 interface IEditableInputList {
   inputs: ICustomInput[];
   editedInput: IEditedInput;
+  setEditedInput: (input: IEditedInput) => void;
   onSelectInput: (index: number) => MouseEventHandler;
   onDeleteInput: (index: number) => MouseEventHandler;
   editedForm: IForm;
@@ -23,6 +24,7 @@ interface IEditableInputList {
 const EditableInputList = ({
   inputs,
   editedInput,
+  setEditedInput,
   onSelectInput,
   onDeleteInput,
   editedForm,
@@ -51,12 +53,19 @@ const EditableInputList = ({
     }
   };
 
-  const showDragControl = useMemo(() => inputs.length > 1, [inputs.length]);
+  // disallow reordering when editing an input
+  const makeDraggable = useMemo(
+    () => inputs.length > 1 && !editedInput,
+    [inputs.length, editedInput]
+  );
+
+  // hide draghandle while dragging
+  const showDragHandle = (snapshot: any) => !snapshot.isDraggingOver;
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="editableInputList">
-        {(provided, _snapshot) => (
+        {(provided, droppableSnapshot) => (
           <div
             className="editable-input-list-container"
             ref={provided.innerRef}
@@ -66,7 +75,8 @@ const EditableInputList = ({
               const useEditedInput =
                 i === editedInput?.index && editedInput.input;
 
-              return (
+              // if not draggable, skip rendering the Draggable wrapper
+              return makeDraggable ? (
                 <Draggable
                   draggableId={input.id || i.toString()}
                   key={input.id}
@@ -79,12 +89,20 @@ const EditableInputList = ({
                       dragHandleProps={provided.dragHandleProps}
                       key={i}
                       input={useEditedInput ? editedInput.input : input}
-                      showDragControl={showDragControl}
+                      showDragControl={showDragHandle(droppableSnapshot)}
                       onSelectInput={onSelectInput(i)}
                       onDeleteInput={onDeleteInput(i)}
                     />
                   )}
                 </Draggable>
+              ) : (
+                <EditableInput
+                  key={i}
+                  input={useEditedInput ? editedInput.input : input}
+                  showDragControl={makeDraggable}
+                  onSelectInput={onSelectInput(i)}
+                  onDeleteInput={onDeleteInput(i)}
+                />
               );
             })}
             {provided.placeholder}

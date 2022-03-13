@@ -118,6 +118,7 @@ const FormEditor = ({
         <EditableInputList
           inputs={editedForm.inputs}
           editedInput={editedInput}
+          setEditedInput={setEditedInput}
           onSelectInput={onSelectInput}
           onDeleteInput={onDeleteInput}
           editedForm={editedForm}

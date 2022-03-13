@@ -20,8 +20,8 @@ import "./EditableInput.scss";
  * Input that can be dragged to be reordered and edited by clicking accompanying buttons
  */
 interface IEditableInput {
-  ref: any;
-  draggableProps: DraggableProvidedDraggableProps;
+  ref?: any;
+  draggableProps?: DraggableProvidedDraggableProps;
   dragHandleProps?: DraggableProvidedDragHandleProps;
   input: ICustomInput;
   showDragControl: boolean;
@@ -48,7 +48,7 @@ const EditableInput = forwardRef(
       className="editable-input-container"
     >
       {showDragControl && (
-        <div className="editable-input-reorder-control">
+        <div className="editable-input-drag-handle">
           <FontAwesomeIcon icon={faBars} />
         </div>
       )}
