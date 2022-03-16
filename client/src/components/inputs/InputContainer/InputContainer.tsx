@@ -5,7 +5,7 @@ import { ICustomInput } from "../CustomInput";
 import "./InputContainer.scss";
 
 interface IInputContainer {
-  component: ICustomInput;
+  component: ICustomInput | Element;
   className?: string;
   label?: string;
 }

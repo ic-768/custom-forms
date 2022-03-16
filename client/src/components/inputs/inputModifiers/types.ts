@@ -3,4 +3,5 @@
  */
 export interface IInputStyles {
   borderRadius?: number;
+  boxShadow?: string;
 }

@@ -51,9 +51,9 @@ const InputEditor = ({
     setEditedInput({ index: editedInput.index, input });
   };
 
-  // set edited input's type
+  // When changing input type, we keep the label
   const onInputTypeSelect = (t: string) =>
-    editInput({ type: t } as ICustomInput);
+    editInput({ type: t, label: editedInput.input.label } as ICustomInput);
 
   return (
     <div className="input-editor">
