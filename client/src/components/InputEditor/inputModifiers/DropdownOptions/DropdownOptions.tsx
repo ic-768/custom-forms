@@ -1,8 +1,8 @@
 import { useState, ChangeEvent } from "react";
 
-import TextInput from "../../inputComponents/TextInput";
-import { IDropdownOption } from "../../inputComponents/DropdownInput";
-import InputContainer from "../../InputContainer";
+import { TextInput } from "../../../inputs/inputComponents";
+import { IDropdownOption } from "../../../inputs/inputComponents/DropdownInput";
+import InputContainer from "../../../inputs/InputContainer";
 
 import "./DropdownOptions.scss";
 
@@ -23,7 +23,7 @@ const DropdownOptions = ({ onChange }: IDropdownOptions) => {
 
   return (
     <InputContainer
-      label="Add as many options as you'd like"
+      label="Dropdown Options"
       component={
         <div className="dropdown-options-modifier-options">
           {dropdownOptions.map((o, i) => (

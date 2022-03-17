@@ -25,7 +25,7 @@ export const tempData: IForm = {
     {
       type: "Text",
       placeholder: "Please type!",
-      styles: { borderRadius: 20 },
+      styles: { borderRadius: "20px" },
     },
     {
       onChange: () => null,

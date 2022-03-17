@@ -1,5 +1,5 @@
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { IInputStyles } from "../../inputModifiers/types";
+import { IInputStyles } from "../../../InputEditor/inputModifiers";
 
 /**
  * Single option of the dropdown list

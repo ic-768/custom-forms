@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { TimePickerValue } from "react-time-picker";
-import { IInputStyles } from "../../inputModifiers/types";
+
+import { IInputStyles } from "../../../InputEditor/inputModifiers";
 
 interface ITimeInput {
   type?: "Time";

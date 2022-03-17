@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { DayValue } from "react-modern-calendar-datepicker";
-import { IInputStyles } from "../../inputModifiers/types";
+import { IInputStyles } from "../../../InputEditor/inputModifiers";
 
 interface IDateInput {
   type?: "Date";

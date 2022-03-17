@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { IInputStyles } from "../../inputModifiers/types";
+import { IInputStyles } from "../../../InputEditor/inputModifiers";
 
 export interface IChoice {
   label: string;

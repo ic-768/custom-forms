@@ -1,10 +1,11 @@
+import { v4 as uuid } from "uuid";
+
 import { getInputIcon } from "./helpers";
 import InputModifiersList from "./InputModifiersList";
 import DropdownInput from "../inputs/inputComponents/DropdownInput";
 import { inputsForDropdown } from "./helpers";
 import { IEditedInput, IForm } from "../../pages/FormBuilder/resources/types";
 import { ICustomInput } from "../inputs/CustomInput";
-import { v4 as uuid } from "uuid";
 
 import "./InputEditor.scss";
 

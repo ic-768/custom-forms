@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { IInputStyles } from "../../inputModifiers/types";
+import { IInputStyles } from "../../../InputEditor/inputModifiers";
 
 interface ITextInput {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;

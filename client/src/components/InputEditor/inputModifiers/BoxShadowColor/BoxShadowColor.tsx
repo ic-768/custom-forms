@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ColorChangeHandler, ChromePicker } from "react-color";
-import InputContainer from "../../InputContainer";
+
+import InputContainer from "../../../inputs/InputContainer";
 
 import "./BoxShadowColor.scss";
 
@@ -15,7 +16,7 @@ const BoxShadowColor = ({ color, onChange }: IBoxShadowColor) => {
   return (
     <>
       <InputContainer
-        label="Change the box-shadow color"
+        label="Box shadow color"
         component={
           <div
             style={{ backgroundImage: "url(images/picker-background.png)" }}

@@ -1,11 +1,10 @@
+import { ReactElement } from "react";
 import classNames from "classnames";
-
-import { ICustomInput } from "../CustomInput";
 
 import "./InputContainer.scss";
 
 interface IInputContainer {
-  component: ICustomInput | Element;
+  component: ReactElement;
   className?: string;
   label?: string;
 }
