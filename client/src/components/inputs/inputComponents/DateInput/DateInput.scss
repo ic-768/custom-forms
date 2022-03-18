@@ -17,19 +17,3 @@
 .date-input:hover {
   box-shadow: inset var(--input-box-shadow-dark) 0 0 0 1px;
 }
-
-.Calendar {
-  width: 300px;
-}
-
-.DatePicker {
-  width: 100%;
-}
-
-.DatePicker__calendarContainer {
-  left: 135px;
-}
-
-.DatePicker__input::placeholder {
-  color: var(--input-placeholder-fg);
-}

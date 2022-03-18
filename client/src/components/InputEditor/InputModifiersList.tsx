@@ -113,7 +113,14 @@ const InputModifiersList = ({
         </>
       );
     case "Date":
-      return null;
+      return (
+        <>
+          {FontSizeModifier}
+          {HeightModifier}
+          {BorderRadiusModifier}
+          {BoxShadowColorModifier}
+        </>
+      );
     case "Time":
       return null;
     case "Multiple Choice":

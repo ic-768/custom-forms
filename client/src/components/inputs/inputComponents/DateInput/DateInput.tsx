@@ -1,6 +1,4 @@
 import classNames from "classnames";
-import "react-modern-calendar-datepicker/lib/DatePicker.css";
-import Calendar from "react-modern-calendar-datepicker";
 
 import InputContainer from "../../InputContainer";
 import IDateInput from "./IDateInput";
@@ -8,12 +6,11 @@ import IDateInput from "./IDateInput";
 import "./DateInput.scss";
 
 const DateInput = ({
-  label,
-  className,
-  placeholder,
   date,
   onChange,
-  // TODO
+  label,
+  placeholder,
+  className,
   styles,
 }: IDateInput) => {
   const inputClasses = classNames({
@@ -26,11 +23,13 @@ const DateInput = ({
       label={label}
       className={className}
       component={
-        <Calendar
-          inputPlaceholder={placeholder}
-          inputClassName={inputClasses}
+        <input
+          style={styles}
           value={date}
           onChange={onChange}
+          type="date"
+          className={inputClasses}
+          placeholder={placeholder}
         />
       }
     />

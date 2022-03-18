@@ -1,9 +1,15 @@
+.form-editor-container {
+  display: flex;
+  justify-content: center;
+}
+
 .form-editor {
   display: flex;
   flex-direction: column;
-  padding: 50px;
+  padding-top: 50px;
   width: 50vw;
   gap: 10px;
+  margin-right: 200px;
 }
 
 .form-editor-input-go-back-link {
@@ -12,6 +18,7 @@
   font-size: 20px;
   transition: color 0.15s ease;
   color: unset;
+  left: 10px;
 
   &:hover {
     color: var(--highlight-blue);

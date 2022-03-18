@@ -13,7 +13,6 @@ const NumberInput = ({
   className,
   min,
   max,
-  width,
   styles,
 }: INumberInput) => {
   const inputClasses = classNames({
@@ -35,7 +34,6 @@ const NumberInput = ({
           placeholder={placeholder}
           min={min}
           max={max}
-          width={width}
         />
       }
     />

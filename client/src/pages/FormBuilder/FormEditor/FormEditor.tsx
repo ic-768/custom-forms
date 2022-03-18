@@ -1,6 +1,5 @@
 import { useEffect, Dispatch, ChangeEvent } from "react";
 import { useParams, Link } from "react-router-dom";
-import { v4 as uuid } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCloudUploadAlt,
@@ -8,11 +7,12 @@ import {
   faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
-import InputEditor from "../../../components/InputEditor";
 import TextInput from "../../../components/inputs/inputComponents/TextInput";
-import { IForm, IEditedInput } from "../resources/types";
 import { updateForm, postForm } from "../../../services/forms";
 import EditableInputList from "../EditableInputList/EditableInputList";
+import InputEditor from "../../../components/InputEditor";
+import { IForm, IEditedInput } from "../resources/types";
+import { ICustomInput } from "../../../components/inputs/CustomInput";
 
 import "./FormEditor.scss";
 
@@ -73,17 +73,19 @@ const FormEditor = ({
 
   // When adding a new input to the form
   const onAddNewInput = () => {
+    const input = {
+      type: "Text",
+      label: `Input no.${editedForm.inputs.length.toString()}`,
+    } as const;
+
     setEditedInput({
-      input: {
-        type: "Text",
-        label: `Input no.${editedForm.inputs.length.toString()}`,
-      },
+      input,
       index: editedForm.inputs.length,
     });
 
     setEditedForm({
       ...editedForm,
-      inputs: editedForm.inputs.concat({ type: "Text" }),
+      inputs: editedForm.inputs.concat(input),
     });
   };
 
@@ -103,7 +105,7 @@ const FormEditor = ({
   };
 
   return (
-    <div>
+    <div className="form-editor-container">
       <Link className="form-editor-input-go-back-link" to="/">
         <FontAwesomeIcon icon={faArrowLeft} />
       </Link>

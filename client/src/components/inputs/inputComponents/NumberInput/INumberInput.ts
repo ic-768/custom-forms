@@ -9,7 +9,6 @@ interface INumberInput {
   className?: string;
   min?: number;
   max?: number;
-  width?: number;
   label?: string;
   styles?: IInputStyles;
   id?: string;
