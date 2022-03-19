@@ -8,6 +8,8 @@ interface IDateInput {
   className?: string;
   placeholder?: string;
   date?: string;
+  min?: string;
+  max?: string;
   styles?: IInputStyles;
   id?: string;
 }

@@ -16,7 +16,7 @@ export const getInputIcon = (
  * Format the inputs to be displayed in the dropdown menu
  */
 export const inputsForDropdown = inputTypes.map(
-  (type: string): IDropdownOption => ({
+  (type: typeof inputTypes[number]): IDropdownOption => ({
     value: type,
     label: type,
     icon: getInputIcon(type),

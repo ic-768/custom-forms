@@ -3,7 +3,7 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { token } from "../../services/forms";
-import { IEditedInput, IForm } from "./resources/types";
+import { emptyForm, IEditedInput, IForm } from "./resources/shared";
 import { getForms } from "../../services/forms";
 import { useAppSelector } from "../../store/hooks";
 import { selectForms, setForms } from "../../store/features/forms/formsSlice";
@@ -20,10 +20,7 @@ const FormBuilder = () => {
 
   // A draft of the currently edited form.
   // Any time an input edit is saved, this'll be updated with the new input
-  const [editedForm, setEditedForm] = useState<IForm>({
-    name: "",
-    inputs: [{ type: "Text" }],
-  });
+  const [editedForm, setEditedForm] = useState<IForm>(emptyForm);
 
   // A draft input for input editor. Contains the currently edited input and its index in the form
   const [editedInput, setEditedInput] = useState<IEditedInput>(null);

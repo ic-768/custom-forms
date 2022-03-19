@@ -20,20 +20,18 @@ const inputIcons: IconDefinition[] = [
   faEllipsisV,
 ];
 
-export const inputTypes: string[] = [
+export const inputTypes = [
   "Dropdown",
   "Text",
   "Number",
   "Date",
   "Time",
   "Multiple Choice",
-];
+] as const;
 
 /**
  * Object mapping each input to its corresponding icon
  */
-export const inputLabelToIcon: {
-  [key: typeof inputTypes[number]]: IconDefinition;
-} = Object.fromEntries(
+export const inputLabelToIcon = Object.fromEntries(
   inputTypes.map((_, i) => [inputTypes[i], inputIcons[i]])
 );

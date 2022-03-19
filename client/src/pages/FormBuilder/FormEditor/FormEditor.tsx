@@ -11,7 +11,7 @@ import TextInput from "../../../components/inputs/inputComponents/TextInput";
 import { updateForm, postForm } from "../../../services/forms";
 import EditableInputList from "../EditableInputList/EditableInputList";
 import InputEditor from "../../../components/InputEditor";
-import { IForm, IEditedInput } from "../resources/types";
+import { IForm, IEditedInput } from "../resources/shared";
 
 import "./FormEditor.scss";
 
@@ -23,7 +23,6 @@ interface IFormEditor {
   editedForm: IForm;
   setEditedForm: (form: IForm) => void;
   editedInput: IEditedInput;
-
   setEditedInput: Dispatch<IEditedInput>;
   token: string | null;
 }
@@ -74,7 +73,7 @@ const FormEditor = ({
   const onAddNewInput = () => {
     const input = {
       type: "Text",
-      label: `Input no.${editedForm.inputs.length.toString()}`,
+      label: "",
     } as const;
 
     setEditedInput({

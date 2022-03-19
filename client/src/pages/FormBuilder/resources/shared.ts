@@ -17,4 +17,14 @@ type IEditedInput = {
   index: number;
 } | null;
 
+/**
+ * Used when instantiating a new form
+ */
+
+const emptyForm: IForm = {
+  name: "",
+  inputs: [{ type: "Text" }],
+};
+
+export { emptyForm };
 export type { IForm, IEditedInput };

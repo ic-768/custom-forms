@@ -6,6 +6,10 @@
   gap: 10px;
 }
 
+.form-list-new-form-explanation {
+  justify-self: center;
+}
+
 .form-list-item {
   color: unset;
   display: flex;
@@ -16,9 +20,11 @@
   font-size: var(--input-font-size);
   border-radius: var(--input-border-radius);
   box-shadow: inset var(--input-box-shadow-light) 0 0 0 1px;
-  transition: all 0.15s ease;
-  animation: fade-in 1s;
   text-decoration: none;
+  opacity: 0;
+  transition: all 0.15s ease;
+  animation: fade-in-with-scale 1s;
+  animation-fill-mode: forwards;
 
   &:visited {
     color: unset;
@@ -30,11 +36,22 @@
   }
 }
 
-.form-list-new-form-button {
-  color: inherit;
+.form-list-new-form-and-arrow-container {
   position: absolute;
   bottom: 50px;
   left: 50%;
+}
+
+.form-list-new-form-arrow {
+  position: relative;
+  animation: bounce-arrow 1.55s ease-in-out;
+  transform: rotate(45deg);
+  font-size: 24px;
+  animation-iteration-count: infinite;
+}
+
+.form-list-new-form-button {
+  color: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,13 +74,33 @@
   }
 }
 
-@keyframes fade-in {
-  from {
-    right: -100px;
+@keyframes fade-in-with-scale {
+  0% {
     opacity: 0;
+    transform: scaleX(0);
   }
-  to {
-    right: 0px;
+  25% {
+    transform: scaleX(1);
+  }
+  100% {
     opacity: 1;
+  }
+}
+
+@keyframes bounce-arrow {
+  0% {
+    opacity: 100%;
+    bottom: 0px;
+    left: 70px;
+  }
+  50% {
+    opacity: 10%;
+    bottom: 30px;
+    left: 100px;
+  }
+  100% {
+    opacity: 100%;
+    bottom: 0px;
+    left: 70px;
   }
 }

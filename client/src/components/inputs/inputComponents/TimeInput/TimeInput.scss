@@ -1,5 +1,6 @@
-.react-time-picker__wrapper {
+.time-input {
   width: 100%;
+  height: var(--height-input);
   box-sizing: border-box;
   border: none;
   padding: var(--input-padding);
@@ -7,19 +8,16 @@
   box-shadow: inset var(--input-box-shadow-light) 0 0 0 1px;
   font-size: var(--input-font-size);
   transition: box-shadow 0.15s ease;
+
+  &::placeholder {
+    color: var(--input-placeholder-fg);
+  }
+
   &:hover {
     box-shadow: inset var(--input-box-shadow-dark) 0 0 0 1px;
   }
-}
 
-.time-input.has-placeholder {
-  input,
-  span,
-  select {
-    color: var(--input-placeholder-fg);
+  &:focus {
+    outline: none;
   }
-}
-
-.react-time-picker__inputGroup__input {
-  outline: none;
 }

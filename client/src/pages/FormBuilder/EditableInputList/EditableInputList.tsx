@@ -3,7 +3,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 import { ICustomInput } from "../../../components/inputs/CustomInput";
 import EditableInput from "../EditableInput/EditableInput";
-import { IEditedInput, IForm } from "../resources/types";
+import { IEditedInput, IForm } from "../resources/shared";
 
 import "./EditableInputList.scss";
 
@@ -75,6 +75,8 @@ const EditableInputList = ({
               const useEditedInput =
                 i === editedInput?.index && editedInput.input;
 
+              const inputToUse = useEditedInput ? editedInput.input : input;
+
               // if not draggable, skip rendering the Draggable wrapper
               return makeDraggable ? (
                 <Draggable
@@ -88,7 +90,7 @@ const EditableInputList = ({
                       draggableProps={provided.draggableProps}
                       dragHandleProps={provided.dragHandleProps}
                       key={i}
-                      input={useEditedInput ? editedInput.input : input}
+                      input={inputToUse}
                       showDragControl={showDragHandle(droppableSnapshot)}
                       onSelectInput={onSelectInput(i)}
                       onDeleteInput={onDeleteInput(i)}
@@ -98,7 +100,7 @@ const EditableInputList = ({
               ) : (
                 <EditableInput
                   key={i}
-                  input={useEditedInput ? editedInput.input : input}
+                  input={inputToUse}
                   showDragControl={makeDraggable}
                   onSelectInput={onSelectInput(i)}
                   onDeleteInput={onDeleteInput(i)}

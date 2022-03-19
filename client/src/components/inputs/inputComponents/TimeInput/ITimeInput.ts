@@ -1,14 +1,12 @@
-import { Dispatch, SetStateAction } from "react";
-import { TimePickerValue } from "react-time-picker";
-
+import { ChangeEvent } from "react";
 import { IInputStyles } from "../../../InputEditor/inputModifiers";
 
 interface ITimeInput {
   type?: "Time";
-  onChange: Dispatch<SetStateAction<TimePickerValue>>;
-  value: TimePickerValue;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  value: string;
   className?: string;
-  maxDetail?: "hour" | "minute" | "second";
+  placeholder?: string;
   label?: string;
   styles?: IInputStyles;
   id?: string;

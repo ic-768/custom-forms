@@ -12,6 +12,8 @@ const DateInput = ({
   placeholder,
   className,
   styles,
+  min,
+  max,
 }: IDateInput) => {
   const inputClasses = classNames({
     "date-input": true,
@@ -30,6 +32,8 @@ const DateInput = ({
           type="date"
           className={inputClasses}
           placeholder={placeholder}
+          min={min}
+          max={max}
         />
       }
     />

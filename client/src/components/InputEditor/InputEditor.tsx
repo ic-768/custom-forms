@@ -4,7 +4,7 @@ import { getInputIcon } from "./helpers";
 import InputModifiersList from "./InputModifiersList";
 import DropdownInput from "../inputs/inputComponents/DropdownInput";
 import { inputsForDropdown } from "./helpers";
-import { IEditedInput, IForm } from "../../pages/FormBuilder/resources/types";
+import { IEditedInput, IForm } from "../../pages/FormBuilder/resources/shared";
 import { ICustomInput } from "../inputs/CustomInput";
 
 import "./InputEditor.scss";
@@ -13,9 +13,8 @@ import "./InputEditor.scss";
  * Used to customise a a form input.
  */
 interface IInputEditor {
-  editedInput: { input: ICustomInput; index: number };
+  editedInput: IEditedInput;
   setEditedInput: (input: IEditedInput) => void;
-  // Currently edited form
   form: IForm;
   setForm: (form: any) => void;
 }
@@ -26,6 +25,8 @@ const InputEditor = ({
   form,
   setForm,
 }: IInputEditor) => {
+  if (!editedInput) return null;
+
   // replace form's input with newly edited one
   const onUpdateForm = (input: ICustomInput) => {
     if (input) {

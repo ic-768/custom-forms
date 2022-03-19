@@ -1,4 +1,3 @@
-import TimePicker from "react-time-picker";
 import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
@@ -11,13 +10,11 @@ const TimeInput = ({
   className,
   value,
   onChange,
-  maxDetail,
-  // TODO
   styles,
+  placeholder,
 }: ITimeInput) => {
   const inputClasses = classNames({
     "time-input": true,
-    "has-placeholder": !value,
     [className!]: !!className,
   });
 
@@ -26,13 +23,12 @@ const TimeInput = ({
       label={label}
       className={className}
       component={
-        <TimePicker
-          onChange={onChange}
-          className={inputClasses}
-          disableClock
-          clearIcon={null}
-          maxDetail={maxDetail}
+        <input
+          placeholder={placeholder}
           value={value}
+          style={styles}
+          className={inputClasses}
+          type="time"
         />
       }
     />

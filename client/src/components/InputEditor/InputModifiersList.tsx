@@ -122,7 +122,14 @@ const InputModifiersList = ({
         </>
       );
     case "Time":
-      return null;
+      return (
+        <>
+          {FontSizeModifier}
+          {HeightModifier}
+          {BorderRadiusModifier}
+          {BoxShadowColorModifier}
+        </>
+      );
     case "Multiple Choice":
       return <>{BorderRadiusModifier}</>;
     default:
