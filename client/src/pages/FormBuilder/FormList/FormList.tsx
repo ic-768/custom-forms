@@ -17,7 +17,7 @@ const FormList = ({
   forms: IForm[];
 }) => {
   const onAddNewForm = () => {
-    setEditedForm({ name: "Your New Form!", inputs: [] });
+    setEditedForm({ name: "", inputs: [{ type: "Text" }] });
   };
 
   // List of links to edit each of user's forms

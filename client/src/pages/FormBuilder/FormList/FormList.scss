@@ -31,6 +31,7 @@
 }
 
 .form-list-new-form-button {
+  color: inherit;
   position: absolute;
   bottom: 50px;
   left: 50%;
@@ -50,6 +51,7 @@
   &:visited {
     color: unset;
   }
+
   &:hover {
     color: var(--highlight-blue);
   }

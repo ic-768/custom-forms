@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +15,8 @@ const LoginPanel = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const onLogin = async () => {
+  const onLogin = async (e: FormEvent) => {
+    e.preventDefault();
     const loginData = await login({ username, password });
     window.localStorage.setItem("loggedUser", JSON.stringify(loginData));
     dispatch(setUser(loginData));
@@ -24,7 +25,7 @@ const LoginPanel = () => {
   };
 
   return (
-    <div className="login-panel-container">
+    <form className="login-panel-container" onSubmit={onLogin}>
       <span className="login-panel-container-title">Log In</span>
       <TextInput
         label="Username"
@@ -36,10 +37,10 @@ const LoginPanel = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button className="login-panel-login-button" onClick={onLogin}>
+      <button type="submit" className="login-panel-login-button">
         Submit
       </button>
-    </div>
+    </form>
   );
 };
 

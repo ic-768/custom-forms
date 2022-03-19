@@ -12,7 +12,6 @@ import { updateForm, postForm } from "../../../services/forms";
 import EditableInputList from "../EditableInputList/EditableInputList";
 import InputEditor from "../../../components/InputEditor";
 import { IForm, IEditedInput } from "../resources/types";
-import { ICustomInput } from "../../../components/inputs/CustomInput";
 
 import "./FormEditor.scss";
 
@@ -111,7 +110,8 @@ const FormEditor = ({
       </Link>
       <div className="form-editor">
         <TextInput
-          label="Form Name"
+          className="form-editor-form-title"
+          placeholder="Form name"
           value={editedForm.name}
           onChange={onEditFormName}
         />
@@ -133,7 +133,7 @@ const FormEditor = ({
           />
         ) : (
           // render button to add a new input
-          <div onClick={onAddNewInput} className="form-editor-add-form-button">
+          <div onClick={onAddNewInput} className="form-editor-add-input-button">
             <FontAwesomeIcon icon={faPlus} />
           </div>
         )}

@@ -21,8 +21,8 @@ const FormBuilder = () => {
   // A draft of the currently edited form.
   // Any time an input edit is saved, this'll be updated with the new input
   const [editedForm, setEditedForm] = useState<IForm>({
-    name: "Your New Form!",
-    inputs: [],
+    name: "",
+    inputs: [{ type: "Text" }],
   });
 
   // A draft input for input editor. Contains the currently edited input and its index in the form

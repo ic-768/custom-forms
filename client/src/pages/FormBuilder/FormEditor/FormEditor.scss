@@ -12,6 +12,20 @@
   margin-right: 200px;
 }
 
+.form-editor-form-title.input-container {
+  margin-bottom: 20px;
+}
+
+.form-editor-form-title.text-input {
+  box-shadow: none;
+  border-radius: 0px;
+  border-bottom: 1px solid var(--input-box-shadow-dark);
+  width: 40%;
+  align-self: center;
+  text-align: center;
+  font-size: 16px;
+}
+
 .form-editor-input-go-back-link {
   position: absolute;
   margin: 10px;
@@ -25,7 +39,7 @@
   }
 }
 
-.form-editor-add-form-button {
+.form-editor-add-input-button {
   display: flex;
   flex-shrink: 0;
   align-self: center;
