@@ -63,9 +63,11 @@ formsRouter.post("/", async (request, response) => {
     return response.status(401).json({ error: "token missing or invalid" });
   }
 
+  const formId = new ObjectId();
+
   const { matchedCount } = await userCollection.updateOne(
     { _id: new ObjectId(decodedToken.id) },
-    { $push: { forms: { ...newForm, _id: new ObjectId() } } }
+    { $push: { forms: { ...newForm, _id: formId } } }
   );
 
   if (matchedCount === 0) {
@@ -73,7 +75,7 @@ formsRouter.post("/", async (request, response) => {
   }
 
   // TODO get newForm from DB instead of passing it back
-  response.status(201).json(newForm);
+  response.status(201).json({ ...newForm, _id: formId });
 });
 
 /**

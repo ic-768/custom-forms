@@ -12,9 +12,11 @@ import "./FormList.scss";
 const FormList = ({
   setEditedForm,
   forms,
+  haveFormsBeenFetched,
 }: {
   setEditedForm: (form: IForm) => void;
   forms: IForm[];
+  haveFormsBeenFetched: boolean;
 }) => {
   const onAddNewForm = () => {
     setEditedForm(emptyForm);
@@ -34,7 +36,7 @@ const FormList = ({
     );
   });
 
-  const isListEmpty = formList.length === 0;
+  const isListEmpty = haveFormsBeenFetched && formList.length === 0;
 
   return (
     <div className="form-list-container">

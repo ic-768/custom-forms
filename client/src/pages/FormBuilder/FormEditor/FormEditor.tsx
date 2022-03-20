@@ -1,5 +1,6 @@
 import { useEffect, Dispatch, ChangeEvent } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCloudUploadAlt,
@@ -7,17 +8,17 @@ import {
   faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { setForms } from "../../../store/features/forms/formsSlice";
+import { setIsLoading } from "../../../store/features/notifications/notificationsSlice";
+import { useNotification } from "../../../store/hooks";
 import TextInput from "../../../components/inputs/inputComponents/TextInput";
 import { updateForm, postForm } from "../../../services/forms";
 import EditableInputList from "../EditableInputList/EditableInputList";
 import InputEditor from "../../../components/InputEditor";
-import { IForm, IEditedInput } from "../resources/shared";
+import { IForm, IEditedInput, emptyForm } from "../resources/shared";
 
 import "./FormEditor.scss";
 
-/**
- * Component responsible for displaying a single form and editing controls
- */
 interface IFormEditor {
   forms: IForm[];
   editedForm: IForm;
@@ -27,6 +28,9 @@ interface IFormEditor {
   token: string | null;
 }
 
+/**
+ * Component responsible for displaying a single form and editing controls
+ */
 const FormEditor = ({
   forms,
   editedForm,
@@ -36,6 +40,8 @@ const FormEditor = ({
   token,
 }: IFormEditor) => {
   const formIdFromUrl = useParams().id;
+  const dispatch = useDispatch();
+  const notify = useNotification();
 
   // Set form based on url param
   useEffect(() => {
@@ -47,17 +53,37 @@ const FormEditor = ({
     }
   }, [formIdFromUrl, editedForm._id, forms, setEditedForm]);
 
-  // Saving form - if it has an ID it's already in DB
-  const onPublish = () => {
-    if (token)
-      if (editedForm._id) {
-        updateForm(editedForm, token);
-      } else {
-        postForm(editedForm, token);
-      }
+  // Update an existing form in redux store
+  const updateExistingForm = async (form: IForm) => {
+    const updatedForm = await updateForm(form, token!);
+    const updatedForms = forms.map((f) =>
+      f._id === updatedForm._id ? updatedForm : f
+    );
+
+    dispatch(setForms({ forms: updatedForms }));
   };
 
-  // When Form name is being changed
+  // Add new form to redux store
+  const addNewForm = async (form: IForm) => {
+    const newForm = await postForm(form, token!);
+    const updatedForms = forms.concat(newForm);
+
+    dispatch(setForms({ forms: updatedForms }));
+  };
+
+  // Post form to DB, and updated redux store
+  const onPublish = async () => {
+    if (token) dispatch(setIsLoading(true));
+    if (editedForm._id) {
+      await updateExistingForm(editedForm);
+    } else {
+      await addNewForm(editedForm);
+    }
+    dispatch(setIsLoading(false));
+    notify({ type: "success", message: "Form has been saved!" }, 3000);
+  };
+
+  // When form name is being changed
   const onEditFormName = (e: ChangeEvent<HTMLInputElement>) =>
     setEditedForm({ ...editedForm, name: e.target.value });
 
@@ -69,21 +95,21 @@ const FormEditor = ({
     });
   };
 
-  // When adding a new input to the form
+  // Add input to form and set editedInput to last index
   const onAddNewInput = () => {
     const input = {
       type: "Text",
       label: "",
     } as const;
 
-    setEditedInput({
-      input,
-      index: editedForm.inputs.length,
-    });
-
     setEditedForm({
       ...editedForm,
       inputs: editedForm.inputs.concat(input),
+    });
+
+    setEditedInput({
+      input,
+      index: editedForm.inputs.length,
     });
   };
 
@@ -102,9 +128,15 @@ const FormEditor = ({
     }
   };
 
+  const onGoBack = () => setEditedForm(emptyForm);
+
   return (
     <div className="form-editor-container">
-      <Link className="form-editor-input-go-back-link" to="/">
+      <Link
+        className="form-editor-input-go-back-link"
+        to="/"
+        onClick={onGoBack}
+      >
         <FontAwesomeIcon icon={faArrowLeft} />
       </Link>
       <div className="form-editor">

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { setToken } from "../../services/forms";
 import { login } from "../../services/login";
 import { setUser } from "../../store/features/user/userSlice";
+import { useNotification, useWithLoader } from "../../store/hooks";
 import TextInput from "../inputs/inputComponents/TextInput";
 
 import "./LoginPanel.scss";
@@ -14,14 +15,21 @@ const LoginPanel = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const notify = useNotification();
+  const withLoader = useWithLoader();
 
-  const onLogin = async (e: FormEvent) => {
+  const onLogin = (e: FormEvent) => {
     e.preventDefault();
-    const loginData = await login({ username, password });
-    window.localStorage.setItem("loggedUser", JSON.stringify(loginData));
-    dispatch(setUser(loginData));
-    setToken(loginData.token);
+
+    withLoader(async () => {
+      const loginData = await login({ username, password });
+      window.localStorage.setItem("loggedUser", JSON.stringify(loginData));
+      dispatch(setUser(loginData));
+      setToken(loginData.token);
+    });
+
     navigate("/");
+    notify({ type: "success", message: "Welcome!" }, 5000);
   };
 
   return (

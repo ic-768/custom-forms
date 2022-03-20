@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import userReducer from "./features/user/userSlice";
 import formsReducer from "./features/forms/formsSlice";
+import notificationsReducer from "./features/notifications/notificationsSlice";
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     forms: formsReducer,
+    notifications: notificationsReducer,
   },
 });
 
