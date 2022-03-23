@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../../store";
 
-export type notification = {
+export type INotification = {
   message: string;
   type: "success" | "error";
 };
 
 export interface NotificationsState {
   isLoading: boolean;
-  notification: notification;
+  notification: INotification;
 }
 
 const initialState: NotificationsState = {

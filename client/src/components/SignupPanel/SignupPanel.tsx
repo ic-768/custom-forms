@@ -1,11 +1,11 @@
 import { FormEvent, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { useNotification, useWithLoader } from "../../store/hooks";
 import TextInput from "../inputs/inputComponents/TextInput";
 
 import "./SignupPanel.scss";
+import { signup } from "../../services/signup";
 
 const SignupPanel = () => {
   const [username, setUsername] = useState("");
@@ -14,18 +14,25 @@ const SignupPanel = () => {
   const notify = useNotification();
   const withLoader = useWithLoader();
 
-  const onSignup = async (e: FormEvent) => {
+  const onSignup = (e: FormEvent) => {
     e.preventDefault();
-    await withLoader(() => axios.post("/add-user", { username, password }));
-
-    navigate("/login");
-    notify(
-      {
-        type: "success",
-        message: "Successfully signed up! You can log in now.",
-      },
-      5000
-    );
+    withLoader(async () => {
+      try {
+        await signup({ username, password });
+        navigate("/login");
+        notify(
+          {
+            type: "success",
+            message: "Successfully signed up! You can log in now.",
+          },
+          5000
+        );
+      } catch (e) {
+        if (e instanceof Error) {
+          notify({ type: "error", message: e.message }, 5000);
+        }
+      }
+    });
   };
 
   return (

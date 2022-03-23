@@ -9,13 +9,28 @@
   margin-right: auto;
   z-index: 1;
   text-align: center;
-  background-color: white;
-  width: 200px;
-  height: 30px;
-  box-shadow: var(--input-box-shadow-dark) 0px 0px 4px 2px;
-  border-radius: 5px;
+  height: 0px;
+  max-width: 180px;
+  color: white;
   animation: drop-in 1s;
   animation-fill-mode: forwards;
+}
+
+.notification-body {
+  flex: 1;
+  padding: 12px;
+  border-radius: 5px;
+  font-weight: 550;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.notification-body.success {
+  background-color: #4e86db;
+}
+
+.notification-body.error {
+  background-color: red;
 }
 
 @keyframes drop-in {
@@ -23,6 +38,6 @@
     top: -100px;
   }
   to {
-    top: 5px;
+    top: 40px;
   }
 }

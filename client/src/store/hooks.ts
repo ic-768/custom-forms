@@ -3,7 +3,7 @@ import { RootState, AppDispatch } from "./store";
 
 import {
   setNotification,
-  notification,
+  INotification,
   setIsLoading,
 } from "./features/notifications/notificationsSlice";
 
@@ -15,7 +15,7 @@ const sleep = (time: number) =>
 export const useNotification = () => {
   const dispatch = useDispatch();
 
-  return async (notification: notification, duration: number) => {
+  return async (notification: INotification, duration: number) => {
     dispatch(setNotification(notification));
     await sleep(duration);
     dispatch(setNotification({ type: "success", message: "" }));

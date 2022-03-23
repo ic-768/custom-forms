@@ -22,14 +22,19 @@ const LoginPanel = () => {
     e.preventDefault();
 
     withLoader(async () => {
-      const loginData = await login({ username, password });
-      window.localStorage.setItem("loggedUser", JSON.stringify(loginData));
-      dispatch(setUser(loginData));
-      setToken(loginData.token);
+      try {
+        const loginData = await login({ username, password });
+        window.localStorage.setItem("loggedUser", JSON.stringify(loginData));
+        dispatch(setUser(loginData));
+        setToken(loginData.token);
+        navigate("/");
+        notify({ type: "success", message: "Welcome!" }, 5000);
+      } catch (e) {
+        if (e instanceof Error) {
+          notify({ type: "error", message: e.message }, 5000);
+        }
+      }
     });
-
-    navigate("/");
-    notify({ type: "success", message: "Welcome!" }, 5000);
   };
 
   return (
