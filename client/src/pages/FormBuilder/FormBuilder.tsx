@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { token } from "../../services/forms";
 import { emptyForm, IEditedInput, IForm } from "./resources/shared";
-import { getForms } from "../../services/forms";
+import { asyncGetForms } from "../../services/forms";
 import { useAppSelector, useWithLoader } from "../../store/hooks";
 import { selectForms, setForms } from "../../store/features/forms/formsSlice";
 
@@ -32,8 +32,8 @@ const FormBuilder = () => {
   useEffect(() => {
     withLoader(async () => {
       if (token) {
-        const userForms = await getForms(token);
-        dispatch(setForms({ forms: userForms || [] }));
+        const userForms = await asyncGetForms(token);
+        dispatch(setForms(userForms || []));
         setHaveFormsBeenFetched(true);
       }
     });

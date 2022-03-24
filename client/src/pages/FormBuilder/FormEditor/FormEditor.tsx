@@ -8,11 +8,10 @@ import {
   faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { setForms } from "../../../store/features/forms/formsSlice";
-import { setIsLoading } from "../../../store/features/notifications/notificationsSlice";
-import { useNotification } from "../../../store/hooks";
+import { addForm, updateForm } from "../../../store/features/forms/formsSlice";
+import { useNotification, useWithLoader } from "../../../store/hooks";
 import TextInput from "../../../components/inputs/inputComponents/TextInput";
-import { updateForm, postForm } from "../../../services/forms";
+import { asyncUpdateForm, asyncPostForm } from "../../../services/forms";
 import EditableInputList from "../EditableInputList/EditableInputList";
 import InputEditor from "../../../components/InputEditor";
 import { IForm, IEditedInput, emptyForm } from "../resources/shared";
@@ -42,6 +41,7 @@ const FormEditor = ({
   const formIdFromUrl = useParams().id;
   const dispatch = useDispatch();
   const notify = useNotification();
+  const withLoader = useWithLoader();
 
   // Set form based on url param
   useEffect(() => {
@@ -55,32 +55,33 @@ const FormEditor = ({
 
   // Update an existing form in redux store
   const updateExistingForm = async (form: IForm) => {
-    const updatedForm = await updateForm(form, token!);
-    const updatedForms = forms.map((f) =>
-      f._id === updatedForm._id ? updatedForm : f
-    );
-
-    dispatch(setForms({ forms: updatedForms }));
+    const updatedForm = await asyncUpdateForm(form, token!);
+    dispatch(updateForm(updatedForm));
   };
 
   // Add new form to redux store
   const addNewForm = async (form: IForm) => {
-    const newForm = await postForm(form, token!);
-    const updatedForms = forms.concat(newForm);
-
-    dispatch(setForms({ forms: updatedForms }));
+    const newForm = await asyncPostForm(form, token!);
+    dispatch(addForm(newForm));
   };
 
-  // Post form to DB, and updated redux store
-  const onPublish = async () => {
-    if (token) dispatch(setIsLoading(true));
-    if (editedForm._id) {
-      await updateExistingForm(editedForm);
-    } else {
-      await addNewForm(editedForm);
-    }
-    dispatch(setIsLoading(false));
-    notify({ type: "success", message: "Form has been saved!" }, 3000);
+  // Post form to DB, and update redux store
+  const onPublish = () => {
+    withLoader(async () => {
+      if (token) {
+        try {
+          if (editedForm._id) {
+            await updateExistingForm(editedForm);
+          } else {
+            await addNewForm(editedForm);
+          }
+
+          notify({ type: "success", message: "Form has been saved!" }, 3000);
+        } catch (e) {
+          notify({ type: "error", message: "Something went wrong" }, 3000);
+        }
+      }
+    });
   };
 
   // When form name is being changed

@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import { useNotification, useWithLoader } from "../../store/hooks";
 import TextInput from "../inputs/inputComponents/TextInput";
+import { signup } from "../../services/signup";
 
 import "./SignupPanel.scss";
-import { signup } from "../../services/signup";
 
 const SignupPanel = () => {
   const [username, setUsername] = useState("");

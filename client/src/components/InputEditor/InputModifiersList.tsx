@@ -79,8 +79,6 @@ const InputModifiersList = ({
     />
   );
 
-  // box shadow color breaks if extracted like this
-
   switch (input.type) {
     case "Dropdown":
       return (

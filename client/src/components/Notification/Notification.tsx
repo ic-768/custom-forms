@@ -1,13 +1,9 @@
 import { INotification } from "../../store/features/notifications/notificationsSlice";
-import classNames from "classnames";
 
 import "./Notification.scss";
 
 const Notification = ({ notification }: { notification: INotification }) => {
-  const notificationClasses = classNames({
-    "notification-body": true,
-    [notification.type]: true,
-  });
+  const notificationClasses = `notification-body ${[notification.type]}`;
 
   return (
     <div className="notification-container">

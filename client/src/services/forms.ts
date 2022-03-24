@@ -7,34 +7,51 @@ const setToken = (newToken: string) => {
   token = `bearer ${newToken}`;
 };
 
-const getForms = async (token: string) => {
+const asyncGetForms = async (token: string) => {
   try {
     const config = { headers: { Authorization: token } };
     const response = await axios.get("/forms", config);
     return response.data;
   } catch (e) {
-    console.log("Error fetching forms " + e);
+    throw new Error("Error fetching forms " + e);
   }
 };
 
-const postForm = async (formData: IForm, token: string) => {
+const asyncPostForm = async (formData: IForm, token: string) => {
   try {
     const config = { headers: { Authorization: token } };
     const response = await axios.post("/forms", { formData }, config);
     return response.data;
   } catch (e) {
-    console.log("Error posting form: " + e);
+    throw new Error("Error posting form: " + e);
   }
 };
 
-const updateForm = async (formData: IForm, token: string) => {
+const asyncUpdateForm = async (formData: IForm, token: string) => {
   try {
     const config = { headers: { Authorization: token } };
     const response = await axios.put("/forms", { formData }, config);
     return response.data;
   } catch (e) {
-    console.log("Error updating form: " + e);
+    throw new Error("Error updating form: " + e);
   }
 };
 
-export { token, setToken, getForms, postForm, updateForm };
+const asyncDeleteForm = async (formId: IForm["_id"], token: string) => {
+  try {
+    const config = { headers: { Authorization: token }, data: { formId } };
+    const response = await axios.delete("/forms", config);
+    return response.data;
+  } catch (e) {
+    throw new Error("Error deleting form: " + e);
+  }
+};
+
+export {
+  token,
+  setToken,
+  asyncGetForms,
+  asyncPostForm,
+  asyncUpdateForm,
+  asyncDeleteForm,
+};

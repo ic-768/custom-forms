@@ -1,10 +1,21 @@
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faPlus } from "@fortawesome/free-solid-svg-icons";
 
+import ListItem from "./ListItem/ListItem";
+import { deleteForm } from "../../../store/features/forms/formsSlice";
+import { useNotification, useWithLoader } from "../../../store/hooks";
 import { emptyForm, IForm } from "../resources/shared";
+import { asyncDeleteForm, token } from "../../../services/forms";
 
 import "./FormList.scss";
+
+interface IFormList {
+  setEditedForm: (form: IForm) => void;
+  forms: IForm[];
+  haveFormsBeenFetched: boolean;
+}
 
 /**
  * Displays all the user's forms
@@ -13,40 +24,48 @@ const FormList = ({
   setEditedForm,
   forms,
   haveFormsBeenFetched,
-}: {
-  setEditedForm: (form: IForm) => void;
-  forms: IForm[];
-  haveFormsBeenFetched: boolean;
-}) => {
+}: IFormList) => {
+  const dispatch = useDispatch();
+  const withLoader = useWithLoader();
+  const notify = useNotification();
+
   const onAddNewForm = () => {
     setEditedForm(emptyForm);
   };
 
+  const onDeleteForm = async (id: IForm["_id"]) => {
+    withLoader(async () => {
+      if (token) {
+        try {
+          await asyncDeleteForm(id, token);
+          dispatch(deleteForm(id));
+          notify(
+            { type: "success", message: "Deleted form successfully!" },
+            3000
+          );
+        } catch {
+          notify({ type: "error", message: "Something went wrong!" }, 3000);
+        }
+      }
+    });
+  };
+
   // List of links to edit each of user's forms
-  const formList = forms.map((f, i) => {
-    return (
-      <Link
-        style={{ animationDelay: `${i * 120}ms` }}
-        key={f._id}
-        className="form-list-item"
-        to={f._id!.toString()}
-      >
-        {f.name}
-      </Link>
-    );
-  });
+  const formList = forms.map((f, i) => (
+    <ListItem form={f} index={i} onDeleteForm={onDeleteForm} />
+  ));
 
   const isListEmpty = haveFormsBeenFetched && formList.length === 0;
 
   return (
     <div className="form-list-container">
-      <h1>All Forms</h1>
+      <h1 className="form-list-header">Your Forms</h1>
       {isListEmpty ? (
         <div className="form-list-new-form-explanation">
           Start creating your very own custom form by clicking the button below!
         </div>
       ) : (
-        formList
+        <div className="form-list-forms-container">{formList}</div>
       )}
       <div className="form-list-new-form-and-arrow-container">
         {isListEmpty && (

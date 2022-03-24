@@ -45,7 +45,7 @@ formsRouter.get("/", async (request, response) => {
     return response.status(401).json({ error: "Couldn't find user" });
   }
 
-  response.status(200).json(userForms);
+  return response.status(200).json(userForms);
 });
 
 /*
@@ -71,11 +71,11 @@ formsRouter.post("/", async (request, response) => {
   );
 
   if (matchedCount === 0) {
-    return response.status(401).json({ error: "Couldn't find user" });
+    return response.status(404).json({ error: "Couldn't find user" });
   }
 
   // TODO get newForm from DB instead of passing it back
-  response.status(201).json({ ...newForm, _id: formId });
+  return response.status(201).json({ ...newForm, _id: formId });
 });
 
 /**
@@ -102,10 +102,34 @@ formsRouter.put("/", async (request, response) => {
   );
 
   if (matchedCount === 0) {
-    return response.status(401).json({ error: "Couldn't find user" });
+    return response.status(4041).json({ error: "Couldn't find user" });
   }
 
-  response.status(200).json(formToUpdate);
+  return response.status(200).json(formToUpdate);
+});
+
+formsRouter.delete("/", async (request, response) => {
+  const token = getTokenFromRequest(request);
+  const formId = new ObjectId(request.body.formId);
+
+  const decodedToken = token
+    ? (jwt.verify(token, secret as Secret) as JwtPayload)
+    : null;
+
+  if (!token || !decodedToken?.id) {
+    return response.status(401).json({ error: "token missing or invalid" });
+  }
+
+  const userId = new ObjectId(decodedToken.id);
+
+  const { modifiedCount } = await userCollection.updateOne(
+    { _id: userId },
+    { $pull: { forms: { _id: formId } } }
+  );
+
+  return modifiedCount === 0
+    ? response.status(404).json({ error: "couldn't find form" })
+    : response.sendStatus(200);
 });
 
 export default formsRouter;

@@ -2,38 +2,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  gap: 10px;
+}
+
+.form-list-header {
+  margin-top: 20px;
+}
+
+.form-list-forms-container {
+  display: grid;
+  gap: 20px 20px;
+  place-items: center;
+  margin-top: 120px;
+  grid-template-columns: repeat(auto-fit, 170px);
+  width: 80%;
 }
 
 .form-list-new-form-explanation {
   justify-self: center;
-}
-
-.form-list-item {
-  color: unset;
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding: var(--input-padding);
-  min-width: 100px;
-  font-size: var(--input-font-size);
-  border-radius: var(--input-border-radius);
-  box-shadow: inset var(--input-box-shadow-light) 0 0 0 1px;
-  text-decoration: none;
-  opacity: 0;
-  transition: all 0.15s ease;
-  animation: fade-in-with-scale 1s;
-  animation-fill-mode: forwards;
-
-  &:visited {
-    color: unset;
-  }
-
-  &:hover {
-    box-shadow: inset var(--input-box-shadow-dark) 0 0 0 1px;
-    color: var(--highlight-blue);
-  }
 }
 
 .form-list-new-form-and-arrow-container {
