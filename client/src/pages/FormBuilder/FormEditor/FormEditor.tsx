@@ -49,11 +49,11 @@ const FormEditor = ({
   useEffect(() => {
     if (forms) {
       const foundForm = forms.find((f) => f._id === formIdFromUrl);
-      if (foundForm) {
+      if (foundForm && foundForm._id !== editedForm._id) {
         setEditedForm(foundForm);
       }
     }
-  }, [formIdFromUrl, forms, setEditedForm]);
+  }, [formIdFromUrl, forms, setEditedForm, editedForm._id]);
 
   const updateExistingForm = async (form: IForm) => {
     const updatedForm = await asyncUpdateForm(form, token!);

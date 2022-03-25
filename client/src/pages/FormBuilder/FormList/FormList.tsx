@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 import ListItem from "./ListItem/ListItem";
-import { deleteForm } from "../../../store/features/forms/formsSlice";
+import { addForm, deleteForm } from "../../../store/features/forms/formsSlice";
 import { useNotification, useWithLoader } from "../../../store/hooks";
 import { emptyForm, IForm } from "../resources/shared";
-import { asyncDeleteForm, token } from "../../../services/forms";
+import { asyncDeleteForm, asyncPostForm, token } from "../../../services/forms";
 
 import "./FormList.scss";
 
@@ -50,37 +48,52 @@ const FormList = ({
     });
   };
 
+  const onCopyForm = async (form: IForm) => {
+    withLoader(async () => {
+      if (token) {
+        try {
+          const copiedForm = await asyncPostForm(form, token);
+          dispatch(addForm(copiedForm));
+          notify(
+            { type: "success", message: "Copied form successfully!" },
+            3000
+          );
+        } catch {
+          notify({ type: "error", message: "Something went wrong!" }, 3000);
+        }
+      }
+    });
+  };
+
   // List of links to edit each of user's forms
   const formList = forms.map((f, i) => (
-    <ListItem key={f._id} form={f} index={i} onDeleteForm={onDeleteForm} />
+    <ListItem
+      key={f._id}
+      form={f}
+      index={i}
+      onCopyForm={onCopyForm}
+      onDeleteForm={onDeleteForm}
+    />
   ));
 
   const isListEmpty = haveFormsBeenFetched && formList.length === 0;
 
   return (
     <div className="form-list-container">
-      {isListEmpty ? (
-        <div className="form-list-new-form-explanation">
-          Start creating your very own custom form by clicking the button below!
-        </div>
-      ) : (
-        <div className="form-list-forms-container">{formList}</div>
-      )}
-      <div className="form-list-new-form-and-arrow-container">
-        {isListEmpty && (
-          <FontAwesomeIcon
-            className="form-list-new-form-arrow"
-            icon={faArrowDown}
-          />
+      <div className="form-list">
+        {isListEmpty ? (
+          <div className="form-list-empty-row">No forms</div>
+        ) : (
+          formList
         )}
-        <Link
-          onClick={onAddNewForm}
-          className="form-list-new-form-button"
-          to="new"
-        >
-          New Form
-        </Link>
       </div>
+      <Link
+        onClick={onAddNewForm}
+        className="form-list-new-form-button"
+        to="new"
+      >
+        New Form
+      </Link>
     </div>
   );
 };

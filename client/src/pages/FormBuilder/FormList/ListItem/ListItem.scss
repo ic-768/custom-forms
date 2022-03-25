@@ -1,22 +1,22 @@
 .form-list-list-item {
   display: flex;
+  box-sizing: border-box;
+  padding: 15px;
   align-items: center;
-  position: relative;
-  padding: var(--input-padding);
-  padding-right: 20px;
-  width: 140px;
-  overflow-x: hidden;
+  width: 100%;
   font-size: var(--input-font-size);
-  border-radius: var(--input-border-radius);
-  box-shadow: inset var(--input-box-shadow-light) 0 0 0 1px;
-  opacity: 0;
+  border-bottom: 1px solid var(--input-box-shadow);
   transition: all 0.15s ease;
-  animation: fade-in-with-scale 1s;
+  animation: fade-in 1s;
   animation-fill-mode: forwards;
 
   &:hover {
-    box-shadow: inset var(--input-box-shadow-dark) 0 0 0 1px;
+    background-color: #f4f5f8;
   }
+}
+
+.form-list-list-item-checkbox {
+  margin-right: 10px;
 }
 
 .form-list-list-item-name {
@@ -32,15 +32,27 @@
   }
 }
 
-.form-list-list-item-delete-button {
-  position: absolute;
-  right: 8px;
+.form-list-item-buttons {
   display: flex;
-  justify-content: center;
+  margin-left: auto;
   align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.form-list-item-button {
   cursor: pointer;
 
   &:hover {
-    color: red;
+    color: var(--highlight-blue);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
