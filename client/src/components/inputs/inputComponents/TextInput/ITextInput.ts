@@ -11,6 +11,7 @@ interface ITextInput {
   maxLength?: number;
   styles?: IInputStyles;
   id?: string;
+  autoFocus?: boolean;
 }
 
 export default ITextInput;

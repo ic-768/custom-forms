@@ -39,6 +39,7 @@ const SignupPanel = () => {
     <form className="signup-panel-container" onSubmit={onSignup}>
       <span className="signup-panel-container-title">Sign Up</span>
       <TextInput
+        autoFocus
         label="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}

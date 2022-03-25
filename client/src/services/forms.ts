@@ -13,6 +13,7 @@ const asyncGetForms = async (token: string) => {
     const response = await axios.get("/forms", config);
     return response.data;
   } catch (e) {
+    console.log(e);
     throw new Error("Error fetching forms " + e);
   }
 };

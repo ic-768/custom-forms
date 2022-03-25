@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 import ListItem from "./ListItem/ListItem";
 import { deleteForm } from "../../../store/features/forms/formsSlice";
@@ -52,14 +52,13 @@ const FormList = ({
 
   // List of links to edit each of user's forms
   const formList = forms.map((f, i) => (
-    <ListItem form={f} index={i} onDeleteForm={onDeleteForm} />
+    <ListItem key={f._id} form={f} index={i} onDeleteForm={onDeleteForm} />
   ));
 
   const isListEmpty = haveFormsBeenFetched && formList.length === 0;
 
   return (
     <div className="form-list-container">
-      <h1 className="form-list-header">Your Forms</h1>
       {isListEmpty ? (
         <div className="form-list-new-form-explanation">
           Start creating your very own custom form by clicking the button below!
@@ -79,7 +78,7 @@ const FormList = ({
           className="form-list-new-form-button"
           to="new"
         >
-          <FontAwesomeIcon icon={faPlus} />
+          New Form
         </Link>
       </div>
     </div>

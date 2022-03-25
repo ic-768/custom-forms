@@ -41,10 +41,6 @@ formsRouter.get("/", async (request, response) => {
     )
   )?.forms;
 
-  if (!userForms) {
-    return response.status(401).json({ error: "Couldn't find user" });
-  }
-
   return response.status(200).json(userForms);
 });
 

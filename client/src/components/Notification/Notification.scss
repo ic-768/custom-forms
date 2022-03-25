@@ -1,4 +1,5 @@
 .notification-container {
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,7 +8,6 @@
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  z-index: 1;
   text-align: center;
   height: 0px;
   max-width: 180px;
@@ -26,7 +26,7 @@
 }
 
 .notification-body.success {
-  background-color: #4e86db;
+  background-color: #0e6305;
 }
 
 .notification-body.error {

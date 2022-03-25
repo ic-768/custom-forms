@@ -41,6 +41,7 @@ const LoginPanel = () => {
     <form className="login-panel-container" onSubmit={onLogin}>
       <span className="login-panel-container-title">Log In</span>
       <TextInput
+        autoFocus
         label="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}

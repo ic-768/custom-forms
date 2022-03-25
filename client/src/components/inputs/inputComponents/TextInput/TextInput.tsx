@@ -13,6 +13,7 @@ const TextInput = ({
   placeholder,
   maxLength,
   styles,
+  autoFocus,
 }: ITextInput) => {
   const inputClasses = classNames({
     "text-input": true,
@@ -25,6 +26,7 @@ const TextInput = ({
       className={className}
       component={
         <input
+          autoFocus={autoFocus}
           onChange={onChange}
           value={value}
           style={styles}

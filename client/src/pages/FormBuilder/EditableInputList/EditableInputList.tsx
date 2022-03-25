@@ -7,24 +7,22 @@ import { IEditedInput, IForm } from "../resources/shared";
 
 import "./EditableInputList.scss";
 
-/**
- *  List of inputs that can be reordered through dragging and dropping,
- *  and edited/removed.
- */
 interface IEditableInputList {
   inputs: ICustomInput[];
   editedInput: IEditedInput;
-  setEditedInput: (input: IEditedInput) => void;
   onSelectInput: (index: number) => MouseEventHandler;
   onDeleteInput: (index: number) => MouseEventHandler;
   editedForm: IForm;
   setEditedForm: (form: IForm) => void;
 }
 
+/**
+ *  List of inputs that can be reordered through dragging and dropping,
+ *  and edited/removed.
+ */
 const EditableInputList = ({
   inputs,
   editedInput,
-  setEditedInput,
   onSelectInput,
   onDeleteInput,
   editedForm,
