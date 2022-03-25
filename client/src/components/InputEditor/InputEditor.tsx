@@ -1,5 +1,3 @@
-import { v4 as uuid } from "uuid";
-
 import { getInputIcon } from "./helpers";
 import InputModifiersList from "./InputModifiersList";
 import DropdownInput from "../inputs/inputComponents/DropdownInput";
@@ -40,7 +38,7 @@ const InputEditor = ({
   };
 
   const onSave = () => {
-    onUpdateForm({ ...editedInput.input, id: uuid() });
+    onUpdateForm({ ...editedInput.input });
     setEditedInput(null);
   };
 
@@ -53,9 +51,13 @@ const InputEditor = ({
     setEditedInput({ index: editedInput.index, input });
   };
 
-  // When changing input type, we keep the label
+  // When changing input type, we keep the label and the id
   const onInputTypeSelect = (t: string) =>
-    editInput({ type: t, label: editedInput.input.label } as ICustomInput);
+    editInput({
+      type: t,
+      label: editedInput.input.label,
+      id: editedInput.input.id,
+    } as ICustomInput);
 
   return (
     <div className="input-editor">

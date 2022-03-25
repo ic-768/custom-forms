@@ -1,7 +1,8 @@
 import { useEffect, Dispatch, ChangeEvent } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { v4 as uuid } from "uuid";
 import {
   faCloudUploadAlt,
   faPlus,
@@ -40,6 +41,7 @@ const FormEditor = ({
 }: IFormEditor) => {
   const formIdFromUrl = useParams().id;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const notify = useNotification();
   const withLoader = useWithLoader();
 
@@ -58,27 +60,33 @@ const FormEditor = ({
     const updatedForm = await asyncUpdateForm(form, token!);
     dispatch(updateForm(updatedForm));
   };
-
   // Add new form to redux store
   const addNewForm = async (form: IForm) => {
     const newForm = await asyncPostForm(form, token!);
     dispatch(addForm(newForm));
+    navigate(`/${newForm._id}`);
   };
 
   // Post form to DB, and update redux store
   const onPublish = () => {
     withLoader(async () => {
       if (token) {
-        try {
-          if (editedForm._id) {
-            await updateExistingForm(editedForm);
-          } else {
-            await addNewForm(editedForm);
+        if (!editedForm.name) {
+          notify(
+            { type: "error", message: "Please provide a name for your form" },
+            3000
+          );
+        } else {
+          try {
+            if (editedForm._id) {
+              await updateExistingForm(editedForm);
+            } else {
+              await addNewForm(editedForm);
+            }
+            notify({ type: "success", message: "Form has been saved!" }, 3000);
+          } catch (e) {
+            notify({ type: "error", message: "Something went wrong" }, 3000);
           }
-
-          notify({ type: "success", message: "Form has been saved!" }, 3000);
-        } catch (e) {
-          notify({ type: "error", message: "Something went wrong" }, 3000);
         }
       }
     });
@@ -96,11 +104,12 @@ const FormEditor = ({
     });
   };
 
-  // Add input to form and set editedInput to last index
+  // Add input to form and set editedInput's index to shadow the new input for editing
   const onAddNewInput = () => {
     const input = {
       type: "Text",
       label: "",
+      id: uuid(),
     } as const;
 
     setEditedForm({

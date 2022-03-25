@@ -7,6 +7,7 @@ import InputContainer from "../../InputContainer";
 import IDropdownInput from "./IDropdownInput";
 
 import "./DropdownInput.scss";
+import { ICustomInput } from "../../CustomInput";
 
 const DropdownInput = ({
   label,
@@ -22,8 +23,8 @@ const DropdownInput = ({
 
   const onOptionSelect = (e: MouseEvent<HTMLLIElement>): void => {
     const target = e.target as HTMLLIElement;
-    const inputType = target.textContent;
-    onChange(inputType || "");
+    const inputType = target.textContent as ICustomInput["type"];
+    onChange(inputType!);
     setShowOptions(false);
   };
 

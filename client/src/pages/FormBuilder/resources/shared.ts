@@ -1,4 +1,5 @@
 import { ICustomInput } from "../../../components/inputs/CustomInput";
+import { v4 as uuid } from "uuid";
 
 /**
  * A single user form
@@ -23,7 +24,7 @@ type IEditedInput = {
 
 const emptyForm: IForm = {
   name: "",
-  inputs: [{ type: "Text" }],
+  inputs: [{ type: "Text", id: uuid() }],
 };
 
 export { emptyForm };
