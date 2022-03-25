@@ -49,22 +49,21 @@ const FormEditor = ({
   useEffect(() => {
     if (forms) {
       const foundForm = forms.find((f) => f._id === formIdFromUrl);
-      if (foundForm && foundForm._id !== editedForm._id) {
+      if (foundForm) {
         setEditedForm(foundForm);
       }
     }
-  }, [formIdFromUrl, editedForm._id, forms, setEditedForm]);
+  }, [formIdFromUrl, forms, setEditedForm]);
 
-  // Update an existing form in redux store
   const updateExistingForm = async (form: IForm) => {
     const updatedForm = await asyncUpdateForm(form, token!);
     dispatch(updateForm(updatedForm));
   };
-  // Add new form to redux store
+
   const addNewForm = async (form: IForm) => {
     const newForm = await asyncPostForm(form, token!);
     dispatch(addForm(newForm));
-    navigate(`/${newForm._id}`);
+    navigate(`/${newForm._id}`); // navigate away from '/new'
   };
 
   // Post form to DB, and update redux store

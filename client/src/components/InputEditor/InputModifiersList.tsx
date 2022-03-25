@@ -42,7 +42,9 @@ const InputModifiersList = ({
     <FontSize
       fontSize={input.styles?.fontSize || "14px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
-        onChangeStyles("fontSize", `${e.target.value}px`);
+        if (Number(e.target.value)) {
+          onChangeStyles("fontSize", `${e.target.value}px`);
+        }
       }}
     />
   );
@@ -51,7 +53,9 @@ const InputModifiersList = ({
     <Height
       height={input.styles?.height || "33px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
-        onChangeStyles("height", `${e.target.value}px`);
+        if (Number(e.target.value)) {
+          onChangeStyles("height", `${e.target.value}px`);
+        }
       }}
     />
   );
@@ -60,7 +64,9 @@ const InputModifiersList = ({
     <BorderRadius
       radius={input.styles?.borderRadius || "5px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
-        onChangeStyles("borderRadius", `${e.target.value}px`);
+        if (Number(e.target.value)) {
+          onChangeStyles("borderRadius", `${e.target.value}px`);
+        }
       }}
     />
   );
