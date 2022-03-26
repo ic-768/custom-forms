@@ -2,8 +2,8 @@ import { Link, Route, Routes } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
-import LoginPanel from "../../components/LoginPanel";
-import SignupPanel from "../../components/SignupPanel";
+import LoginPanel from "./views/LoginPanel";
+import SignupPanel from "./views/SignupPanel";
 
 import "./LandingPage.scss";
 

@@ -8,9 +8,9 @@ import { asyncGetForms } from "../../services/forms";
 import { useAppSelector, useWithLoader } from "../../store/hooks";
 import { selectForms, setForms } from "../../store/features/forms/formsSlice";
 
-import FormBuilderHeader from "./FormBuilderHeader";
-import FormList from "./FormList";
-import FormEditor from "./FormEditor";
+import FormBuilderHeader from "./components/FormBuilderHeader";
+import FormEditor from "./views/FormEditor";
+import FormsView from "./views/FormsView";
 
 import "./FormBuilder.scss";
 
@@ -37,7 +37,7 @@ const FormBuilder = () => {
         setHaveFormsBeenFetched(true);
       }
     });
-  }, [dispatch]);
+  }, [dispatch, withLoader]);
 
   return (
     <Routes>
@@ -54,15 +54,15 @@ const FormBuilder = () => {
         <Route
           path=""
           element={
-            <FormList
+            <FormsView
+              forms={forms}
               setEditedForm={setEditedForm}
               haveFormsBeenFetched={haveFormsBeenFetched}
-              forms={forms}
             />
           }
         />
 
-        {/* View/edit a form */}
+        {/* View/edit a single form */}
         <Route
           path=":id" // either id or 'new'
           element={

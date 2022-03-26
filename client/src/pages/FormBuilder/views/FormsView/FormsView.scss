@@ -1,0 +1,16 @@
+.form-view-container {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.form-view-form-filter.input-container {
+  width: 80%;
+}
+
+.form-view-form-filter.text-input {
+  border-radius: 30px;
+}
