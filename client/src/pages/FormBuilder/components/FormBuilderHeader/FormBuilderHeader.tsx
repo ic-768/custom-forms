@@ -27,7 +27,7 @@ const FormBuilderHeader = () => {
           className="form-builder-header-user-icon"
           icon={faUserAstronaut}
         />
-        <div>Logged in as {username}</div>
+        <span>{username}</span>
       </div>
       <button
         className="form-builder-header-sign-out-button"

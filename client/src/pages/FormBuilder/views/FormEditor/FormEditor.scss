@@ -5,13 +5,14 @@
 }
 
 .form-editor {
+  margin-top: -30px;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
   border-radius: 5px;
   box-shadow: var(--input-box-shadow-dark) 0 0 4px 1px;
   padding: 40px;
-  height: 80%;
+  height: 90%;
   width: 50vw;
   gap: 10px;
   background-color: white;
@@ -27,10 +28,6 @@
   align-self: center;
   text-align: center;
   font-size: 18px;
-
-  &:hover {
-    color: var(--highlight-blue);
-  }
 }
 
 .form-editor-input-go-back-link {
@@ -39,6 +36,7 @@
   font-size: 20px;
   transition: color 0.15s ease;
   color: unset;
+  top: 100px;
   left: 10px;
 
   &:hover {
