@@ -1,5 +1,6 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "./store";
+import { useCallback } from "react";
 
 import {
   setNotification,
@@ -15,22 +16,28 @@ const sleep = (time: number) =>
 export const useNotification = () => {
   const dispatch = useDispatch();
 
-  return async (notification: INotification, duration: number) => {
-    dispatch(setNotification(notification));
-    await sleep(duration);
-    dispatch(setNotification({ type: "success", message: "" }));
-  };
+  return useCallback(
+    async (notification: INotification, duration: number) => {
+      dispatch(setNotification(notification));
+      await sleep(duration);
+      dispatch(setNotification({ type: "success", message: "" }));
+    },
+    [dispatch]
+  );
 };
 
 // hook that sets a loader and removes it after an action has taken place
 export const useWithLoader = () => {
   const dispatch = useDispatch();
 
-  return async (action: Function) => {
-    dispatch(setIsLoading(true));
-    await action();
-    dispatch(setIsLoading(false));
-  };
+  return useCallback(
+    async (action: Function) => {
+      dispatch(setIsLoading(true));
+      await action();
+      dispatch(setIsLoading(false));
+    },
+    [dispatch]
+  );
 };
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();

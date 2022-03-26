@@ -7,20 +7,15 @@ import "./ListItem.scss";
 
 interface IListItem {
   form: IForm;
-  index: number;
-  onDeleteForm: (id: IForm["_id"]) => void;
-  onCopyForm: (form: IForm) => void;
+  onDeleteForm: () => void;
+  onCopyForm: () => void;
 }
 
-const ListItem = ({ form, index, onDeleteForm, onCopyForm }: IListItem) => {
+const ListItem = ({ form, onDeleteForm, onCopyForm }: IListItem) => {
   const { name, _id } = form;
 
   return (
-    <div
-      className="form-list-list-item"
-      key={_id}
-      style={{ animationDelay: `${index * 20}ms` }}
-    >
+    <div className="form-list-list-item">
       {/* TODO onFormSelect both when clicking on checkbox and also on item click */}
       <input className="form-list-list-item-checkbox" type="checkbox" />
       <Link className="form-list-list-item-name" to={_id!.toString()}>
@@ -29,12 +24,12 @@ const ListItem = ({ form, index, onDeleteForm, onCopyForm }: IListItem) => {
       <div className="form-list-item-buttons">
         <FontAwesomeIcon
           className="form-list-item-button"
-          onClick={() => onCopyForm(form)}
+          onClick={onCopyForm}
           icon={faCopy}
         />
         <FontAwesomeIcon
           className="form-list-item-button"
-          onClick={() => onDeleteForm(_id)}
+          onClick={onDeleteForm}
           icon={faTrash}
         />
       </div>

@@ -8,6 +8,7 @@ import { emptyForm, IForm } from "../resources/shared";
 import { asyncDeleteForm, asyncPostForm, token } from "../../../services/forms";
 
 import "./FormList.scss";
+import { useCallback, useMemo } from "react";
 
 interface IFormList {
   setEditedForm: (form: IForm) => void;
@@ -31,50 +32,59 @@ const FormList = ({
     setEditedForm(emptyForm);
   };
 
-  const onDeleteForm = async (id: IForm["_id"]) => {
-    withLoader(async () => {
-      if (token) {
-        try {
-          await asyncDeleteForm(id, token);
-          dispatch(deleteForm(id));
-          notify(
-            { type: "success", message: "Deleted form successfully!" },
-            3000
-          );
-        } catch {
-          notify({ type: "error", message: "Something went wrong!" }, 3000);
+  const onDeleteForm = useCallback(
+    async (id: IForm["_id"]) =>
+      withLoader(async () => {
+        if (token) {
+          try {
+            await asyncDeleteForm(id, token);
+            dispatch(deleteForm(id));
+            notify(
+              { type: "success", message: "Deleted form successfully!" },
+              3000
+            );
+          } catch {
+            notify({ type: "error", message: "Something went wrong!" }, 3000);
+          }
         }
-      }
-    });
-  };
+      }),
+    [dispatch, notify, withLoader]
+  );
 
-  const onCopyForm = async (form: IForm) => {
-    withLoader(async () => {
-      if (token) {
-        try {
-          const copiedForm = await asyncPostForm(form, token);
-          dispatch(addForm(copiedForm));
-          notify(
-            { type: "success", message: "Copied form successfully!" },
-            3000
-          );
-        } catch {
-          notify({ type: "error", message: "Something went wrong!" }, 3000);
+  const onCopyForm = useCallback(
+    async (form: IForm) => {
+      const copiedForm = { ...form, name: `${form.name} (copy)` };
+      withLoader(async () => {
+        if (token) {
+          try {
+            const returnedForm = await asyncPostForm(copiedForm, token);
+            dispatch(addForm(returnedForm));
+            notify(
+              { type: "success", message: "Copied form successfully!" },
+              3000
+            );
+          } catch {
+            notify({ type: "error", message: "Something went wrong!" }, 3000);
+          }
         }
-      }
-    });
-  };
+      });
+    },
+    [dispatch, notify, withLoader]
+  );
 
   // List of links to edit each of user's forms
-  const formList = forms.map((f, i) => (
-    <ListItem
-      key={f._id}
-      form={f}
-      index={i}
-      onCopyForm={onCopyForm}
-      onDeleteForm={onDeleteForm}
-    />
-  ));
+  const formList = useMemo(
+    () =>
+      forms.map((f, i) => (
+        <ListItem
+          key={f._id}
+          form={f}
+          onCopyForm={() => onCopyForm(f)}
+          onDeleteForm={() => onDeleteForm(f._id)}
+        />
+      )),
+    [forms, onCopyForm, onDeleteForm]
+  );
 
   const isListEmpty = haveFormsBeenFetched && formList.length === 0;
 
