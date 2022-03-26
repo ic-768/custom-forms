@@ -43,6 +43,7 @@
   cursor: pointer;
   color: unset;
   transition: color 0.15s;
+  box-shadow: inset var(--input-box-shadow) 0 0 0 1px;
 
   &:hover {
     color: var(--highlight-blue);

@@ -1,15 +1,20 @@
 .form-editor-container {
   display: flex;
   justify-content: center;
+  height: 100%;
 }
 
 .form-editor {
   display: flex;
   flex-direction: column;
-  padding-top: 50px;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: var(--input-box-shadow-dark) 0 0 4px 1px;
+  padding: 40px;
+  height: 80%;
   width: 50vw;
   gap: 10px;
-  margin-right: 200px;
+  background-color: white;
 }
 
 .form-editor-form-title.input-container {
@@ -18,12 +23,14 @@
 
 .form-editor-form-title.text-input {
   box-shadow: none;
-  border-radius: 0px;
-  border-bottom: 1px solid var(--input-box-shadow-dark);
   font-weight: 550;
   align-self: center;
   text-align: center;
   font-size: 18px;
+
+  &:hover {
+    color: var(--highlight-blue);
+  }
 }
 
 .form-editor-input-go-back-link {
@@ -59,6 +66,7 @@
   cursor: pointer;
   color: unset;
   transition: color 0.15s;
+  box-shadow: inset var(--input-box-shadow) 0 0 0 1px;
 
   &:hover {
     color: var(--highlight-blue);
@@ -67,9 +75,10 @@
 }
 
 .form-editor-upload-form-button {
+  background-color: white;
   position: absolute;
   bottom: 50px;
-  left: 50%;
+  left: 2%;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,12 +1,9 @@
 .form-builder-header {
+  padding: 8px;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 10px;
-  gap: 10px;
-  height: 20px;
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.075) 0 1px;
+  background-color: white;
 }
 
 .form-builder-header-user-details {
@@ -14,7 +11,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-right: auto;
+  margin-left: 10px;
 }
 
 .form-builder-header-user-icon {
@@ -25,9 +22,10 @@
   border: none;
   background-color: white;
   cursor: pointer;
-  padding: 10px;
   border-radius: 10px;
   font-size: 14px;
+  margin-left: auto;
+  margin-right: 10px;
 
   &:hover {
     color: var(--highlight-blue);
