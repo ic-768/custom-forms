@@ -1,5 +1,4 @@
-import { ChangeEvent } from "react";
-import { IInputStyles } from "../../../InputEditor/inputModifiers";
+import { ChangeEvent, CSSProperties } from "react";
 
 interface IDateInput {
   type?: "Date";
@@ -10,7 +9,7 @@ interface IDateInput {
   date?: string;
   min?: string;
   max?: string;
-  styles?: IInputStyles;
+  styles?: CSSProperties;
   id?: string;
 }
 

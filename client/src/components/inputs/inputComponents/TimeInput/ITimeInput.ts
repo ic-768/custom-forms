@@ -1,5 +1,4 @@
-import { ChangeEvent } from "react";
-import { IInputStyles } from "../../../InputEditor/inputModifiers";
+import { ChangeEvent, CSSProperties } from "react";
 
 interface ITimeInput {
   type?: "Time";
@@ -8,7 +7,7 @@ interface ITimeInput {
   className?: string;
   placeholder?: string;
   label?: string;
-  styles?: IInputStyles;
+  styles?: CSSProperties;
   id?: string;
 }
 

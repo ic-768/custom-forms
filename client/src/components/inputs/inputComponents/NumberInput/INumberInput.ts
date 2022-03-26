@@ -1,5 +1,4 @@
-import { ChangeEvent } from "react";
-import { IInputStyles } from "../../../InputEditor/inputModifiers";
+import { ChangeEvent, CSSProperties } from "react";
 
 interface INumberInput {
   type?: "Number";
@@ -10,7 +9,7 @@ interface INumberInput {
   min?: number;
   max?: number;
   label?: string;
-  styles?: IInputStyles;
+  styles?: CSSProperties;
   id?: string;
 }
 

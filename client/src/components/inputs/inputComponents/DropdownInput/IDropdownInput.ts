@@ -1,5 +1,5 @@
+import { CSSProperties } from "react";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { IInputStyles } from "../../../InputEditor/inputModifiers";
 
 /**
  * Single option of the dropdown list
@@ -26,7 +26,7 @@ interface IDropdownInput {
   className?: string;
   // icon of the currently selected option
   selectionIcon?: IconDefinition;
-  styles?: IInputStyles;
+  styles?: CSSProperties;
   label?: string;
   id?: string;
 }

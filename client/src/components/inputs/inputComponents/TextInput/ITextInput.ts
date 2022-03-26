@@ -1,5 +1,4 @@
-import { ChangeEvent } from "react";
-import { IInputStyles } from "../../../InputEditor/inputModifiers";
+import { ChangeEvent, CSSProperties } from "react";
 
 interface ITextInput {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -9,7 +8,7 @@ interface ITextInput {
   className?: string;
   placeholder?: string;
   maxLength?: number;
-  styles?: IInputStyles;
+  styles?: CSSProperties;
   id?: string;
   autoFocus?: boolean;
 }

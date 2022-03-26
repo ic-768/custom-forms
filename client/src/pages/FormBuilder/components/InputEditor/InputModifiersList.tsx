@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, CSSProperties } from "react";
 
 import {
   FontSize,
@@ -9,7 +9,6 @@ import {
 } from "./inputModifiers";
 
 import { ICustomInput } from "../../../../components/inputs/CustomInput";
-import { IInputStyles } from "./inputModifiers";
 
 interface IInputModifiersList {
   input: ICustomInput;
@@ -24,8 +23,8 @@ const InputModifiersList = ({
 }: IInputModifiersList) => {
   // changes (or adds if doesn't exist) a specific style property
   const onChangeStyles = <
-    K extends keyof IInputStyles,
-    V extends IInputStyles[K]
+    K extends keyof CSSProperties,
+    V extends CSSProperties[K]
   >(
     style: K,
     value: V
@@ -40,7 +39,7 @@ const InputModifiersList = ({
 
   const FontSizeModifier = (
     <FontSize
-      fontSize={input.styles?.fontSize || "14px"}
+      fontSize={(input.styles?.fontSize as string) || "14px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value)) {
           onChangeStyles("fontSize", `${e.target.value}px`);
@@ -51,7 +50,7 @@ const InputModifiersList = ({
 
   const HeightModifier = (
     <Height
-      height={input.styles?.height || "33px"}
+      height={(input.styles?.height as string) || "33px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value)) {
           onChangeStyles("height", `${e.target.value}px`);
@@ -62,7 +61,7 @@ const InputModifiersList = ({
 
   const BorderRadiusModifier = (
     <BorderRadius
-      radius={input.styles?.borderRadius || "5px"}
+      radius={(input.styles?.borderRadius as string) || "5px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value)) {
           onChangeStyles("borderRadius", `${e.target.value}px`);
