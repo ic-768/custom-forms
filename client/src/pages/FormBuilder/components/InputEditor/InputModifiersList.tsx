@@ -6,6 +6,7 @@ import {
   BoxShadowColor,
   DropdownOptions,
   Height,
+  Label,
 } from "./inputModifiers";
 
 import { ICustomInput } from "../../../../components/inputs/CustomInput";
@@ -37,6 +38,14 @@ const InputModifiersList = ({
       },
     });
 
+  const LabelModifier = (
+    <Label
+      label={input.label || ""}
+      onChange={(e: ChangeEvent<HTMLInputElement>) => {
+        onChangeModifiers({ ...input, label: e.target.value });
+      }}
+    />
+  );
   const FontSizeModifier = (
     <FontSize
       fontSize={(input.styles?.fontSize as string) || "14px"}
@@ -100,6 +109,7 @@ const InputModifiersList = ({
     case "Text":
       return (
         <>
+          {LabelModifier}
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
