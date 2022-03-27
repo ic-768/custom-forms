@@ -106,7 +106,6 @@ formsRouter.put("/", async (request, response) => {
 
 formsRouter.delete("/", async (request, response) => {
   const token = getTokenFromRequest(request);
-  const formId = new ObjectId(request.body.formId);
 
   const decodedToken = token
     ? (jwt.verify(token, secret as Secret) as JwtPayload)
@@ -117,6 +116,7 @@ formsRouter.delete("/", async (request, response) => {
   }
 
   const userId = new ObjectId(decodedToken.id);
+  const formId = new ObjectId(request.body.formId);
 
   const { modifiedCount } = await userCollection.updateOne(
     { _id: userId },
@@ -126,6 +126,30 @@ formsRouter.delete("/", async (request, response) => {
   return modifiedCount === 0
     ? response.status(404).json({ error: "couldn't find form" })
     : response.sendStatus(200);
+});
+
+formsRouter.delete("/multiple", async (request, response) => {
+  const token = getTokenFromRequest(request);
+
+  const decodedToken = token
+    ? (jwt.verify(token, secret as Secret) as JwtPayload)
+    : null;
+
+  if (!token || !decodedToken?.id) {
+    return response.status(401).json({ error: "token missing or invalid" });
+  }
+
+  const userId = new ObjectId(decodedToken.id);
+  const formIds = request.body.formIds;
+
+  for (const formId of formIds) {
+    await userCollection.updateOne(
+      { _id: userId },
+      { $pull: { forms: { _id: new ObjectId(formId) } } }
+    );
+  }
+
+  response.status(200).json(formIds);
 });
 
 export default formsRouter;

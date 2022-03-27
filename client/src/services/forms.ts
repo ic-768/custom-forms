@@ -48,6 +48,19 @@ const asyncDeleteForm = async (formId: IForm["_id"], token: string) => {
   }
 };
 
+const asyncDeleteMultipleForms = async (
+  formIds: IForm["_id"][],
+  token: string
+) => {
+  try {
+    const config = { headers: { Authorization: token }, data: { formIds } };
+    const response = await axios.delete("/forms/multiple", config);
+    return response.data;
+  } catch (e) {
+    throw new Error("Error deleting form: " + e);
+  }
+};
+
 export {
   token,
   setToken,
@@ -55,4 +68,5 @@ export {
   asyncPostForm,
   asyncUpdateForm,
   asyncDeleteForm,
+  asyncDeleteMultipleForms,
 };

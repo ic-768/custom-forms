@@ -29,11 +29,22 @@ const formsSlice = createSlice({
     deleteForm: (state, action: PayloadAction<IForm["_id"]>) => {
       state.forms = state.forms.filter((f) => f._id !== action.payload);
     },
+    deleteMultipleForms: (state, action: PayloadAction<IForm["_id"][]>) => {
+      state.forms = state.forms.filter((f) => !action.payload.includes(f._id));
+    },
   },
 });
 
 const selectForms = (state: RootState) => state.forms.forms;
-const { setForms, addForm, updateForm, deleteForm } = formsSlice.actions;
+const { setForms, addForm, updateForm, deleteForm, deleteMultipleForms } =
+  formsSlice.actions;
 
 export default formsSlice.reducer;
-export { selectForms, setForms, addForm, updateForm, deleteForm };
+export {
+  selectForms,
+  setForms,
+  addForm,
+  updateForm,
+  deleteForm,
+  deleteMultipleForms,
+};

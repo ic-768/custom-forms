@@ -19,6 +19,8 @@ import "./FormList.scss";
 
 interface IFormList {
   setEditedForm: (form: IForm) => void;
+  selectedForms: IForm["_id"][];
+  onSelectForm: (formId: IForm["_id"]) => void;
   forms: IForm[];
   haveFormsBeenFetched: boolean;
 }
@@ -28,6 +30,8 @@ interface IFormList {
  */
 const FormList = ({
   setEditedForm,
+  selectedForms,
+  onSelectForm,
   forms,
   haveFormsBeenFetched,
 }: IFormList) => {
@@ -82,15 +86,23 @@ const FormList = ({
   // List of links to edit each of user's forms
   const formList = useMemo(
     () =>
-      forms.map((f, i) => (
+      forms.map((f) => (
         <ListItem
           key={f._id}
           form={f}
-          onCopyForm={() => onCopyForm(f)}
-          onDeleteForm={() => onDeleteForm(f._id)}
+          isSelected={selectedForms.includes(f._id)}
+          onSelectForm={() => onSelectForm(f._id)}
+          onCopyForm={(e) => {
+            e.stopPropagation();
+            onCopyForm(f);
+          }}
+          onDeleteForm={(e) => {
+            e.stopPropagation();
+            onDeleteForm(f._id);
+          }}
         />
       )),
-    [forms, onCopyForm, onDeleteForm]
+    [forms, onCopyForm, onDeleteForm, selectedForms, onSelectForm]
   );
 
   const isListEmpty = haveFormsBeenFetched && formList.length === 0;

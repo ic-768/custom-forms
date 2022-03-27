@@ -1,3 +1,4 @@
+import { MouseEventHandler } from "react";
 import { Link } from "react-router-dom";
 import { IForm } from "../../../resources/shared";
 import { faCopy, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -7,17 +8,29 @@ import "./ListItem.scss";
 
 interface IListItem {
   form: IForm;
-  onDeleteForm: () => void;
-  onCopyForm: () => void;
+  isSelected: boolean;
+  onSelectForm: () => void;
+  onDeleteForm: MouseEventHandler<SVGSVGElement>;
+  onCopyForm: MouseEventHandler<SVGSVGElement>;
 }
 
-const ListItem = ({ form, onDeleteForm, onCopyForm }: IListItem) => {
+const ListItem = ({
+  form,
+  isSelected,
+  onSelectForm,
+  onDeleteForm,
+  onCopyForm,
+}: IListItem) => {
   const { name, _id } = form;
 
   return (
-    <div className="form-list-list-item">
-      {/* TODO onFormSelect both when clicking on checkbox and also on item click */}
-      <input className="form-list-list-item-checkbox" type="checkbox" />
+    <div onClick={onSelectForm} className="form-list-list-item">
+      <input
+        checked={isSelected}
+        onChange={onSelectForm}
+        className="form-list-list-item-checkbox"
+        type="checkbox"
+      />
       <Link className="form-list-list-item-name" to={_id!.toString()}>
         {name}
       </Link>

@@ -10,11 +10,39 @@
 
 .form-view-form-filter.input-container {
   position: absolute;
+  align-self: flex-start;
+  left: 10%;
   top: 43px;
-  width: 80%;
+  width: 50%;
 }
 
 .form-view-form-filter.text-input {
   padding: 8px 20px;
   border-radius: 30px;
+}
+
+.form-view-forms-delete-button {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px;
+  position: absolute;
+  top: 45px;
+  right: 15%;
+  width: 60px;
+  font-size: 16px;
+  color: white;
+  background-color: #525b6a;
+  border-radius: 30px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #343e4d;
+  }
+}
+
+.form-view-forms-delete-button-count {
+  font-size: 14px;
 }

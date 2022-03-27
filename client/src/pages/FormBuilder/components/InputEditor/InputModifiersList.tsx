@@ -97,13 +97,14 @@ const InputModifiersList = ({
     case "Dropdown":
       return (
         <>
+          {LabelModifier}
+          {HeightModifier}
+          {BorderColorModifier}
           <DropdownOptions
             onChange={(options) => {
               onChangeModifiers({ ...input, options });
             }}
           />
-          {BorderRadiusModifier}
-          {BorderColorModifier}
         </>
       );
     case "Text":

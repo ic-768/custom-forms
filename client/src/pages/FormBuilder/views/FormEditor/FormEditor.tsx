@@ -140,7 +140,10 @@ const FormEditor = ({
     }
   };
 
-  const onGoBack = () => setEditedForm(emptyForm);
+  const onGoBack = () => {
+    setEditedInput(null);
+    setEditedForm(emptyForm);
+  };
 
   return (
     <div className="form-editor-container">
