@@ -3,7 +3,7 @@ import { ChangeEvent, CSSProperties } from "react";
 import {
   FontSize,
   BorderRadius,
-  BoxShadowColor,
+  BorderColor,
   DropdownOptions,
   Height,
   Label,
@@ -79,15 +79,15 @@ const InputModifiersList = ({
     />
   );
 
-  const BoxShadowColorModifier = (
-    <BoxShadowColor
-      /* get color from input styles boxShadow */
-      color={input.styles?.boxShadow?.split(" ")[0] || "rgb(0,0,0,0)"}
+  const BorderColorModifier = (
+    <BorderColor
+      /* get color from input styles borderColor */
+      color={input.styles?.borderColor?.split(" ")[0] || "rgb(0,0,0,0)"}
       onChange={(c) => {
         const rgba = c.rgb;
         onChangeStyles(
-          "boxShadow",
-          `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a}) 0 0 1px 0`
+          "borderColor",
+          `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a}`
         );
       }}
     />
@@ -103,7 +103,7 @@ const InputModifiersList = ({
             }}
           />
           {BorderRadiusModifier}
-          {BoxShadowColorModifier}
+          {BorderColorModifier}
         </>
       );
     case "Text":
@@ -113,7 +113,7 @@ const InputModifiersList = ({
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
-          {BoxShadowColorModifier}
+          {BorderColorModifier}
         </>
       );
     case "Number":
@@ -122,7 +122,7 @@ const InputModifiersList = ({
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
-          {BoxShadowColorModifier}
+          {BorderColorModifier}
         </>
       );
     case "Date":
@@ -131,7 +131,7 @@ const InputModifiersList = ({
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
-          {BoxShadowColorModifier}
+          {BorderColorModifier}
         </>
       );
     case "Time":
@@ -140,7 +140,7 @@ const InputModifiersList = ({
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
-          {BoxShadowColorModifier}
+          {BorderColorModifier}
         </>
       );
     case "Multiple Choice":

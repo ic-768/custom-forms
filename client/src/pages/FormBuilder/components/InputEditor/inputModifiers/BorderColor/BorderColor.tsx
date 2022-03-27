@@ -3,14 +3,14 @@ import { ColorChangeHandler, ChromePicker } from "react-color";
 
 import InputContainer from "../../../../../../components/inputs/InputContainer";
 
-import "./BoxShadowColor.scss";
+import "./BorderColor.scss";
 
-interface IBoxShadowColor {
+interface IBorderColor {
   color: string;
   onChange: ColorChangeHandler;
 }
 
-const BoxShadowColor = ({ color, onChange }: IBoxShadowColor) => {
+const BorderColor = ({ color, onChange }: IBorderColor) => {
   const [showColor, setShowColor] = useState(false);
 
   return (
@@ -20,21 +20,21 @@ const BoxShadowColor = ({ color, onChange }: IBoxShadowColor) => {
         component={
           <div
             style={{ backgroundImage: "url(images/picker-background.png)" }}
-            className="box-shadow-color-modifier-input-container"
+            className="border-color-modifier-input-container"
             onClick={() => setShowColor(!showColor)}
           >
             <div
               style={{
                 backgroundColor: color,
               }}
-              className="box-shadow-color-modifier-input-color-block"
+              className="border-color-modifier-input-color-block"
             />
           </div>
         }
       />
       {showColor && (
         <div
-          className="box-shadow-color-modifier-picker-container"
+          className="border-color-modifier-picker-container"
           onMouseLeave={() => setShowColor(false)}
         >
           <ChromePicker color={color} onChange={onChange} />
@@ -44,4 +44,4 @@ const BoxShadowColor = ({ color, onChange }: IBoxShadowColor) => {
   );
 };
 
-export default BoxShadowColor;
+export default BorderColor;

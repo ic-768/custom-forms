@@ -2,18 +2,17 @@
   width: 100%;
   height: var(--height-input);
   box-sizing: border-box;
-  border: none;
   padding: var(--input-padding);
   border-radius: var(--input-border-radius);
-  box-shadow: inset var(--input-box-shadow-light) 0 0 0 1px;
+  border: 1px solid var(--input-border-color);
   font-size: var(--input-font-size);
-  transition: box-shadow 0.15s ease;
-}
+  transition: border 0.15s ease;
 
-.date-input:focus {
-  outline: none;
-}
+  &:focus {
+    outline: none;
+  }
 
-.date-input:hover {
-  box-shadow: inset var(--input-box-shadow-dark) 0 0 0 1px;
+  &:hover {
+    border-color: var(--input-border-color-dark);
+  }
 }

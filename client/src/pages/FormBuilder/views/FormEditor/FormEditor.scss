@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  box-shadow: var(--input-box-shadow-dark) 0 0 4px 1px;
+  box-shadow: #b1b0b5 0 0 2px 1px;
   padding: 40px;
   height: 90%;
   width: 50vw;
@@ -23,7 +23,6 @@
 }
 
 .form-editor-form-title.text-input {
-  box-shadow: none;
   font-weight: 550;
   align-self: center;
   text-align: center;
@@ -64,11 +63,11 @@
   cursor: pointer;
   color: unset;
   transition: color 0.15s;
-  box-shadow: inset var(--input-box-shadow) 0 0 0 1px;
+  border: 1px solid var(--input-border-color);
 
   &:hover {
     color: var(--highlight-blue);
-    box-shadow: inset var(--input-box-shadow-dark) 0 0 0 1px;
+    border: 1px solid var(--input-border-color-dark);
   }
 }
 
