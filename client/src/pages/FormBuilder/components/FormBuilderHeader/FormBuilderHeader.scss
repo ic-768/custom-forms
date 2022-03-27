@@ -1,9 +1,10 @@
 .form-builder-header {
+  color: white;
   min-height: 60px;
   display: flex;
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.075) 0 1px;
-  background-color: white;
+  background-color: #9b5eff;
 }
 
 .form-builder-header-user-details {
@@ -19,17 +20,29 @@
 }
 
 .form-builder-header-sign-out-button {
+  position: relative;
   display: flex;
   align-items: center;
   border: none;
-  background-color: white;
+  background-color: transparent;
+  color: white;
   cursor: pointer;
   border-radius: 10px;
   font-size: 14px;
   margin-left: auto;
   margin-right: 10px;
 
-  &:hover {
-    color: var(--highlight-blue);
+  &::before {
+    position: absolute;
+    content: "";
+    width: 0%;
+    border-bottom: 4px solid var(--highlight-blue);
+    transition: width 0.25s;
+    left: 0px;
+    top: 40px;
   }
+
+	&:hover::before{
+  width: 100%;
+	}
 }

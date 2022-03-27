@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid var(--input-box-shadow);
+  border-top: 1px solid var(--input-border-color);
 }
 
 .form-list-empty-row {
@@ -21,7 +21,7 @@
   padding: 15px;
   width: 100%;
   color: gray;
-  border-bottom: 1px solid var(--input-box-shadow);
+  border-bottom: 1px solid var(--input-border-color);
 }
 
 .form-list-new-form-button {
