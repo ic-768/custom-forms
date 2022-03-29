@@ -7,6 +7,7 @@ import {
   faCloudUploadAlt,
   faPlus,
   faArrowLeft,
+  faEye,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -66,7 +67,7 @@ const FormEditor = ({
   const addNewForm = async (form: IForm) => {
     const newForm = await asyncPostForm(form, token!);
     dispatch(addForm(newForm));
-    navigate(`/${newForm._id}`); // navigate away from '/new'
+    navigate(`/edit/${newForm._id}`); // navigate away from '/new'
   };
 
   // Post form to DB, and update redux store
@@ -93,6 +94,8 @@ const FormEditor = ({
       }
     });
   };
+
+  const onPreview = () => navigate(`/${editedForm._id}`);
 
   // When form name is being changed
   const onEditFormName = (e: ChangeEvent<HTMLInputElement>) =>
@@ -186,6 +189,9 @@ const FormEditor = ({
 
       <div className="form-editor-upload-form-button" onClick={onPublish}>
         <FontAwesomeIcon icon={faCloudUploadAlt} />
+      </div>
+      <div className="form-editor-preview-form-button" onClick={onPreview}>
+        <FontAwesomeIcon icon={faEye} />
       </div>
     </div>
   );

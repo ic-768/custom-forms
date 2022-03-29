@@ -120,6 +120,7 @@ const InputModifiersList = ({
     case "Number":
       return (
         <>
+          {LabelModifier}
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
@@ -129,6 +130,7 @@ const InputModifiersList = ({
     case "Date":
       return (
         <>
+          {LabelModifier}
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
@@ -138,6 +140,7 @@ const InputModifiersList = ({
     case "Time":
       return (
         <>
+          {LabelModifier}
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}

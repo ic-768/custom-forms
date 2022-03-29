@@ -9,6 +9,7 @@ import { useAppSelector, useWithLoader } from "../../store/hooks";
 import { selectForms, setForms } from "../../store/features/forms/formsSlice";
 
 import FormBuilderHeader from "./components/FormBuilderHeader";
+import FormPreview from "./views/FormPreview";
 import FormEditor from "./views/FormEditor";
 import FormsView from "./views/FormsView";
 
@@ -61,10 +62,20 @@ const FormBuilder = () => {
             />
           }
         />
-
-        {/* View/edit a single form */}
+        {/* preview a form */}
         <Route
-          path=":id" // either id or 'new'
+          path=":id"
+          element={
+            <FormPreview
+              forms={forms}
+              form={editedForm}
+              setForm={setEditedForm}
+            />
+          }
+        />
+        {/* edit a form */}
+        <Route
+          path="edit/:id" // either id or 'new'
           element={
             <FormEditor
               forms={forms}
@@ -75,7 +86,7 @@ const FormBuilder = () => {
               token={token}
             />
           }
-        ></Route>
+        />
       </Route>
     </Routes>
   );

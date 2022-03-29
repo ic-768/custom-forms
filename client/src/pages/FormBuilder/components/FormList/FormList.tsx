@@ -119,7 +119,7 @@ const FormList = ({
       <Link
         onClick={onAddNewForm}
         className="form-list-new-form-button"
-        to="new"
+        to="edit/new"
       >
         New Form
       </Link>

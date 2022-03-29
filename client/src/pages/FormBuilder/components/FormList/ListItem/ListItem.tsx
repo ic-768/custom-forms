@@ -31,7 +31,7 @@ const ListItem = ({
         className="form-list-list-item-checkbox"
         type="checkbox"
       />
-      <Link className="form-list-list-item-name" to={_id!.toString()}>
+      <Link className="form-list-list-item-name" to={`edit/${_id!.toString()}`}>
         {name}
       </Link>
       <div className="form-list-item-buttons">

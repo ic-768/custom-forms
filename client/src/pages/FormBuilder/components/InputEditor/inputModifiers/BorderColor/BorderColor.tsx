@@ -16,10 +16,10 @@ const BorderColor = ({ color, onChange }: IBorderColor) => {
   return (
     <>
       <InputContainer
-        label="Box shadow color"
+        label="Border color"
         component={
           <div
-            style={{ backgroundImage: "url(images/picker-background.png)" }}
+            style={{ backgroundImage: "url(/images/picker-background.png)" }}
             className="border-color-modifier-input-container"
             onClick={() => setShowColor(!showColor)}
           >
