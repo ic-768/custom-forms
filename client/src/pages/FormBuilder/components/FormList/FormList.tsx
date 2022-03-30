@@ -1,4 +1,5 @@
-import { useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
+import ConfirmationModal from "../../../../components/ConfirmationModal";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
@@ -20,6 +21,7 @@ import "./FormList.scss";
 interface IFormList {
   setEditedForm: (form: IForm) => void;
   selectedForms: IForm["_id"][];
+  setSelectedForms: (forms: IForm["_id"][]) => void;
   onSelectForm: (formId: IForm["_id"]) => void;
   forms: IForm[];
   haveFormsBeenFetched: boolean;
@@ -31,6 +33,7 @@ interface IFormList {
 const FormList = ({
   setEditedForm,
   selectedForms,
+  setSelectedForms,
   onSelectForm,
   forms,
   haveFormsBeenFetched,
@@ -39,9 +42,14 @@ const FormList = ({
   const withLoader = useWithLoader();
   const notify = useNotification();
 
+  // used to show modal to confirm deletion
+  const [formToDelete, setFormToDelete] = useState<IForm["_id"] | null>(null);
+
   const onAddNewForm = () => {
     setEditedForm(emptyForm);
   };
+
+  const onSelectForDeletion = useCallback((id) => setFormToDelete(id), []);
 
   const onDeleteForm = useCallback(
     async (id: IForm["_id"]) =>
@@ -54,20 +62,24 @@ const FormList = ({
               { type: "success", message: "Deleted form successfully!" },
               3000
             );
+            // if form had been selected prior to deletion, update selected forms
+            if (selectedForms.includes(id)) {
+              setSelectedForms(selectedForms.filter((sf) => sf !== id));
+            }
           } catch {
             notify({ type: "error", message: "Something went wrong!" }, 3000);
           }
         }
       }),
-    [dispatch, notify, withLoader]
+    [dispatch, notify, withLoader, selectedForms, setSelectedForms]
   );
 
   const onCopyForm = useCallback(
     async (form: IForm) => {
-      const copiedForm = { ...form, name: `${form.name} (copy)` };
       withLoader(async () => {
         if (token) {
           try {
+            const copiedForm = { ...form, name: `${form.name} (copy)` };
             const returnedForm = await asyncPostForm(copiedForm, token);
             dispatch(addForm(returnedForm));
             notify(
@@ -98,17 +110,29 @@ const FormList = ({
           }}
           onDeleteForm={(e) => {
             e.stopPropagation();
-            onDeleteForm(f._id);
+            onSelectForDeletion(f._id);
           }}
         />
       )),
-    [forms, onCopyForm, onDeleteForm, selectedForms, onSelectForm]
+    [forms, onCopyForm, onSelectForDeletion, selectedForms, onSelectForm]
   );
 
   const isListEmpty = haveFormsBeenFetched && formList.length === 0;
 
   return (
     <div className="form-list-container">
+      {formToDelete ? (
+        <ConfirmationModal
+          message={"Are you sure you want to delete this form?"}
+          onConfirm={async () => {
+            await onDeleteForm(formToDelete);
+            setFormToDelete(null);
+          }}
+          onCancel={() => {
+            setFormToDelete(null);
+          }}
+        />
+      ) : null}
       <div className="form-list">
         {isListEmpty ? (
           <div className="form-list-empty-row">No forms</div>

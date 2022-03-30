@@ -89,6 +89,7 @@ const FormsView = ({
       <FormList
         setEditedForm={setEditedForm}
         selectedForms={selectedForms}
+        setSelectedForms={setSelectedForms}
         onSelectForm={toggleIsFormSelected}
         haveFormsBeenFetched={haveFormsBeenFetched}
         forms={filteredForms}

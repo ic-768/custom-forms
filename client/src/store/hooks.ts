@@ -1,11 +1,12 @@
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "./store";
 import { useCallback } from "react";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+
+import { RootState, AppDispatch } from "./store";
 
 import {
   setNotification,
-  INotification,
   setIsLoading,
+  INotification,
 } from "./features/notifications/notificationsSlice";
 
 // helper function to wait for a set duration
