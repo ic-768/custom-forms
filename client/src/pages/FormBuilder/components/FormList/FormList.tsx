@@ -53,7 +53,7 @@ const FormList = ({
 
   const onDeleteForm = useCallback(
     async (id: IForm["_id"]) =>
-      withLoader(async () => {
+      await withLoader(async () => {
         if (token) {
           try {
             await asyncDeleteForm(id, token);

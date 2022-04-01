@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import ConfirmationModal from "../../../../components/ConfirmationModal";
 import { useNotification, useWithLoader } from "../../../../store/hooks";
 import { token, asyncDeleteMultipleForms } from "../../../../services/forms";
 import { deleteMultipleForms } from "../../../../store/features/forms/formsSlice";
@@ -32,6 +33,8 @@ const FormsView = ({
 
   // To batch-delete multiple forms
   const [selectedForms, setSelectedForms] = useState<IForm["_id"][]>([]);
+  // Whether to display form deletion modal
+  const [confirmDeletion, setConfirmDeletion] = useState<boolean>(false);
 
   useEffect(() => {
     setFilteredForms(forms.filter((f: IForm) => f.name.includes(filterQuery)));
@@ -49,7 +52,7 @@ const FormsView = ({
   );
 
   const onDeleteMultipleForms = useCallback(async () => {
-    withLoader(async () => {
+    await withLoader(async () => {
       try {
         const deletedForms = await asyncDeleteMultipleForms(
           selectedForms,
@@ -69,6 +72,18 @@ const FormsView = ({
 
   return (
     <div className="form-view-container">
+      {confirmDeletion ? (
+        <ConfirmationModal
+          message={"Are you sure you want to delete these forms?"}
+          onConfirm={async () => {
+            await onDeleteMultipleForms();
+            setConfirmDeletion(false);
+          }}
+          onCancel={() => {
+            setConfirmDeletion(false);
+          }}
+        />
+      ) : null}
       <TextInput
         placeholder="Search forms ..."
         className="form-view-form-filter"
@@ -77,7 +92,7 @@ const FormsView = ({
       />
       {selectedForms.length ? (
         <button
-          onClick={onDeleteMultipleForms}
+          onClick={() => setConfirmDeletion(true)}
           className="form-view-forms-delete-button"
         >
           <FontAwesomeIcon icon={faTrash} />
