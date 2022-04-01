@@ -86,9 +86,9 @@ const FormEditor = ({
             } else {
               await addNewForm(editedForm);
             }
-            notify({ type: "success", message: "Form has been saved!" }, 3000);
+            notify({ type: "success", message: "Form has been saved!" }, 5000);
           } catch (e) {
-            notify({ type: "error", message: "Something went wrong" }, 3000);
+            notify({ type: "error", message: "Something went wrong" }, 5000);
           }
         }
       }

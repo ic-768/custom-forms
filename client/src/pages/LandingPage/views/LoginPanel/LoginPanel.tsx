@@ -9,6 +9,7 @@ import { useNotification, useWithLoader } from "../../../../store/hooks";
 import { TextInput } from "../../../../components/inputs/inputComponents";
 
 import "./LoginPanel.scss";
+import PasswordInput from "../../components/PasswordInput";
 
 const LoginPanel = () => {
   const [username, setUsername] = useState("");
@@ -46,10 +47,10 @@ const LoginPanel = () => {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
-      <TextInput
+      <PasswordInput
         label="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        password={password}
+        onChangePassword={(e) => setPassword(e.target.value)}
       />
       <button type="submit" className="login-panel-login-button">
         Submit

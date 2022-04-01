@@ -2,6 +2,7 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useNotification, useWithLoader } from "../../../../store/hooks";
+import PasswordInput from "../../components/PasswordInput";
 import { TextInput } from "../../../../components/inputs/inputComponents";
 import { signup } from "../../../../services/signup";
 
@@ -44,10 +45,10 @@ const SignupPanel = () => {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
-      <TextInput
+      <PasswordInput
         label="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        password={password}
+        onChangePassword={(e) => setPassword(e.target.value)}
       />
       <button type="submit" className="signup-panel-signup-button">
         Submit

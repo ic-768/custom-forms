@@ -29,7 +29,7 @@ const FormBuilder = () => {
   const [haveFormsBeenFetched, setHaveFormsBeenFetched] =
     useState<boolean>(false);
 
-  // used to display a confirmation message with actions
+  // used to display a confirmation message with actions attached to the buttons
   const [confirmation, setConfirmation] = useState<IConfirmationModal | null>(
     null
   );
@@ -54,13 +54,7 @@ const FormBuilder = () => {
         path=""
         element={
           <div className="form-builder-container">
-            {confirmation && (
-              <ConfirmationModal
-                message={confirmation.message}
-                onConfirm={confirmation.onConfirm}
-                onCancel={confirmation.onCancel}
-              />
-            )}
+            {confirmation && <ConfirmationModal {...confirmation} />}
             <FormBuilderHeader />
             <Outlet />
           </div>

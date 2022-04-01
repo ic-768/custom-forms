@@ -50,14 +50,14 @@ const FormList = ({
             dispatch(deleteForm(id));
             notify(
               { type: "success", message: "Deleted form successfully!" },
-              3000
+              5000
             );
             // if form had been selected prior to deletion, update selected forms
             if (selectedForms.includes(id)) {
               setSelectedForms(selectedForms.filter((sf) => sf !== id));
             }
           } catch {
-            notify({ type: "error", message: "Something went wrong!" }, 3000);
+            notify({ type: "error", message: "Something went wrong!" }, 5000);
           }
         }
       }),

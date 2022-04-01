@@ -5,6 +5,7 @@ import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { setToken } from "../../../../services/forms";
 import { removeUser } from "../../../../store/features/user/userSlice";
+import { setForms } from "../../../../store/features/forms/formsSlice";
 
 import "./FormBuilderHeader.scss";
 
@@ -16,6 +17,7 @@ const FormBuilderHeader = () => {
   const onLogOut = () => {
     window.localStorage.removeItem("loggedUser");
     dispatch(removeUser());
+    dispatch(setForms([]));
     setToken("");
     navigate("/");
   };

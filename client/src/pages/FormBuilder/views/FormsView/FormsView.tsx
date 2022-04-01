@@ -68,10 +68,10 @@ const FormsView = ({
         setSelectedForms([]);
         notify(
           { type: "success", message: "Deleted forms successfully!" },
-          3000
+          5000
         );
       } catch {
-        notify({ type: "error", message: "Something went wrong!" }, 3000);
+        notify({ type: "error", message: "Something went wrong!" }, 5000);
       }
     });
   }, [dispatch, withLoader, notify, selectedForms]);

@@ -6,23 +6,22 @@ export interface IConfirmationModal {
   onCancel: () => void;
 }
 
-const ConfirmationModal = ({
-  message,
-  onConfirm,
-  onCancel,
-}: IConfirmationModal) => (
+const ConfirmationModal = (confirmation: IConfirmationModal) => (
   <>
     <div className="confirmation-modal-background-overlay" />
     <div className="confirmation-modal-container">
-      <span className="confirmation-modal-message">{message}</span>
+      <span className="confirmation-modal-message">{confirmation.message}</span>
       <div className="confirmation-modal-buttons-container">
         <button
           className="confirmation-modal-confirm-button"
-          onClick={onConfirm}
+          onClick={confirmation.onConfirm}
         >
           Confirm
         </button>
-        <button className="confirmation-modal-cancel-button" onClick={onCancel}>
+        <button
+          className="confirmation-modal-cancel-button"
+          onClick={confirmation.onCancel}
+        >
           Cancel
         </button>
       </div>
