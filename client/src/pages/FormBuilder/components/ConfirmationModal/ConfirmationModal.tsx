@@ -1,6 +1,6 @@
 import "./ConfirmationModal.scss";
 
-interface IConfirmationModal {
+export interface IConfirmationModal {
   message: string;
   onConfirm: () => void;
   onCancel: () => void;

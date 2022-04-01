@@ -1,15 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import ConfirmationModal from "../../../../components/ConfirmationModal";
 import { useNotification, useWithLoader } from "../../../../store/hooks";
 import { token, asyncDeleteMultipleForms } from "../../../../services/forms";
 import { deleteMultipleForms } from "../../../../store/features/forms/formsSlice";
+import { IConfirmationModal } from "../../components/ConfirmationModal";
 import { TextInput } from "../../../../components/inputs/inputComponents";
 import FormList from "../../components/FormList";
-import { IForm } from "../../resources/shared";
+import { emptyForm, IForm } from "../../resources/shared";
 
 import "./FormsView.scss";
 
@@ -17,12 +18,14 @@ interface IFormsView {
   forms: IForm[];
   setEditedForm: (form: IForm) => void;
   haveFormsBeenFetched: boolean;
+  setConfirmation: (confirmation: IConfirmationModal | null) => void;
 }
 
 const FormsView = ({
   forms,
   setEditedForm,
   haveFormsBeenFetched,
+  setConfirmation,
 }: IFormsView) => {
   const dispatch = useDispatch();
   const withLoader = useWithLoader();
@@ -33,8 +36,6 @@ const FormsView = ({
 
   // To batch-delete multiple forms
   const [selectedForms, setSelectedForms] = useState<IForm["_id"][]>([]);
-  // Whether to display form deletion modal
-  const [confirmDeletion, setConfirmDeletion] = useState<boolean>(false);
 
   useEffect(() => {
     setFilteredForms(forms.filter((f: IForm) => f.name.includes(filterQuery)));
@@ -51,7 +52,12 @@ const FormsView = ({
     [selectedForms]
   );
 
-  const onDeleteMultipleForms = useCallback(async () => {
+  const onAddNewForm = () => {
+    setEditedForm(emptyForm);
+  };
+
+  // function to delete multiple selected forms
+  const onConfirmDelete = useCallback(async () => {
     await withLoader(async () => {
       try {
         const deletedForms = await asyncDeleteMultipleForms(
@@ -70,45 +76,52 @@ const FormsView = ({
     });
   }, [dispatch, withLoader, notify, selectedForms]);
 
+  // set the confirmation modal with a callback to delete the forms
+  const onShowDeleteConfirmation = () => {
+    setConfirmation({
+      message: "Are you sure you want to delete these forms?",
+      onConfirm: async () => {
+        await onConfirmDelete();
+        setConfirmation(null);
+      },
+      onCancel: () => setConfirmation(null),
+    });
+  };
+
   return (
-    <div className="form-view-container">
-      {confirmDeletion ? (
-        <ConfirmationModal
-          message={"Are you sure you want to delete these forms?"}
-          onConfirm={async () => {
-            await onDeleteMultipleForms();
-            setConfirmDeletion(false);
-          }}
-          onCancel={() => {
-            setConfirmDeletion(false);
-          }}
-        />
-      ) : null}
+    <div className="forms-view-container">
       <TextInput
         placeholder="Search forms ..."
-        className="form-view-form-filter"
+        className="forms-view-form-filter"
         onChange={(e) => setFilterQuery(e.target.value)}
         value={filterQuery}
       />
       {selectedForms.length ? (
         <button
-          onClick={() => setConfirmDeletion(true)}
-          className="form-view-forms-delete-button"
+          onClick={onShowDeleteConfirmation}
+          className="forms-view-forms-delete-button"
         >
           <FontAwesomeIcon icon={faTrash} />
-          <span className="form-view-form-forms-delete-button-count">
+          <span className="forms-view-form-forms-delete-button-count">
             {selectedForms.length}
           </span>
         </button>
       ) : null}
       <FormList
-        setEditedForm={setEditedForm}
         selectedForms={selectedForms}
         setSelectedForms={setSelectedForms}
         onSelectForm={toggleIsFormSelected}
         haveFormsBeenFetched={haveFormsBeenFetched}
+        setConfirmation={setConfirmation}
         forms={filteredForms}
       />
+      <Link
+        onClick={onAddNewForm}
+        className="forms-view-new-form-button"
+        to="edit/new"
+      >
+        New Form
+      </Link>
     </div>
   );
 };

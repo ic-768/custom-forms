@@ -8,6 +8,9 @@ import { asyncGetForms } from "../../services/forms";
 import { useAppSelector, useWithLoader } from "../../store/hooks";
 import { selectForms, setForms } from "../../store/features/forms/formsSlice";
 
+import ConfirmationModal, {
+  IConfirmationModal,
+} from "./components/ConfirmationModal";
 import FormBuilderHeader from "./components/FormBuilderHeader";
 import FormPreview from "./views/FormPreview";
 import FormEditor from "./views/FormEditor";
@@ -25,6 +28,11 @@ const FormBuilder = () => {
   const [editedForm, setEditedForm] = useState<IForm>(emptyForm);
   const [haveFormsBeenFetched, setHaveFormsBeenFetched] =
     useState<boolean>(false);
+
+  // used to display a confirmation message with actions
+  const [confirmation, setConfirmation] = useState<IConfirmationModal | null>(
+    null
+  );
 
   // A draft input for input editor. Contains the currently edited input and its index in the form
   const [editedInput, setEditedInput] = useState<IEditedInput>(null);
@@ -46,6 +54,13 @@ const FormBuilder = () => {
         path=""
         element={
           <div className="form-builder-container">
+            {confirmation && (
+              <ConfirmationModal
+                message={confirmation.message}
+                onConfirm={confirmation.onConfirm}
+                onCancel={confirmation.onCancel}
+              />
+            )}
             <FormBuilderHeader />
             <Outlet />
           </div>
@@ -59,6 +74,7 @@ const FormBuilder = () => {
               forms={forms}
               setEditedForm={setEditedForm}
               haveFormsBeenFetched={haveFormsBeenFetched}
+              setConfirmation={setConfirmation}
             />
           }
         />
