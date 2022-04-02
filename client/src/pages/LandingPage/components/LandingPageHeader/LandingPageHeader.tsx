@@ -26,6 +26,7 @@ const LandingPageHeader = () => (
         to={"//github.com/ic-768"}
       >
         <FontAwesomeIcon
+          title="Link to my github page"
           className="landing-page-header-github-icon"
           icon={faGithub as any}
         />

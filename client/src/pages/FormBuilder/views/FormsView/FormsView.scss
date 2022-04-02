@@ -22,6 +22,7 @@
 }
 
 .forms-view-forms-delete-button {
+  height: 30px;
   border: none;
   display: flex;
   align-items: center;
@@ -37,14 +38,22 @@
   background-color: #525b6a;
   border-radius: 30px;
   cursor: pointer;
+  overflow: hidden;
 
   &:hover {
     background-color: #343e4d;
   }
 }
 
+.forms-view-forms-delete-button-icon {
+  padding: 30px;
+}
+
 .forms-view-forms-delete-button-count {
   font-size: 14px;
+  position: relative;
+  left: -31px;
+  pointer-events: none;
 }
 
 .forms-view-new-form-button {

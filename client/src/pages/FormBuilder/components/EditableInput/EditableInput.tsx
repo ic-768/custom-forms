@@ -49,16 +49,31 @@ const EditableInput = forwardRef(
     >
       {showDragControl && (
         <div className="editable-input-drag-handle">
-          <FontAwesomeIcon icon={faBars} />
+          <FontAwesomeIcon
+            className="editable-input-drag-handle-icon"
+            title="Drag to rearrange"
+            icon={faBars}
+          />
         </div>
       )}
       <CustomInput input={input} />
       <div className="editable-input-buttons">
-        <button onClick={onSelectInput} className="editable-input-edit-link">
-          <FontAwesomeIcon icon={faPencilAlt} />
+        <button onClick={onSelectInput} className="editable-input-edit-button">
+          <FontAwesomeIcon
+            className="editable-input-button-icon"
+            title="Edit"
+            icon={faPencilAlt}
+          />
         </button>
-        <button onClick={onDeleteInput} className="editable-input-delete-link">
-          <FontAwesomeIcon icon={faMinusCircle} />
+        <button
+          onClick={onDeleteInput}
+          className="editable-input-delete-button"
+        >
+          <FontAwesomeIcon
+            className="editable-input-button-icon"
+            title="Remove"
+            icon={faMinusCircle}
+          />
         </button>
       </div>
     </div>

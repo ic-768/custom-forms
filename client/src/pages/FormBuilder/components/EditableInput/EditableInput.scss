@@ -26,8 +26,8 @@
   gap: 5px;
 }
 
-.editable-input-delete-link,
-.editable-input-edit-link {
+.editable-input-delete-button,
+.editable-input-edit-button {
   display: flex;
   flex-shrink: 0;
   align-items: center;
@@ -44,9 +44,14 @@
   color: unset;
   transition: color 0.15s;
   border: 1px solid var(--input-border-color);
+  overflow: hidden;
 
   &:hover {
     color: var(--highlight-blue);
     border: 1px solid var(--input-border-color-dark);
   }
+}
+.editable-input-drag-handle-icon,
+.editable-input-button-icon {
+  padding: 8px;
 }

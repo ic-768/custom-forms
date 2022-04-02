@@ -31,6 +31,7 @@ const PasswordInput = ({
             type={showPassword ? "text" : "password"}
           />
           <FontAwesomeIcon
+            title="Show password"
             onMouseDown={() => setShowPassword(true)}
             onMouseUp={() => setShowPassword(false)}
             className="password-input-eye-icon"

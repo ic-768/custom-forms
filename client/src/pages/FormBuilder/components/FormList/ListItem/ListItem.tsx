@@ -36,11 +36,13 @@ const ListItem = ({
       </Link>
       <div className="form-list-item-buttons">
         <FontAwesomeIcon
+          title="Create a copy"
           className="form-list-item-button"
           onClick={onCopyForm}
           icon={faCopy}
         />
         <FontAwesomeIcon
+          title="Delete"
           className="form-list-item-button"
           onClick={onDeleteForm}
           icon={faTrash}

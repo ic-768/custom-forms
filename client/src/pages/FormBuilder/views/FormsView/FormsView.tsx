@@ -101,8 +101,12 @@ const FormsView = ({
           onClick={onShowDeleteConfirmation}
           className="forms-view-forms-delete-button"
         >
-          <FontAwesomeIcon icon={faTrash} />
-          <span className="forms-view-form-forms-delete-button-count">
+          <FontAwesomeIcon
+            className="forms-view-forms-delete-button-icon"
+            title="Delete selected forms"
+            icon={faTrash}
+          />
+          <span className="forms-view-forms-delete-button-count">
             {selectedForms.length}
           </span>
         </button>

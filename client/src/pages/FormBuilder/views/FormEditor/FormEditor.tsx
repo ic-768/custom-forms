@@ -155,7 +155,7 @@ const FormEditor = ({
         to="/"
         onClick={onGoBack}
       >
-        <FontAwesomeIcon icon={faArrowLeft} />
+        <FontAwesomeIcon title="Go back" icon={faArrowLeft} />
       </Link>
       <div className="form-editor">
         <TextInput
@@ -181,17 +181,33 @@ const FormEditor = ({
           />
         ) : (
           // render button to add a new input
-          <div onClick={onAddNewInput} className="form-editor-add-input-button">
-            <FontAwesomeIcon icon={faPlus} />
-          </div>
+          <button
+            onClick={onAddNewInput}
+            className="form-editor-add-input-button"
+          >
+            <FontAwesomeIcon
+              onClick={onAddNewInput}
+              className="form-editor-add-input-button-icon"
+              title="Add an input"
+              icon={faPlus}
+            />
+          </button>
         )}
       </div>
 
       <div className="form-editor-upload-form-button" onClick={onPublish}>
-        <FontAwesomeIcon icon={faCloudUploadAlt} />
+        <FontAwesomeIcon
+          className="form-editor-button-icon"
+          title="Save"
+          icon={faCloudUploadAlt}
+        />
       </div>
       <div className="form-editor-preview-form-button" onClick={onPreview}>
-        <FontAwesomeIcon icon={faEye} />
+        <FontAwesomeIcon
+          className="form-editor-button-icon"
+          title="Preview"
+          icon={faEye}
+        />
       </div>
     </div>
   );

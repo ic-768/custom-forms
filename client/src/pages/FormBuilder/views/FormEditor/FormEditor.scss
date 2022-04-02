@@ -65,6 +65,7 @@
   color: unset;
   transition: color 0.15s;
   border: 1px solid var(--input-border-color);
+  overflow: hidden;
 
   &:hover {
     color: var(--highlight-blue);
@@ -72,46 +73,41 @@
   }
 }
 
-.form-editor-upload-form-button {
+.form-editor-add-input-button-icon {
+  padding: 8px;
+}
+
+.form-editor-upload-form-button,
+.form-editor-preview-form-button {
   background-color: white;
   position: absolute;
-  bottom: 50px;
-  left: 2%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 70px;
   width: 70px;
-  font-size: 30px;
   box-shadow: 0px 0px 10px 4px #bebebe;
   border-radius: 50%;
-  transition: color 0.15s ease;
   cursor: pointer;
   background-color: #ffffff;
+  font-size: 30px;
+  transition: color 0.15s ease;
+  left: 2%;
 
   &:hover {
     color: var(--highlight-blue);
   }
 }
 
-.form-editor-preview-form-button {
-  background-color: white;
-  position: absolute;
-  bottom: 140px;
-  left: 2%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 70px;
-  width: 70px;
-  font-size: 30px;
-  box-shadow: 0px 0px 10px 4px #bebebe;
-  border-radius: 50%;
-  transition: color 0.15s ease;
-  cursor: pointer;
-  background-color: #ffffff;
+.form-editor-upload-form-button {
+  bottom: 50px;
+}
 
-  &:hover {
-    color: var(--highlight-blue);
-  }
+.form-editor-preview-form-button {
+  bottom: 140px;
+}
+
+.form-editor-button-icon {
+  padding: 20px;
 }

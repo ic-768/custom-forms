@@ -35,7 +35,7 @@ const FormPreview = ({
   return (
     <div className="form-preview-container">
       <Link className="form-editor-input-go-back-link" to={`/edit/${form._id}`}>
-        <FontAwesomeIcon icon={faArrowLeft} />
+        <FontAwesomeIcon title="Go back" icon={faArrowLeft} />
       </Link>
       <div className="form-preview">
         <h2 className="form-preview-form-name">{form.name}</h2>
