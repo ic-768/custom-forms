@@ -7,13 +7,14 @@
 
 .form-editor {
   margin-top: -30px;
+  margin-bottom: 20px;
   z-index: 2;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
   box-shadow: #b1b0b5 0 0 2px 1px;
   padding: 40px;
-  height: 90%;
+  min-height: 80vh;
   width: 100%;
   gap: 10px;
   background-color: white;
@@ -77,10 +78,18 @@
   padding: 8px;
 }
 
+.form-editor-form-buttons {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  bottom: 40px;
+  left: 2%;
+}
+
 .form-editor-upload-form-button,
 .form-editor-preview-form-button {
   background-color: white;
-  position: absolute;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -93,19 +102,10 @@
   background-color: #ffffff;
   font-size: 30px;
   transition: color 0.15s ease;
-  left: 2%;
 
   &:hover {
     color: var(--highlight-blue);
   }
-}
-
-.form-editor-upload-form-button {
-  bottom: 50px;
-}
-
-.form-editor-preview-form-button {
-  bottom: 140px;
 }
 
 .form-editor-button-icon {
