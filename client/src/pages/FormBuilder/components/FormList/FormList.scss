@@ -4,8 +4,23 @@
   align-items: center;
   height: 75vh;
   overflow-y: auto;
-  width: 100%;
-  mask-image: linear-gradient(black, 96%, #00000000);
+  width: 95%;
+  padding-right: 10px;
+  scrollbar-color: #9b53ff #bababa;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #bababa;
+    border-radius: 50px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #9b5eff;
+    border-radius: 50px;
+  }
 }
 
 .form-list {
