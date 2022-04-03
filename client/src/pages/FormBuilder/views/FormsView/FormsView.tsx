@@ -38,7 +38,9 @@ const FormsView = ({
   const [selectedForms, setSelectedForms] = useState<IForm["_id"][]>([]);
 
   useEffect(() => {
-    setFilteredForms(forms.filter((f: IForm) => f.name.includes(filterQuery)));
+    setFilteredForms(
+      forms.filter((f: IForm) => f.name.toLowerCase().includes(filterQuery))
+    );
   }, [filterQuery, forms]);
 
   const toggleIsFormSelected = useCallback(
@@ -93,7 +95,7 @@ const FormsView = ({
       <TextInput
         placeholder="Search forms ..."
         className="forms-view-form-filter"
-        onChange={(e) => setFilterQuery(e.target.value)}
+        onChange={(e) => setFilterQuery(e.target.value.toLowerCase())}
         value={filterQuery}
       />
       {selectedForms.length ? (
