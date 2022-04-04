@@ -7,6 +7,7 @@ import {
   DropdownOptions,
   Height,
   Label,
+  MinMax,
 } from "./inputModifiers";
 
 import { ICustomInput } from "../../../../components/inputs/CustomInput";
@@ -125,6 +126,16 @@ const InputModifiersList = ({
           {HeightModifier}
           {BorderRadiusModifier}
           {BorderColorModifier}
+          <MinMax
+            min={input.min}
+            max={input.max}
+            onChangeMin={(e) =>
+              onChangeModifiers({ ...input, min: Number(e.target.value) })
+            }
+            onChangeMax={(e) =>
+              onChangeModifiers({ ...input, max: Number(e.target.value) })
+            }
+          />
         </>
       );
     case "Date":
