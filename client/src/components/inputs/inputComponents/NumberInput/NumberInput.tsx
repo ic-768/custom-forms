@@ -13,7 +13,7 @@ const NumberInput = ({
   className,
   min,
   max,
-  styles,
+  style,
 }: INumberInput) => {
   const inputClasses = classNames({
     "number-input": true,
@@ -26,7 +26,7 @@ const NumberInput = ({
       className={className}
       component={
         <input
-          style={styles}
+          style={style}
           value={value}
           onChange={onChange}
           type="number"

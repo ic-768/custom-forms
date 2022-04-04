@@ -11,7 +11,7 @@ const DateInput = ({
   label,
   placeholder,
   className,
-  styles,
+  style,
   min,
   max,
 }: IDateInput) => {
@@ -26,7 +26,7 @@ const DateInput = ({
       className={className}
       component={
         <input
-          style={styles}
+          style={style}
           value={date}
           onChange={onChange}
           type="date"

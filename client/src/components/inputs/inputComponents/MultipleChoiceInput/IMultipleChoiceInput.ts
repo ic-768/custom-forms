@@ -11,7 +11,7 @@ interface IMultipleChoiceInput {
   onChange: Dispatch<SetStateAction<IChoice[]>>;
   className?: string;
   label?: string;
-  styles?: CSSProperties;
+  style?: CSSProperties;
   id?: string;
 }
 

@@ -9,7 +9,7 @@ interface IDateInput {
   date?: string;
   min?: string;
   max?: string;
-  styles?: CSSProperties;
+  style?: CSSProperties;
   id?: string;
 }
 

@@ -10,7 +10,7 @@ const TimeInput = ({
   className,
   value,
   onChange,
-  styles,
+  style,
   placeholder,
 }: ITimeInput) => {
   const inputClasses = classNames({
@@ -26,7 +26,7 @@ const TimeInput = ({
         <input
           placeholder={placeholder}
           value={value}
-          style={styles}
+          style={style}
           className={inputClasses}
           type="time"
         />

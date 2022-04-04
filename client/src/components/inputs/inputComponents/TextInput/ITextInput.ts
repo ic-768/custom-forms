@@ -8,7 +8,7 @@ interface ITextInput {
   className?: string;
   placeholder?: string;
   maxLength?: number;
-  styles?: CSSProperties;
+  style?: CSSProperties;
   id?: string;
   autoFocus?: boolean;
 }

@@ -13,7 +13,7 @@ const DropdownInput = ({
   label,
   className,
   placeholder,
-  styles,
+  style,
   options,
   onChange,
   selection,
@@ -61,7 +61,7 @@ const DropdownInput = ({
             className={placeholderClasses}
             onClick={toggleOptionsVisibility}
             onMouseEnter={() => setShowOptions(true)}
-            style={styles}
+            style={style}
           >
             {selectionIcon && (
               <FontAwesomeIcon

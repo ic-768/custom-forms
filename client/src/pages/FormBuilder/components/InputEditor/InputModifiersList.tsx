@@ -24,7 +24,7 @@ const InputModifiersList = ({
   onChangeModifiers,
 }: IInputModifiersList) => {
   // changes (or adds if doesn't exist) a specific style property
-  const onChangeStyles = <
+  const onChangeStyle = <
     K extends keyof CSSProperties,
     V extends CSSProperties[K]
   >(
@@ -33,8 +33,8 @@ const InputModifiersList = ({
   ) =>
     onChangeModifiers({
       ...input,
-      styles: {
-        ...input.styles,
+      style: {
+        ...input.style,
         [style]: value,
       },
     });
@@ -49,10 +49,10 @@ const InputModifiersList = ({
   );
   const FontSizeModifier = (
     <FontSize
-      fontSize={(input.styles?.fontSize as string) || "14px"}
+      fontSize={(input.style?.fontSize as string) || "14px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value)) {
-          onChangeStyles("fontSize", `${e.target.value}px`);
+          onChangeStyle("fontSize", `${e.target.value}px`);
         }
       }}
     />
@@ -60,10 +60,10 @@ const InputModifiersList = ({
 
   const HeightModifier = (
     <Height
-      height={(input.styles?.height as string) || "33px"}
+      height={(input.style?.height as string) || "33px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value)) {
-          onChangeStyles("height", `${e.target.value}px`);
+          onChangeStyle("height", `${e.target.value}px`);
         }
       }}
     />
@@ -71,10 +71,10 @@ const InputModifiersList = ({
 
   const BorderRadiusModifier = (
     <BorderRadius
-      radius={(input.styles?.borderRadius as string) || "5px"}
+      radius={(input.style?.borderRadius as string) || "5px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         if (Number(e.target.value)) {
-          onChangeStyles("borderRadius", `${e.target.value}px`);
+          onChangeStyle("borderRadius", `${e.target.value}px`);
         }
       }}
     />
@@ -82,11 +82,11 @@ const InputModifiersList = ({
 
   const BorderColorModifier = (
     <BorderColor
-      /* get color from input styles borderColor */
-      color={input.styles?.borderColor?.split(" ")[0] || "rgb(0,0,0,0)"}
+      /* get color from input style borderColor */
+      color={input.style?.borderColor?.split(" ")[0] || "rgb(0,0,0,0)"}
       onChange={(c) => {
         const rgba = c.rgb;
-        onChangeStyles(
+        onChangeStyle(
           "borderColor",
           `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a}`
         );

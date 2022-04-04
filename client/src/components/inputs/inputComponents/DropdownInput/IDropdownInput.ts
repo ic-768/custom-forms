@@ -26,7 +26,7 @@ interface IDropdownInput {
   className?: string;
   // icon of the currently selected option
   selectionIcon?: IconDefinition;
-  styles?: CSSProperties;
+  style?: CSSProperties;
   label?: string;
   id?: string;
 }

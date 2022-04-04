@@ -12,7 +12,7 @@ const MultipleChoiceInput = ({
   choices,
   className,
   onChange,
-  styles,
+  style,
 }: IMultipleChoiceInput) => {
   const inputClasses = classNames({
     "multiple-choice-input": true,
@@ -29,7 +29,7 @@ const MultipleChoiceInput = ({
       label={label}
       className={className}
       component={
-        <div style={styles} className={inputClasses}>
+        <div style={style} className={inputClasses}>
           {choices &&
             choices.map((c) => (
               <div
@@ -37,7 +37,7 @@ const MultipleChoiceInput = ({
                 key={c.label}
               >
                 <div
-                  style={styles}
+                  style={style}
                   onClick={() => {
                     onChange(updateChoices(c));
                   }}

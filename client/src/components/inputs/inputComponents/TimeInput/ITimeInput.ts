@@ -7,7 +7,7 @@ interface ITimeInput {
   className?: string;
   placeholder?: string;
   label?: string;
-  styles?: CSSProperties;
+  style?: CSSProperties;
   id?: string;
 }
 

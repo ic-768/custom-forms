@@ -9,7 +9,7 @@ interface INumberInput {
   min?: number;
   max?: number;
   label?: string;
-  styles?: CSSProperties;
+  style?: CSSProperties;
   id?: string;
 }
 
