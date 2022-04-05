@@ -1,6 +1,6 @@
 import MultipleChoiceInput from "./MultipleChoiceInput";
 import IMultipleChoiceInput from "./IMultipleChoiceInput";
-import { IChoice } from "./IMultipleChoiceInput";
+import { IMultipleChoiceOption } from "./IMultipleChoiceInput";
 
-export type { IChoice, IMultipleChoiceInput };
+export type { IMultipleChoiceOption, IMultipleChoiceInput };
 export default MultipleChoiceInput;

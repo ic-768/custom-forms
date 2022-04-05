@@ -13,17 +13,3 @@
   align-items: center;
   padding: var(--input-padding) 0;
 }
-
-.multiple-choice-input-choice-icon-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--input-border-color);
-  width: 20px;
-  height: 20px;
-  transition: border 0.15s ease;
-
-  &:hover {
-    border-color: var(--input-border-color-dark);
-  }
-}

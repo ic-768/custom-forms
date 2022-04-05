@@ -1,0 +1,31 @@
+.multiple-choice-options-add-button {
+  cursor: pointer;
+  width: 100%;
+  font-size: 22px;
+  text-align: center;
+  transition: color 0.2s;
+  &:hover {
+    color: var(--highlight-blue);
+  }
+}
+
+.multiple-choice-options-modifier-options {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.multiple-choice-options-modifier-option {
+  position: relative;
+}
+
+.multiple-choice-options-remove-option-button {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  transition: color 0.2s;
+  &:hover {
+    color: var(--highlight-blue);
+  }
+}

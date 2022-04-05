@@ -6,6 +6,7 @@ import DropdownOptions from "./DropdownOptions";
 import Height from "./Height";
 import MinMax from "./MinMax";
 import Step from "./Step";
+import MultipleChoiceOptions from "./MultipleChoiceOptions";
 
 export {
   Label,
@@ -16,4 +17,5 @@ export {
   Height,
   MinMax,
   Step,
+  MultipleChoiceOptions,
 };

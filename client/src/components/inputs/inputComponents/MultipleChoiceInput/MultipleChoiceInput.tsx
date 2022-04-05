@@ -1,9 +1,9 @@
 import classNames from "classnames";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import InputContainer from "../../InputContainer";
-import IMultipleChoiceInput, { IChoice } from "./IMultipleChoiceInput";
+import IMultipleChoiceInput, {
+  IMultipleChoiceOption,
+} from "./IMultipleChoiceInput";
 
 import "./MultipleChoiceInput.scss";
 
@@ -19,7 +19,7 @@ const MultipleChoiceInput = ({
     [className!]: !!className,
   });
 
-  const updateChoices = (choice: IChoice) =>
+  const updateChoices = (choice: IMultipleChoiceOption) =>
     choices.map((c) =>
       choice.label === c.label ? { ...c, isSelected: !c.isSelected } : c
     );
@@ -37,13 +37,16 @@ const MultipleChoiceInput = ({
                 key={c.label}
               >
                 <div
-                  style={style}
                   onClick={() => {
                     onChange(updateChoices(c));
                   }}
                   className="multiple-choice-input-choice-icon-container"
                 >
-                  {c.isSelected && <FontAwesomeIcon icon={faCheck} />}
+                  <input
+                    type="checkbox"
+                    checked={c.isSelected}
+                    value={c.label}
+                  />
                 </div>
 
                 <span>{c.label}</span>

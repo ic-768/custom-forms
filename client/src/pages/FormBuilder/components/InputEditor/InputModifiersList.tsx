@@ -9,6 +9,7 @@ import {
   Label,
   MinMax,
   Step,
+  MultipleChoiceOptions,
 } from "./inputModifiers";
 
 import { ICustomInput } from "../../../../components/inputs/CustomInput";
@@ -160,7 +161,16 @@ const InputModifiersList = ({
         </>
       );
     case "Multiple Choice":
-      return <> {BorderRadiusModifier} </>;
+      return (
+        <>
+          {BorderRadiusModifier}
+          <MultipleChoiceOptions
+            onChange={(choices) => {
+              onChangeModifiers({ ...input, choices });
+            }}
+          />
+        </>
+      );
     case "Range":
       return (
         <>
