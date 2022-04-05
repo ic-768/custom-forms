@@ -5,6 +5,7 @@ import BorderColor from "./BorderColor";
 import DropdownOptions from "./DropdownOptions";
 import Height from "./Height";
 import MinMax from "./MinMax";
+import Step from "./Step";
 
 export {
   Label,
@@ -14,4 +15,5 @@ export {
   DropdownOptions,
   Height,
   MinMax,
+  Step,
 };

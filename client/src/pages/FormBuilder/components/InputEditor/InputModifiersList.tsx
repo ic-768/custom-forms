@@ -8,6 +8,7 @@ import {
   Height,
   Label,
   MinMax,
+  Step,
 } from "./inputModifiers";
 
 import { ICustomInput } from "../../../../components/inputs/CustomInput";
@@ -159,7 +160,31 @@ const InputModifiersList = ({
         </>
       );
     case "Multiple Choice":
-      return <>{BorderRadiusModifier}</>;
+      return <> {BorderRadiusModifier} </>;
+    case "Range":
+      return (
+        <>
+          {LabelModifier}
+          {HeightModifier}
+          <MinMax
+            min={input.min}
+            max={input.max}
+            onChangeMin={(e) => {
+              onChangeModifiers({ ...input, min: Number(e.target.value) });
+            }}
+            onChangeMax={(e) =>
+              onChangeModifiers({ ...input, max: Number(e.target.value) })
+            }
+          />
+          <Step
+            step={input.step || 1}
+            onChange={(e) => {
+              onChangeModifiers({ ...input, step: Number(e.target.value) });
+            }}
+          />
+        </>
+      );
+
     default:
       return null;
   }

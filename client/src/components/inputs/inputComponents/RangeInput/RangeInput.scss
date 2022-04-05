@@ -1,0 +1,11 @@
+.range-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.range-input {
+  width: 100%;
+  height: var(--input-height);
+  box-sizing: border-box;
+}

@@ -6,6 +6,7 @@ import MultipleChoiceInput, {
 import NumberInput, { INumberInput } from "./NumberInput";
 import TextInput, { ITextInput } from "./TextInput";
 import TimeInput, { ITimeInput } from "./TimeInput";
+import RangeInput, { IRangeInput } from "./RangeInput";
 
 export {
   DateInput,
@@ -14,6 +15,7 @@ export {
   NumberInput,
   TextInput,
   TimeInput,
+  RangeInput,
 };
 
 export type {
@@ -23,4 +25,5 @@ export type {
   INumberInput,
   ITextInput,
   ITimeInput,
+  IRangeInput,
 };

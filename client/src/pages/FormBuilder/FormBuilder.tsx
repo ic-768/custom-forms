@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { token } from "../../services/forms";
+import { token, asyncGetForms } from "../../services/forms";
 import { emptyForm, IEditedInput, IForm } from "./resources/shared";
-import { asyncGetForms } from "../../services/forms";
 import { useAppSelector, useWithLoader } from "../../store/hooks";
 import { selectForms, setForms } from "../../store/features/forms/formsSlice";
 

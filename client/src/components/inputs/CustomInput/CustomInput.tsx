@@ -11,6 +11,8 @@ import {
   ITextInput,
   TimeInput,
   ITimeInput,
+  RangeInput,
+  IRangeInput,
 } from "../inputComponents";
 
 type ICustomInput =
@@ -19,7 +21,8 @@ type ICustomInput =
   | INumberInput
   | IDateInput
   | ITimeInput
-  | IMultipleChoiceInput;
+  | IMultipleChoiceInput
+  | IRangeInput;
 
 const CustomInput = ({ input }: { input: ICustomInput }) => {
   switch (input.type) {
@@ -35,6 +38,8 @@ const CustomInput = ({ input }: { input: ICustomInput }) => {
       return <TextInput {...input} />;
     case "Time":
       return <TimeInput {...input} />;
+    case "Range":
+      return <RangeInput {...input} />;
     default:
       return null;
   }

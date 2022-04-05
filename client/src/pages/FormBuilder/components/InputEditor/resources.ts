@@ -6,6 +6,7 @@ import {
   faStopwatch,
   IconDefinition,
   faEllipsisV,
+  faSlidersH,
 } from "@fortawesome/free-solid-svg-icons";
 
 /**
@@ -18,6 +19,7 @@ const inputIcons: IconDefinition[] = [
   faCalendarAlt,
   faStopwatch,
   faEllipsisV,
+  faSlidersH,
 ];
 
 export const inputTypes = [
@@ -27,6 +29,7 @@ export const inputTypes = [
   "Date",
   "Time",
   "Multiple Choice",
+  "Range",
 ] as const;
 
 /**

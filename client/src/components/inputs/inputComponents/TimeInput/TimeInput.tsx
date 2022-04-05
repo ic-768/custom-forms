@@ -24,6 +24,7 @@ const TimeInput = ({
       className={className}
       component={
         <input
+          onChange={onChange}
           placeholder={placeholder}
           value={value}
           style={style}
