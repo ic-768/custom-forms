@@ -163,12 +163,15 @@ const InputModifiersList = ({
     case "Multiple Choice":
       return (
         <>
-          {BorderRadiusModifier}
+          {LabelModifier}
           <MultipleChoiceOptions
             onChange={(choices) => {
               onChangeModifiers({ ...input, choices });
             }}
           />
+          {FontSizeModifier}
+          {BorderRadiusModifier}
+          {BorderColorModifier}
         </>
       );
     case "Range":
