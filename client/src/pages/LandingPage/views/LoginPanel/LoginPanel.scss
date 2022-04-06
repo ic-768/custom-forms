@@ -4,7 +4,7 @@
   width: 400px;
   position: absolute;
   box-sizing: border-box;
-  animation: fade-in 1s;
+  animation: login-fade-in 1s;
 
   padding: 40px;
   inset: 0px;
@@ -36,7 +36,7 @@
   }
 }
 
-@keyframes fade-in {
+@keyframes login-fade-in {
   from {
     right: -500px;
     opacity: 0;
