@@ -11,28 +11,17 @@ const LandingPageHeader = () => (
       src="/images/logo.png"
       alt="logo"
     />
-    <nav className="landing-page-header-navigation-links">
-      <Link className="landing-page-header-link" to={"/"}>
-        <span className="landing-page-header-link-text">Home</span>
-      </Link>
-      <Link className="landing-page-header-link" to={"/login"}>
-        <span className="landing-page-header-link-text">Log in</span>
-      </Link>
-      <Link className="landing-page-header-link" to={"/signup"}>
-        <span className="landing-page-header-link-text">Sign up</span>
-      </Link>
-      <Link
-        className="landing-page-header-link github-link"
-        to={"//github.com/ic-768"}
-      >
-        <FontAwesomeIcon
-          title="Link to my github page"
-          className="landing-page-header-github-icon"
-          icon={faGithub as any}
-        />
-        <span className="landing-page-header-github-text">GitHub</span>
-      </Link>
-    </nav>
+    <Link
+      className="landing-page-header-github-link"
+      to={"//github.com/ic-768"}
+    >
+      <FontAwesomeIcon
+        title="Link to my github page"
+        className="landing-page-header-github-icon"
+        icon={faGithub as any}
+      />
+      <span className="landing-page-header-github-text">GitHub</span>
+    </Link>
   </div>
 );
 

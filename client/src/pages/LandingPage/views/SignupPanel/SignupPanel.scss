@@ -17,6 +17,19 @@
   gap: 10px;
 }
 
+.signup-panel-back-arrow {
+  position: absolute;
+  font-size: 20px;
+  top: 20px;
+  left: 20px;
+  transition: color 0.15s ease;
+  color: unset;
+
+  &:hover {
+    color: var(--highlight-blue);
+  }
+}
+
 .signup-panel-container-title {
   font-size: 18px;
 }

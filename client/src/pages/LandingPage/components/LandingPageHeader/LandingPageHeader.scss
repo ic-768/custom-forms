@@ -1,6 +1,9 @@
 .landing-page-header {
+  position: fixed;
+  width: 100vw;
+  top: 0;
   display: flex;
-  box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
+  align-items: center;
 }
 
 .landing-page-header-logo {
@@ -9,29 +12,9 @@
   margin: 10px 40px;
 }
 
-.landing-page-header-navigation-links {
-  display: flex;
+.landing-page-header-github-link {
   margin-left: auto;
-  align-items: center;
-  padding-right: 20px;
-  text-align: center;
-}
-
-.landing-page-header-link-text::before {
-  position: absolute;
-  content: "";
-  width: 0%;
-  border-bottom: 4px solid var(--highlight-blue);
-  transition: width 0.25s;
-  left: 20px;
-  top: 20px;
-}
-
-.landing-page-header-link-text:hover::before {
-  width: 60%;
-}
-
-.landing-page-header-link {
+  margin-right: 40px;
   cursor: pointer;
   min-width: 100px;
   color: white;
@@ -39,34 +22,31 @@
   font-weight: 550;
   text-decoration: none;
   position: relative;
+  background-color: hsla(0, 0%, 100%, 0.1);
+  height: 50px;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  gap: 10px;
 
-  &.github-link {
-    background-color: hsla(0, 0%, 100%, 0.1);
-    height: 50px;
-    width: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  &::before {
+    content: "";
+    left: 0;
+    top: 0;
+    position: absolute;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    transform: scaleY(0);
+    transition: transform 0.3s;
     border-radius: 30px;
-    gap: 10px;
-
+  }
+  &:hover {
+    color: var(--highlight-blue);
     &::before {
-      content: "";
-      left: 0;
-      top: 0;
-      position: absolute;
-      background-color: white;
-      height: 100%;
-      width: 100%;
-      transform: scaleY(0);
-      transition: transform 0.3s;
-      border-radius: 30px;
-    }
-    &:hover {
-      color: var(--highlight-blue);
-      &::before {
-        transform: scaleY(1);
-      }
+      transform: scaleY(1);
     }
   }
 }

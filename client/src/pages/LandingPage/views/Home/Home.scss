@@ -1,0 +1,103 @@
+.login-view-container {
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+}
+
+.home-view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.home-view-background-image {
+  z-index: -1;
+  position: absolute;
+}
+
+.home-view-intro {
+  margin-top: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-view-intro-title {
+  color: white;
+  font-size: 60px;
+}
+
+.home-view-intro-subtitle {
+  color: white;
+  font-size: 16px;
+}
+
+.home-view-intro-get-started-container {
+  margin-top: 90px;
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-view-intro-get-started-text {
+  color: white;
+  font-size: 22px;
+}
+
+.home-view-intro-link-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.home-view-intro-link {
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+  position: relative;
+}
+
+.home-view-intro-link-text::before {
+  position: absolute;
+  content: "";
+  width: 0%;
+  border-bottom: 4px solid var(--highlight-blue);
+  transition: width 0.25s;
+  left: 0px;
+  top: 20px;
+}
+
+.home-view-intro-link-text:hover::before {
+  width: 100%;
+}
+
+.home-view-intro-link-slash {
+  color: white;
+  font-size: 20px;
+}
+
+.home-view-form-image {
+  margin-top: 220px;
+  border: 1px solid var(--input-border-color);
+  border-radius: 20px;
+}
+
+.home-view-image-top-dot {
+  position: relative;
+  top: -505px;
+  right: -356px;
+}
+
+.home-view-image-bottom-dot {
+  position: relative;
+  top: -385px;
+  right: 356px;
+}
