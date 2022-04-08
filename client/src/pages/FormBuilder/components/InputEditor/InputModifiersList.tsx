@@ -10,6 +10,7 @@ import {
   MinMax,
   Step,
   MultipleChoiceOptions,
+  Margin,
 } from "./inputModifiers";
 
 import { ICustomInput } from "../../../../components/inputs/CustomInput";
@@ -90,8 +91,21 @@ const InputModifiersList = ({
         const rgba = c.rgb;
         onChangeStyle(
           "borderColor",
-          `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a}`
+          `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`
         );
+      }}
+    />
+  );
+
+  const MarginModifier = (
+    <Margin
+      marginTop={(input.style?.marginTop as string) || "0px"}
+      marginBottom={(input.style?.marginBottom as string) || "0px"}
+      onChangeTopMargin={(e) => {
+        onChangeStyle("marginTop", `${e.target.value}px`);
+      }}
+      onChangeBottomMargin={(e) => {
+        onChangeStyle("marginBottom", `${e.target.value}px`);
       }}
     />
   );
@@ -103,6 +117,7 @@ const InputModifiersList = ({
           {LabelModifier}
           {HeightModifier}
           {BorderColorModifier}
+          {MarginModifier}
           <DropdownOptions
             onChange={(options) => {
               onChangeModifiers({ ...input, options });
@@ -118,6 +133,7 @@ const InputModifiersList = ({
           {HeightModifier}
           {BorderRadiusModifier}
           {BorderColorModifier}
+          {MarginModifier}
         </>
       );
     case "Number":
@@ -128,6 +144,7 @@ const InputModifiersList = ({
           {HeightModifier}
           {BorderRadiusModifier}
           {BorderColorModifier}
+          {MarginModifier}
           <MinMax
             min={input.min}
             max={input.max}
@@ -148,6 +165,7 @@ const InputModifiersList = ({
           {HeightModifier}
           {BorderRadiusModifier}
           {BorderColorModifier}
+          {MarginModifier}
         </>
       );
     case "Time":
@@ -158,6 +176,7 @@ const InputModifiersList = ({
           {HeightModifier}
           {BorderRadiusModifier}
           {BorderColorModifier}
+          {MarginModifier}
         </>
       );
     case "Multiple Choice":
@@ -172,6 +191,7 @@ const InputModifiersList = ({
           {FontSizeModifier}
           {BorderRadiusModifier}
           {BorderColorModifier}
+          {MarginModifier}
         </>
       );
     case "Range":
@@ -179,6 +199,7 @@ const InputModifiersList = ({
         <>
           {LabelModifier}
           {HeightModifier}
+          {MarginModifier}
           <MinMax
             min={input.min}
             max={input.max}

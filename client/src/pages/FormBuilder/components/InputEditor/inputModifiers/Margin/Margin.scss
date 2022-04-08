@@ -1,0 +1,30 @@
+.margin-modifier-container {
+  width: 100%;
+  height: 60px;
+}
+
+.margin-modifier-dashed-container {
+  margin-top: 8px;
+  position: relative;
+  border: 1px dashed black;
+  height: 100%;
+  width: 100%;
+}
+
+.margin-modifier-input {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80px;
+  height: 20px;
+
+  &.top {
+    top: -12px;
+  }
+
+  &.bottom {
+    bottom: -12px;
+  }
+}

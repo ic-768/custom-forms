@@ -7,6 +7,7 @@ import Height from "./Height";
 import MinMax from "./MinMax";
 import Step from "./Step";
 import MultipleChoiceOptions from "./MultipleChoiceOptions";
+import Margin from "./Margin";
 
 export {
   Label,
@@ -18,4 +19,5 @@ export {
   MinMax,
   Step,
   MultipleChoiceOptions,
+  Margin,
 };
