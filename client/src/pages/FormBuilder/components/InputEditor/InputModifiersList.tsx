@@ -54,9 +54,7 @@ const InputModifiersList = ({
     <FontSize
       fontSize={(input.style?.fontSize as string) || "14px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
-        if (Number(e.target.value)) {
-          onChangeStyle("fontSize", `${e.target.value}px`);
-        }
+        onChangeStyle("fontSize", `${e.target.value || 0}px`);
       }}
     />
   );
@@ -65,9 +63,7 @@ const InputModifiersList = ({
     <Height
       height={(input.style?.height as string) || "33px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
-        if (Number(e.target.value)) {
-          onChangeStyle("height", `${e.target.value}px`);
-        }
+        onChangeStyle("height", `${e.target.value || 0}px`);
       }}
     />
   );
@@ -76,9 +72,7 @@ const InputModifiersList = ({
     <BorderRadius
       radius={(input.style?.borderRadius as string) || "5px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
-        if (Number(e.target.value)) {
-          onChangeStyle("borderRadius", `${e.target.value}px`);
-        }
+        onChangeStyle("borderRadius", `${e.target.value || 0}px`);
       }}
     />
   );
@@ -102,10 +96,10 @@ const InputModifiersList = ({
       marginTop={(input.style?.marginTop as string) || "0px"}
       marginBottom={(input.style?.marginBottom as string) || "0px"}
       onChangeTopMargin={(e) => {
-        onChangeStyle("marginTop", `${e.target.value}px`);
+        onChangeStyle("marginTop", `${e.target.value || 0}px`);
       }}
       onChangeBottomMargin={(e) => {
-        onChangeStyle("marginBottom", `${e.target.value}px`);
+        onChangeStyle("marginBottom", `${e.target.value || 0}px`);
       }}
     />
   );
@@ -211,7 +205,7 @@ const InputModifiersList = ({
             }
           />
           <Step
-            step={input.step || 1}
+            step={input.step}
             onChange={(e) => {
               onChangeModifiers({ ...input, step: Number(e.target.value) });
             }}

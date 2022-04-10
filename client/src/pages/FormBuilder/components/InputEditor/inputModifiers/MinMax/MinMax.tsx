@@ -11,11 +11,16 @@ interface IMinMax {
   onChangeMax: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const MinMax = ({ min, max, onChangeMin, onChangeMax }: IMinMax) => (
-  <div className="min-max-modifier-container">
-    <NumberInput label="Min" value={min} onChange={onChangeMin} />
-    <NumberInput label="Max" value={max} onChange={onChangeMax} />
-  </div>
-);
+const MinMax = ({ min, max, onChangeMin, onChangeMax }: IMinMax) => {
+  const minValue = (min || 0).toString();
+  const maxValue = (max || 0).toString();
+
+  return (
+    <div className="min-max-modifier-container">
+      <NumberInput label="Min" value={minValue} onChange={onChangeMin} />
+      <NumberInput label="Max" value={maxValue} onChange={onChangeMax} />
+    </div>
+  );
+};
 
 export default MinMax;

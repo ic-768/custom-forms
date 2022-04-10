@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+
 import { NumberInput } from "../../../../../../components/inputs/inputComponents";
 
 interface IHeight {
@@ -7,7 +8,7 @@ interface IHeight {
 }
 
 const Height = ({ height, onChange }: IHeight) => {
-  const heightValue = Number(height.match(/\d+/)![0]);
+  const heightValue = Number(height.match(/\d+/)![0]).toString();
 
   return <NumberInput label="Height" value={heightValue} onChange={onChange} />;
 };

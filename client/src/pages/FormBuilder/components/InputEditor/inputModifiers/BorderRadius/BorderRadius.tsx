@@ -13,7 +13,7 @@ const BorderRadius = ({ radius, onChange }: IBorderRadius) => {
     <NumberInput
       min={0}
       max={20}
-      value={borderRadiusValue}
+      value={borderRadiusValue.toString()}
       onChange={onChange}
       label="Border radius"
     />

@@ -15,12 +15,12 @@ const Margin = ({
   onChangeTopMargin,
   onChangeBottomMargin,
 }: IMargin) => {
-  const marginTopValue = Number(marginTop.match(/\d+/)![0]);
-  const marginBottomValue = Number(marginBottom.match(/\d+/)![0]);
+  const marginTopValue = Number(marginTop.match(/\d+/)![0]).toString();
+  const marginBottomValue = Number(marginBottom.match(/\d+/)![0]).toString();
 
   return (
     <div className="margin-modifier-container">
-      <span> Margins </span>
+      <span> Margin </span>
       <div className="margin-modifier-dashed-container">
         <input
           onChange={onChangeTopMargin}
