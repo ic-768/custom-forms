@@ -8,7 +8,8 @@ import "./TextInput.scss";
 const TextInput = ({
   onChange,
   value,
-  label,
+  title,
+  subtitle,
   className,
   placeholder,
   maxLength,
@@ -22,7 +23,8 @@ const TextInput = ({
 
   return (
     <InputContainer
-      label={label}
+      title={title}
+      subtitle={subtitle}
       className={className}
       component={
         <input

@@ -48,12 +48,12 @@ const LoginPanel = () => {
       <span className="login-panel-container-title">Log In</span>
       <TextInput
         autoFocus
-        label="Username"
+        title="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
       <PasswordInput
-        label="Password"
+        title="Password"
         password={password}
         onChangePassword={(e) => setPassword(e.target.value)}
       />

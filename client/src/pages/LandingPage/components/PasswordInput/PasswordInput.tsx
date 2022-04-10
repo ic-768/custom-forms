@@ -7,13 +7,13 @@ import InputContainer from "../../../../components/inputs/InputContainer";
 import "./PasswordInput.scss";
 
 interface IPasswordInput {
-  label: string;
+  title: string;
   password: string;
   onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const PasswordInput = ({
-  label,
+  title,
   password,
   onChangePassword,
 }: IPasswordInput) => {
@@ -21,7 +21,7 @@ const PasswordInput = ({
 
   return (
     <InputContainer
-      label={label}
+      title={title}
       component={
         <div className="password-input-container">
           <input

@@ -46,12 +46,12 @@ const SignupPanel = () => {
       <span className="signup-panel-container-title">Sign Up</span>
       <TextInput
         autoFocus
-        label="Username"
+        title="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
       <PasswordInput
-        label="Password"
+        title="Password"
         password={password}
         onChangePassword={(e) => setPassword(e.target.value)}
       />

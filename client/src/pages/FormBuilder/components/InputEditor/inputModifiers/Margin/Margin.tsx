@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import InputContainer from "../../../../../../components/inputs/InputContainer";
 
 import "./Margin.scss";
 
@@ -19,23 +20,28 @@ const Margin = ({
   const marginBottomValue = Number(marginBottom.match(/\d+/)![0]).toString();
 
   return (
-    <div className="margin-modifier-container">
-      <span> Margin </span>
-      <div className="margin-modifier-dashed-container">
-        <input
-          onChange={onChangeTopMargin}
-          value={marginTopValue}
-          className="margin-modifier-input top"
-          type="number"
-        />
-        <input
-          onChange={onChangeBottomMargin}
-          value={marginBottomValue}
-          className="margin-modifier-input bottom"
-          type="number"
-        />
-      </div>
-    </div>
+    <InputContainer
+      title="Margin"
+      subtitle="Set the vertical spacings of the input"
+      component={
+        <div className="margin-modifier-container">
+          <div className="margin-modifier-dashed-container">
+            <input
+              onChange={onChangeTopMargin}
+              value={marginTopValue}
+              className="margin-modifier-input top"
+              type="number"
+            />
+            <input
+              onChange={onChangeBottomMargin}
+              value={marginBottomValue}
+              className="margin-modifier-input bottom"
+              type="number"
+            />
+          </div>
+        </div>
+      }
+    />
   );
 };
 

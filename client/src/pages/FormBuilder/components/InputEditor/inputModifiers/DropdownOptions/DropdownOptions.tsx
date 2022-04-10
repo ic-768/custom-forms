@@ -23,7 +23,8 @@ const DropdownOptions = ({ onChange }: IDropdownOptions) => {
 
   return (
     <InputContainer
-      label="Dropdown Options"
+      title="Options"
+      subtitle="The selectable options for the dropdown input"
       component={
         <div className="dropdown-options-modifier-options">
           {dropdownOptions.map((o, i) => (

@@ -6,7 +6,7 @@ import IRangeInput from "./IRangeInput";
 import "./RangeInput.scss";
 
 const RangeInput = ({
-  label,
+  title,
   className,
   value,
   onChange,
@@ -23,7 +23,7 @@ const RangeInput = ({
 
   return (
     <InputContainer
-      label={label}
+      title={title}
       className={className}
       component={
         <div className="range-input-container">

@@ -6,7 +6,7 @@ import ITimeInput from "./ITimeInput";
 import "./TimeInput.scss";
 
 const TimeInput = ({
-  label,
+  title,
   className,
   value,
   onChange,
@@ -20,7 +20,7 @@ const TimeInput = ({
 
   return (
     <InputContainer
-      label={label}
+      title={title}
       className={className}
       component={
         <input

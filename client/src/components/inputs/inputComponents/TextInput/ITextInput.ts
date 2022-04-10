@@ -4,7 +4,8 @@ interface ITextInput {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   value?: string;
   type?: "Text";
-  label?: string;
+  title?: string;
+  subtitle?: string;
   className?: string;
   placeholder?: string;
   maxLength?: number;

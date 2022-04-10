@@ -10,6 +10,14 @@ interface IStep {
 const Step = ({ step, onChange }: IStep) => {
   const stepValue = (step || 0).toString();
 
-  return <NumberInput label="Step" value={stepValue} onChange={onChange} />;
+  return (
+    <NumberInput
+      title="Step"
+      min={0}
+      subtitle="How granular the sliding motion should be"
+      value={stepValue}
+      onChange={onChange}
+    />
+  );
 };
 export default Step;

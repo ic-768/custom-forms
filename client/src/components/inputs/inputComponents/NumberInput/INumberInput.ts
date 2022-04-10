@@ -8,7 +8,8 @@ interface INumberInput {
   className?: string;
   min?: number;
   max?: number;
-  label?: string;
+  title?: string;
+  subtitle?: string;
   style?: CSSProperties;
   id?: string;
 }

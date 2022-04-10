@@ -9,7 +9,7 @@ interface IRangeInput {
   min?: number;
   max?: number;
   step?: number;
-  label?: string;
+  title?: string;
   style?: CSSProperties;
   id?: string;
 }

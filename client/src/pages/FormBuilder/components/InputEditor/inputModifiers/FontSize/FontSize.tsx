@@ -10,7 +10,12 @@ const FontSize = ({ fontSize, onChange }: IFontSize) => {
   const fontSizeValue = Number(fontSize.match(/\d+/)![0]).toString();
 
   return (
-    <NumberInput label="Font size" value={fontSizeValue} onChange={onChange} />
+    <NumberInput
+      title="Font size"
+      subtitle="The size of the input text"
+      value={fontSizeValue}
+      onChange={onChange}
+    />
   );
 };
 export default FontSize;

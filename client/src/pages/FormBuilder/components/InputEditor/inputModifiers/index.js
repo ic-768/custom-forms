@@ -1,4 +1,4 @@
-import Label from "./Label";
+import Title from "./Title";
 import FontSize from "./FontSize";
 import BorderRadius from "./BorderRadius";
 import BorderColor from "./BorderColor";
@@ -10,7 +10,7 @@ import MultipleChoiceOptions from "./MultipleChoiceOptions";
 import Margin from "./Margin";
 
 export {
-  Label,
+  Title,
   FontSize,
   BorderRadius,
   BorderColor,

@@ -8,7 +8,8 @@ import "./NumberInput.scss";
 const NumberInput = ({
   value,
   onChange,
-  label,
+  title,
+  subtitle,
   placeholder,
   className,
   min,
@@ -22,7 +23,8 @@ const NumberInput = ({
 
   return (
     <InputContainer
-      label={label}
+      title={title}
+      subtitle={subtitle}
       className={className}
       component={
         <input

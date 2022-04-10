@@ -3,3 +3,14 @@
   flex-direction: column;
   width: 100%;
 }
+
+.input-title-container {
+  margin-bottom: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-subtitle {
+  font-size: 12px;
+  color: #626262;
+}

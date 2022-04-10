@@ -55,7 +55,7 @@ const InputEditor = ({
   const onInputTypeSelect = (t: string) =>
     editInput({
       type: t,
-      label: editedInput.input.label,
+      title: editedInput.input.title,
       id: editedInput.input.id,
     } as ICustomInput);
 
@@ -63,7 +63,8 @@ const InputEditor = ({
     <div className="input-editor">
       <div className="input-editor-options-container">
         <DropdownInput
-          label="Choose an input type"
+          title="Input type"
+          subtitle="The type of input to use"
           placeholder="-- Choose an input type --"
           options={inputsForDropdown}
           onChange={onInputTypeSelect}
@@ -76,14 +77,14 @@ const InputEditor = ({
             onChangeModifiers={editInput}
           />
         )}
-        <div className="input-editor-buttons-container">
-          <button onClick={onSave} className="input-editor-save">
-            Save
-          </button>
-          <button onClick={onCancel} className="input-editor-cancel">
-            Cancel
-          </button>
-        </div>
+      </div>
+      <div className="input-editor-buttons-container">
+        <button onClick={onSave} className="input-editor-save">
+          Save
+        </button>
+        <button onClick={onCancel} className="input-editor-cancel">
+          Cancel
+        </button>
       </div>
     </div>
   );

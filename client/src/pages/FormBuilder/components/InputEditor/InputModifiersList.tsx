@@ -6,7 +6,7 @@ import {
   BorderColor,
   DropdownOptions,
   Height,
-  Label,
+  Title,
   MinMax,
   Step,
   MultipleChoiceOptions,
@@ -42,11 +42,11 @@ const InputModifiersList = ({
       },
     });
 
-  const LabelModifier = (
-    <Label
-      label={input.label || ""}
+  const TitleModifier = (
+    <Title
+      title={input.title || ""}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
-        onChangeModifiers({ ...input, label: e.target.value });
+        onChangeModifiers({ ...input, title: e.target.value });
       }}
     />
   );
@@ -108,7 +108,7 @@ const InputModifiersList = ({
     case "Dropdown":
       return (
         <>
-          {LabelModifier}
+          {TitleModifier}
           {HeightModifier}
           {BorderColorModifier}
           {MarginModifier}
@@ -122,7 +122,7 @@ const InputModifiersList = ({
     case "Text":
       return (
         <>
-          {LabelModifier}
+          {TitleModifier}
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
@@ -133,7 +133,7 @@ const InputModifiersList = ({
     case "Number":
       return (
         <>
-          {LabelModifier}
+          {TitleModifier}
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
@@ -154,7 +154,7 @@ const InputModifiersList = ({
     case "Date":
       return (
         <>
-          {LabelModifier}
+          {TitleModifier}
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
@@ -165,7 +165,7 @@ const InputModifiersList = ({
     case "Time":
       return (
         <>
-          {LabelModifier}
+          {TitleModifier}
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
@@ -176,7 +176,7 @@ const InputModifiersList = ({
     case "Multiple Choice":
       return (
         <>
-          {LabelModifier}
+          {TitleModifier}
           <MultipleChoiceOptions
             onChange={(choices) => {
               onChangeModifiers({ ...input, choices });
@@ -191,7 +191,7 @@ const InputModifiersList = ({
     case "Range":
       return (
         <>
-          {LabelModifier}
+          {TitleModifier}
           {HeightModifier}
           {MarginModifier}
           <MinMax

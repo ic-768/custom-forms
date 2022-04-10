@@ -6,13 +6,19 @@ import "./InputContainer.scss";
 interface IInputContainer {
   component: ReactElement;
   className?: string;
-  label?: string;
+  title?: string;
+  subtitle?: string;
 }
 
 /**
  * General-purpose wrapper for form inputs
  */
-const InputContainer = ({ component, label, className }: IInputContainer) => {
+const InputContainer = ({
+  component,
+  title,
+  subtitle,
+  className,
+}: IInputContainer) => {
   const inputContainerClasses = classNames({
     "input-container": true,
     [className!]: !!className,
@@ -20,7 +26,10 @@ const InputContainer = ({ component, label, className }: IInputContainer) => {
 
   return (
     <div className={inputContainerClasses}>
-      <span className="input-label">{label}</span>
+      <div className="input-title-container">
+        {title && <span className="input-title">{title}</span>}
+        {subtitle && <span className="input-subtitle">{subtitle}</span>}
+      </div>
       {component}
     </div>
   );

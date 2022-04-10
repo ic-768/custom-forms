@@ -10,7 +10,8 @@ import "./DropdownInput.scss";
 import { ICustomInput } from "../../CustomInput";
 
 const DropdownInput = ({
-  label,
+  title,
+  subtitle,
   className,
   placeholder,
   style,
@@ -50,7 +51,8 @@ const DropdownInput = ({
 
   return (
     <InputContainer
-      label={label}
+      title={title}
+      subtitle={subtitle}
       className={className}
       component={
         <div

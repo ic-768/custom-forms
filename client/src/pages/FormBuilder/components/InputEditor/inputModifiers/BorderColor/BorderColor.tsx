@@ -16,7 +16,8 @@ const BorderColor = ({ color, onChange }: IBorderColor) => {
   return (
     <>
       <InputContainer
-        label="Border color"
+        title="Border color"
+        subtitle="Set the color for the borders of the input"
         component={
           <div
             style={{ backgroundImage: "url(/images/picker-background.png)" }}

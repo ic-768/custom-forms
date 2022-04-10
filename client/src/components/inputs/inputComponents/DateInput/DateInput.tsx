@@ -8,7 +8,8 @@ import "./DateInput.scss";
 const DateInput = ({
   date,
   onChange,
-  label,
+  title,
+  subtitle,
   placeholder,
   className,
   style,
@@ -22,7 +23,7 @@ const DateInput = ({
 
   return (
     <InputContainer
-      label={label}
+      title={title}
       className={className}
       component={
         <input

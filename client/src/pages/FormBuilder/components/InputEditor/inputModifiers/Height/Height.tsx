@@ -10,7 +10,14 @@ interface IHeight {
 const Height = ({ height, onChange }: IHeight) => {
   const heightValue = Number(height.match(/\d+/)![0]).toString();
 
-  return <NumberInput label="Height" value={heightValue} onChange={onChange} />;
+  return (
+    <NumberInput
+      title="Height"
+      subtitle="Set a fixed height for the input"
+      value={heightValue}
+      onChange={onChange}
+    />
+  );
 };
 
 export default Height;

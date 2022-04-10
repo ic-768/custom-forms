@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react";
 
 import { NumberInput } from "../../../../../../components/inputs/inputComponents";
+import InputContainer from "../../../../../../components/inputs/InputContainer";
 
 import "./MinMax.scss";
 
@@ -16,10 +17,16 @@ const MinMax = ({ min, max, onChangeMin, onChangeMax }: IMinMax) => {
   const maxValue = (max || 0).toString();
 
   return (
-    <div className="min-max-modifier-container">
-      <NumberInput label="Min" value={minValue} onChange={onChangeMin} />
-      <NumberInput label="Max" value={maxValue} onChange={onChangeMax} />
-    </div>
+    <InputContainer
+      title="Min / Max"
+      subtitle="The minimum and maximum selectable values for the input"
+      component={
+        <div className="min-max-modifier-container">
+          <NumberInput value={minValue} onChange={onChangeMin} />
+          <NumberInput value={maxValue} onChange={onChangeMax} />
+        </div>
+      }
+    />
   );
 };
 

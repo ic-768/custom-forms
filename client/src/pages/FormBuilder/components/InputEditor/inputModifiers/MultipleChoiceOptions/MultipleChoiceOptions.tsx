@@ -23,7 +23,8 @@ const MultipleChoiceOptions = ({ onChange }: IMultipleChoiceOptions) => {
 
   return (
     <InputContainer
-      label="Multiple choice options"
+      title="Options"
+      subtitle="The selectable options for the multiple choice input"
       component={
         <div className="multiple-choice-options-modifier-options">
           {multipleChoiceOptions.map((o, i) => (

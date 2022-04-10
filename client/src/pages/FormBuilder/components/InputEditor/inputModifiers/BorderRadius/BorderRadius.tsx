@@ -15,7 +15,8 @@ const BorderRadius = ({ radius, onChange }: IBorderRadius) => {
       max={20}
       value={borderRadiusValue.toString()}
       onChange={onChange}
-      label="Border radius"
+      title="Border radius"
+      subtitle="Set the roundness of the input corners"
     />
   );
 };

@@ -10,7 +10,7 @@ interface IMultipleChoiceInput {
   choices: IMultipleChoiceOption[];
   onChange: Dispatch<SetStateAction<IMultipleChoiceOption[]>>;
   className?: string;
-  label?: string;
+  title?: string;
   style?: CSSProperties;
   id?: string;
 }

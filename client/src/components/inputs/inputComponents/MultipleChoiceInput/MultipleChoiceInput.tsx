@@ -8,7 +8,7 @@ import IMultipleChoiceInput, {
 import "./MultipleChoiceInput.scss";
 
 const MultipleChoiceInput = ({
-  label,
+  title,
   choices,
   className,
   onChange,
@@ -26,7 +26,7 @@ const MultipleChoiceInput = ({
 
   return (
     <InputContainer
-      label={label}
+      title={title}
       className={className}
       component={
         <div style={style} className={inputClasses}>
