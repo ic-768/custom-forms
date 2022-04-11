@@ -4,6 +4,7 @@ import {
   FontSize,
   BorderRadius,
   BorderColor,
+  BorderType,
   DropdownOptions,
   Height,
   Title,
@@ -91,6 +92,15 @@ const InputModifiersList = ({
     />
   );
 
+  const BorderTypeModifier = (
+    <BorderType
+      borderWidth={(input.style?.borderWidth as string) || "1px 1px 1px 1px"}
+      onChange={(t) => {
+        onChangeStyle("borderWidth", t);
+      }}
+    />
+  );
+
   const MarginModifier = (
     <Margin
       marginTop={(input.style?.marginTop as string) || "0px"}
@@ -111,6 +121,7 @@ const InputModifiersList = ({
           {TitleModifier}
           {HeightModifier}
           {BorderColorModifier}
+          {BorderTypeModifier}
           {MarginModifier}
           <DropdownOptions
             onChange={(options) => {
@@ -127,6 +138,7 @@ const InputModifiersList = ({
           {HeightModifier}
           {BorderRadiusModifier}
           {BorderColorModifier}
+          {BorderTypeModifier}
           {MarginModifier}
         </>
       );
@@ -138,6 +150,7 @@ const InputModifiersList = ({
           {HeightModifier}
           {BorderRadiusModifier}
           {BorderColorModifier}
+          {BorderTypeModifier}
           {MarginModifier}
           <MinMax
             min={input.min}
@@ -159,6 +172,7 @@ const InputModifiersList = ({
           {HeightModifier}
           {BorderRadiusModifier}
           {BorderColorModifier}
+          {BorderTypeModifier}
           {MarginModifier}
         </>
       );
@@ -170,6 +184,7 @@ const InputModifiersList = ({
           {HeightModifier}
           {BorderRadiusModifier}
           {BorderColorModifier}
+          {BorderTypeModifier}
           {MarginModifier}
         </>
       );
@@ -185,6 +200,7 @@ const InputModifiersList = ({
           {FontSizeModifier}
           {BorderRadiusModifier}
           {BorderColorModifier}
+          {BorderTypeModifier}
           {MarginModifier}
         </>
       );

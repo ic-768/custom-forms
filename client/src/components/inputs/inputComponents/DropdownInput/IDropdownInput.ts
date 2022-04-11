@@ -16,7 +16,7 @@ export interface IDropdownOption {
  */
 interface IDropdownInput {
   type?: "Dropdown";
-  placeholder: string;
+  placeholder?: string;
   // options for the list to display
   options: IDropdownOption[];
   // callback for when an option is selected
