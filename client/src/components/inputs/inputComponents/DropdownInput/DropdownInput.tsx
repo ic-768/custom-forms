@@ -7,7 +7,7 @@ import InputContainer from "../../InputContainer";
 import IDropdownInput from "./IDropdownInput";
 
 import "./DropdownInput.scss";
-import { ICustomInput } from "../../CustomInput";
+import { IFormComponent } from "../../../../pages/FormBuilder/components/FormComponent";
 
 const DropdownInput = ({
   title,
@@ -22,9 +22,10 @@ const DropdownInput = ({
 }: IDropdownInput) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
+  // TODO is this generic or are we focusing on the type dropdown here?
   const onOptionSelect = (e: MouseEvent<HTMLLIElement>): void => {
     const target = e.target as HTMLLIElement;
-    const inputType = target.textContent as ICustomInput["type"];
+    const inputType = target.textContent as IFormComponent["type"];
     onChange(inputType!);
     setShowOptions(false);
   };

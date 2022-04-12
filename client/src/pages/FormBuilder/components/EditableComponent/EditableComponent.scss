@@ -1,10 +1,10 @@
-.editable-input-container {
+.editable-component-container {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.editable-input-drag-handle {
+.editable-component-drag-handle {
   display: flex;
   position: absolute;
   left: -35px;
@@ -21,13 +21,13 @@
   }
 }
 
-.editable-input-buttons {
+.editable-component-buttons {
   display: flex;
   gap: 5px;
 }
 
-.editable-input-delete-button,
-.editable-input-edit-button {
+.editable-component-delete-button,
+.editable-component-edit-button {
   display: flex;
   flex-shrink: 0;
   align-items: center;
@@ -51,7 +51,7 @@
     border: 1px solid var(--input-border-color-dark);
   }
 }
-.editable-input-drag-handle-icon,
-.editable-input-button-icon {
+.editable-component-drag-handle-icon,
+.editable-component-button-icon {
   padding: 8px;
 }

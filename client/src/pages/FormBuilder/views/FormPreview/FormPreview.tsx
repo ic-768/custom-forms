@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-import CustomInput from "../../../../components/inputs/CustomInput";
+import FormComponent from "../../components/FormComponent";
 import { IForm } from "../../resources/shared";
 
 import "./FormPreview.scss";
@@ -39,8 +39,8 @@ const FormPreview = ({
       </Link>
       <div className="form-preview">
         <h2 className="form-preview-form-name">{form.name}</h2>
-        {form.inputs.map((i, idx) => (
-          <CustomInput key={i.id || idx} input={i} />
+        {form.components.map((i, idx) => (
+          <FormComponent key={i.id || idx} component={i} />
         ))}
       </div>
     </div>

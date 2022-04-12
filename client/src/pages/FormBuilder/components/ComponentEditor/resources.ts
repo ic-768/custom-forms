@@ -10,9 +10,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 /**
- * Icon counterparts for inputTypes
+ * Icon counterparts for componentTypes
  */
-const inputIcons: IconDefinition[] = [
+const componentIcons: IconDefinition[] = [
+  faListUl, // TODO better icon for text description
   faListUl,
   faPencilAlt,
   faCalculator,
@@ -22,7 +23,8 @@ const inputIcons: IconDefinition[] = [
   faSlidersH,
 ];
 
-export const inputTypes = [
+export const componentTypes = [
+  "Text-Description",
   "Dropdown",
   "Text",
   "Number",
@@ -33,8 +35,8 @@ export const inputTypes = [
 ] as const;
 
 /**
- * Object mapping each input to its corresponding icon
+ * Object mapping each component to its corresponding icon
  */
-export const inputLabelToIcon = Object.fromEntries(
-  inputTypes.map((_, i) => [inputTypes[i], inputIcons[i]])
+export const componentLabelToIcon = Object.fromEntries(
+  componentTypes.map((_, i) => [componentTypes[i], componentIcons[i]])
 );

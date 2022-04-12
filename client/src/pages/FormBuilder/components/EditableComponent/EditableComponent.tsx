@@ -10,67 +10,70 @@ import {
   DraggableProvidedDragHandleProps,
 } from "react-beautiful-dnd";
 
-import CustomInput, {
-  ICustomInput,
-} from "../../../../components/inputs/CustomInput";
+import FormComponent, { IFormComponent } from "../FormComponent";
 
-import "./EditableInput.scss";
+import "./EditableComponent.scss";
 
 /**
- * Input that can be dragged to be reordered and edited by clicking accompanying buttons
+ * Component that can be dragged to be reordered and edited by clicking accompanying buttons
  */
-interface IEditableInput {
+interface IEditableComponent {
   ref?: any;
   draggableProps?: DraggableProvidedDraggableProps;
   dragHandleProps?: DraggableProvidedDragHandleProps;
-  input: ICustomInput;
+  component: IFormComponent;
   showDragControl: boolean;
-  onSelectInput: MouseEventHandler;
-  onDeleteInput: MouseEventHandler;
+  onSelectComponent: MouseEventHandler;
+  onDeleteComponent: MouseEventHandler;
 }
 
-const EditableInput = forwardRef(
+const EditableComponent = forwardRef(
   (
     {
       draggableProps,
       dragHandleProps,
-      input,
+      component,
       showDragControl,
-      onSelectInput,
-      onDeleteInput,
-    }: IEditableInput,
+      onSelectComponent,
+      onDeleteComponent,
+    }: IEditableComponent,
     ref: any
   ) => (
     <div
       ref={ref}
       {...draggableProps}
       {...dragHandleProps}
-      className="editable-input-container"
+      className="editable-component-container"
     >
       {showDragControl && (
-        <div className="editable-input-drag-handle">
+        <div className="editable-component-drag-handle">
           <FontAwesomeIcon
-            className="editable-input-drag-handle-icon"
+            className="editable-component-drag-handle-icon"
             title="Drag to rearrange"
             icon={faBars}
           />
         </div>
       )}
-      <CustomInput input={input} />
-      <div className="editable-input-buttons">
-        <button onClick={onSelectInput} className="editable-input-edit-button">
+
+      <FormComponent component={component} />
+
+      <div className="editable-component-buttons">
+        <button
+          onClick={onSelectComponent}
+          className="editable-component-edit-button"
+        >
           <FontAwesomeIcon
-            className="editable-input-button-icon"
+            className="editable-component-button-icon"
             title="Edit"
             icon={faPencilAlt}
           />
         </button>
         <button
-          onClick={onDeleteInput}
-          className="editable-input-delete-button"
+          onClick={onDeleteComponent}
+          className="editable-component-delete-button"
         >
           <FontAwesomeIcon
-            className="editable-input-button-icon"
+            className="editable-component-button-icon"
             title="Remove"
             icon={faMinusCircle}
           />
@@ -80,4 +83,4 @@ const EditableInput = forwardRef(
   )
 );
 
-export default EditableInput;
+export default EditableComponent;

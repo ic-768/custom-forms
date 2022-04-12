@@ -1,31 +1,31 @@
 import { v4 as uuid } from "uuid";
 
-import { ICustomInput } from "../../../components/inputs/CustomInput";
+import { IFormComponent } from "../components/FormComponent";
 
 /**
  * A single user form
  */
 interface IForm {
   name: string;
-  inputs: ICustomInput[];
+  components: IFormComponent[];
   _id?: string;
 }
 
 /**
- * Input being edited in FormBuilder, also contains its index in the form inputs
+ * Component being edited in FormBuilder, also contains its index in the form inputs
  */
-type IEditedInput = {
-  input: ICustomInput;
+type IEditedComponent = {
+  component: IFormComponent;
   index: number;
 } | null;
 
 /**
- * Used when instantiating a new form
+ * Used to instantiate a new form
  */
 const emptyForm: IForm = {
   name: "",
-  inputs: [{ type: "Text", id: uuid() }],
+  components: [{ type: "Text", id: uuid() }],
 };
 
 export { emptyForm };
-export type { IForm, IEditedInput };
+export type { IForm, IEditedComponent };

@@ -12,21 +12,21 @@ import {
   Step,
   MultipleChoiceOptions,
   Margin,
-} from "./inputModifiers";
+} from "./componentModifiers";
+import { IFormComponent } from "../FormComponent";
 
-import { ICustomInput } from "../../../../components/inputs/CustomInput";
-
-interface IInputModifiersList {
-  input: ICustomInput;
-  onChangeModifiers: (props: ICustomInput) => void;
+interface IComponentModifiersList {
+  component: IFormComponent;
+  onChangeModifiers: (props: IFormComponent) => void;
 }
+
 /**
  * Renders all available options for a specific input type
  */
-const InputModifiersList = ({
-  input,
+const ComponentModifiersList = ({
+  component,
   onChangeModifiers,
-}: IInputModifiersList) => {
+}: IComponentModifiersList) => {
   // changes (or adds if doesn't exist) a specific style property
   const onChangeStyle = <
     K extends keyof CSSProperties,
@@ -36,24 +36,24 @@ const InputModifiersList = ({
     value: V
   ) =>
     onChangeModifiers({
-      ...input,
+      ...component,
       style: {
-        ...input.style,
+        ...component.style,
         [style]: value,
       },
     });
 
   const TitleModifier = (
     <Title
-      title={input.title || ""}
+      title={component.title || ""}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
-        onChangeModifiers({ ...input, title: e.target.value });
+        onChangeModifiers({ ...component, title: e.target.value });
       }}
     />
   );
   const FontSizeModifier = (
     <FontSize
-      fontSize={(input.style?.fontSize as string) || "14px"}
+      fontSize={(component.style?.fontSize as string) || "14px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         onChangeStyle("fontSize", `${e.target.value || 0}px`);
       }}
@@ -62,7 +62,7 @@ const InputModifiersList = ({
 
   const HeightModifier = (
     <Height
-      height={(input.style?.height as string) || "33px"}
+      height={(component.style?.height as string) || "33px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         onChangeStyle("height", `${e.target.value || 0}px`);
       }}
@@ -71,7 +71,7 @@ const InputModifiersList = ({
 
   const BorderRadiusModifier = (
     <BorderRadius
-      radius={(input.style?.borderRadius as string) || "5px"}
+      radius={(component.style?.borderRadius as string) || "5px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         onChangeStyle("borderRadius", `${e.target.value || 0}px`);
       }}
@@ -80,8 +80,8 @@ const InputModifiersList = ({
 
   const BorderColorModifier = (
     <BorderColor
-      /* get color from input style borderColor */
-      color={input.style?.borderColor?.split(" ")[0] || "rgb(0,0,0,0)"}
+      /* get color from component style borderColor */
+      color={component.style?.borderColor?.split(" ")[0] || "rgb(0,0,0,0)"}
       onChange={(c) => {
         const rgba = c.rgb;
         onChangeStyle(
@@ -94,7 +94,9 @@ const InputModifiersList = ({
 
   const BorderTypeModifier = (
     <BorderType
-      borderWidth={(input.style?.borderWidth as string) || "1px 1px 1px 1px"}
+      borderWidth={
+        (component.style?.borderWidth as string) || "1px 1px 1px 1px"
+      }
       onChange={(t) => {
         onChangeStyle("borderWidth", t);
       }}
@@ -103,8 +105,8 @@ const InputModifiersList = ({
 
   const MarginModifier = (
     <Margin
-      marginTop={(input.style?.marginTop as string) || "0px"}
-      marginBottom={(input.style?.marginBottom as string) || "0px"}
+      marginTop={(component.style?.marginTop as string) || "0px"}
+      marginBottom={(component.style?.marginBottom as string) || "0px"}
       onChangeTopMargin={(e) => {
         onChangeStyle("marginTop", `${e.target.value || 0}px`);
       }}
@@ -114,7 +116,9 @@ const InputModifiersList = ({
     />
   );
 
-  switch (input.type) {
+  switch (component.type) {
+    case "Text-Description":
+      return null;
     case "Dropdown":
       return (
         <>
@@ -125,7 +129,7 @@ const InputModifiersList = ({
           {MarginModifier}
           <DropdownOptions
             onChange={(options) => {
-              onChangeModifiers({ ...input, options });
+              onChangeModifiers({ ...component, options });
             }}
           />
         </>
@@ -153,13 +157,13 @@ const InputModifiersList = ({
           {BorderTypeModifier}
           {MarginModifier}
           <MinMax
-            min={input.min}
-            max={input.max}
+            min={component.min}
+            max={component.max}
             onChangeMin={(e) =>
-              onChangeModifiers({ ...input, min: Number(e.target.value) })
+              onChangeModifiers({ ...component, min: Number(e.target.value) })
             }
             onChangeMax={(e) =>
-              onChangeModifiers({ ...input, max: Number(e.target.value) })
+              onChangeModifiers({ ...component, max: Number(e.target.value) })
             }
           />
         </>
@@ -194,7 +198,7 @@ const InputModifiersList = ({
           {TitleModifier}
           <MultipleChoiceOptions
             onChange={(choices) => {
-              onChangeModifiers({ ...input, choices });
+              onChangeModifiers({ ...component, choices });
             }}
           />
           {FontSizeModifier}
@@ -211,19 +215,19 @@ const InputModifiersList = ({
           {HeightModifier}
           {MarginModifier}
           <MinMax
-            min={input.min}
-            max={input.max}
+            min={component.min}
+            max={component.max}
             onChangeMin={(e) => {
-              onChangeModifiers({ ...input, min: Number(e.target.value) });
+              onChangeModifiers({ ...component, min: Number(e.target.value) });
             }}
             onChangeMax={(e) =>
-              onChangeModifiers({ ...input, max: Number(e.target.value) })
+              onChangeModifiers({ ...component, max: Number(e.target.value) })
             }
           />
           <Step
-            step={input.step}
+            step={component.step}
             onChange={(e) => {
-              onChangeModifiers({ ...input, step: Number(e.target.value) });
+              onChangeModifiers({ ...component, step: Number(e.target.value) });
             }}
           />
         </>
@@ -233,4 +237,4 @@ const InputModifiersList = ({
       return null;
   }
 };
-export default InputModifiersList;
+export default ComponentModifiersList;

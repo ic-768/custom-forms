@@ -3,7 +3,7 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { token, asyncGetForms } from "../../services/forms";
-import { emptyForm, IEditedInput, IForm } from "./resources/shared";
+import { emptyForm, IEditedComponent, IForm } from "./resources/shared";
 import { useAppSelector, useWithLoader } from "../../store/hooks";
 import { selectForms, setForms } from "../../store/features/forms/formsSlice";
 
@@ -33,8 +33,9 @@ const FormBuilder = () => {
     null
   );
 
-  // A draft input for input editor. Contains the currently edited input and its index in the form
-  const [editedInput, setEditedInput] = useState<IEditedInput>(null);
+  // A draft component for the editor. Contains the currently edited input and its index in the form
+  const [editedComponent, setEditedComponent] =
+    useState<IEditedComponent>(null);
 
   // populate user's forms on page load
   useEffect(() => {
@@ -90,8 +91,8 @@ const FormBuilder = () => {
               forms={forms}
               editedForm={editedForm}
               setEditedForm={setEditedForm}
-              editedInput={editedInput}
-              setEditedInput={setEditedInput}
+              editedComponent={editedComponent}
+              setEditedComponent={setEditedComponent}
               token={token}
             />
           }

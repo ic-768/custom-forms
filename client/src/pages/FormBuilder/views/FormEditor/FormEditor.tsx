@@ -17,9 +17,9 @@ import {
 import { useNotification, useWithLoader } from "../../../../store/hooks";
 import TextInput from "../../../../components/inputs/inputComponents/TextInput";
 import { asyncUpdateForm, asyncPostForm } from "../../../../services/forms";
-import EditableInputList from "../../components/EditableInputList/EditableInputList";
-import InputEditor from "../../components/InputEditor";
-import { IForm, IEditedInput, emptyForm } from "../../resources/shared";
+import EditableComponentList from "../../components/EditableComponentList";
+import ComponentEditor from "../../components/ComponentEditor";
+import { IForm, IEditedComponent, emptyForm } from "../../resources/shared";
 
 import "./FormEditor.scss";
 
@@ -27,8 +27,8 @@ interface IFormEditor {
   forms: IForm[];
   editedForm: IForm;
   setEditedForm: (form: IForm) => void;
-  editedInput: IEditedInput;
-  setEditedInput: Dispatch<IEditedInput>;
+  editedComponent: IEditedComponent;
+  setEditedComponent: Dispatch<IEditedComponent>;
   token: string | null;
 }
 
@@ -39,8 +39,8 @@ const FormEditor = ({
   forms,
   editedForm,
   setEditedForm,
-  editedInput,
-  setEditedInput,
+  editedComponent,
+  setEditedComponent,
   token,
 }: IFormEditor) => {
   const formIdFromUrl = useParams().id;
@@ -101,17 +101,17 @@ const FormEditor = ({
   const onEditFormName = (e: ChangeEvent<HTMLInputElement>) =>
     setEditedForm({ ...editedForm, name: e.target.value });
 
-  // Callback to start editing an input
-  const onSelectInput = (index: number) => () => {
-    setEditedInput({
-      input: editedForm.inputs[index],
+  // Callback to start editing a component
+  const onSelectComponent = (index: number) => () => {
+    setEditedComponent({
+      component: editedForm.components[index],
       index: index,
     });
   };
 
-  // Add input to form and set editedInput's index to shadow the new input for editing
-  const onAddNewInput = () => {
-    const input = {
+  // Add component to form and set editedComponent's index to shadow the new component for editing
+  const onAddNewComponent = () => {
+    const component = {
       type: "Text",
       label: "",
       id: uuid(),
@@ -119,32 +119,32 @@ const FormEditor = ({
 
     setEditedForm({
       ...editedForm,
-      inputs: editedForm.inputs.concat(input),
+      components: editedForm.components.concat(component),
     });
 
-    setEditedInput({
-      input,
-      index: editedForm.inputs.length,
+    setEditedComponent({
+      component,
+      index: editedForm.components.length,
     });
   };
 
-  const onDeleteInput = (index: number) => () => {
-    const remainingInputs = editedForm.inputs.filter(
+  const onDeleteComponent = (index: number) => () => {
+    const remainingComponents = editedForm.components.filter(
       (_i, idx) => idx !== index
     );
 
     setEditedForm({
       ...editedForm,
-      inputs: remainingInputs,
+      components: remainingComponents,
     });
 
-    if (editedInput) {
-      setEditedInput(null);
+    if (editedComponent) {
+      setEditedComponent(null);
     }
   };
 
   const onGoBack = () => {
-    setEditedInput(null);
+    setEditedComponent(null);
     setEditedForm(emptyForm);
   };
 
@@ -164,31 +164,30 @@ const FormEditor = ({
           value={editedForm.name}
           onChange={onEditFormName}
         />
-        <EditableInputList
-          inputs={editedForm.inputs}
-          editedInput={editedInput}
-          onSelectInput={onSelectInput}
-          onDeleteInput={onDeleteInput}
+        <EditableComponentList
+          components={editedForm.components}
+          editedComponent={editedComponent}
+          onSelectComponent={onSelectComponent}
+          onDeleteComponent={onDeleteComponent}
           editedForm={editedForm}
           setEditedForm={setEditedForm}
         />
-        {editedInput ? (
-          <InputEditor
-            editedInput={editedInput}
-            setEditedInput={setEditedInput}
+        {editedComponent ? (
+          <ComponentEditor
+            editedComponent={editedComponent}
+            setEditedComponent={setEditedComponent}
             form={editedForm}
             setForm={setEditedForm}
           />
         ) : (
-          // render button to add a new input
+          // render button to add a new component
           <button
-            onClick={onAddNewInput}
-            className="form-editor-add-input-button"
+            onClick={onAddNewComponent}
+            className="form-editor-add-component-button"
           >
             <FontAwesomeIcon
-              onClick={onAddNewInput}
-              className="form-editor-add-input-button-icon"
-              title="Add an input"
+              onClick={onAddNewComponent}
+              title="Add a form component"
               icon={faPlus}
             />
           </button>
