@@ -8,8 +8,8 @@ import { useNotification, useWithLoader } from "../../../../store/hooks";
 import { token, asyncDeleteMultipleForms } from "../../../../services/forms";
 import { deleteMultipleForms } from "../../../../store/features/forms/formsSlice";
 import { IConfirmationModal } from "../../components/ConfirmationModal";
-import { TextInput } from "../../../../components/inputs/inputComponents";
-import FormList from "../../components/FormList";
+import { TextInput } from "../../components/inputs/inputComponents";
+import FormList from "./components/FormList";
 import { emptyForm, IForm } from "../../resources/shared";
 
 import "./FormsView.scss";

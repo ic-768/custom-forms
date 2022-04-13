@@ -5,7 +5,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 import { useNotification, useWithLoader } from "../../../../store/hooks";
 import PasswordInput from "../../components/PasswordInput";
-import { TextInput } from "../../../../components/inputs/inputComponents";
+import { TextInput } from "../../../FormBuilder/components/inputs/inputComponents";
 import { signup } from "../../../../services/signup";
 
 import "./SignupPanel.scss";

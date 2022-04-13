@@ -15,10 +15,10 @@ import {
   updateForm,
 } from "../../../../store/features/forms/formsSlice";
 import { useNotification, useWithLoader } from "../../../../store/hooks";
-import TextInput from "../../../../components/inputs/inputComponents/TextInput";
+import { TextInput } from "../../components/inputs/inputComponents";
 import { asyncUpdateForm, asyncPostForm } from "../../../../services/forms";
-import EditableComponentList from "../../components/EditableComponentList";
-import ComponentEditor from "../../components/ComponentEditor";
+import EditableComponentList from "./components/EditableComponentList";
+import ComponentEditor from "./components/ComponentEditor";
 import { IForm, IEditedComponent, emptyForm } from "../../resources/shared";
 
 import "./FormEditor.scss";

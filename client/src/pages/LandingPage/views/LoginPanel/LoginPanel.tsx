@@ -8,7 +8,7 @@ import { setToken } from "../../../../services/forms";
 import { login } from "../../../../services/login";
 import { setUser } from "../../../../store/features/user/userSlice";
 import { useNotification, useWithLoader } from "../../../../store/hooks";
-import { TextInput } from "../../../../components/inputs/inputComponents";
+import { TextInput } from "../../../FormBuilder/components/inputs/inputComponents";
 import PasswordInput from "../../components/PasswordInput";
 
 import "./LoginPanel.scss";

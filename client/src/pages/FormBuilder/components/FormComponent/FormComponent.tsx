@@ -14,7 +14,7 @@ import {
   ITimeInput,
   RangeInput,
   IRangeInput,
-} from "../../../../components/inputs/inputComponents";
+} from "../../components/inputs/inputComponents";
 
 // TODO put somewhere better
 type ITextDescription = {
