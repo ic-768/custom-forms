@@ -1,5 +1,6 @@
 import { ChangeEvent } from "react";
 
+import { NumberInput } from "../../../../../../../components/inputs/inputComponents";
 import InputContainer from "../../../../../../../components/inputs/InputContainer";
 
 import "./Margin.scss";
@@ -27,17 +28,15 @@ const Margin = ({
       component={
         <div className="margin-modifier-container">
           <div className="margin-modifier-dashed-container">
-            <input
+            <NumberInput
               onChange={onChangeTopMargin}
               value={marginTopValue}
               className="margin-modifier-input top"
-              type="number"
             />
-            <input
+            <NumberInput
               onChange={onChangeBottomMargin}
               value={marginBottomValue}
               className="margin-modifier-input bottom"
-              type="number"
             />
           </div>
         </div>

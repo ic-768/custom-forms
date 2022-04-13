@@ -12,7 +12,7 @@ import {
   Step,
   MultipleChoiceOptions,
   Margin,
-  Text,
+  TextBody,
 } from "../componentModifiers";
 import { IFormComponent } from "../../../../../../components/FormComponent";
 
@@ -122,7 +122,7 @@ const ComponentModifiersList = ({
       return (
         <>
           {TitleModifier}
-          <Text
+          <TextBody
             onChange={(e) => {
               onChangeModifiers({ ...component, text: e.target.value });
             }}

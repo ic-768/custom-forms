@@ -9,7 +9,7 @@ import MinMax from "./MinMax";
 import Step from "./Step";
 import MultipleChoiceOptions from "./MultipleChoiceOptions";
 import Margin from "./Margin";
-import Text from "./Text";
+import TextBody from "./TextBody";
 
 export {
   Title,
@@ -23,5 +23,5 @@ export {
   MultipleChoiceOptions,
   Margin,
   BorderType,
-  Text,
+  TextBody,
 };

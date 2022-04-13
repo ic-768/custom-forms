@@ -2,18 +2,18 @@ import { ChangeEvent } from "react";
 
 import { TextInput } from "../../../../../../../components/inputs/inputComponents";
 
-interface IText {
+interface ITextBody {
   text?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Text = ({ text, onChange }: IText) => (
+const TextBody = ({ text, onChange }: ITextBody) => (
   <TextInput
     title="Text Body"
-    subtitle="The explanation text"
+    subtitle="The explanatory text"
     value={text}
     onChange={onChange}
   />
 );
 
-export default Text;
+export default TextBody;

@@ -10,7 +10,7 @@ interface ITitle {
 const Title = ({ title, onChange }: ITitle) => (
   <TextInput
     title="Title"
-    subtitle="The question title for this input"
+    subtitle="The accompanying title for the component"
     value={title}
     onChange={onChange}
   />

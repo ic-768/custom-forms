@@ -9,17 +9,30 @@ interface IBorderType {
  * Allows user to choose which border sides will be colored
  */
 const BorderType = ({ borderWidth, onChange }: IBorderType) => {
-  const borderWidthValues = borderWidth.split(" ");
-
-  // Each side has a width - is a box
-  const borderTypeForWidth = (widthValues: string[]) =>
-    widthValues.every((v) => v === "1px") ? "Box" : "Underline";
+  const borderTypeForWidth = () => {
+    switch (borderWidth) {
+      case "1px 1px 1px 1px":
+        return "Box";
+      case "0px 0px 1px 0px":
+        return "Underline";
+      default:
+        return "None";
+    }
+  };
 
   // Parse the other way
-  const borderWidthForType = (type: string) =>
-    type === "Box" ? "1px 1px 1px 1px" : "0px 0px 1px 0px";
+  const borderWidthForType = (type: string) => {
+    switch (type) {
+      case "Box":
+        return "1px 1px 1px 1px";
+      case "Underline":
+        return "0px 0px 1px 0px";
+      default:
+        return "0px 0px 0px 0px";
+    }
+  };
 
-  const borderType = borderTypeForWidth(borderWidthValues);
+  const borderType = borderTypeForWidth();
 
   return (
     <DropdownInput
@@ -29,6 +42,7 @@ const BorderType = ({ borderWidth, onChange }: IBorderType) => {
       options={[
         { label: "Box", value: "Box" },
         { label: "Underline", value: "Underline" },
+        { label: "None", value: "None" },
       ]}
       placeholder="Border type"
       onChange={(t) => {
