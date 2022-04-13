@@ -12,6 +12,7 @@ import {
   Step,
   MultipleChoiceOptions,
   Margin,
+  Text,
 } from "../componentModifiers";
 import { IFormComponent } from "../../../../../../components/FormComponent";
 
@@ -118,7 +119,21 @@ const ComponentModifiersList = ({
 
   switch (component.type) {
     case "Text-Description":
-      return null;
+      return (
+        <>
+          {TitleModifier}
+          <Text
+            onChange={(e) => {
+              onChangeModifiers({ ...component, text: e.target.value });
+            }}
+          />
+          {FontSizeModifier}
+          {HeightModifier}
+          {BorderColorModifier}
+          {BorderTypeModifier}
+          {MarginModifier}
+        </>
+      );
     case "Dropdown":
       return (
         <>

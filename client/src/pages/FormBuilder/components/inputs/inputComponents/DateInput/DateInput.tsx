@@ -9,7 +9,6 @@ const DateInput = ({
   date,
   onChange,
   title,
-  subtitle,
   placeholder,
   className,
   style,

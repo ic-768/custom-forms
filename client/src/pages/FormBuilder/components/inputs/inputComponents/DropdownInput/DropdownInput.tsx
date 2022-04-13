@@ -5,7 +5,6 @@ import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
 import IDropdownInput from "./IDropdownInput";
-import { IFormComponent } from "../../../FormComponent";
 
 import "./DropdownInput.scss";
 
@@ -22,11 +21,10 @@ const DropdownInput = ({
 }: IDropdownInput) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
-  // TODO is this generic or are we focusing on the type dropdown here?
   const onOptionSelect = (e: MouseEvent<HTMLLIElement>): void => {
     const target = e.target as HTMLLIElement;
-    const inputType = target.textContent as IFormComponent["type"];
-    onChange(inputType!);
+    const option = target.textContent;
+    onChange(option!);
     setShowOptions(false);
   };
 

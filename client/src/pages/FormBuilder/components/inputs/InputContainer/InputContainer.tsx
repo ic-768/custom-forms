@@ -27,7 +27,7 @@ const InputContainer = ({
   return (
     <div className={inputContainerClasses}>
       <div className="input-title-container">
-        {title && <span className="input-title">{title}</span>}
+        {title && <span>{title}</span>}
         {subtitle && <span className="input-subtitle">{subtitle}</span>}
       </div>
       {component}

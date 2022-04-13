@@ -7,13 +7,14 @@ import {
   IconDefinition,
   faEllipsisV,
   faSlidersH,
+  faComment,
 } from "@fortawesome/free-solid-svg-icons";
 
 /**
  * Icon counterparts for componentTypes
  */
 const componentIcons: IconDefinition[] = [
-  faListUl, // TODO better icon for text description
+  faComment, // TODO better icon for text description
   faListUl,
   faPencilAlt,
   faCalculator,

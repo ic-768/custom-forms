@@ -1,4 +1,5 @@
-import { CSSProperties } from "react";
+import TextDescription, { ITextDescription } from "../TextDescription";
+
 import {
   DateInput,
   IDateInput,
@@ -15,15 +16,6 @@ import {
   RangeInput,
   IRangeInput,
 } from "../../components/inputs/inputComponents";
-
-// TODO put somewhere better
-type ITextDescription = {
-  type?: "Text-Description";
-  title?: string;
-  text?: string;
-  style?: CSSProperties;
-  id?: string;
-};
 
 type IFormComponent =
   | IDropdownInput
@@ -52,7 +44,7 @@ const FormComponent = ({ component }: { component: IFormComponent }) => {
     case "Range":
       return <RangeInput {...component} />;
     case "Text-Description":
-      return <div>This is where text component will go</div>;
+      return <TextDescription {...component} />;
     default:
       return null;
   }

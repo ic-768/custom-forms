@@ -63,9 +63,9 @@ const ComponentEditor = ({
     <div className="component-editor">
       <div className="component-editor-options-container">
         <DropdownInput
-          title="Input type"
-          subtitle="The type of input to use"
-          placeholder="-- Choose an input type --"
+          title="Component type"
+          subtitle="The type of form component to add"
+          placeholder="-- Choose a type --"
           options={componentsForDropdown}
           onChange={onComponentTypeSelect}
           selection={editedComponent.component.type}
