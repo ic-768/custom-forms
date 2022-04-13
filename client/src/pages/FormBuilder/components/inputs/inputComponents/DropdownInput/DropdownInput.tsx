@@ -48,6 +48,8 @@ const DropdownInput = ({
     "showing-options": showOptions,
   });
 
+  const { marginBottom, ...placeholderStyle } = { ...style };
+
   return (
     <InputContainer
       title={title}
@@ -55,6 +57,7 @@ const DropdownInput = ({
       className={className}
       component={
         <div
+          style={{ marginBottom }}
           className={dropdownClasses}
           onMouseLeave={() => setShowOptions(false)}
         >
@@ -62,7 +65,7 @@ const DropdownInput = ({
             className={placeholderClasses}
             onClick={toggleOptionsVisibility}
             onMouseEnter={() => setShowOptions(true)}
-            style={style}
+            style={placeholderStyle}
           >
             {selectionIcon && (
               <FontAwesomeIcon
