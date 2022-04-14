@@ -1,13 +1,11 @@
 .form-editor-container {
+  margin-top: -30px;
   display: flex;
   justify-content: center;
-  height: 100%;
   width: 50vw;
 }
 
 .form-editor {
-  margin-top: -30px;
-  margin-bottom: 20px;
   z-index: 2;
   display: flex;
   flex-direction: column;

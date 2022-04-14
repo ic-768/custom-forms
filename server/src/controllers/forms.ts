@@ -172,10 +172,19 @@ formsRouter.get("/form-to-submit", async (request, response) => {
     },
     { projection: { _id: 0, forms: 1 } }
   );
+
   const userForms = queryResult?.forms;
+  let formattedFormId: ObjectId;
+
+  try {
+    formattedFormId = new ObjectId(formId);
+  } catch {
+    // TODO  better error handling
+    return response.status(200).json(null);
+  }
 
   const form = userForms?.filter(
-    (f: any) => f._id.toString() === new ObjectId(formId).toString()
+    (f: any) => f._id.toString() === formattedFormId.toString()
   );
 
   return response.status(200).json(form[0]);

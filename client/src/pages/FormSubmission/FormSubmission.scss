@@ -1,0 +1,36 @@
+.form-submission-view-background {
+  height: 100vh;
+}
+
+.form-submission-view-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.form-submission-view-form-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  width: 50vw;
+}
+
+.form-submission-view-form-content {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: #b1b0b5 0 0 2px 1px;
+  padding: 40px;
+  min-height: 80vh;
+  width: 100%;
+  gap: 10px;
+  background-color: white;
+}
+
+.form-preview-form-name {
+  align-self: center;
+  font-size: 18px;
+  font-weight: 550;
+  margin-bottom: 20px;
+}
