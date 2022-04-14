@@ -8,6 +8,17 @@ const setToken = (newToken: string) => {
   token = `bearer ${newToken}`;
 };
 
+const asyncGetForm = async (username: string, formId: string) => {
+  try {
+    const config = { headers: { username, formId } };
+    const response = await axios.get("/forms/form-to-submit", config);
+    return response.data;
+  } catch (e) {
+    console.log(e);
+    throw new Error("Error fetching forms " + e);
+  }
+};
+
 const asyncGetForms = async (token: string) => {
   try {
     const config = { headers: { Authorization: token } };
@@ -65,6 +76,7 @@ const asyncDeleteMultipleForms = async (
 export {
   token,
   setToken,
+  asyncGetForm,
   asyncGetForms,
   asyncPostForm,
   asyncUpdateForm,

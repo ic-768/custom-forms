@@ -104,6 +104,9 @@ formsRouter.put("/", async (request, response) => {
   return response.status(200).json(formToUpdate);
 });
 
+/*
+ * Endpoint for user to delete a form
+ */
 formsRouter.delete("/", async (request, response) => {
   const token = getTokenFromRequest(request);
 
@@ -128,6 +131,9 @@ formsRouter.delete("/", async (request, response) => {
     : response.sendStatus(200);
 });
 
+/*
+ * Endpoint for user to delete multiple forms
+ */
 formsRouter.delete("/multiple", async (request, response) => {
   const token = getTokenFromRequest(request);
 
@@ -150,6 +156,29 @@ formsRouter.delete("/multiple", async (request, response) => {
   }
 
   response.status(200).json(formIds);
+});
+
+/*
+ * Endpoint for any user (unauthenticated) to get a form by username and form id
+ * in order to submit it
+ */
+formsRouter.get("/form-to-submit", async (request, response) => {
+  const username = request.get("username");
+  const formId = request.get("formId");
+
+  const queryResult = await userCollection.findOne(
+    {
+      username,
+    },
+    { projection: { _id: 0, forms: 1 } }
+  );
+  const userForms = queryResult?.forms;
+
+  const form = userForms?.filter(
+    (f: any) => f._id.toString() === new ObjectId(formId).toString()
+  );
+
+  return response.status(200).json(form[0]);
 });
 
 export default formsRouter;
