@@ -3,6 +3,7 @@ import axios from "axios";
 import { IForm } from "../pages/FormBuilder/resources/shared";
 
 let token: string | null = null;
+
 const setToken = (newToken: string) => {
   token = `bearer ${newToken}`;
 };

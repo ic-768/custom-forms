@@ -12,6 +12,7 @@ import LandingPage from "./pages/LandingPage";
 import FormBuilder from "./pages/FormBuilder/FormBuilder";
 import Loader from "./components/Loader/Loader";
 import Notification from "./components/Notification/Notification";
+import { Route, Routes } from "react-router-dom";
 
 const App = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -31,9 +32,25 @@ const App = (): ReactElement => {
 
   return (
     <>
+      {/* Absolutely positioned global components */}
       {notification.message && <Notification notification={notification} />}
       {isLoading && <Loader />}
-      {user ? <FormBuilder /> : <LandingPage />}
+
+      <Routes>
+        {/* Route for form submission - we allow unauthenticated submissions for now */}
+        <Route
+          path="form/:user/:formId"
+          element={<div>submit a form here</div>}
+        />
+
+        {/* Route for users to build forms if they're logged in, or the homepage if they're not */}
+        <Route
+          path="*"
+          element={user ? <FormBuilder /> : <LandingPage />}
+        ></Route>
+      </Routes>
+
+      {}
     </>
   );
 };
