@@ -52,4 +52,5 @@ const App = (): ReactElement => {
     </>
   );
 };
+
 export default App;

@@ -7,9 +7,6 @@ import { IFormComponent } from "../../../../components/FormComponent";
 
 import "./ComponentEditor.scss";
 
-/**
- * Used to customise a form component.
- */
 interface IComponentEditor {
   editedComponent: IEditedComponent;
   setEditedComponent: (component: IEditedComponent) => void;
@@ -17,6 +14,9 @@ interface IComponentEditor {
   setForm: (form: any) => void;
 }
 
+/**
+ * Used to customise a form component.
+ */
 const ComponentEditor = ({
   editedComponent,
   setEditedComponent,

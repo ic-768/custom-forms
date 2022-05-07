@@ -20,4 +20,5 @@ const LandingPage = () => (
     </Routes>
   </div>
 );
+
 export default LandingPage;
