@@ -8,7 +8,7 @@ export interface IMultipleChoiceOption {
 interface IMultipleChoiceInput {
   type?: "Multiple Choice";
   choices: IMultipleChoiceOption[];
-  onChange: Dispatch<SetStateAction<IMultipleChoiceOption[]>>;
+  onChange?: Dispatch<SetStateAction<IMultipleChoiceOption[]>>;
   className?: string;
   title?: string;
   style?: CSSProperties;

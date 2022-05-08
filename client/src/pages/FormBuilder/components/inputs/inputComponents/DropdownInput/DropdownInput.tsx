@@ -22,6 +22,7 @@ const DropdownInput = ({
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
   const onOptionSelect = (e: MouseEvent<HTMLLIElement>): void => {
+    if (!onChange) return;
     const target = e.target as HTMLLIElement;
     const option = target.textContent;
     onChange(option!);

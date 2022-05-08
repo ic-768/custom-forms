@@ -38,14 +38,15 @@ const MultipleChoiceInput = ({
               >
                 <div
                   onClick={() => {
+                    if (!onChange) return;
                     onChange(updateChoices(c));
                   }}
                   className="multiple-choice-input-choice-icon-container"
                 >
                   <input
                     type="checkbox"
-                    checked={c.isSelected}
-                    value={c.label}
+                    defaultChecked={c.isSelected || false}
+                    value={c.label || ""}
                   />
                 </div>
 

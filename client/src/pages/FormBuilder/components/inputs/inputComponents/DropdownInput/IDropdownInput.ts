@@ -20,7 +20,7 @@ interface IDropdownInput {
   // options for the list to display
   options: IDropdownOption[];
   // callback for when an option is selected
-  onChange: (t: string) => void;
+  onChange?: (t: string) => void;
   selection?: string | null;
   className?: string;
   // icon of the currently selected option

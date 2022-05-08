@@ -6,7 +6,7 @@ import IDateInput from "./IDateInput";
 import "./DateInput.scss";
 
 const DateInput = ({
-  date,
+  value,
   onChange,
   title,
   placeholder,
@@ -27,7 +27,7 @@ const DateInput = ({
       component={
         <input
           style={style}
-          value={date}
+          value={value}
           onChange={onChange}
           type="date"
           className={inputClasses}

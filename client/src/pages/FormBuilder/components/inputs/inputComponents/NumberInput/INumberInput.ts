@@ -3,7 +3,7 @@ import { ChangeEvent, CSSProperties } from "react";
 interface INumberInput {
   type?: "Number";
   value?: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   className?: string;
   min?: number;
