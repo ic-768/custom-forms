@@ -1,17 +1,20 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { asyncGetForm } from "../../services/forms";
+import { asyncGetForm, asyncSubmitForm } from "../../services/forms";
 import FormComponent, {
   IFormComponent,
 } from "../FormBuilder/components/FormComponent";
 import { IForm } from "../FormBuilder/resources/shared";
+import { addOnChange, addState } from "./helpers";
 
 import "./FormSubmission.scss";
 
 const FormSubmission = () => {
   const params = useParams();
   const [form, setForm] = useState<IForm>();
+
+  // TODO submission is created for description component as well - should find a way to prevent that
   const [submissions, setSubmissions] = useState(
     Array(form?.components.length)
   );
@@ -25,64 +28,43 @@ const FormSubmission = () => {
 
   if (!form) return null;
 
-  // TODO switch statement doesn't seem to narrow the onChange type down correctly,
-  // so using any for now...
-  const addOnChange = (component: IFormComponent, idx: number) => {
-    switch (component.type) {
-      case "Text":
-      case "Number":
-      case "Range":
-      case "Time":
-      case "Date":
-        return {
-          ...component,
-          onChange: (e: any) => {
-            setSubmissions(
-              submissions.map((s, i) => (i === idx ? e.target.value : s))
-            );
-          },
-        };
-      case "Multiple Choice":
-      case "Dropdown":
-        return {
-          ...component,
-          onChange: (v: any) => {
-            setSubmissions(submissions.map((s, i) => (i === idx ? v : s)));
-          },
-        };
-      default:
-        return component;
-    }
+  // Provide input components with onChange and state values
+  const enrichComponent = (c: IFormComponent, idx: number) => {
+    const withOnChange = addOnChange(c, idx, setSubmissions, submissions);
+    const enrichedComponent = addState(withOnChange, idx, submissions);
+    return enrichedComponent;
   };
 
-  const addState = (component: IFormComponent, idx: number) => {
-    switch (component.type) {
-      case "Text":
-      case "Number":
-      case "Range":
-      case "Time":
-      case "Date":
-        return { ...component, value: submissions[idx] || "" };
-      case "Multiple Choice":
-        return { ...component, choices: submissions[idx] || component.choices };
-      case "Dropdown":
-        return { ...component, selection: submissions[idx] };
-      default:
-        return component;
-    }
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Add identifying info to submissions and remove empty entries
+    const submissionsWithTitles = submissions.map((s, i) => ({
+      title: form.components[i].title,
+      type: form.components[i].type,
+      value: s,
+    }));
+    const cleanSubmissions = submissionsWithTitles.filter((s) => s.value);
+
+    asyncSubmitForm(cleanSubmissions);
   };
 
   return (
     <div className="form-submission-view-background">
       <div className="form-submission-view-container">
-        <form className="form-submission-view-form-container">
+        <form
+          className="form-submission-view-form-container"
+          onSubmit={onSubmit}
+        >
           <div className="form-submission-view-form-content">
             <h2 className="form-preview-form-name">{form.name}</h2>
-            {form.components.map((c, idx) => {
-              const component = addState(addOnChange(c, idx), idx);
-              return <FormComponent key={c.id || idx} component={component} />;
-            })}
+            {form.components.map((c, idx) => (
+              <FormComponent
+                key={c.id || idx}
+                component={enrichComponent(c, idx)}
+              />
+            ))}
           </div>
+          <button type="submit">Submit</button>
         </form>
       </div>
     </div>

@@ -73,6 +73,15 @@ const asyncDeleteMultipleForms = async (
   }
 };
 
+const asyncSubmitForm = async (submissions: any[]) => {
+  try {
+    const response = await axios.post("/forms/form-to-submit", { submissions });
+    return response.data;
+  } catch (e) {
+    throw new Error("Error submitting form: " + e);
+  }
+};
+
 export {
   token,
   setToken,
@@ -82,4 +91,5 @@ export {
   asyncUpdateForm,
   asyncDeleteForm,
   asyncDeleteMultipleForms,
+  asyncSubmitForm,
 };
