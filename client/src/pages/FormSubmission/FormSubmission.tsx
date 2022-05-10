@@ -45,7 +45,7 @@ const FormSubmission = () => {
     }));
     const cleanSubmissions = submissionsWithTitles.filter((s) => s.value);
 
-    asyncSubmitForm(cleanSubmissions);
+    asyncSubmitForm(params.user!, params.formId!, cleanSubmissions);
   };
 
   return (

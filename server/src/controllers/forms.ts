@@ -63,7 +63,7 @@ formsRouter.post("/", async (request, response) => {
 
   const { matchedCount } = await userCollection.updateOne(
     { _id: new ObjectId(decodedToken.id) },
-    { $push: { forms: { ...newForm, _id: formId } } }
+    { $push: { forms: { ...newForm, _id: formId, submissions: [] } } }
   );
 
   if (matchedCount === 0) {
@@ -159,7 +159,7 @@ formsRouter.delete("/multiple", async (request, response) => {
 });
 
 /*
- * Endpoint for any user (unauthenticated) to get a form by username and form id
+ * Endpoint for any user to get a form by username and form id
  * in order to submit it
  */
 formsRouter.get("/form-to-submit", async (request, response) => {
@@ -188,6 +188,25 @@ formsRouter.get("/form-to-submit", async (request, response) => {
   );
 
   return response.status(200).json(form[0]);
+});
+
+/**
+ * Endpoint for any user to submit a filled-out form
+ */
+formsRouter.post("/form-to-submit", async (request, response) => {
+  const username = request.body.username;
+  const formId = new ObjectId(request.body.formId);
+
+  const { matchedCount } = await userCollection.updateOne(
+    { username, "forms._id": formId },
+    { $push: { "forms.$.submissions": request.body.submissions } }
+  );
+
+  if (matchedCount === 0) {
+    return response.status(4041).json({ error: "Couldn't submit the form" });
+  }
+
+  return response.sendStatus(200);
 });
 
 export default formsRouter;

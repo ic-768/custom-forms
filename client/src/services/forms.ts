@@ -8,28 +8,35 @@ const setToken = (newToken: string) => {
   token = `bearer ${newToken}`;
 };
 
+/**
+ * Get a user form
+ */
 const asyncGetForm = async (username: string, formId: string) => {
   try {
     const config = { headers: { username, formId } };
     const response = await axios.get("/forms/form-to-submit", config);
     return response.data;
   } catch (e) {
-    console.log(e);
     throw new Error("Error fetching forms " + e);
   }
 };
 
+/**
+ * Get all of signed-in user's forms
+ */
 const asyncGetForms = async (token: string) => {
   try {
     const config = { headers: { Authorization: token } };
     const response = await axios.get("/forms", config);
     return response.data;
   } catch (e) {
-    console.log(e);
     throw new Error("Error fetching forms " + e);
   }
 };
 
+/**
+ * Create a new form
+ */
 const asyncPostForm = async (formData: IForm, token: string) => {
   try {
     const config = { headers: { Authorization: token } };
@@ -40,6 +47,9 @@ const asyncPostForm = async (formData: IForm, token: string) => {
   }
 };
 
+/**
+ * Update a form
+ */
 const asyncUpdateForm = async (formData: IForm, token: string) => {
   try {
     const config = { headers: { Authorization: token } };
@@ -50,6 +60,9 @@ const asyncUpdateForm = async (formData: IForm, token: string) => {
   }
 };
 
+/**
+ * Delete a form
+ */
 const asyncDeleteForm = async (formId: IForm["_id"], token: string) => {
   try {
     const config = { headers: { Authorization: token }, data: { formId } };
@@ -60,6 +73,9 @@ const asyncDeleteForm = async (formId: IForm["_id"], token: string) => {
   }
 };
 
+/**
+ * Batch - delete forms
+ */
 const asyncDeleteMultipleForms = async (
   formIds: IForm["_id"][],
   token: string
@@ -73,9 +89,20 @@ const asyncDeleteMultipleForms = async (
   }
 };
 
-const asyncSubmitForm = async (submissions: any[]) => {
+/**
+ * Submit a filled-out form
+ */
+const asyncSubmitForm = async (
+  username: string,
+  formId: IForm["_id"],
+  submissions: any[]
+) => {
   try {
-    const response = await axios.post("/forms/form-to-submit", { submissions });
+    const response = await axios.post("/forms/form-to-submit", {
+      username,
+      formId,
+      submissions,
+    });
     return response.data;
   } catch (e) {
     throw new Error("Error submitting form: " + e);
