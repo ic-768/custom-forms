@@ -1,8 +1,9 @@
 import { MouseEventHandler } from "react";
 import { Link } from "react-router-dom";
-import { IForm } from "../../../../resources/shared";
 import { faCopy, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { IForm } from "../../../../resources/shared";
 
 import "./FormListItem.scss";
 
@@ -23,6 +24,9 @@ const FormListItem = ({
 }: IFormListItem) => {
   const { name, _id } = form;
 
+  const numSubmissions = form.submissions.length;
+  const formId = _id?.toString();
+
   return (
     <div onClick={onSelectForm} className="form-list-item">
       <input
@@ -31,8 +35,15 @@ const FormListItem = ({
         className="form-list-item-checkbox"
         type="checkbox"
       />
-      <Link className="form-list-item-name" to={`edit/${_id!.toString()}`}>
+      <Link className="form-list-item-name" to={`edit/${formId}`}>
         {name}
+      </Link>
+      <Link
+        className="form-list-submission-count"
+        title={`${numSubmissions} Submissions`}
+        to={`submissions/${formId}`}
+      >
+        {numSubmissions}
       </Link>
       <div className="form-list-item-buttons">
         <FontAwesomeIcon

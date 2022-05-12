@@ -14,6 +14,7 @@ import FormBuilderHeader from "./components/FormBuilderHeader";
 import FormPreview from "./views/FormPreview";
 import FormEditor from "./views/FormEditor";
 import FormsView from "./views/FormsView";
+import SubmissionsView from "./views/SubmissionsView/SubmissionsView";
 
 import "./FormBuilder.scss";
 
@@ -72,18 +73,7 @@ const FormBuilder = () => {
             />
           }
         />
-        {/* preview a form */}
-        <Route
-          path=":id"
-          element={
-            <FormPreview
-              forms={forms}
-              form={editedForm}
-              setForm={setEditedForm}
-            />
-          }
-        />
-        {/* edit a form */}
+        {/* Edit a form */}
         <Route
           path="edit/:id" // either id or 'new'
           element={
@@ -94,6 +84,23 @@ const FormBuilder = () => {
               editedComponent={editedComponent}
               setEditedComponent={setEditedComponent}
               token={token}
+            />
+          }
+        />
+        {/* View form's submissions */}
+        <Route
+          path="submissions/:id"
+          element={<SubmissionsView forms={forms} />}
+        />
+
+        {/* Preview a form */}
+        <Route
+          path=":id"
+          element={
+            <FormPreview
+              forms={forms}
+              form={editedForm}
+              setForm={setEditedForm}
             />
           }
         />

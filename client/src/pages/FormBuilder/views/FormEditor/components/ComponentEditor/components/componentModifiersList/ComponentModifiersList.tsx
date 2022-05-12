@@ -129,8 +129,9 @@ const ComponentModifiersList = ({
           />
           {FontSizeModifier}
           {HeightModifier}
-          {BorderColorModifier}
+          {BorderRadiusModifier}
           {BorderTypeModifier}
+          {BorderColorModifier}
           {MarginModifier}
         </>
       );
@@ -140,6 +141,7 @@ const ComponentModifiersList = ({
           {TitleModifier}
           {HeightModifier}
           {BorderColorModifier}
+          {BorderRadiusModifier}
           {BorderTypeModifier}
           {MarginModifier}
           <DropdownOptions
@@ -156,8 +158,8 @@ const ComponentModifiersList = ({
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
-          {BorderColorModifier}
           {BorderTypeModifier}
+          {BorderColorModifier}
           {MarginModifier}
         </>
       );
@@ -168,8 +170,8 @@ const ComponentModifiersList = ({
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
-          {BorderColorModifier}
           {BorderTypeModifier}
+          {BorderColorModifier}
           {MarginModifier}
           <MinMax
             min={component.min}
@@ -190,8 +192,8 @@ const ComponentModifiersList = ({
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
-          {BorderColorModifier}
           {BorderTypeModifier}
+          {BorderColorModifier}
           {MarginModifier}
         </>
       );
@@ -202,8 +204,8 @@ const ComponentModifiersList = ({
           {FontSizeModifier}
           {HeightModifier}
           {BorderRadiusModifier}
-          {BorderColorModifier}
           {BorderTypeModifier}
+          {BorderColorModifier}
           {MarginModifier}
         </>
       );
@@ -218,8 +220,8 @@ const ComponentModifiersList = ({
           />
           {FontSizeModifier}
           {BorderRadiusModifier}
-          {BorderColorModifier}
           {BorderTypeModifier}
+          {BorderColorModifier}
           {MarginModifier}
         </>
       );

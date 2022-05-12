@@ -33,6 +33,25 @@
   }
 }
 
+.form-list-submission-count {
+  text-decoration: none;
+  display: flex;
+  margin-left: 10px;
+  color: black;
+  background-color: lightgray;
+  height: 25px;
+  width: 25px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+
+  &:hover {
+    color: white;
+    background-color: darkgray;
+    transition: all 0.15s ease;
+  }
+}
+
 .form-list-item-buttons {
   display: flex;
   margin-left: auto;

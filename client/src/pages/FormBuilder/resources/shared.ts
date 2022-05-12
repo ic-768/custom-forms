@@ -6,9 +6,14 @@ import { IFormComponent } from "../components/FormComponent";
  * A single user form
  */
 interface IForm {
+  // Form name
   name: string;
-  components: IFormComponent[];
+  // ID given assigned from backend when first created
   _id?: string;
+  // The components that make up the form
+  components: IFormComponent[];
+  // Info from all the times this form has been filled out.
+  submissions: any[];
 }
 
 /**
@@ -25,6 +30,7 @@ type IEditedComponent = {
 const emptyForm: IForm = {
   name: "",
   components: [{ type: "Text", id: uuid() }],
+  submissions: [],
 };
 
 export { emptyForm };

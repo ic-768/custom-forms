@@ -42,13 +42,8 @@ const App = (): ReactElement => {
         <Route path="submit/:user/:formId" element={<FormSubmission />} />
 
         {/* Route for users to build forms if they're logged in, or the homepage if they're not */}
-        <Route
-          path="*"
-          element={user ? <FormBuilder /> : <LandingPage />}
-        ></Route>
+        <Route path="*" element={user ? <FormBuilder /> : <LandingPage />} />
       </Routes>
-
-      {}
     </>
   );
 };

@@ -30,13 +30,14 @@
 
 .home-view-intro-subtitle {
   color: white;
-  font-size: 16px;
+  font-size: 22px;
 }
 
 .home-view-intro-get-started-container {
   margin-top: 90px;
   width: 300px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: #ae59ff;
+  box-shadow: 0px 0px 5px 1px white;
   padding: 20px;
   border-radius: 20px;
   display: flex;
@@ -70,7 +71,7 @@
   content: "";
   width: 0%;
   border-bottom: 4px solid var(--highlight-blue);
-  transition: width 0.25s;
+  transition: width 0.15s ease;
   left: 0px;
   top: 20px;
 }
@@ -85,7 +86,7 @@
 }
 
 .home-view-form-image {
-  margin-top: 220px;
+  margin-top: 120px;
   border: 1px solid var(--input-border-color);
   border-radius: 20px;
 }
