@@ -14,11 +14,12 @@ const BorderColor = ({ color, onChange }: IBorderColor) => {
   const [showColor, setShowColor] = useState(false);
 
   return (
-    <>
-      <InputContainer
-        title="Border color"
-        subtitle="Set the color for the borders of the input"
-        component={
+    <InputContainer
+      title="Border color"
+      subtitle="Set the color for the borders of the input"
+      className="bolor-color-input-container"
+      component={
+        <>
           <div
             style={{ backgroundImage: "url(/images/picker-background.png)" }}
             className="border-color-modifier-input-container"
@@ -31,17 +32,18 @@ const BorderColor = ({ color, onChange }: IBorderColor) => {
               className="border-color-modifier-input-color-block"
             />
           </div>
-        }
-      />
-      {showColor && (
-        <div
-          className="border-color-modifier-picker-container"
-          onMouseLeave={() => setShowColor(false)}
-        >
-          <ChromePicker color={color} onChange={onChange} />
-        </div>
-      )}
-    </>
+
+          {showColor && (
+            <div
+              className="border-color-modifier-picker-container"
+              onMouseLeave={() => setShowColor(false)}
+            >
+              <ChromePicker color={color} onChange={onChange} />
+            </div>
+          )}
+        </>
+      }
+    />
   );
 };
 

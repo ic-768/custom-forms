@@ -1,3 +1,7 @@
+.bolor-color-input-container {
+  position: relative;
+}
+
 .border-color-modifier-input-container {
   cursor: pointer;
   width: 100%;
@@ -10,5 +14,7 @@
 }
 
 .border-color-modifier-picker-container {
-  width: 225px;
+  z-index: 1;
+  position: absolute;
+  top: 68px; // input container's height
 }
