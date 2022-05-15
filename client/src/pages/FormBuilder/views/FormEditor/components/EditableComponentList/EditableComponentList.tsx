@@ -1,5 +1,11 @@
 import { MouseEventHandler, useMemo } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DroppableStateSnapshot,
+  DropResult,
+} from "react-beautiful-dnd";
 
 import EditableComponent from "../EditableComponent";
 import { IEditedComponent, IForm } from "../../../../resources/shared";
@@ -29,7 +35,11 @@ const EditableComponentList = ({
   setEditedForm,
 }: IEditableComponentList) => {
   // function to reorder items in an array
-  const reorder = (components: any[], startIndex: number, endIndex: number) => {
+  const reorder = (
+    components: IForm["components"],
+    startIndex: number,
+    endIndex: number
+  ) => {
     const result = Array.from(components);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
@@ -38,7 +48,7 @@ const EditableComponentList = ({
   };
 
   // reorder components on drag and drop
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     if (result.destination) {
       setEditedForm({
         ...editedForm,
@@ -58,7 +68,8 @@ const EditableComponentList = ({
   );
 
   // hide draghandle while dragging
-  const showDragHandle = (snapshot: any) => !snapshot.isDraggingOver;
+  const showDragHandle = (snapshot: DroppableStateSnapshot) =>
+    !snapshot.isDraggingOver;
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>

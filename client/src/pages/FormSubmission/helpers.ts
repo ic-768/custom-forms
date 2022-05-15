@@ -1,19 +1,19 @@
+import { ChangeEvent, SetStateAction } from "react";
 import { IFormComponent } from "../FormBuilder/components/FormComponent";
+import { IMultipleChoiceOption } from "../FormBuilder/components/inputs/inputComponents/MultipleChoiceInput";
+import { IForm } from "../FormBuilder/resources/shared";
 
 /**
  * Helper functions used to enrich the component with appropriate onChange
  * hooks and state values
  */
-
 export const addOnChange = (
   component: IFormComponent,
   idx: number,
   setSubmissions: Function,
-  submissions: any[]
+  submissions: IForm["submissions"]
 ) => {
   switch (component.type) {
-    // TODO switch statement doesn't seem to narrow the onChange type down correctly,
-    // so using any in onChange for now...
     case "Text":
     case "Number":
     case "Range":
@@ -21,7 +21,7 @@ export const addOnChange = (
     case "Date":
       return {
         ...component,
-        onChange: (e: any) => {
+        onChange: (e: ChangeEvent<HTMLInputElement>) => {
           setSubmissions(
             submissions.map((s, i) => (i === idx ? e.target.value : s))
           );
@@ -31,7 +31,7 @@ export const addOnChange = (
     case "Dropdown":
       return {
         ...component,
-        onChange: (v: any) => {
+        onChange: (v: string | SetStateAction<IMultipleChoiceOption[]>) => {
           setSubmissions(submissions.map((s, i) => (i === idx ? v : s)));
         },
       };
@@ -43,7 +43,7 @@ export const addOnChange = (
 export const addState = (
   component: IFormComponent,
   idx: number,
-  submissions: any[]
+  submissions: IForm["submissions"]
 ) => {
   switch (component.type) {
     case "Text":

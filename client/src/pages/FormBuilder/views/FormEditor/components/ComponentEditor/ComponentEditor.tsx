@@ -11,7 +11,7 @@ interface IComponentEditor {
   editedComponent: IEditedComponent;
   setEditedComponent: (component: IEditedComponent) => void;
   form: IForm;
-  setForm: (form: any) => void;
+  setForm: (form: IForm) => void;
 }
 
 /**

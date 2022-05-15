@@ -95,7 +95,7 @@ const asyncDeleteMultipleForms = async (
 const asyncSubmitForm = async (
   username: string,
   formId: IForm["_id"],
-  submissions: any[]
+  submissions: IForm["submissions"]
 ) => {
   try {
     const response = await axios.post("/forms/form-to-submit", {

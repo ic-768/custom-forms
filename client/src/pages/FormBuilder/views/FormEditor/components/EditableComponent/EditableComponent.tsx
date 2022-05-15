@@ -1,4 +1,4 @@
-import { forwardRef, MouseEventHandler } from "react";
+import { ForwardedRef, forwardRef, MouseEventHandler } from "react";
 import {
   faBars,
   faMinusCircle,
@@ -20,7 +20,7 @@ import "./EditableComponent.scss";
  * Component that can be dragged to be reordered and edited by clicking accompanying buttons
  */
 interface IEditableComponent {
-  ref?: any;
+  ref?: ForwardedRef<HTMLDivElement>;
   draggableProps?: DraggableProvidedDraggableProps;
   dragHandleProps?: DraggableProvidedDragHandleProps;
   component: IFormComponent;
@@ -39,7 +39,7 @@ const EditableComponent = forwardRef(
       onSelectComponent,
       onDeleteComponent,
     }: IEditableComponent,
-    ref: any
+    ref: ForwardedRef<HTMLDivElement>
   ) => (
     <div
       ref={ref}
