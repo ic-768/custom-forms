@@ -14,7 +14,7 @@ import FormBuilderHeader from "./components/FormBuilderHeader";
 import FormPreview from "./views/FormPreview";
 import FormEditor from "./views/FormEditor";
 import FormsView from "./views/FormsView";
-import SubmissionsView from "./views/SubmissionsView/SubmissionsView";
+import ResponsesView from "./views/ResponsesView";
 
 import "./FormBuilder.scss";
 
@@ -90,7 +90,7 @@ const FormBuilder = () => {
         {/* View form's submissions */}
         <Route
           path="submissions/:id"
-          element={<SubmissionsView forms={forms} />}
+          element={<ResponsesView forms={forms} />}
         />
 
         {/* Preview a form */}
