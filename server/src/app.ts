@@ -9,6 +9,7 @@ import formsRouter from "./controllers/forms";
 const app = express();
 
 app.use(express.json());
+app.use(express.static("build"));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use("/add-user", userRouter);

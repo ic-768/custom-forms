@@ -2,10 +2,11 @@
   "name": "custom-forms-server",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/app.js",
+  "main": "dist/src/app.js",
   "scripts": {
-    "start": "nodemon src/app.ts",
+    "start": "node dist/src/app.js",
     "monitor": "nodemon src/app.ts",
+    "postinstall": "tsc",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
