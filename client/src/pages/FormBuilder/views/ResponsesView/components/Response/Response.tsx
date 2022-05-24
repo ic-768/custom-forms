@@ -13,11 +13,7 @@ const Response = ({ answers }: { answers: any[] }) => {
     </div>
   ));
 
-  return (
-    <div onClick={() => setIsExpanded(!isExpanded)}>
-      <div>{responses}</div>
-    </div>
-  );
+  return <div className="response-container">{responses}</div>;
 };
 
 export default Response;

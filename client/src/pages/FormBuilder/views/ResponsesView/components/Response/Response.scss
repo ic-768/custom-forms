@@ -1,3 +1,10 @@
+.response-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-bottom: 1px solid var(--input-border-color);
+}
+
 .response-title {
   display: block;
   font-size: 20px;

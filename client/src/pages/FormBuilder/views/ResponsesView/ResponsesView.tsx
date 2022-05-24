@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 
 import { IForm } from "../../resources/shared";
 import ModeToggle from "./components/ModeToggle";
-import Response from "./components/Response";
+import IndividualView from "./views/IndividualView";
+import SummaryView from "./views/SummaryView";
 
 import "./ResponsesView.scss";
 
@@ -20,16 +21,7 @@ const ResponsesView = ({ forms }: { forms: IForm[] }) => {
     }
   }, [forms, formIdFromUrl]);
 
-  const responses = form?.submissions.map((s, i) => (
-    <Response answers={s} key={`${i}-${s.length}`} />
-  ));
-
   const submissionsLength = form?.submissions.length;
-  const responsesView = submissionsLength ? (
-    <div className="responses-view">{responses}</div>
-  ) : (
-    <span className="responses-view">No submissions yet</span>
-  );
 
   return (
     <div className="responses-view-container">
@@ -40,7 +32,10 @@ const ResponsesView = ({ forms }: { forms: IForm[] }) => {
       <span className="responses-view-submission-count">
         {submissionsLength} Submissions
       </span>
-      {responsesView}
+      {viewMode === "individual" && (
+        <IndividualView responses={form?.submissions} />
+      )}
+      {viewMode === "summary" && <SummaryView responses={form?.submissions} />}
     </div>
   );
 };

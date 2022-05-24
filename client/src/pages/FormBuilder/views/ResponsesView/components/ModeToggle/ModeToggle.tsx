@@ -2,13 +2,13 @@ import classNames from "classnames";
 
 import "./ModeToggle.scss";
 
-const ModeToggle = ({
-  viewMode,
-  setViewMode,
-}: {
-  viewMode: "individual" | "summary";
-  setViewMode: (mode: "individual" | "summary") => void;
-}) => {
+type viewMode = "individual" | "summary";
+interface IModeToggle {
+  viewMode: viewMode;
+  setViewMode: (mode: viewMode) => void;
+}
+
+const ModeToggle = ({ viewMode, setViewMode }: IModeToggle) => {
   const individualToggleClasses = classNames({
     "components-view-mode-toggle": true,
     active: viewMode === "individual",
@@ -20,18 +20,18 @@ const ModeToggle = ({
   });
   return (
     <div className="components-view-mode-toggle-container">
-      <span
+      <button
         className={individualToggleClasses}
         onClick={() => setViewMode("individual")}
       >
         Individual
-      </span>
-      <span
+      </button>
+      <button
         className={summaryToggleClasses}
         onClick={() => setViewMode("summary")}
       >
         Summary
-      </span>
+      </button>
     </div>
   );
 };

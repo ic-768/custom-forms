@@ -5,18 +5,25 @@
   height: 40px;
   border: 1px solid black;
   border-radius: 10px;
-  gap: 12px;
 }
 
 .components-view-mode-toggle {
+  border:none;
   box-sizing: border-box;
   padding: 10px;
   display: flex;
   align-items: center;
   height: 100%;
+  cursor:pointer;
+  font-size:16px;
+  background-color:unset;
+
+  &:hover{
+    background-color: #dddddd;
+  }
 
   &.active {
-    background-color: blue;
+    background-color: #8d5eff;
     color: white;
   }
 }
