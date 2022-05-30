@@ -3,22 +3,22 @@
   display: flex;
   align-items: center;
   height: 40px;
-  border: 1px solid black;
   border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px lightgray;
 }
 
 .components-view-mode-toggle {
-  border:none;
+  background-color: white;
+  border: none;
   box-sizing: border-box;
   padding: 10px;
   display: flex;
   align-items: center;
   height: 100%;
-  cursor:pointer;
-  font-size:16px;
-  background-color:unset;
+  cursor: pointer;
+  font-size: 16px;
 
-  &:hover{
+  &:hover {
     background-color: #dddddd;
   }
 
