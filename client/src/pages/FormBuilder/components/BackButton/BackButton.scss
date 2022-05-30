@@ -1,0 +1,13 @@
+.back-button {
+  position: absolute;
+  margin: 10px;
+  font-size: 20px;
+  transition: color 0.15s ease;
+  color: unset;
+  top: 100px;
+  left: 10px;
+
+  &:hover {
+    color: var(--highlight-blue);
+  }
+}

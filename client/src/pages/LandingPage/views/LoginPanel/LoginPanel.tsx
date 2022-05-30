@@ -1,8 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 import { setToken } from "../../../../services/forms";
 import { login } from "../../../../services/login";
@@ -12,6 +10,7 @@ import { TextInput } from "../../../FormBuilder/components/inputs/inputComponent
 import PasswordInput from "../../components/PasswordInput";
 
 import "./LoginPanel.scss";
+import BackButton from "../../../FormBuilder/components/BackButton";
 
 const LoginPanel = () => {
   const [username, setUsername] = useState("");
@@ -42,9 +41,7 @@ const LoginPanel = () => {
 
   return (
     <form className="login-panel-container" onSubmit={onLogin}>
-      <Link className="login-panel-back-arrow" to="/">
-        <FontAwesomeIcon icon={faArrowLeft} />
-      </Link>
+      <BackButton className="login-panel-back-arrow" />
       <span className="login-panel-container-title">Log In</span>
       <TextInput
         autoFocus

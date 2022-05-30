@@ -15,18 +15,9 @@
   align-items: center;
   padding: 40px;
   gap: 10px;
-}
 
-.login-panel-back-arrow {
-  position: absolute;
-  font-size: 20px;
-  top: 20px;
-  left: 20px;
-  transition: color 0.15s ease;
-  color: unset;
-
-  &:hover {
-    color: var(--highlight-blue);
+  .login-panel-back-arrow {
+    top: 20px;
   }
 }
 

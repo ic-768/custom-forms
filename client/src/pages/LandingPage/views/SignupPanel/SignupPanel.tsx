@@ -1,7 +1,5 @@
 import { FormEvent, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 import { useNotification, useWithLoader } from "../../../../store/hooks";
 import PasswordInput from "../../components/PasswordInput";
@@ -9,6 +7,7 @@ import { TextInput } from "../../../FormBuilder/components/inputs/inputComponent
 import { signup } from "../../../../services/signup";
 
 import "./SignupPanel.scss";
+import BackButton from "../../../FormBuilder/components/BackButton";
 
 const SignupPanel = () => {
   const [username, setUsername] = useState("");
@@ -40,9 +39,7 @@ const SignupPanel = () => {
 
   return (
     <form className="signup-panel-container" onSubmit={onSignup}>
-      <Link className="signup-panel-back-arrow" to="/">
-        <FontAwesomeIcon icon={faArrowLeft} />
-      </Link>
+      <BackButton className="signup-panel-back-arrow" />
       <span className="signup-panel-container-title">Sign Up</span>
       <TextInput
         autoFocus

@@ -28,7 +28,6 @@ const SummaryView = ({ responses }: { responses?: any[] }) => {
   }: {
     formattedResponse: [string, string[]];
   }) => {
-    console.log(formattedResponse);
     return (
       <div className="summary-view-response">
         <span className="summary-view-question">{formattedResponse[0]}</span>

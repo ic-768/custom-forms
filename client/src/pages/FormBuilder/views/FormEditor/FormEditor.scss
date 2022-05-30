@@ -29,20 +29,6 @@
   font-size: 18px;
 }
 
-.form-editor-input-go-back-link {
-  position: absolute;
-  margin: 10px;
-  font-size: 20px;
-  transition: color 0.15s ease;
-  color: unset;
-  top: 100px;
-  left: 10px;
-
-  &:hover {
-    color: var(--highlight-blue);
-  }
-}
-
 .form-editor-add-component-button {
   display: flex;
   flex-shrink: 0;

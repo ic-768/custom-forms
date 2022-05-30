@@ -1,12 +1,11 @@
 import { useEffect, Dispatch, ChangeEvent } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { v4 as uuid } from "uuid";
 import {
   faCloudUploadAlt,
   faPlus,
-  faArrowLeft,
   faEye,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,6 +16,7 @@ import {
 import { useNotification, useWithLoader } from "../../../../store/hooks";
 import { TextInput } from "../../components/inputs/inputComponents";
 import { asyncUpdateForm, asyncPostForm } from "../../../../services/forms";
+import BackButton from "../../components/BackButton";
 import EditableComponentList from "./components/EditableComponentList";
 import ComponentEditor from "./components/ComponentEditor";
 import { IForm, IEditedComponent, emptyForm } from "../../resources/shared";
@@ -150,13 +150,7 @@ const FormEditor = ({
 
   return (
     <div className="form-editor-container">
-      <Link
-        className="form-editor-input-go-back-link"
-        to="/"
-        onClick={onGoBack}
-      >
-        <FontAwesomeIcon title="Go back" icon={faArrowLeft} />
-      </Link>
+      <BackButton onClick={onGoBack} />
       <div className="form-editor">
         <TextInput
           className="form-editor-form-title"

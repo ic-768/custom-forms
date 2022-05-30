@@ -5,6 +5,7 @@ import { IForm } from "../../resources/shared";
 import ModeToggle from "./components/ModeToggle";
 import IndividualView from "./views/IndividualView";
 import SummaryView from "./views/SummaryView";
+import BackButton from "../../components/BackButton";
 
 import "./ResponsesView.scss";
 
@@ -25,6 +26,7 @@ const ResponsesView = ({ forms }: { forms: IForm[] }) => {
 
   return (
     <div className="responses-view-container">
+      <BackButton />
       {form?.name && (
         <span className="responses-view-form-name">{form.name}</span>
       )}
