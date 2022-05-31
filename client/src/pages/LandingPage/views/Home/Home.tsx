@@ -33,42 +33,6 @@ const Home = () => (
     <svg className="home-view-image-bottom-dot" height="100" width="100">
       <circle cx="50" cy="50" r="20" fill="#8d5eff" />
     </svg>
-
-    <div className="home-view-descriptions-column">
-      <div className="home-view-description-section">
-        <div className="home-view-description-section-text-section">
-          <div className="home-view-rocket-icon-container">
-            <FontAwesomeIcon
-              icon={faRocket}
-              className="home-view-rocket-icon"
-            />
-          </div>
-          <div className="home-view-description-section-text-section">
-            <span className="home-view-description-title">Quick Start</span>
-            <span className="home-view-description-text">
-              Share personalized forms with your audience in a matter of
-              moments, using feature-rich and endlessly customisable input types
-              and form components.
-            </span>
-          </div>
-        </div>
-        <img
-          className="home-view-description-image"
-          src="images/inputTypes.png"
-          alt=""
-        />
-      </div>
-
-      <div className="home-view-centered-description-section">
-        <span className="home-view-description-centered-title">
-          Complete creative freedom
-        </span>
-        <span>
-          Finally be able to fully communicate with your respondents and design
-          your survey exactly how you want it
-        </span>
-      </div>
-    </div>
   </div>
 );
 
