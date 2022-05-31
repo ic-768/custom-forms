@@ -22,6 +22,7 @@ import ComponentEditor from "./components/ComponentEditor";
 import { IForm, IEditedComponent, emptyForm } from "../../resources/shared";
 
 import "./FormEditor.scss";
+import { IFormComponent } from "../../components/FormComponent";
 
 interface IFormEditor {
   forms: IForm[];
@@ -111,11 +112,10 @@ const FormEditor = ({
 
   // Add component to form and set editedComponent's index to shadow the new component for editing
   const onAddNewComponent = () => {
-    const component = {
+    const component: IFormComponent = {
       type: "Text",
-      label: "",
       id: uuid(),
-    } as const;
+    };
 
     setEditedForm({
       ...editedForm,

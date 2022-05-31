@@ -14,6 +14,7 @@ import {
   Margin,
   TextBody,
 } from "../componentModifiers";
+import { BorderWidth } from "../componentModifiers/BorderType/BorderType";
 import { IFormComponent } from "../../../../../../components/FormComponent";
 
 interface IComponentModifiersList {
@@ -96,7 +97,7 @@ const ComponentModifiersList = ({
   const BorderTypeModifier = (
     <BorderType
       borderWidth={
-        (component.style?.borderWidth as string) || "1px 1px 1px 1px"
+        (component.style?.borderWidth as BorderWidth) || "1px 1px 1px 1px"
       }
       onChange={(t) => {
         onChangeStyle("borderWidth", t);

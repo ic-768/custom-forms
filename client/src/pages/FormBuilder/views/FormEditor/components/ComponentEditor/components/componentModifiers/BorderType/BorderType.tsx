@@ -1,19 +1,28 @@
 import { DropdownInput } from "../../../../../../../components/inputs/inputComponents";
 
+const borderWidths = {
+  Box: "1px 1px 1px 1px",
+  Underline: "0px 0px 1px 0px",
+  None: "0px 0px 0px 0px",
+} as const;
+
+type BorderStyle = keyof typeof borderWidths;
+export type BorderWidth = typeof borderWidths[BorderStyle];
+
 interface IBorderType {
-  borderWidth: string;
-  onChange: (borderType: string) => void;
+  borderWidth: BorderWidth;
+  onChange: (borderType: BorderWidth) => void;
 }
 
 /**
  * Allows user to choose which border sides will be colored
  */
 const BorderType = ({ borderWidth, onChange }: IBorderType) => {
-  const borderTypeForWidth = () => {
+  const borderTypeForWidth = (): BorderStyle => {
     switch (borderWidth) {
-      case "1px 1px 1px 1px":
+      case borderWidths.Box:
         return "Box";
-      case "0px 0px 1px 0px":
+      case borderWidths.Underline:
         return "Underline";
       default:
         return "None";
@@ -21,14 +30,14 @@ const BorderType = ({ borderWidth, onChange }: IBorderType) => {
   };
 
   // Parse the other way
-  const borderWidthForType = (type: string) => {
+  const borderWidthForType = (type: string): BorderWidth => {
     switch (type) {
       case "Box":
-        return "1px 1px 1px 1px";
+        return borderWidths.Box;
       case "Underline":
-        return "0px 0px 1px 0px";
+        return borderWidths.Underline;
       default:
-        return "0px 0px 0px 0px";
+        return borderWidths.None;
     }
   };
 

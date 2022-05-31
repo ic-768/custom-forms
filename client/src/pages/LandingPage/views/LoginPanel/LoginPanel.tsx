@@ -8,9 +8,9 @@ import { setUser } from "../../../../store/features/user/userSlice";
 import { useNotification, useWithLoader } from "../../../../store/hooks";
 import { TextInput } from "../../../FormBuilder/components/inputs/inputComponents";
 import PasswordInput from "../../components/PasswordInput";
+import BackButton from "../../../FormBuilder/components/BackButton";
 
 import "./LoginPanel.scss";
-import BackButton from "../../../FormBuilder/components/BackButton";
 
 const LoginPanel = () => {
   const [username, setUsername] = useState("");

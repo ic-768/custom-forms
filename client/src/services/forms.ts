@@ -11,13 +11,15 @@ const setToken = (newToken: string) => {
 /**
  * Get a user form
  */
-const asyncGetForm = async (username: string, formId: string) => {
-  try {
-    const config = { headers: { username, formId } };
-    const response = await axios.get("/forms/form-to-submit", config);
-    return response.data;
-  } catch (e) {
-    throw new Error("Error fetching forms " + e);
+const asyncGetForm = async (username: string, formId: IForm["_id"]) => {
+  if (formId) {
+    try {
+      const config = { headers: { username, formId } };
+      const response = await axios.get("/forms/form-to-submit", config);
+      return response.data;
+    } catch (e) {
+      throw new Error("Error fetching forms " + e);
+    }
   }
 };
 
