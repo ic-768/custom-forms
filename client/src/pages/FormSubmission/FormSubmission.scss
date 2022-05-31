@@ -1,6 +1,6 @@
 .form-submission-view-background {
   height: 100vh;
- background-color:#f4f5f8;
+  background-color: #f4f5f8;
 }
 
 .form-submission-view-container {
@@ -10,12 +10,12 @@
 }
 
 .form-submission-view-form-container {
-	display:flex;
-	flex-direction:column;
+  display: flex;
+  flex-direction: column;
   margin-top: 30px;
   display: flex;
   justify-content: center;
-  width: 50vw;
+  min-width: 50vw;
 }
 
 .form-submission-view-form-content {
@@ -26,7 +26,6 @@
   box-shadow: #b1b0b5 0 0 2px 1px;
   padding: 40px;
   min-height: 80vh;
-  width: 100%;
   gap: 10px;
   background-color: white;
 }
