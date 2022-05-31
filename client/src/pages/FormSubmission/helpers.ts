@@ -44,7 +44,7 @@ export const addState = (
   component: IFormComponent,
   idx: number,
   submissions: IForm["submissions"]
-) => {
+): IFormComponent => {
   switch (component.type) {
     case "Text":
     case "Number":

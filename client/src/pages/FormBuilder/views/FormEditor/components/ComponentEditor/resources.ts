@@ -1,10 +1,10 @@
 import {
+  IconDefinition,
   faPencilAlt,
   faCalculator,
   faListUl,
   faCalendarAlt,
   faStopwatch,
-  IconDefinition,
   faEllipsisV,
   faSlidersH,
   faComment,

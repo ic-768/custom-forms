@@ -1,9 +1,10 @@
 import { MouseEventHandler } from "react";
 import { Link } from "react-router-dom";
-import { faCopy, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCopy, faLink, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { IForm } from "../../../../resources/shared";
+import { useAppSelector, useNotification } from "../../../../../../store/hooks";
 
 import "./FormListItem.scss";
 
@@ -23,9 +24,24 @@ const FormListItem = ({
   onCopyForm,
 }: IFormListItem) => {
   const { name, _id } = form;
+  const username = useAppSelector((state) => state.user.username);
+  const notify = useNotification();
 
   const numSubmissions = form.submissions.length;
   const formId = _id?.toString();
+  const onCopyURL: MouseEventHandler<SVGSVGElement> = (e) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(
+      `${window.location.origin}/submit/${username}/${formId}`
+    );
+    notify(
+      {
+        message: "Copied link to clipboard",
+        type: "success",
+      },
+      3000
+    );
+  };
 
   return (
     <div onClick={onSelectForm} className="form-list-item">
@@ -45,6 +61,13 @@ const FormListItem = ({
       >
         {numSubmissions}
       </Link>
+      <FontAwesomeIcon
+        role="button"
+        title="Copy form URL"
+        className="form-list-link-icon"
+        icon={faLink}
+        onClick={onCopyURL}
+      />
       <div className="form-list-item-buttons">
         <FontAwesomeIcon
           title="Create a copy"

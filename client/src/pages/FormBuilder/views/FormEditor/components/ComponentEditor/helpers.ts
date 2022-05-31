@@ -1,8 +1,8 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
+import { IDropdownOption } from "../../../../components/inputs/inputComponents/DropdownInput";
 import { componentLabelToIcon } from "./resources";
 import { componentTypes } from "./resources";
-import { IDropdownOption } from "../../../../components/inputs/inputComponents/DropdownInput";
 
 /**
  * Function that takes the input type and returns its corresponding icon

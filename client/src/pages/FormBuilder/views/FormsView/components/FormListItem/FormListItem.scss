@@ -52,6 +52,15 @@
   }
 }
 
+.form-list-link-icon {
+  cursor: pointer;
+  margin-left: 20px;
+
+  &:hover {
+    color: var(--highlight-blue);
+  }
+}
+
 .form-list-item-buttons {
   display: flex;
   margin-left: auto;
