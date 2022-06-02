@@ -1,4 +1,4 @@
-import { useEffect, Dispatch, ChangeEvent } from "react";
+import { useEffect, Dispatch, ChangeEvent, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,9 +20,11 @@ import BackButton from "../../components/BackButton";
 import EditableComponentList from "./components/EditableComponentList";
 import ComponentEditor from "./components/ComponentEditor";
 import { IForm, IEditedComponent, emptyForm } from "../../resources/shared";
+import { IFormComponent } from "../../components/FormComponent";
+import SettingsButton from "./components/SettingsButton";
+import FormStyleEditor from "./components/FormStyleEditor";
 
 import "./FormEditor.scss";
-import { IFormComponent } from "../../components/FormComponent";
 
 interface IFormEditor {
   forms: IForm[];
@@ -44,6 +46,9 @@ const FormEditor = ({
   setEditedComponent,
   token,
 }: IFormEditor) => {
+  // If form styles are being edited
+  const [editingFormStyle, setEditingFormStyle] = useState(false);
+
   const formIdFromUrl = useParams().id;
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -148,9 +153,15 @@ const FormEditor = ({
     setEditedForm(emptyForm);
   };
 
+  const onEditFormStyles = () => setEditingFormStyle(true);
+  const onFormStyleEditCancel = () => setEditingFormStyle(false);
+
   return (
     <div className="form-editor-container">
       <BackButton onClick={onGoBack} />
+      {!editedComponent && !editingFormStyle && (
+        <SettingsButton onClick={onEditFormStyles} />
+      )}
       <div className="form-editor">
         <TextInput
           className="form-editor-form-title"
@@ -159,6 +170,7 @@ const FormEditor = ({
           onChange={onEditFormName}
         />
         <EditableComponentList
+          editingFormStyle={editingFormStyle}
           components={editedForm.components}
           editedComponent={editedComponent}
           onSelectComponent={onSelectComponent}
@@ -166,6 +178,9 @@ const FormEditor = ({
           editedForm={editedForm}
           setEditedForm={setEditedForm}
         />
+        {editingFormStyle && (
+          <FormStyleEditor onCancel={onFormStyleEditCancel} />
+        )}
         {editedComponent ? (
           <ComponentEditor
             editedComponent={editedComponent}
@@ -174,17 +189,19 @@ const FormEditor = ({
             setForm={setEditedForm}
           />
         ) : (
-          // render button to add a new component
-          <button
-            onClick={onAddNewComponent}
-            className="form-editor-add-component-button"
-          >
-            <FontAwesomeIcon
+          !editingFormStyle && (
+            // button to add a new component
+            <button
               onClick={onAddNewComponent}
-              title="Add a form component"
-              icon={faPlus}
-            />
-          </button>
+              className="form-editor-add-component-button"
+            >
+              <FontAwesomeIcon
+                onClick={onAddNewComponent}
+                title="Add a form component"
+                icon={faPlus}
+              />
+            </button>
+          )
         )}
       </div>
 

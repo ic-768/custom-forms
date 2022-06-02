@@ -20,6 +20,7 @@ interface IEditableComponentList {
   onDeleteComponent: (index: number) => MouseEventHandler;
   editedForm: IForm;
   setEditedForm: (form: IForm) => void;
+  editingFormStyle: boolean;
 }
 
 /**
@@ -33,6 +34,7 @@ const EditableComponentList = ({
   onDeleteComponent,
   editedForm,
   setEditedForm,
+  editingFormStyle,
 }: IEditableComponentList) => {
   // function to reorder items in an array
   const reorder = (
@@ -61,10 +63,10 @@ const EditableComponentList = ({
     }
   };
 
-  // disallow reordering when editing a component
-  const makeDraggable = useMemo(
-    () => components.length > 1 && !editedComponent,
-    [components.length, editedComponent]
+  // if already editing, disallow editing other components and reordering
+  const showInputControls = useMemo(
+    () => components.length > 1 && !editedComponent && !editingFormStyle,
+    [components.length, editedComponent, editingFormStyle]
   );
 
   // hide draghandle while dragging
@@ -89,7 +91,7 @@ const EditableComponentList = ({
                 : component;
 
               // if not draggable, skip rendering the Draggable wrapper
-              return makeDraggable ? (
+              return showInputControls ? (
                 <Draggable
                   draggableId={component.id || i.toString()}
                   key={component.id}
@@ -102,6 +104,7 @@ const EditableComponentList = ({
                       dragHandleProps={provided.dragHandleProps}
                       key={i}
                       component={componentToUse}
+                      showControls={showInputControls}
                       showDragControl={showDragHandle(droppableSnapshot)}
                       onSelectComponent={onSelectComponent(i)}
                       onDeleteComponent={onDeleteComponent(i)}
@@ -111,8 +114,9 @@ const EditableComponentList = ({
               ) : (
                 <EditableComponent
                   key={i}
+                  showControls={showInputControls}
                   component={componentToUse}
-                  showDragControl={makeDraggable}
+                  showDragControl={showInputControls}
                   onSelectComponent={onSelectComponent(i)}
                   onDeleteComponent={onDeleteComponent(i)}
                 />

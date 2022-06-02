@@ -2,6 +2,12 @@ import { v4 as uuid } from "uuid";
 
 import { IFormComponent } from "../components/FormComponent";
 
+interface IFormStyles {
+  backgroundImage?: string;
+  backgroundColor?: string;
+  buttonStyle?: "floating" | "regular";
+}
+
 /**
  * A single user form
  */
@@ -12,6 +18,8 @@ interface IForm {
   _id?: string;
   // The components that make up the form
   components: IFormComponent[];
+  // general form styles like background color/image, submit button style, etc.
+  styles: IFormStyles;
   // Info from all the times this form has been filled out.
   submissions: any[];
 }
@@ -30,6 +38,7 @@ type IEditedComponent = {
 const emptyForm: IForm = {
   name: "",
   components: [{ type: "Text", id: uuid() }],
+  styles: {},
   submissions: [],
 };
 

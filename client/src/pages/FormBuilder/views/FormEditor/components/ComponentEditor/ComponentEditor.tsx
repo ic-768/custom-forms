@@ -4,8 +4,7 @@ import { DropdownInput } from "../../../../components/inputs/inputComponents";
 import { componentsForDropdown } from "./helpers";
 import { IEditedComponent, IForm } from "../../../../resources/shared";
 import { IFormComponent } from "../../../../components/FormComponent";
-
-import "./ComponentEditor.scss";
+import EditorPartial from "../../../../components/EditorPartial";
 
 interface IComponentEditor {
   editedComponent: IEditedComponent;
@@ -60,33 +59,29 @@ const ComponentEditor = ({
     } as IFormComponent);
 
   return (
-    <div className="component-editor">
-      <div className="component-editor-options-container">
-        <DropdownInput
-          title="Component type"
-          subtitle="The type of form component to add"
-          placeholder="-- Choose a type --"
-          options={componentsForDropdown}
-          onChange={onComponentTypeSelect}
-          selection={editedComponent.component.type}
-          selectionIcon={getComponentIcon(editedComponent.component.type!)}
-        />
-        {editedComponent && (
-          <ComponentModifiersList
-            component={editedComponent.component}
-            onChangeModifiers={editComponent}
+    <EditorPartial
+      onSave={onSave}
+      onCancel={onCancel}
+      content={
+        <>
+          <DropdownInput
+            title="Component type"
+            subtitle="The type of form component to add"
+            placeholder="-- Choose a type --"
+            options={componentsForDropdown}
+            onChange={onComponentTypeSelect}
+            selection={editedComponent.component.type}
+            selectionIcon={getComponentIcon(editedComponent.component.type!)}
           />
-        )}
-      </div>
-      <div className="component-editor-buttons-container">
-        <button onClick={onSave} className="component-editor-save">
-          Save
-        </button>
-        <button onClick={onCancel} className="component-editor-cancel">
-          Cancel
-        </button>
-      </div>
-    </div>
+          {editedComponent && (
+            <ComponentModifiersList
+              component={editedComponent.component}
+              onChangeModifiers={editComponent}
+            />
+          )}
+        </>
+      }
+    />
   );
 };
 

@@ -24,6 +24,7 @@ interface IEditableComponent {
   draggableProps?: DraggableProvidedDraggableProps;
   dragHandleProps?: DraggableProvidedDragHandleProps;
   component: IFormComponent;
+  showControls: boolean;
   showDragControl: boolean;
   onSelectComponent: MouseEventHandler;
   onDeleteComponent: MouseEventHandler;
@@ -35,6 +36,7 @@ const EditableComponent = forwardRef(
       draggableProps,
       dragHandleProps,
       component,
+      showControls,
       showDragControl,
       onSelectComponent,
       onDeleteComponent,
@@ -56,31 +58,31 @@ const EditableComponent = forwardRef(
           />
         </div>
       )}
-
       <FormComponent component={component} />
-
-      <div className="editable-component-buttons">
-        <button
-          onClick={onSelectComponent}
-          className="editable-component-edit-button"
-        >
-          <FontAwesomeIcon
-            className="editable-component-button-icon"
-            title="Edit"
-            icon={faPencilAlt}
-          />
-        </button>
-        <button
-          onClick={onDeleteComponent}
-          className="editable-component-delete-button"
-        >
-          <FontAwesomeIcon
-            className="editable-component-button-icon"
-            title="Remove"
-            icon={faMinusCircle}
-          />
-        </button>
-      </div>
+      {showControls && (
+        <div className="editable-component-buttons">
+          <button
+            onClick={onSelectComponent}
+            className="editable-component-edit-button"
+          >
+            <FontAwesomeIcon
+              className="editable-component-button-icon"
+              title="Edit"
+              icon={faPencilAlt}
+            />
+          </button>
+          <button
+            onClick={onDeleteComponent}
+            className="editable-component-delete-button"
+          >
+            <FontAwesomeIcon
+              className="editable-component-button-icon"
+              title="Remove"
+              icon={faMinusCircle}
+            />
+          </button>
+        </div>
+      )}
     </div>
   )
 );

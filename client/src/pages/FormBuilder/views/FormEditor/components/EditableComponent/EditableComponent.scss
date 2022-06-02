@@ -24,6 +24,13 @@
 .editable-component-buttons {
   display: flex;
   gap: 5px;
+  position: absolute;
+  right: -68px;
+  margin-top: -37px;
+  background-color: white;
+  border-radius: 18px;
+  box-shadow: 0px 0px 0px 1px #bebebe;
+  padding: 5px;
 }
 
 .editable-component-delete-button,
