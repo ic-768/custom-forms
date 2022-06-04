@@ -203,6 +203,7 @@ const FormEditor = ({
             </button>
           )
         )}
+        <button className="form-editor-submit-button">Submit</button>
       </div>
 
       <div className="form-editor-form-buttons">

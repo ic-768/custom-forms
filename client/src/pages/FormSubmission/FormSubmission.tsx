@@ -63,8 +63,13 @@ const FormSubmission = () => {
                 component={enrichComponent(c, idx)}
               />
             ))}
+            <button
+              className="form-submission-view-form-submit-button"
+              type="submit"
+            >
+              Submit
+            </button>
           </div>
-          <button type="submit">Submit</button>
         </form>
       </div>
     </div>

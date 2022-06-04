@@ -38,6 +38,8 @@ const FormPreview = ({
         {form.components.map((i, idx) => (
           <FormComponent key={i.id || idx} component={i} />
         ))}
+
+        <button className="form-preview-submit-button">Submit</button>
       </div>
     </div>
   );
