@@ -6,6 +6,7 @@ const FormStyleEditor = ({ onCancel }: { onCancel: () => void }) => (
     content={
       <>
         <DropdownInput
+          title="Style for the submit button"
           selection="Regular"
           options={[
             { label: "Floating", value: "floating" },

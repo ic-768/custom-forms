@@ -14,14 +14,14 @@ export interface IDropdownOption<T extends string> {
 /**
  * Dropdown list of selectable options
  */
-interface IDropdownInput<T extends string, A extends T> {
+interface IDropdownInput<T extends string, U extends T> {
   type?: "Dropdown";
   placeholder?: string;
   // options for the list to display
   options: IDropdownOption<T>[];
   // callback for when an option is selected
   onChange?: (t: T) => void;
-  selection?: A;
+  selection?: U;
   className?: string;
   // icon of the currently selected option
   selectionIcon?: IconDefinition;

@@ -39,4 +39,17 @@
 
 .form-submission-view-form-submit-button {
   margin-top: auto;
+  align-self: center;
+  background-color: var(--highlight-blue);
+  border: 1px solid var(--input-border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: white;
+
+  &:hover {
+    background-color: var(--highlight-dark-blue);
+  }
 }
