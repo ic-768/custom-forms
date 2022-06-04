@@ -7,6 +7,7 @@ import FormComponent, {
 } from "../FormBuilder/components/FormComponent";
 import { IForm } from "../FormBuilder/resources/shared";
 import { addOnChange, addState } from "./helpers";
+import FormPage from "../../components/FormPage";
 
 import "./FormSubmission.scss";
 
@@ -50,28 +51,21 @@ const FormSubmission = () => {
 
   return (
     <div className="form-submission-view-background">
-      <div className="form-submission-view-container">
-        <form
-          className="form-submission-view-form-container"
-          onSubmit={onSubmit}
-        >
-          <div className="form-submission-view-form-content">
-            <h2 className="form-preview-form-name">{form.name}</h2>
+      <FormPage
+        className="form-submission-form"
+        content={
+          <>
+            <h2 className="form-submission-form-name">{form.name}</h2>
             {form.components.map((c, idx) => (
               <FormComponent
                 key={c.id || idx}
                 component={enrichComponent(c, idx)}
               />
             ))}
-            <button
-              className="form-submission-view-form-submit-button"
-              type="submit"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
+          </>
+        }
+        onSubmit={onSubmit}
+      />
     </div>
   );
 };

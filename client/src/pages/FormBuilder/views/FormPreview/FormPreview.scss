@@ -1,45 +1,6 @@
-.form-preview-container {
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 50vw;
-}
-
-.form-preview {
-  margin-top: -30px;
-  margin-bottom: 20px;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-  box-shadow: #b1b0b5 0 0 2px 1px;
-  padding: 40px;
-  min-height: 80vh;
-  width: 100%;
-  gap: 10px;
-  background-color: white;
-}
-
 .form-preview-form-name {
   align-self: center;
   font-size: 18px;
   font-weight: 550;
   margin-bottom: 20px;
-}
-
-.form-preview-submit-button {
-  margin-top: auto;
-  align-self: center;
-  background-color: var(--highlight-blue);
-  border: 1px solid var(--input-border-color);
-  border-radius: 8px;
-  font-size: 14px;
-  padding: 6px 10px;
-  cursor: pointer;
-  transition: all 0.15s;
-  color: white;
-
-  &:hover {
-    background-color: var(--highlight-dark-blue);
-  }
 }

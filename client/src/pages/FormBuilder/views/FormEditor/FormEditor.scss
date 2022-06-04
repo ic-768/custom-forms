@@ -1,23 +1,3 @@
-.form-editor-container {
-  margin-top: -30px;
-  display: flex;
-  justify-content: center;
-  width: 50vw;
-}
-
-.form-editor {
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-  box-shadow: #b1b0b5 0 0 2px 1px;
-  padding: 40px;
-  min-height: 80vh;
-  width: 100%;
-  gap: 10px;
-  background-color: white;
-}
-
 .form-editor-form-title.input-container {
   margin-bottom: 20px;
 }
@@ -57,23 +37,6 @@
 
 .form-editor-add-component-button-icon {
   padding: 8px;
-}
-
-.form-editor-submit-button {
-  margin-top: auto;
-  align-self: center;
-  background-color: var(--highlight-blue);
-  border: 1px solid var(--input-border-color);
-  border-radius: 8px;
-  font-size: 14px;
-  padding: 6px 10px;
-  cursor: pointer;
-  transition: all 0.15s;
-  color: white;
-
-  &:hover {
-    background-color: var(--highlight-dark-blue);
-  }
 }
 
 .form-editor-form-buttons {

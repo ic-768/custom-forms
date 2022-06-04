@@ -23,6 +23,7 @@ import { IForm, IEditedComponent, emptyForm } from "../../resources/shared";
 import { IFormComponent } from "../../components/FormComponent";
 import SettingsButton from "./components/SettingsButton";
 import FormStyleEditor from "./components/FormStyleEditor";
+import FormPage from "../../../../components/FormPage";
 
 import "./FormEditor.scss";
 
@@ -156,55 +157,56 @@ const FormEditor = ({
   const onEditFormStyles = () => setEditingFormStyle(true);
   const onFormStyleEditCancel = () => setEditingFormStyle(false);
 
+  const showFormStyleButton = !editedComponent && !editingFormStyle;
+
   return (
-    <div className="form-editor-container">
+    <>
       <BackButton onClick={onGoBack} />
-      {!editedComponent && !editingFormStyle && (
-        <SettingsButton onClick={onEditFormStyles} />
-      )}
-      <div className="form-editor">
-        <TextInput
-          className="form-editor-form-title"
-          placeholder="Form name"
-          value={editedForm.name}
-          onChange={onEditFormName}
-        />
-        <EditableComponentList
-          editingFormStyle={editingFormStyle}
-          components={editedForm.components}
+      {showFormStyleButton && <SettingsButton onClick={onEditFormStyles} />}
+      {editingFormStyle && <FormStyleEditor onCancel={onFormStyleEditCancel} />}
+      {editedComponent && (
+        <ComponentEditor
           editedComponent={editedComponent}
-          onSelectComponent={onSelectComponent}
-          onDeleteComponent={onDeleteComponent}
-          editedForm={editedForm}
-          setEditedForm={setEditedForm}
+          setEditedComponent={setEditedComponent}
+          form={editedForm}
+          setForm={setEditedForm}
         />
-        {editingFormStyle && (
-          <FormStyleEditor onCancel={onFormStyleEditCancel} />
-        )}
-        {editedComponent ? (
-          <ComponentEditor
-            editedComponent={editedComponent}
-            setEditedComponent={setEditedComponent}
-            form={editedForm}
-            setForm={setEditedForm}
-          />
-        ) : (
-          !editingFormStyle && (
-            // button to add a new component
-            <button
-              onClick={onAddNewComponent}
-              className="form-editor-add-component-button"
-            >
-              <FontAwesomeIcon
+      )}
+
+      <FormPage
+        content={
+          <>
+            <TextInput
+              className="form-editor-form-title"
+              placeholder="Form name"
+              value={editedForm.name}
+              onChange={onEditFormName}
+            />
+            <EditableComponentList
+              editingFormStyle={editingFormStyle}
+              components={editedForm.components}
+              editedComponent={editedComponent}
+              onSelectComponent={onSelectComponent}
+              onDeleteComponent={onDeleteComponent}
+              editedForm={editedForm}
+              setEditedForm={setEditedForm}
+            />
+            {!editedComponent && !editingFormStyle && (
+              // button to add a new component
+              <button
                 onClick={onAddNewComponent}
-                title="Add a form component"
-                icon={faPlus}
-              />
-            </button>
-          )
-        )}
-        <button className="form-editor-submit-button">Submit</button>
-      </div>
+                className="form-editor-add-component-button"
+              >
+                <FontAwesomeIcon
+                  onClick={onAddNewComponent}
+                  title="Add a form component"
+                  icon={faPlus}
+                />
+              </button>
+            )}
+          </>
+        }
+      />
 
       <div className="form-editor-form-buttons">
         <div className="form-editor-upload-form-button" onClick={onPublish}>
@@ -222,7 +224,7 @@ const FormEditor = ({
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

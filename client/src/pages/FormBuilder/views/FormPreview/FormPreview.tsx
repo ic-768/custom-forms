@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import FormComponent from "../../components/FormComponent";
 import BackButton from "../../components/BackButton";
 import { IForm } from "../../resources/shared";
+import FormPage from "../../../../components/FormPage";
 
 import "./FormPreview.scss";
 
@@ -31,17 +32,19 @@ const FormPreview = ({
   }, [form._id, forms, navigate, params.id, setForm]);
 
   return (
-    <div className="form-preview-container">
+    <>
       <BackButton link={`/edit/${form._id}`} />
-      <div className="form-preview">
-        <h2 className="form-preview-form-name">{form.name}</h2>
-        {form.components.map((i, idx) => (
-          <FormComponent key={i.id || idx} component={i} />
-        ))}
-
-        <button className="form-preview-submit-button">Submit</button>
-      </div>
-    </div>
+      <FormPage
+        content={
+          <>
+            <h2 className="form-preview-form-name">{form.name}</h2>
+            {form.components.map((i, idx) => (
+              <FormComponent key={i.id || idx} component={i} />
+            ))}
+          </>
+        }
+      />
+    </>
   );
 };
 
