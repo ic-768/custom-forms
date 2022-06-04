@@ -16,7 +16,7 @@ export const getComponentIcon = (
  * Format the component types to be displayed in the dropdown menu
  */
 export const componentsForDropdown = componentTypes.map(
-  (type: typeof componentTypes[number]): IDropdownOption => ({
+  (type: typeof componentTypes[number]): IDropdownOption<typeof type> => ({
     value: type,
     label: type,
     icon: getComponentIcon(type),

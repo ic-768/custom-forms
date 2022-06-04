@@ -8,7 +8,7 @@ import IDropdownInput from "./IDropdownInput";
 
 import "./DropdownInput.scss";
 
-const DropdownInput = ({
+const DropdownInput = <T extends string, U extends T>({
   title,
   subtitle,
   className,
@@ -18,13 +18,13 @@ const DropdownInput = ({
   onChange,
   selection,
   selectionIcon,
-}: IDropdownInput) => {
+}: IDropdownInput<T, U>) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
   const onOptionSelect = (e: MouseEvent<HTMLLIElement>): void => {
     if (!onChange) return;
     const target = e.target as HTMLLIElement;
-    const option = target.textContent;
+    const option = target.textContent as T;
     onChange(option!);
     setShowOptions(false);
   };

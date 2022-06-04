@@ -18,7 +18,7 @@ import {
 } from "../../components/inputs/inputComponents";
 
 type IFormComponent =
-  | IDropdownInput
+  | IDropdownInput<string, string>
   | ITextInput
   | INumberInput
   | IDateInput

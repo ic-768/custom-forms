@@ -7,16 +7,16 @@ import InputContainer from "../../../../../../../components/inputs/InputContaine
 import "./DropdownOptions.scss";
 
 interface IDropdownOptions {
-  onChange: (options: IDropdownOption[]) => void;
+  onChange: (options: IDropdownOption<string>[]) => void;
 }
 
 const DropdownOptions = ({ onChange }: IDropdownOptions) => {
-  const [dropdownOptions, setDropdownOptions] = useState<IDropdownOption[]>([
-    { value: "", label: "" },
-  ]);
+  const [dropdownOptions, setDropdownOptions] = useState<
+    IDropdownOption<string>[]
+  >([{ value: "", label: "" }]);
 
   // update local and outer state
-  const updateOptions = (options: IDropdownOption[]) => {
+  const updateOptions = (options: IDropdownOption<string>[]) => {
     setDropdownOptions(options);
     onChange(options);
   };

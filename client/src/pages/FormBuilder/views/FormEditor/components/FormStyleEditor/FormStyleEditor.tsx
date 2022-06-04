@@ -1,14 +1,17 @@
 import EditorPartial from "../../../../components/EditorPartial";
+import { DropdownInput } from "../../../../components/inputs/inputComponents";
 
 const FormStyleEditor = ({ onCancel }: { onCancel: () => void }) => (
   <EditorPartial
     content={
       <>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
+        <DropdownInput
+          selection="Regular"
+          options={[
+            { label: "Floating", value: "floating" },
+            { label: "Regular", value: "regular" },
+          ]}
+        />
       </>
     }
     onCancel={onCancel}
