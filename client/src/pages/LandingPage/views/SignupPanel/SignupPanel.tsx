@@ -1,11 +1,11 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useNotification, useWithLoader } from "../../../../store/hooks";
+import { useNotification, useWithLoader } from "store/hooks";
+import { signup } from "services/signup";
+import BackButton from "components/BackButton";
+import { TextInput } from "components/inputs/inputComponents";
 import PasswordInput from "../../components/PasswordInput";
-import { signup } from "../../../../services/signup";
-import BackButton from "../../../../components/BackButton";
-import { TextInput } from "../../../../components/inputs/inputComponents";
 
 import "./SignupPanel.scss";
 

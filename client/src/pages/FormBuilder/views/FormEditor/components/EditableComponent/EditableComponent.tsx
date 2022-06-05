@@ -10,9 +10,7 @@ import {
   DraggableProvidedDragHandleProps,
 } from "react-beautiful-dnd";
 
-import FormComponent, {
-  IFormComponent,
-} from "../../../../../../components/FormComponent";
+import FormComponent, { IFormComponent } from "components/FormComponent";
 
 import "./EditableComponent.scss";
 

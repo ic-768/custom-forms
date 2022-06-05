@@ -1,6 +1,6 @@
-import { DropdownInput } from "../../../../../../components/inputs/inputComponents";
-import { IForm } from "../../../../../../resources/shared";
-import EditorPartial from "../../../../components/EditorPartial";
+import { DropdownInput } from "components/inputs/inputComponents";
+import { IForm } from "resources/shared";
+import EditorPartial from "pages/FormBuilder/components/EditorPartial";
 
 const FormStyleEditor = ({
   form,

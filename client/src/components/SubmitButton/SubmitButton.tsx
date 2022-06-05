@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import { FormEvent } from "react";
 
-import { IForm } from "../../resources/shared";
+import { IForm } from "resources/shared";
 
 import "./SubmitButton.scss";
 

@@ -1,8 +1,8 @@
 import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
-
 import ITimeInput from "./ITimeInput";
+
 import "./TimeInput.scss";
 
 const TimeInput = ({

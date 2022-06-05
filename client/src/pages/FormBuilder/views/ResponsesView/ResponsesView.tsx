@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import ModeToggle from "./components/ModeToggle";
 import IndividualView from "./views/IndividualView";
 import SummaryView from "./views/SummaryView";
-import { IForm } from "../../../../resources/shared";
-import BackButton from "../../../../components/BackButton";
+import { IForm } from "resources/shared";
+import BackButton from "components/BackButton";
 
 import "./ResponsesView.scss";
 

@@ -1,4 +1,4 @@
-import { INotification } from "../../store/features/notifications/notificationsSlice";
+import { INotification } from "store/features/notifications/notificationsSlice";
 
 import "./Notification.scss";
 

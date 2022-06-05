@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { token, asyncGetForms } from "../../services/forms";
-import { useAppSelector, useWithLoader } from "../../store/hooks";
-import { selectForms, setForms } from "../../store/features/forms/formsSlice";
-import { emptyForm, IForm } from "../../resources/shared";
+import { token, asyncGetForms } from "services/forms";
+import { useAppSelector, useWithLoader } from "store/hooks";
+import { selectForms, setForms } from "store/features/forms/formsSlice";
+import { emptyForm, IForm } from "resources/shared";
 import ConfirmationModal, {
   IConfirmationModal,
-} from "../../components/ConfirmationModal";
+} from "components/ConfirmationModal";
 
 import FormBuilderHeader from "./components/FormBuilderHeader";
 import FormPreview from "./views/FormPreview";

@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { setToken } from "../../../../services/forms";
-import { removeUser } from "../../../../store/features/user/userSlice";
-import { setForms } from "../../../../store/features/forms/formsSlice";
+import { useAppDispatch, useAppSelector } from "store/hooks";
+import { setToken } from "services/forms";
+import { removeUser } from "store/features/user/userSlice";
+import { setForms } from "store/features/forms/formsSlice";
 
 import "./FormBuilderHeader.scss";
 

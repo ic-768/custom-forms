@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { FormEvent, ReactElement } from "react";
 
-import { IForm } from "../../resources/shared";
+import { IForm } from "resources/shared";
 import SubmitButton from "../SubmitButton";
 
 import "./FormPage.scss";

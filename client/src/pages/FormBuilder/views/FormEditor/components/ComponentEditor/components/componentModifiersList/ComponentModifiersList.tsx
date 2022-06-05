@@ -15,7 +15,7 @@ import {
   TextBody,
 } from "../componentModifiers";
 import { BorderWidth } from "../componentModifiers/BorderType/BorderType";
-import { IFormComponent } from "../../../../../../../../components/FormComponent";
+import { IFormComponent } from "components/FormComponent";
 
 interface IComponentModifiersList {
   component: IFormComponent;

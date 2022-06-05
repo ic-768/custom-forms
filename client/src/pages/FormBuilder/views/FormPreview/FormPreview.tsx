@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import BackButton from "../../../../components/BackButton";
-import FormComponent from "../../../../components/FormComponent";
-import FormPage from "../../../../components/FormPage";
-import { IForm } from "../../../../resources/shared";
+import BackButton from "components/BackButton";
+import FormComponent from "components/FormComponent";
+import FormPage from "components/FormPage";
+import { IForm } from "resources/shared";
 
 import "./FormPreview.scss";
 

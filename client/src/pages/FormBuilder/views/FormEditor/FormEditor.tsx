@@ -9,21 +9,15 @@ import {
   faEye,
 } from "@fortawesome/free-solid-svg-icons";
 
-import {
-  addForm,
-  updateForm,
-} from "../../../../store/features/forms/formsSlice";
-import { useNotification, useWithLoader } from "../../../../store/hooks";
-import { asyncUpdateForm, asyncPostForm } from "../../../../services/forms";
-import FormPage from "../../../../components/FormPage";
-import {
-  emptyForm,
-  IEditedComponent,
-  IForm,
-} from "../../../../resources/shared";
-import { IFormComponent } from "../../../../components/FormComponent";
-import BackButton from "../../../../components/BackButton";
-import { TextInput } from "../../../../components/inputs/inputComponents";
+import { addForm, updateForm } from "store/features/forms/formsSlice";
+import { useNotification, useWithLoader } from "store/hooks";
+import { asyncUpdateForm, asyncPostForm } from "services/forms";
+
+import FormPage from "components/FormPage";
+import { emptyForm, IEditedComponent, IForm } from "resources/shared";
+import { IFormComponent } from "components/FormComponent";
+import BackButton from "components/BackButton";
+import { TextInput } from "components/inputs/inputComponents";
 import EditableComponentList from "./components/EditableComponentList";
 import ComponentEditor from "./components/ComponentEditor";
 import SettingsButton from "./components/SettingsButton";

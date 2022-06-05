@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { asyncGetForm, asyncSubmitForm } from "../../services/forms";
 import { addOnChange, addState } from "./helpers";
-import FormPage from "../../components/FormPage";
-import { IForm } from "../../resources/shared";
-import FormComponent, { IFormComponent } from "../../components/FormComponent";
+import { asyncGetForm, asyncSubmitForm } from "services/forms";
+import FormPage from "components/FormPage";
+import { IForm } from "resources/shared";
+import FormComponent, { IFormComponent } from "components/FormComponent";
 
 import "./FormSubmission.scss";
 

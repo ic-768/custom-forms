@@ -7,8 +7,8 @@ import {
   DropResult,
 } from "react-beautiful-dnd";
 
-import { IFormComponent } from "../../../../../../components/FormComponent";
-import { IEditedComponent, IForm } from "../../../../../../resources/shared";
+import { IFormComponent } from "components/FormComponent";
+import { IEditedComponent, IForm } from "resources/shared";
 import EditableComponent from "../EditableComponent";
 
 import "./EditableComponentList.scss";

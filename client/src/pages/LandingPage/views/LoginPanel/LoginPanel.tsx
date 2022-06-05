@@ -2,12 +2,12 @@ import { FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import BackButton from "../../../../components/BackButton";
-import { TextInput } from "../../../../components/inputs/inputComponents";
-import { setToken } from "../../../../services/forms";
-import { login } from "../../../../services/login";
-import { setUser } from "../../../../store/features/user/userSlice";
-import { useNotification, useWithLoader } from "../../../../store/hooks";
+import BackButton from "components/BackButton";
+import { TextInput } from "components/inputs/inputComponents";
+import { setToken } from "services/forms";
+import { login } from "services/login";
+import { setUser } from "store/features/user/userSlice";
+import { useNotification, useWithLoader } from "store/hooks";
 import PasswordInput from "../../components/PasswordInput";
 
 import "./LoginPanel.scss";

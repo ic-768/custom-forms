@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ColorChangeHandler, ChromePicker } from "react-color";
 
-import InputContainer from "../../../../../../../../../components/inputs/InputContainer";
+import InputContainer from "components/inputs/InputContainer";
 
 import "./BorderColor.scss";
 

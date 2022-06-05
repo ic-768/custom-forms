@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-import { TextInput } from "../../../../../../../../../components/inputs/inputComponents";
+import { TextInput } from "components/inputs/inputComponents";
 
 interface ITitle {
   title: string;
