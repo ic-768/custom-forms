@@ -35,6 +35,7 @@ const FormPreview = ({
     <>
       <BackButton link={`/edit/${form._id}`} />
       <FormPage
+        styles={form.styles}
         content={
           <>
             <h2 className="form-preview-form-name">{form.name}</h2>

@@ -6,6 +6,7 @@ import {
   DroppableStateSnapshot,
   DropResult,
 } from "react-beautiful-dnd";
+
 import { IFormComponent } from "../../../../../../components/FormComponent";
 import { IEditedComponent, IForm } from "../../../../../../resources/shared";
 import EditableComponent from "../EditableComponent";
@@ -19,7 +20,7 @@ interface IEditableComponentList {
   onDeleteComponent: (index: number) => MouseEventHandler;
   editedForm: IForm;
   setEditedForm: (form: IForm) => void;
-  editingFormStyle: boolean;
+  isEditing: boolean;
 }
 
 /**
@@ -33,7 +34,7 @@ const EditableComponentList = ({
   onDeleteComponent,
   editedForm,
   setEditedForm,
-  editingFormStyle,
+  isEditing,
 }: IEditableComponentList) => {
   // function to reorder items in an array
   const reorder = (
@@ -62,10 +63,11 @@ const EditableComponentList = ({
     }
   };
 
+  const hasManyComponents = components.length > 1;
   // if already editing, disallow editing other components and reordering
   const showInputControls = useMemo(
-    () => components.length > 1 && !editedComponent && !editingFormStyle,
-    [components.length, editedComponent, editingFormStyle]
+    () => hasManyComponents && !isEditing,
+    [isEditing, hasManyComponents]
   );
 
   // hide draghandle while dragging

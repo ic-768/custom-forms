@@ -50,6 +50,7 @@ const FormSubmission = () => {
   return (
     <div className="form-submission-view-background">
       <FormPage
+        styles={form.styles}
         className="form-submission-form"
         content={
           <>

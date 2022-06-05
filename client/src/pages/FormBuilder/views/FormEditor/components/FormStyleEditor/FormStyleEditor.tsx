@@ -1,32 +1,32 @@
-import { useEffect, useState } from "react";
 import { DropdownInput } from "../../../../../../components/inputs/inputComponents";
 import { IForm } from "../../../../../../resources/shared";
 import EditorPartial from "../../../../components/EditorPartial";
 
-/*TODO On cancel => set editedForm to normal form **/
 const FormStyleEditor = ({
   form,
   setForm,
-  setEditingFormStyle,
+  editedStyles,
+  setEditedStyles,
+  onCancel,
 }: {
+  editedStyles: IForm["styles"] | null;
+  setEditedStyles: (styles: IForm["styles"] | null) => void;
   form: IForm;
   setForm: (form: IForm) => void;
-  setEditingFormStyle: (bool: boolean) => void;
+  onCancel: () => void;
 }) => {
-  const [originalStyles, setOriginalStyles] = useState<IForm["styles"] | null>(
-    null
-  );
-
-  /*onCancel can revert to these styles*/
-  useEffect(() => {
-    if (!originalStyles) setOriginalStyles(form.styles);
-  }, [form, originalStyles]);
-
   const onChangeButtonStyle = (o: string) => {
     const buttonStyle = {
       buttonStyle: o as IForm["styles"]["buttonStyle"],
     };
-    setForm({ ...form, styles: { ...form.styles, ...buttonStyle } });
+    setEditedStyles({ ...form.styles, ...buttonStyle });
+  };
+
+  const onSave = () => {
+    if (editedStyles) {
+      setForm({ ...form, styles: editedStyles });
+      setEditedStyles(null);
+    }
   };
 
   return (
@@ -35,7 +35,9 @@ const FormStyleEditor = ({
         <>
           <DropdownInput
             title="Style for the submission button"
-            selection={form.styles.buttonStyle || "Regular"}
+            selection={
+              editedStyles?.buttonStyle || form.styles.buttonStyle || "Regular"
+            }
             options={[
               { label: "Floating", value: "floating" },
               { label: "Regular", value: "regular" },
@@ -44,8 +46,8 @@ const FormStyleEditor = ({
           />
         </>
       }
-      onCancel={() => setEditingFormStyle(false)}
-      onSave={() => null}
+      onCancel={onCancel}
+      onSave={onSave}
     />
   );
 };

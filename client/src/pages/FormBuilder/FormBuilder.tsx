@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { token, asyncGetForms } from "../../services/forms";
 import { useAppSelector, useWithLoader } from "../../store/hooks";
 import { selectForms, setForms } from "../../store/features/forms/formsSlice";
-import { emptyForm, IEditedComponent, IForm } from "../../resources/shared";
+import { emptyForm, IForm } from "../../resources/shared";
 import ConfirmationModal, {
   IConfirmationModal,
 } from "../../components/ConfirmationModal";
@@ -26,6 +26,7 @@ const FormBuilder = () => {
   // A draft of the currently edited form.
   // Any time an input edit is saved, this'll be updated with the new input
   const [editedForm, setEditedForm] = useState<IForm>(emptyForm);
+
   const [haveFormsBeenFetched, setHaveFormsBeenFetched] =
     useState<boolean>(false);
 
@@ -33,10 +34,6 @@ const FormBuilder = () => {
   const [confirmation, setConfirmation] = useState<IConfirmationModal | null>(
     null
   );
-
-  // A draft component for the editor. Contains the currently edited input and its index in the form
-  const [editedComponent, setEditedComponent] =
-    useState<IEditedComponent>(null);
 
   // populate user's forms on page load
   useEffect(() => {
@@ -81,8 +78,6 @@ const FormBuilder = () => {
               forms={forms}
               editedForm={editedForm}
               setEditedForm={setEditedForm}
-              editedComponent={editedComponent}
-              setEditedComponent={setEditedComponent}
               token={token}
             />
           }

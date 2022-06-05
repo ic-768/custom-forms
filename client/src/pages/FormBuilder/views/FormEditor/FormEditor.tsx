@@ -1,4 +1,4 @@
-import { useEffect, Dispatch, ChangeEvent, useState } from "react";
+import { useEffect, ChangeEvent, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -35,8 +35,6 @@ interface IFormEditor {
   forms: IForm[];
   editedForm: IForm;
   setEditedForm: (form: IForm) => void;
-  editedComponent: IEditedComponent;
-  setEditedComponent: Dispatch<IEditedComponent>;
   token: string | null;
 }
 
@@ -47,12 +45,16 @@ const FormEditor = ({
   forms,
   editedForm,
   setEditedForm,
-  editedComponent,
-  setEditedComponent,
   token,
 }: IFormEditor) => {
-  // If form styles are being edited
-  const [editingFormStyle, setEditingFormStyle] = useState(false);
+  // Draft component containing the currently edited input and its index in the form
+  const [editedComponent, setEditedComponent] =
+    useState<IEditedComponent>(null);
+
+  // Draft styles component for currently edited form styles
+  const [editedStyles, setEditedStyles] = useState<IForm["styles"] | null>(
+    null
+  );
 
   const formIdFromUrl = useParams().id;
   const dispatch = useDispatch();
@@ -78,7 +80,7 @@ const FormEditor = ({
   const addNewForm = async (form: IForm) => {
     const newForm = await asyncPostForm(form, token!);
     dispatch(addForm(newForm));
-    navigate(`/edit/${newForm._id}`); // navigate away from '/new'
+    navigate(`/edit/${newForm._id}`); // navigate away from '/new' to url with new id
   };
 
   // Post form to DB, and update redux store
@@ -92,11 +94,10 @@ const FormEditor = ({
           );
         } else {
           try {
-            if (editedForm._id) {
-              await updateExistingForm(editedForm);
-            } else {
-              await addNewForm(editedForm);
-            }
+            editedForm._id
+              ? await updateExistingForm(editedForm)
+              : await addNewForm(editedForm);
+
             notify({ type: "success", message: "Form has been saved!" }, 5000);
           } catch (e) {
             notify({ type: "error", message: "Something went wrong" }, 5000);
@@ -106,19 +107,9 @@ const FormEditor = ({
     });
   };
 
-  const onPreview = () => navigate(`/${editedForm._id}`);
-
   // When form name is being changed
   const onEditFormName = (e: ChangeEvent<HTMLInputElement>) =>
     setEditedForm({ ...editedForm, name: e.target.value });
-
-  // Callback to start editing a component
-  const onSelectComponent = (index: number) => () => {
-    setEditedComponent({
-      component: editedForm.components[index],
-      index: index,
-    });
-  };
 
   // Add component to form and set editedComponent's index to shadow the new component for editing
   const onAddNewComponent = () => {
@@ -135,6 +126,14 @@ const FormEditor = ({
     setEditedComponent({
       component,
       index: editedForm.components.length,
+    });
+  };
+
+  // Callback to start editing a component
+  const onSelectComponent = (index: number) => () => {
+    setEditedComponent({
+      component: editedForm.components[index],
+      index,
     });
   };
 
@@ -158,19 +157,24 @@ const FormEditor = ({
     setEditedForm(emptyForm);
   };
 
-  const onEditFormStyles = () => setEditingFormStyle(true);
+  const onEditFormStyles = () => setEditedStyles(editedForm.styles);
+  const onCancelStylesEdit = () => setEditedStyles(null);
 
-  const isEditing = editedComponent || editingFormStyle;
+  const onPreview = () => navigate(`/${editedForm._id}`);
+
+  const isEditing = !!(editedComponent || editedStyles);
 
   return (
     <>
       <BackButton onClick={onGoBack} />
       {!isEditing && <SettingsButton onClick={onEditFormStyles} />}
-      {editingFormStyle && (
+      {editedStyles && (
         <FormStyleEditor
           form={editedForm}
           setForm={setEditedForm}
-          setEditingFormStyle={setEditingFormStyle}
+          editedStyles={editedStyles}
+          setEditedStyles={setEditedStyles}
+          onCancel={onCancelStylesEdit}
         />
       )}
       {editedComponent && (
@@ -183,6 +187,7 @@ const FormEditor = ({
       )}
 
       <FormPage
+        styles={editedStyles || editedForm.styles}
         content={
           <>
             <TextInput
@@ -192,7 +197,7 @@ const FormEditor = ({
               onChange={onEditFormName}
             />
             <EditableComponentList
-              editingFormStyle={editingFormStyle}
+              isEditing={isEditing}
               components={editedForm.components}
               editedComponent={editedComponent}
               onSelectComponent={onSelectComponent}
