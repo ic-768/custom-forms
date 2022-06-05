@@ -1,4 +1,4 @@
-import { useEffect, ChangeEvent, useState } from "react";
+import { useEffect, ChangeEvent, useState, MouseEventHandler } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -130,27 +130,34 @@ const FormEditor = ({
   };
 
   // Callback to start editing a component
-  const onSelectComponent = (index: number) => () => {
-    setEditedComponent({
-      component: editedForm.components[index],
-      index,
-    });
-  };
+  const onSelectComponent =
+    (index: number): MouseEventHandler<Element> =>
+    (e) => {
+      e.preventDefault();
+      setEditedComponent({
+        component: editedForm.components[index],
+        index,
+      });
+    };
 
-  const onDeleteComponent = (index: number) => () => {
-    const remainingComponents = editedForm.components.filter(
-      (_i, idx) => idx !== index
-    );
+  const onDeleteComponent =
+    (index: number): MouseEventHandler<Element> =>
+    (e) => {
+      e.preventDefault();
 
-    setEditedForm({
-      ...editedForm,
-      components: remainingComponents,
-    });
+      const remainingComponents = editedForm.components.filter(
+        (_i, idx) => idx !== index
+      );
 
-    if (editedComponent) {
-      setEditedComponent(null);
-    }
-  };
+      setEditedForm({
+        ...editedForm,
+        components: remainingComponents,
+      });
+
+      if (editedComponent) {
+        setEditedComponent(null);
+      }
+    };
 
   const onGoBack = () => {
     setEditedComponent(null);

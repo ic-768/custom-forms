@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { asyncGetForm, asyncSubmitForm } from "../../services/forms";
@@ -34,8 +34,7 @@ const FormSubmission = () => {
     return enrichedComponent;
   };
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = () => {
     // Add identifying info to submissions and remove empty entries
     const submissionsWithTitles = submissions.map((s, i) => ({
       title: form.components[i].title,

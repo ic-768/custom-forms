@@ -13,7 +13,7 @@ const FormPage = ({
   styles,
 }: {
   content: ReactElement;
-  onSubmit?: (e: FormEvent<HTMLFormElement>) => void;
+  onSubmit?: (e: FormEvent<HTMLButtonElement>) => void;
   className?: string;
   styles: IForm["styles"];
 }) => {
@@ -23,9 +23,9 @@ const FormPage = ({
   });
 
   return (
-    <form className={formClass} onSubmit={onSubmit}>
+    <form className={formClass}>
       {content}
-      <SubmitButton buttonStyle={styles.buttonStyle} />
+      <SubmitButton onSubmit={onSubmit} buttonStyle={styles.buttonStyle} />
     </form>
   );
 };
