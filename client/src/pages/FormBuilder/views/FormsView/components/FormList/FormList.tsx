@@ -1,19 +1,19 @@
 import { useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
 
-import { IConfirmationModal } from "../../../../components/ConfirmationModal";
 import FormListItem from "../FormListItem/FormListItem";
 import {
   addForm,
   deleteForm,
 } from "../../../../../../store/features/forms/formsSlice";
 import { useNotification, useWithLoader } from "../../../../../../store/hooks";
-import { IForm } from "../../../../resources/shared";
 import {
   asyncDeleteForm,
   asyncPostForm,
   token,
 } from "../../../../../../services/forms";
+import { IForm } from "../../../../../../resources/shared";
+import { IConfirmationModal } from "../../../../../../components/ConfirmationModal";
 
 import "./FormList.scss";
 

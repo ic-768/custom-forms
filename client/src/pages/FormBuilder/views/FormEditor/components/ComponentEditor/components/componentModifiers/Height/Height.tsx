@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-import { NumberInput } from "../../../../../../../components/inputs/inputComponents";
+import { NumberInput } from "../../../../../../../../../components/inputs/inputComponents";
 
 interface IHeight {
   height: string;

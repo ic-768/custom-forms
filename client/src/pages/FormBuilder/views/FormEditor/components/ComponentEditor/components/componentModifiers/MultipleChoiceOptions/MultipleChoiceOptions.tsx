@@ -1,8 +1,8 @@
 import { useState, ChangeEvent } from "react";
 
-import { TextInput } from "../../../../../../../components/inputs/inputComponents";
-import InputContainer from "../../../../../../../components/inputs/InputContainer";
-import { IMultipleChoiceOption } from "../../../../../../../components/inputs/inputComponents/MultipleChoiceInput";
+import { TextInput } from "../../../../../../../../../components/inputs/inputComponents";
+import { IMultipleChoiceOption } from "../../../../../../../../../components/inputs/inputComponents/MultipleChoiceInput";
+import InputContainer from "../../../../../../../../../components/inputs/InputContainer";
 
 import "./MultipleChoiceOptions.scss";
 

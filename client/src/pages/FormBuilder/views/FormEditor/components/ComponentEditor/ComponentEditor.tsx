@@ -1,10 +1,11 @@
+import EditorPartial from "../../../../components/EditorPartial";
+import { IFormComponent } from "../../../../../../components/FormComponent";
+import { IEditedComponent, IForm } from "../../../../../../resources/shared";
+import { DropdownInput } from "../../../../../../components/inputs/inputComponents";
+
 import { getComponentIcon } from "./helpers";
 import ComponentModifiersList from "./components/componentModifiersList";
-import { DropdownInput } from "../../../../components/inputs/inputComponents";
 import { componentsForDropdown } from "./helpers";
-import { IEditedComponent, IForm } from "../../../../resources/shared";
-import { IFormComponent } from "../../../../components/FormComponent";
-import EditorPartial from "../../../../components/EditorPartial";
 
 interface IComponentEditor {
   editedComponent: IEditedComponent;

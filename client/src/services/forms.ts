@@ -1,6 +1,5 @@
 import axios from "axios";
-
-import { IForm } from "../pages/FormBuilder/resources/shared";
+import { IForm } from "../resources/shared";
 
 let token: string | null = null;
 

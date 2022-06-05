@@ -5,7 +5,7 @@ import { IFormComponent } from "../components/FormComponent";
 interface IFormStyles {
   backgroundImage?: string;
   backgroundColor?: string;
-  buttonStyle?: "floating" | "regular";
+  buttonStyle?: "Floating" | "Regular";
 }
 
 /**

@@ -1,6 +1,6 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
-import { IDropdownOption } from "../../../../components/inputs/inputComponents/DropdownInput";
+import { IDropdownOption } from "../../../../../../components/inputs/inputComponents/DropdownInput";
 import { componentLabelToIcon } from "./resources";
 import { componentTypes } from "./resources";
 

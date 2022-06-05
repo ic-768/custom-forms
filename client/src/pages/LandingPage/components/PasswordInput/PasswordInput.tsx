@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import InputContainer from "../../../FormBuilder/components/inputs/InputContainer";
+import InputContainer from "../../../../components/inputs/InputContainer";
 
 import "./PasswordInput.scss";
 

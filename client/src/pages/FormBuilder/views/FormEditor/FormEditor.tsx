@@ -14,16 +14,20 @@ import {
   updateForm,
 } from "../../../../store/features/forms/formsSlice";
 import { useNotification, useWithLoader } from "../../../../store/hooks";
-import { TextInput } from "../../components/inputs/inputComponents";
 import { asyncUpdateForm, asyncPostForm } from "../../../../services/forms";
-import BackButton from "../../components/BackButton";
+import FormPage from "../../../../components/FormPage";
+import {
+  emptyForm,
+  IEditedComponent,
+  IForm,
+} from "../../../../resources/shared";
+import { IFormComponent } from "../../../../components/FormComponent";
+import BackButton from "../../../../components/BackButton";
+import { TextInput } from "../../../../components/inputs/inputComponents";
 import EditableComponentList from "./components/EditableComponentList";
 import ComponentEditor from "./components/ComponentEditor";
-import { IForm, IEditedComponent, emptyForm } from "../../resources/shared";
-import { IFormComponent } from "../../components/FormComponent";
 import SettingsButton from "./components/SettingsButton";
 import FormStyleEditor from "./components/FormStyleEditor";
-import FormPage from "../../../../components/FormPage";
 
 import "./FormEditor.scss";
 
@@ -155,15 +159,20 @@ const FormEditor = ({
   };
 
   const onEditFormStyles = () => setEditingFormStyle(true);
-  const onFormStyleEditCancel = () => setEditingFormStyle(false);
 
-  const showFormStyleButton = !editedComponent && !editingFormStyle;
+  const isEditing = editedComponent || editingFormStyle;
 
   return (
     <>
       <BackButton onClick={onGoBack} />
-      {showFormStyleButton && <SettingsButton onClick={onEditFormStyles} />}
-      {editingFormStyle && <FormStyleEditor onCancel={onFormStyleEditCancel} />}
+      {!isEditing && <SettingsButton onClick={onEditFormStyles} />}
+      {editingFormStyle && (
+        <FormStyleEditor
+          form={editedForm}
+          setForm={setEditedForm}
+          setEditingFormStyle={setEditingFormStyle}
+        />
+      )}
       {editedComponent && (
         <ComponentEditor
           editedComponent={editedComponent}
@@ -191,7 +200,7 @@ const FormEditor = ({
               editedForm={editedForm}
               setEditedForm={setEditedForm}
             />
-            {!editedComponent && !editingFormStyle && (
+            {!isEditing && (
               // button to add a new component
               <button
                 onClick={onAddNewComponent}

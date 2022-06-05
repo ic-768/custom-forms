@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 
-import { NumberInput } from "../../../../../../../components/inputs/inputComponents";
-import InputContainer from "../../../../../../../components/inputs/InputContainer";
+import { NumberInput } from "../../../../../../../../../components/inputs/inputComponents";
+import InputContainer from "../../../../../../../../../components/inputs/InputContainer";
 
 import "./Margin.scss";
 

@@ -12,7 +12,7 @@ import {
 
 import FormComponent, {
   IFormComponent,
-} from "../../../../components/FormComponent";
+} from "../../../../../../components/FormComponent";
 
 import "./EditableComponent.scss";
 

@@ -1,4 +1,4 @@
-import { DropdownInput } from "../../../../../../../components/inputs/inputComponents";
+import { DropdownInput } from "../../../../../../../../../components/inputs/inputComponents";
 
 const borderWidths = {
   Box: "1px 1px 1px 1px",

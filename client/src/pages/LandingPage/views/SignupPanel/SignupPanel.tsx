@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 import { useNotification, useWithLoader } from "../../../../store/hooks";
 import PasswordInput from "../../components/PasswordInput";
-import { TextInput } from "../../../FormBuilder/components/inputs/inputComponents";
 import { signup } from "../../../../services/signup";
+import BackButton from "../../../../components/BackButton";
+import { TextInput } from "../../../../components/inputs/inputComponents";
 
 import "./SignupPanel.scss";
-import BackButton from "../../../FormBuilder/components/BackButton";
 
 const SignupPanel = () => {
   const [username, setUsername] = useState("");

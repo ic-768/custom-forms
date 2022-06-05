@@ -6,10 +6,9 @@ import {
   DroppableStateSnapshot,
   DropResult,
 } from "react-beautiful-dnd";
-
+import { IFormComponent } from "../../../../../../components/FormComponent";
+import { IEditedComponent, IForm } from "../../../../../../resources/shared";
 import EditableComponent from "../EditableComponent";
-import { IEditedComponent, IForm } from "../../../../resources/shared";
-import { IFormComponent } from "../../../../components/FormComponent";
 
 import "./EditableComponentList.scss";
 

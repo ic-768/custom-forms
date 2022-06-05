@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IForm } from "../../../resources/shared";
 
-import { IForm } from "../../../pages/FormBuilder/resources/shared";
 import { RootState } from "../../store";
 
 export interface FormsState {

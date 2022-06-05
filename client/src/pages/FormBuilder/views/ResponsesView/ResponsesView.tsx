@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { IForm } from "../../resources/shared";
 import ModeToggle from "./components/ModeToggle";
 import IndividualView from "./views/IndividualView";
 import SummaryView from "./views/SummaryView";
-import BackButton from "../../components/BackButton";
+import { IForm } from "../../../../resources/shared";
+import BackButton from "../../../../components/BackButton";
 
 import "./ResponsesView.scss";
 

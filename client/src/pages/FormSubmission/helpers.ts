@@ -1,7 +1,7 @@
 import { ChangeEvent, SetStateAction } from "react";
-import { IFormComponent } from "../FormBuilder/components/FormComponent";
-import { IMultipleChoiceOption } from "../FormBuilder/components/inputs/inputComponents/MultipleChoiceInput";
-import { IForm } from "../FormBuilder/resources/shared";
+import { IFormComponent } from "../../components/FormComponent";
+import { IMultipleChoiceOption } from "../../components/inputs/inputComponents/MultipleChoiceInput";
+import { IForm } from "../../resources/shared";
 
 /**
  * Helper functions used to enrich the component with appropriate onChange
