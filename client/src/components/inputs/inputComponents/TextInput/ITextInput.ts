@@ -1,7 +1,7 @@
-import { ChangeEvent, CSSProperties } from "react";
+import { ChangeEventHandler, CSSProperties } from "react";
 
 interface ITextInput {
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   value?: string;
   type?: "Text";
   title?: string;

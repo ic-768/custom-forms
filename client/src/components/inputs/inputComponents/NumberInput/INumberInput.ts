@@ -1,9 +1,9 @@
-import { ChangeEvent, CSSProperties } from "react";
+import { ChangeEventHandler, CSSProperties } from "react";
 
 interface INumberInput {
   type?: "Number";
   value?: string;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
   className?: string;
   min?: number;

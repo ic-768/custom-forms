@@ -1,22 +1,22 @@
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
 
-import { TextInput } from "../../../../../../../../../components/inputs/inputComponents";
-import { IDropdownOption } from "../../../../../../../../../components/inputs/inputComponents/DropdownInput";
-import InputContainer from "../../../../../../../../../components/inputs/InputContainer";
+import { TextInput } from "components/inputs/inputComponents";
+import { IDropdownOption } from "components/inputs/inputComponents/DropdownInput";
+import InputContainer from "components/inputs/InputContainer";
 
 import "./DropdownOptions.scss";
 
 interface IDropdownOptions {
-  onChange: (options: IDropdownOption<string>[]) => void;
+  onChange: (options: IDropdownOption[]) => void;
 }
 
 const DropdownOptions = ({ onChange }: IDropdownOptions) => {
-  const [dropdownOptions, setDropdownOptions] = useState<
-    IDropdownOption<string>[]
-  >([{ value: "", label: "" }]);
+  const [dropdownOptions, setDropdownOptions] = useState<IDropdownOption[]>([
+    { value: "", label: "" },
+  ]);
 
   // update local and outer state
-  const updateOptions = (options: IDropdownOption<string>[]) => {
+  const updateOptions = (options: IDropdownOption[]) => {
     setDropdownOptions(options);
     onChange(options);
   };
@@ -33,7 +33,7 @@ const DropdownOptions = ({ onChange }: IDropdownOptions) => {
               className="dropdown-options-modifier-option"
             >
               <TextInput
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                onChange={(e) => {
                   const updatedOptions = dropdownOptions.map((option, idx) =>
                     i === idx ? { ...option, label: e.target.value } : option
                   );

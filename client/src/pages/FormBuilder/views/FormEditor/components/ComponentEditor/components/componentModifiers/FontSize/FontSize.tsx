@@ -1,10 +1,10 @@
-import { ChangeEvent } from "react";
+import { ChangeEventHandler } from "react";
 
 import { NumberInput } from "components/inputs/inputComponents";
 
 interface IFontSize {
   fontSize: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 const FontSize = ({ fontSize, onChange }: IFontSize) => {

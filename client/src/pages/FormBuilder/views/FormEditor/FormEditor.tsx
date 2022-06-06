@@ -106,7 +106,8 @@ const FormEditor = ({
     setEditedForm({ ...editedForm, name: e.target.value });
 
   // Add component to form and set editedComponent's index to shadow the new component for editing
-  const onAddNewComponent = () => {
+  const onAddNewComponent: MouseEventHandler = (e) => {
+    e.preventDefault();
     const component: IFormComponent = {
       type: "Text",
       id: uuid(),

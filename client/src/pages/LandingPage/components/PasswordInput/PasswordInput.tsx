@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -9,7 +9,7 @@ import "./PasswordInput.scss";
 interface IPasswordInput {
   title: string;
   password: string;
-  onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChangePassword: ChangeEventHandler<HTMLInputElement>;
 }
 
 const PasswordInput = ({

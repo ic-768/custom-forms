@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
 
 import { TextInput } from "components/inputs/inputComponents";
 import { IMultipleChoiceOption } from "components/inputs/inputComponents/MultipleChoiceInput";
@@ -33,7 +33,7 @@ const MultipleChoiceOptions = ({ onChange }: IMultipleChoiceOptions) => {
               className="multiple-choice-options-modifier-option"
             >
               <TextInput
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                onChange={(e) => {
                   const updatedOptions = multipleChoiceOptions.map(
                     (option, idx) =>
                       i === idx ? { ...option, label: e.target.value } : option

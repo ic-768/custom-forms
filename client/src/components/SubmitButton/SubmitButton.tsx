@@ -1,7 +1,7 @@
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
-import { FormEvent } from "react";
+import { FormEventHandler } from "react";
 
 import { IForm } from "resources/shared";
 
@@ -12,7 +12,7 @@ const SubmitButton = ({
   onSubmit = (e) => e.preventDefault(),
 }: {
   buttonStyle: IForm["styles"]["buttonStyle"];
-  onSubmit?: (e: FormEvent<HTMLButtonElement>) => void;
+  onSubmit?: FormEventHandler;
 }) => {
   const isFloating = buttonStyle === "Floating";
   const buttonClass = classNames({

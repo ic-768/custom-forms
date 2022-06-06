@@ -1,8 +1,8 @@
-import { ChangeEvent, CSSProperties } from "react";
+import { ChangeEventHandler, CSSProperties } from "react";
 
 interface ITimeInput {
   type?: "Time";
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   value: string;
   className?: string;
   placeholder?: string;

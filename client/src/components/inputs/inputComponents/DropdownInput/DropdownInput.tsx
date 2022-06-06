@@ -64,6 +64,8 @@ const DropdownInput = <T extends string>({
         >
           <div
             className={placeholderClasses}
+            role="button"
+            tabIndex={0}
             onClick={toggleOptionsVisibility}
             onMouseEnter={() => setShowOptions(true)}
             style={placeholderStyle}
@@ -85,6 +87,8 @@ const DropdownInput = <T extends string>({
               options.map((o, i) => (
                 <li
                   className="dropdown-input-option"
+                  role="button"
+                  tabIndex={0}
                   key={`dropdown-input-${i}`}
                   value={o.value}
                   onClick={onOptionSelect}

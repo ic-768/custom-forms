@@ -1,6 +1,7 @@
-import "./SettingsButton.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
+
+import "./SettingsButton.scss";
 
 const SettingsButton = ({ onClick }: { onClick: () => void }) => {
   return (

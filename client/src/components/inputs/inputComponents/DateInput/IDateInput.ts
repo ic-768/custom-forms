@@ -1,8 +1,8 @@
-import { ChangeEvent, CSSProperties } from "react";
+import { ChangeEventHandler, CSSProperties } from "react";
 
 interface IDateInput {
   type?: "Date";
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   title?: string;
   subtitle?: string;
   className?: string;

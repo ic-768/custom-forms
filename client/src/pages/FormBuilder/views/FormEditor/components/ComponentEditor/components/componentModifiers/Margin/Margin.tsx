@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEventHandler } from "react";
 
 import { NumberInput } from "components/inputs/inputComponents";
 import InputContainer from "components/inputs/InputContainer";
@@ -8,8 +8,8 @@ import "./Margin.scss";
 interface IMargin {
   marginTop: string;
   marginBottom: string;
-  onChangeTopMargin: (v: ChangeEvent<HTMLInputElement>) => void;
-  onChangeBottomMargin: (v: ChangeEvent<HTMLInputElement>) => void;
+  onChangeTopMargin: ChangeEventHandler<HTMLInputElement>;
+  onChangeBottomMargin: ChangeEventHandler<HTMLInputElement>;
 }
 
 const Margin = ({

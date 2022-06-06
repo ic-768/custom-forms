@@ -1,10 +1,10 @@
-import { ChangeEvent } from "react";
+import { ChangeEventHandler } from "react";
 
 import { TextInput } from "components/inputs/inputComponents";
 
 interface ITextBody {
   text?: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 const TextBody = ({ text, onChange }: ITextBody) => (

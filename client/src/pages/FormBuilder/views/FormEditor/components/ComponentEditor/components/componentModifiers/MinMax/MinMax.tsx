@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEventHandler } from "react";
 
 import { NumberInput } from "components/inputs/inputComponents";
 import InputContainer from "components/inputs/InputContainer";
@@ -8,8 +8,8 @@ import "./MinMax.scss";
 interface IMinMax {
   min?: number;
   max?: number;
-  onChangeMin: (e: ChangeEvent<HTMLInputElement>) => void;
-  onChangeMax: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChangeMin: ChangeEventHandler<HTMLInputElement>;
+  onChangeMax: ChangeEventHandler<HTMLInputElement>;
 }
 
 const MinMax = ({ min, max, onChangeMin, onChangeMax }: IMinMax) => {
