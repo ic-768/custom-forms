@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "store/store";
-import { DateInput } from "components/inputs/inputComponents";
 
 export interface UserState {
   username: string;

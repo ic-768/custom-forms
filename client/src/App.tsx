@@ -10,10 +10,10 @@ import {
 import { setToken } from "services/forms";
 
 import LandingPage from "pages/LandingPage";
-import FormBuilder from "pages/FormBuilder/FormBuilder";
+import FormBuilder from "pages/FormBuilder";
 import FormSubmission from "pages/FormSubmission";
-import Loader from "components/Loader/Loader";
-import Notification from "components/Notification/Notification";
+import Loader from "components/Loader";
+import Notification from "components/Notification";
 
 const App = (): ReactElement => {
   const dispatch = useAppDispatch();
