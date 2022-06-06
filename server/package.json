@@ -2,9 +2,9 @@
   "name": "custom-forms-server",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/src/app.js",
+  "main": "dist/app.js",
   "scripts": {
-    "start": "node dist/src/app.js",
+    "start": "node dist/app.js",
     "monitor": "nodemon src/app.ts",
     "postinstall": "tsc",
     "lint": "eslint . --ext .ts",
