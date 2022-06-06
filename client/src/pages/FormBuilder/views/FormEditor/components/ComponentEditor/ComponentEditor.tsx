@@ -1,8 +1,8 @@
-import EditorPartial from "pages/FormBuilder/components/EditorPartial";
 import { IFormComponent } from "components/FormComponent";
 import { IEditedComponent, IForm } from "resources/shared";
 import { DropdownInput } from "components/inputs/inputComponents";
 
+import EditorPartial from "../EditorPartial";
 import ComponentModifiersList from "./components/componentModifiersList";
 import { getComponentIcon, componentsForDropdown } from "./helpers";
 
