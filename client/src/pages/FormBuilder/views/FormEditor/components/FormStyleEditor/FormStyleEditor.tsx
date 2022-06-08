@@ -1,4 +1,7 @@
 import { DropdownInput } from "components/inputs/inputComponents";
+import InputContainer from "components/inputs/InputContainer";
+import { ChangeEventHandler } from "react";
+
 import { IForm } from "resources/shared";
 import EditorPartial from "../EditorPartial";
 
@@ -19,7 +22,29 @@ const FormStyleEditor = ({
     const buttonStyle = {
       buttonStyle: o as IForm["styles"]["buttonStyle"],
     };
-    setEditedStyles({ ...form.styles, ...buttonStyle });
+    setEditedStyles({ ...editedStyles, ...buttonStyle });
+  };
+
+  const onChangeBackgroundImage: ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (e.target.files?.length) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+
+      reader.onloadend = function () {
+        setEditedStyles({
+          ...editedStyles,
+          backgroundImage: reader.result as string,
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const onClearBackgroundImage = () => {
+    setEditedStyles({
+      ...editedStyles,
+      backgroundImage: undefined,
+    });
   };
 
   const onSave = () => {
@@ -34,16 +59,40 @@ const FormStyleEditor = ({
       content={
         <>
           <DropdownInput
-            title="Style for the submission button"
-            selection={
-              editedStyles?.buttonStyle || form.styles.buttonStyle || "Regular"
-            }
+            title="Submission button style"
+            selection={editedStyles?.buttonStyle || "Regular"}
             options={[
               { label: "Floating", value: "floating" },
               { label: "Regular", value: "regular" },
             ]}
             onChange={onChangeButtonStyle}
           />
+          {/*File select input*/}
+          <InputContainer
+            component={
+              <>
+                <span>Background image</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={onChangeBackgroundImage}
+                />
+              </>
+            }
+          />
+          {editedStyles?.backgroundImage && (
+            <>
+              <img
+                alt="chosen background"
+                src={
+                  (editedStyles?.backgroundImage ||
+                    form.styles.backgroundImage) as string
+                }
+              />
+              {/*...editedStyles*/}
+              <button onClick={onClearBackgroundImage}>clear</button>
+            </>
+          )}
         </>
       }
       onCancel={onCancel}
