@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEventHandler, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { addOnChange, addState } from "./helpers";
@@ -34,7 +34,8 @@ const FormSubmission = () => {
     return enrichedComponent;
   };
 
-  const onSubmit = () => {
+  const onSubmit: FormEventHandler = (e) => {
+    e.preventDefault();
     // Add identifying info to submissions and remove empty entries
     const submissionsWithTitles = submissions.map((s, i) => ({
       title: form.components[i].title,

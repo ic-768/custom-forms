@@ -23,7 +23,10 @@ const FormPage = ({
   });
 
   return (
-    <form className={formClass}>
+    <form
+      style={{ backgroundImage: `url(${styles.backgroundImage}` }}
+      className={formClass}
+    >
       {content}
       <SubmitButton onSubmit={onSubmit} buttonStyle={styles.buttonStyle} />
     </form>
