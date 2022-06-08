@@ -3,7 +3,6 @@ import {
   DragDropContext,
   Draggable,
   Droppable,
-  DroppableStateSnapshot,
   DropResult,
 } from "react-beautiful-dnd";
 
@@ -64,15 +63,12 @@ const EditableComponentList = ({
   };
 
   const hasManyComponents = components.length > 1;
-  // if already editing, disallow editing other components and reordering
-  const showInputControls = useMemo(
+
+  // to disallow reordering and editing other components if already editing
+  const showDragHandle = useMemo(
     () => hasManyComponents && !isEditing,
     [isEditing, hasManyComponents]
   );
-
-  // hide draghandle while dragging
-  const showDragHandle = (snapshot: DroppableStateSnapshot) =>
-    !snapshot.isDraggingOver;
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -92,7 +88,7 @@ const EditableComponentList = ({
                 : component;
 
               // if not draggable, skip rendering the Draggable wrapper
-              return showInputControls ? (
+              return showDragHandle ? (
                 <Draggable
                   draggableId={component.id || i.toString()}
                   key={component.id}
@@ -105,8 +101,8 @@ const EditableComponentList = ({
                       dragHandleProps={provided.dragHandleProps}
                       key={i}
                       component={componentToUse}
-                      showControls={showInputControls}
-                      showDragControl={showDragHandle(droppableSnapshot)}
+                      showControls={!isEditing}
+                      showDragControl={!droppableSnapshot.isDraggingOver}
                       onSelectComponent={onSelectComponent(i)}
                       onDeleteComponent={onDeleteComponent(i)}
                     />
@@ -115,9 +111,9 @@ const EditableComponentList = ({
               ) : (
                 <EditableComponent
                   key={i}
-                  showControls={showInputControls}
+                  showControls={!isEditing}
+                  showDragControl={false}
                   component={componentToUse}
-                  showDragControl={showInputControls}
                   onSelectComponent={onSelectComponent(i)}
                   onDeleteComponent={onDeleteComponent(i)}
                 />
