@@ -14,7 +14,7 @@ const SubmitButton = ({
   buttonStyle: IForm["styles"]["buttonStyle"];
   onSubmit?: FormEventHandler;
 }) => {
-  const isFloating = buttonStyle === "Floating";
+  const isFloating = buttonStyle === "floating";
   const buttonClass = classNames({
     "submit-button": true,
     floating: isFloating,

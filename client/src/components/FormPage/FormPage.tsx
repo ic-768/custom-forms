@@ -24,7 +24,10 @@ const FormPage = ({
 
   return (
     <form
-      style={{ backgroundImage: `url(${styles.backgroundImage}` }}
+      style={{
+        backgroundImage: `url(${styles.backgroundImage}`,
+        backgroundPosition: styles.backgroundPosition,
+      }}
       className={formClass}
     >
       {content}

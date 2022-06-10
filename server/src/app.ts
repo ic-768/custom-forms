@@ -10,8 +10,8 @@ import path from "path";
 
 const app = express();
 
-app.use(bodyParser.json({ limit: "10mb" }));
-app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
+app.use(bodyParser.json({ limit: "12mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "12mb" }));
 app.use(express.json());
 app.use(express.static("build"));
 app.use(express.urlencoded({ extended: true }));

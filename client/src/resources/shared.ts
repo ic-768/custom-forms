@@ -2,10 +2,15 @@ import { v4 as uuid } from "uuid";
 
 import { IFormComponent } from "../components/FormComponent";
 
+type horizontalPosition = "left" | "right";
+type verticalPosition = "top" | "bottom";
+type completePosition = `${verticalPosition} ${horizontalPosition}` | "center";
+
 interface IFormStyles {
   backgroundImage?: string;
+  backgroundPosition?: horizontalPosition | verticalPosition | completePosition;
   backgroundColor?: string;
-  buttonStyle?: "Floating" | "Regular";
+  buttonStyle?: "floating" | "regular";
 }
 
 /**
