@@ -1,6 +1,7 @@
 import { ChangeEvent, CSSProperties } from "react";
 
 import {
+  FontColor,
   FontSize,
   BorderRadius,
   BorderColor,
@@ -53,11 +54,22 @@ const ComponentModifiersList = ({
       }}
     />
   );
+
   const FontSizeModifier = (
     <FontSize
       fontSize={(component.style?.fontSize as string) || "14px"}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         onChangeStyle("fontSize", `${e.target.value || 0}px`);
+      }}
+    />
+  );
+
+  const FontColorModifier = (
+    <FontColor
+      fontColor={component.style?.color as string}
+      onChange={(c) => {
+        const rgba = c.rgb;
+        onChangeStyle("color", `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`);
       }}
     />
   );
@@ -157,6 +169,7 @@ const ComponentModifiersList = ({
         <>
           {TitleModifier}
           {FontSizeModifier}
+          {FontColorModifier}
           {HeightModifier}
           {BorderRadiusModifier}
           {BorderTypeModifier}
@@ -169,6 +182,7 @@ const ComponentModifiersList = ({
         <>
           {TitleModifier}
           {FontSizeModifier}
+          {FontColorModifier}
           {HeightModifier}
           {BorderRadiusModifier}
           {BorderTypeModifier}
@@ -191,6 +205,7 @@ const ComponentModifiersList = ({
         <>
           {TitleModifier}
           {FontSizeModifier}
+          {FontColorModifier}
           {HeightModifier}
           {BorderRadiusModifier}
           {BorderTypeModifier}
@@ -203,6 +218,7 @@ const ComponentModifiersList = ({
         <>
           {TitleModifier}
           {FontSizeModifier}
+          {FontColorModifier}
           {HeightModifier}
           {BorderRadiusModifier}
           {BorderTypeModifier}

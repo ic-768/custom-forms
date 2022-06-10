@@ -1,50 +1,19 @@
-import { useState } from "react";
-import { ColorChangeHandler, ChromePicker } from "react-color";
+import { ColorChangeHandler } from "react-color";
 
-import InputContainer from "components/inputs/InputContainer";
-
-import "./BorderColor.scss";
+import ColorInput from "components/inputs/inputComponents/ColorInput";
 
 interface IBorderColor {
   color: string;
   onChange: ColorChangeHandler;
 }
 
-const BorderColor = ({ color, onChange }: IBorderColor) => {
-  const [showColor, setShowColor] = useState(false);
-
-  return (
-    <InputContainer
-      title="Border color"
-      subtitle="Set the color for the borders of the input"
-      className="bolor-color-input-container"
-      component={
-        <>
-          <div
-            style={{ backgroundImage: "url(/images/picker-background.png)" }}
-            className="border-color-modifier-input-container"
-            onClick={() => setShowColor(!showColor)}
-          >
-            <div
-              style={{
-                backgroundColor: color,
-              }}
-              className="border-color-modifier-input-color-block"
-            />
-          </div>
-
-          {showColor && (
-            <div
-              className="border-color-modifier-picker-container"
-              onMouseLeave={() => setShowColor(false)}
-            >
-              <ChromePicker color={color} onChange={onChange} />
-            </div>
-          )}
-        </>
-      }
-    />
-  );
-};
-
+const BorderColor = ({ color, onChange }: IBorderColor) => (
+  <ColorInput
+    title="Border color"
+    subtitle="Set the color for the borders of the input"
+    className="border-color-input-container"
+    value={color}
+    onChange={onChange}
+  />
+);
 export default BorderColor;

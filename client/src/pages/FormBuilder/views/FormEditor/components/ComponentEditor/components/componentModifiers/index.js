@@ -1,5 +1,6 @@
 import Title from "./Title";
 import FontSize from "./FontSize";
+import FontColor from "./FontColor";
 import BorderRadius from "./BorderRadius";
 import BorderColor from "./BorderColor";
 import BorderType from "./BorderType";
@@ -14,6 +15,7 @@ import TextBody from "./TextBody";
 export {
   Title,
   FontSize,
+  FontColor,
   BorderRadius,
   BorderColor,
   DropdownOptions,
