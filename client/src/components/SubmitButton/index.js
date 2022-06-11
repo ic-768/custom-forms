@@ -1,3 +1,3 @@
-import SubmitButton from "./SubmitButton"
+import SubmitButton from "./SubmitButton";
 
-export default SubmitButton
+export default SubmitButton;

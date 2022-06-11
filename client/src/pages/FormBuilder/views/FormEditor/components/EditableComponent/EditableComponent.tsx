@@ -85,4 +85,5 @@ const EditableComponent = forwardRef(
   )
 );
 
+EditableComponent.displayName = "EditableComponent";
 export default EditableComponent;

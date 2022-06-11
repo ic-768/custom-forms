@@ -1,3 +1,3 @@
-import IndividualView from "./IndividualView"
+import IndividualView from "./IndividualView";
 
-export default IndividualView
+export default IndividualView;

@@ -1,3 +1,3 @@
-import SummaryView from "./SummaryView"
+import SummaryView from "./SummaryView";
 
-export default SummaryView
+export default SummaryView;

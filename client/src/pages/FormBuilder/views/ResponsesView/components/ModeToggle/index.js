@@ -1,3 +1,3 @@
-import ModeToggle from "./ModeToggle"
+import ModeToggle from "./ModeToggle";
 
-export default ModeToggle
+export default ModeToggle;

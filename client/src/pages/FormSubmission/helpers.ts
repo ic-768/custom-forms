@@ -10,7 +10,7 @@ import { IForm } from "resources/shared";
 export const addOnChange = (
   component: IFormComponent,
   idx: number,
-  setSubmissions: Function,
+  setSubmissions: (s: IForm["submissions"]) => void,
   submissions: IForm["submissions"]
 ) => {
   switch (component.type) {

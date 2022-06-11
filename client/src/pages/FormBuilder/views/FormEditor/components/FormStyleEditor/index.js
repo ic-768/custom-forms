@@ -1,3 +1,3 @@
-import FormStyleEditor from "./FormStyleEditor"
+import FormStyleEditor from "./FormStyleEditor";
 
-export default FormStyleEditor
+export default FormStyleEditor;

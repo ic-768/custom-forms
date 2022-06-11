@@ -94,7 +94,7 @@ const EditableComponentList = ({
                   key={component.id}
                   index={i}
                 >
-                  {(provided, _snapshot) => (
+                  {(provided) => (
                     <EditableComponent
                       ref={provided.innerRef}
                       draggableProps={provided.draggableProps}

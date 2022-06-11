@@ -12,8 +12,8 @@ const SummaryView = ({ responses }: { responses?: any[] }) => {
   // Populate hash table with responses
   // TODO extract to function and take care of more complex responses
   // like multiple-choice
-  for (let response of responses) {
-    for (let each of response) {
+  for (const response of responses) {
+    for (const each of response) {
       const title = each.title;
       if (!groupedResponses[title]) groupedResponses[title] = [];
       groupedResponses[title].push(each.value);

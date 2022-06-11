@@ -1,3 +1,3 @@
-import EditorPartial from "./EditorPartial"
+import EditorPartial from "./EditorPartial";
 
-export default EditorPartial
+export default EditorPartial;
