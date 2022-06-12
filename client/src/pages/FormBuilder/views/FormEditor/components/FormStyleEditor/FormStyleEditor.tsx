@@ -1,9 +1,11 @@
 import { ChangeEventHandler } from "react";
+import { ColorChangeHandler } from "react-color";
 
 import { useNotification } from "store/hooks";
+import { IForm } from "resources/shared";
 import { DropdownInput } from "components/inputs/inputComponents";
 import InputContainer from "components/inputs/InputContainer";
-import { IForm } from "resources/shared";
+import ColorInput from "components/inputs/inputComponents/ColorInput";
 import EditorPartial from "../EditorPartial";
 
 const FormStyleEditor = ({
@@ -20,18 +22,21 @@ const FormStyleEditor = ({
   onCancel: () => void;
 }) => {
   const notify = useNotification();
+
   const onChangeButtonStyle = (o: string) => {
-    const buttonStyle = {
-      buttonStyle: o as IForm["styles"]["buttonStyle"],
-    };
-    setEditedStyles({ ...editedStyles, ...buttonStyle });
+    const buttonStyle = o as IForm["styles"]["buttonStyle"];
+    setEditedStyles({ ...editedStyles, buttonStyle });
   };
 
   const onChangeBackgroundPosition = (o: string) => {
-    const backgroundPosition = {
-      backgroundPosition: o as IForm["styles"]["backgroundPosition"],
-    };
-    setEditedStyles({ ...editedStyles, ...backgroundPosition });
+    const backgroundPosition = o as IForm["styles"]["backgroundPosition"];
+    setEditedStyles({ ...editedStyles, backgroundPosition });
+  };
+
+  const onChangeBackgroundColor: ColorChangeHandler = (c) => {
+    const rgba = c.rgb;
+    const backgroundColor = `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`;
+    setEditedStyles({ ...editedStyles, backgroundColor });
   };
 
   const onChangeBackgroundImage: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -41,11 +46,11 @@ const FormStyleEditor = ({
       if (file.size > 8388608) {
         notify({ message: "Image can be up to 8MB", type: "error" }, 5000);
       } else {
-        const url = window.URL.createObjectURL(file);
+        const backgroundImage = window.URL.createObjectURL(file);
 
         setEditedStyles({
           ...editedStyles,
-          backgroundImage: url,
+          backgroundImage,
         });
       }
     }
@@ -91,6 +96,13 @@ const FormStyleEditor = ({
               </>
             }
           />
+
+          <ColorInput
+            title="Background color"
+            subtitle="Set the color for the form's background"
+            value={editedStyles?.backgroundColor}
+            onChange={onChangeBackgroundColor}
+          />
           {editedStyles?.backgroundImage && (
             <>
               <img
@@ -100,7 +112,7 @@ const FormStyleEditor = ({
                     form.styles.backgroundImage) as string
                 }
               />
-              <button onClick={onClearBackgroundImage}>clear</button>
+              <button onClick={onClearBackgroundImage}>Clear</button>
             </>
           )}
           {editedStyles?.backgroundImage && (

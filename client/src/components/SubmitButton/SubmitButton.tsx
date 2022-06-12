@@ -1,7 +1,7 @@
+import { FormEventHandler } from "react";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
-import { FormEventHandler } from "react";
 
 import { IForm } from "resources/shared";
 

@@ -19,6 +19,7 @@
   color: var(--input-placeholder-fg);
   transition: border 0.15s ease;
   box-sizing: border-box;
+  text-transform: capitalize;
 
   &.is-option-selected {
     color: black;
@@ -67,6 +68,7 @@
 
 .dropdown-input-placeholder,
 .dropdown-input-option {
+  text-transform: capitalize;
   cursor: pointer;
 }
 

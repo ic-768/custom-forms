@@ -1,7 +1,8 @@
 .settings-button {
   position: absolute;
   right: 120px;
-  top: 120px;
+  top: 25px;
+  z-index: 3;
   overflow: hidden;
   display: flex;
   align-items: center;

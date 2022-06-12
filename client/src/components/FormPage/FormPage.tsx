@@ -22,10 +22,15 @@ const FormPage = ({
     [className!]: className,
   });
 
+  const backgroundImage = styles.backgroundImage
+    ? `url(${styles.backgroundImage})`
+    : undefined;
+
   return (
     <form
       style={{
-        backgroundImage: `url(${styles.backgroundImage}`,
+        backgroundColor: styles.backgroundColor,
+        backgroundImage,
         backgroundPosition: styles.backgroundPosition,
       }}
       className={formClass}
