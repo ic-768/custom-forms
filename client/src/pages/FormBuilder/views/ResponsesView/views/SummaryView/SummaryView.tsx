@@ -16,7 +16,16 @@ const SummaryView = ({ responses }: { responses?: any[] }) => {
     for (const each of response) {
       const title = each.title;
       if (!groupedResponses[title]) groupedResponses[title] = [];
-      groupedResponses[title].push(each.value);
+      if (Array.isArray(each.value)) {
+        // multiple choice
+        each.value.forEach((v: any) => {
+          if (v.isSelected) {
+            groupedResponses[title].push(v.label);
+          }
+        });
+      } else {
+        groupedResponses[title].push(each.value);
+      }
     }
   }
 

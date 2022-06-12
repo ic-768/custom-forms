@@ -43,14 +43,17 @@ const FormStyleEditor = ({
       const file = e.target.files[0];
 
       if (file.size > 8388608) {
-        notify({ message: "Image can be up to 8MB", type: "error" }, 5000);
+        notify({ message: "Image must be under 8MB", type: "error" }, 5000);
       } else {
-        const backgroundImage = window.URL.createObjectURL(file);
+        const reader = new FileReader();
 
-        setEditedStyles({
-          ...editedStyles,
-          backgroundImage,
-        });
+        reader.onloadend = function () {
+          setEditedStyles({
+            ...editedStyles,
+            backgroundImage: reader.result as string,
+          });
+        };
+        reader.readAsDataURL(file);
       }
     }
   };
