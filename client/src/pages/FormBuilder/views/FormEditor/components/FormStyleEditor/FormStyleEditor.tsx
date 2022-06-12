@@ -34,8 +34,7 @@ const FormStyleEditor = ({
   };
 
   const onChangeBackgroundColor: ColorChangeHandler = (c) => {
-    const rgba = c.rgb;
-    const backgroundColor = `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`;
+    const backgroundColor = `rgba(${Object.values(c.rgb)})`;
     setEditedStyles({ ...editedStyles, backgroundColor });
   };
 

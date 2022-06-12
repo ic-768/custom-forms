@@ -68,8 +68,7 @@ const ComponentModifiersList = ({
     <FontColor
       fontColor={component.style?.color as string}
       onChange={(c) => {
-        const rgba = c.rgb;
-        onChangeStyle("color", `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`);
+        onChangeStyle("color", `rgba(${Object.values(c.rgb)})`);
       }}
     />
   );
@@ -97,11 +96,7 @@ const ComponentModifiersList = ({
       /* get color from component style borderColor */
       color={component.style?.borderColor?.split(" ")[0] || "rgb(0,0,0,0)"}
       onChange={(c) => {
-        const rgba = c.rgb;
-        onChangeStyle(
-          "borderColor",
-          `rgba(${rgba.r},${rgba.g},${rgba.b},${rgba.a})`
-        );
+        onChangeStyle("borderColor", `rgba(${Object.values(c.rgb)})`);
       }}
     />
   );
