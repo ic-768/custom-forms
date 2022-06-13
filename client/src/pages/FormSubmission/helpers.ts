@@ -1,18 +1,18 @@
-import { ChangeEvent, SetStateAction } from "react";
-import { IFormComponent } from "components/FormComponent";
+import { ChangeEvent } from "react";
 import { IMultipleChoiceOption } from "components/inputs/inputComponents/MultipleChoiceInput";
-import { IForm } from "resources/shared";
+import { IFormInput } from "components/inputs/inputComponents";
+import { IFormAnswer } from "resources/shared";
 
 /**
  * Helper functions used to enrich the component with appropriate onChange
  * hooks and state values
  */
 export const addOnChange = (
-  component: IFormComponent,
+  component: IFormInput,
   idx: number,
-  setSubmissions: (s: IForm["submissions"]) => void,
-  submissions: IForm["submissions"]
-) => {
+  setSubmissions: (s: IFormAnswer["value"][]) => void,
+  submissions: IFormAnswer["value"][]
+): IFormInput => {
   switch (component.type) {
     case "Text":
     case "Number":
@@ -31,31 +31,35 @@ export const addOnChange = (
     case "Dropdown":
       return {
         ...component,
-        onChange: (v: string | SetStateAction<IMultipleChoiceOption[]>) => {
+        onChange: (v: string | IMultipleChoiceOption[]) => {
           setSubmissions(submissions.map((s, i) => (i === idx ? v : s)));
         },
-      };
+      } as IFormInput;
     default:
       return component;
   }
 };
 
 export const addState = (
-  component: IFormComponent,
+  component: IFormInput,
   idx: number,
-  submissions: IForm["submissions"]
-): IFormComponent => {
+  submissions: IFormAnswer["value"][]
+): IFormInput => {
   switch (component.type) {
     case "Text":
     case "Number":
     case "Range":
     case "Time":
     case "Date":
-      return { ...component, value: submissions[idx] || "" };
+      return { ...component, value: (submissions[idx] as string) || "" };
     case "Multiple Choice":
-      return { ...component, choices: submissions[idx] || component.choices };
+      return {
+        ...component,
+        choices:
+          (submissions[idx] as IMultipleChoiceOption[]) || component.choices,
+      };
     case "Dropdown":
-      return { ...component, selection: submissions[idx] };
+      return { ...component, value: submissions[idx] as string };
     default:
       return component;
   }

@@ -70,7 +70,7 @@ const ComponentEditor = ({
             placeholder="-- Choose a type --"
             options={componentsForDropdown}
             onChange={onComponentTypeSelect}
-            selection={editedComponent.component.type}
+            value={editedComponent.component.type}
             selectionIcon={getComponentIcon(editedComponent.component.type!)}
           />
           {editedComponent && (

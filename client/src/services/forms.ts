@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IForm } from "../resources/shared";
+import { IForm, IFormSubmission } from "../resources/shared";
 
 let token: string | null = null;
 
@@ -96,7 +96,7 @@ const asyncDeleteMultipleForms = async (
 const asyncSubmitForm = async (
   username: string,
   formId: IForm["_id"],
-  submissions: IForm["submissions"]
+  submissions: IFormSubmission
 ) => {
   try {
     const response = await axios.post("/forms/form-to-submit", {

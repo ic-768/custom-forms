@@ -78,7 +78,7 @@ const FormStyleEditor = ({
         <>
           <DropdownInput
             title="Submission button style"
-            selection={editedStyles?.buttonStyle || "regular"}
+            value={editedStyles?.buttonStyle || "regular"}
             options={[
               { label: "floating", value: "floating" },
               { label: "regular", value: "regular" },
@@ -120,7 +120,7 @@ const FormStyleEditor = ({
           {editedStyles?.backgroundImage && (
             <DropdownInput
               title="Background position"
-              selection={editedStyles?.backgroundPosition || "center"}
+              value={editedStyles?.backgroundPosition || "center"}
               options={[
                 { label: "center", value: "center" },
                 { label: "left", value: "left" },

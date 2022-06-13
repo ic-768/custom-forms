@@ -31,7 +31,7 @@ export const useWithLoader = () => {
   const dispatch = useDispatch();
 
   return useCallback(
-    async (action: () => Promise<any>) => {
+    async (action: () => Promise<unknown>) => {
       dispatch(setIsLoading(true));
       await action();
       dispatch(setIsLoading(false));

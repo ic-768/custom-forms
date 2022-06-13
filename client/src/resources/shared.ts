@@ -1,6 +1,11 @@
 import { v4 as uuid } from "uuid";
 
-import { IFormComponent } from "../components/FormComponent";
+import { IFormInput } from "components/inputs/inputComponents";
+import { IFormComponent } from "components/FormComponent";
+import {
+  IMultipleChoiceInput,
+  IMultipleChoiceOption,
+} from "components/inputs/inputComponents/MultipleChoiceInput";
 
 type horizontalPosition = "left" | "right";
 type verticalPosition = "top" | "bottom";
@@ -12,6 +17,20 @@ interface IFormStyles {
   backgroundColor?: string;
   buttonStyle?: "floating" | "regular";
 }
+
+/**
+ * An answer to a single form question
+ */
+export interface IFormAnswer<T extends IFormInput = IFormInput> {
+  title?: string;
+  type: T["type"];
+  value: T extends IMultipleChoiceInput ? IMultipleChoiceOption[] : string;
+}
+
+/**
+ * A single form submission (answers to many questions)
+ */
+export type IFormSubmission = IFormAnswer[];
 
 /**
  * A single user form
@@ -26,7 +45,7 @@ interface IForm {
   // general form styles like background color/image, submit button style, etc.
   styles: IFormStyles;
   // Info from all the times this form has been filled out.
-  submissions: any[];
+  submissions: IFormSubmission[];
 }
 
 /**

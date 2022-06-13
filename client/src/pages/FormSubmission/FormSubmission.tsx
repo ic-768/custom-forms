@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 
 import { addOnChange, addState } from "./helpers";
 import { asyncGetForm, asyncSubmitForm } from "services/forms";
+import { IFormInput } from "components/inputs/inputComponents";
 import FormPage from "components/FormPage";
-import { IForm } from "resources/shared";
-import FormComponent, { IFormComponent } from "components/FormComponent";
+import FormComponent from "components/FormComponent";
+import { IForm, IFormAnswer, IFormSubmission } from "resources/shared";
 
 import "./FormSubmission.scss";
 
@@ -13,22 +14,23 @@ const FormSubmission = () => {
   const params = useParams();
   const [form, setForm] = useState<IForm>();
 
-  // TODO submission is created for description component as well - should find a way to prevent that
-  const [submissions, setSubmissions] = useState(
+  // Array of answers - one for each form component
+  const [submissions, setSubmissions] = useState<IFormAnswer["value"][]>(
     Array(form?.components.length)
   );
 
   useEffect(() => {
-    asyncGetForm(params.user!, params.formId!).then((f) => {
+    asyncGetForm(params.user!, params.formId).then((f) => {
       if (!form) setForm(f);
     });
+
     setSubmissions(new Array(form?.components.length).fill("")); // fill submission array
   }, [params, form]);
 
   if (!form) return null;
 
   // Provide input components with onChange and state values
-  const enrichComponent = (c: IFormComponent, idx: number) => {
+  const enrichComponent = (c: IFormInput, idx: number) => {
     const withOnChange = addOnChange(c, idx, setSubmissions, submissions);
     const enrichedComponent = addState(withOnChange, idx, submissions);
     return enrichedComponent;
@@ -36,15 +38,22 @@ const FormSubmission = () => {
 
   const onSubmit: FormEventHandler = (e) => {
     e.preventDefault();
-    // Add identifying info to submissions and remove empty entries
-    const submissionsWithTitles = submissions.map((s, i) => ({
-      title: form.components[i].title,
-      type: form.components[i].type,
-      value: s,
-    }));
-    const cleanSubmissions = submissionsWithTitles.filter((s) => s.value);
 
-    asyncSubmitForm(params.user!, params.formId!, cleanSubmissions);
+    const formattedSubmissions = submissions
+      // remove submissions with no value, and submissions created for text-description components
+      .filter((c, i) => c && form.components[i].type !== "Text-Description")
+      // add corresponding titles and types
+      .map((s, i) => ({
+        title: form.components[i].title,
+        type: form.components[i].type,
+        value: s,
+      }));
+
+    asyncSubmitForm(
+      params.user!,
+      params.formId,
+      formattedSubmissions as IFormSubmission
+    );
   };
 
   return (
@@ -58,7 +67,11 @@ const FormSubmission = () => {
             {form.components.map((c, idx) => (
               <FormComponent
                 key={c.id || idx}
-                component={enrichComponent(c, idx)}
+                component={
+                  c.type === "Text-Description"
+                    ? c
+                    : enrichComponent(c as IFormInput, idx)
+                }
               />
             ))}
           </>

@@ -2,30 +2,16 @@ import TextDescription, { ITextDescription } from "../TextDescription";
 
 import {
   DateInput,
-  IDateInput,
   DropdownInput,
-  IDropdownInput,
   MultipleChoiceInput,
-  IMultipleChoiceInput,
   NumberInput,
-  INumberInput,
   TextInput,
-  ITextInput,
   TimeInput,
-  ITimeInput,
   RangeInput,
-  IRangeInput,
+  IFormInput,
 } from "../../components/inputs/inputComponents";
 
-type IFormComponent =
-  | IDropdownInput
-  | ITextInput
-  | INumberInput
-  | IDateInput
-  | ITimeInput
-  | IMultipleChoiceInput
-  | IRangeInput
-  | ITextDescription;
+type IFormComponent = IFormInput | ITextDescription;
 
 const FormComponent = ({ component }: { component: IFormComponent }) => {
   switch (component.type) {
@@ -51,4 +37,4 @@ const FormComponent = ({ component }: { component: IFormComponent }) => {
 };
 
 export default FormComponent;
-export type { IFormComponent };
+export type { IFormComponent, IFormInput };

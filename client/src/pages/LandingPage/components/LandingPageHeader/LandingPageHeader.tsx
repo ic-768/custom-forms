@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 import "./LandingPageHeader.scss";
 
@@ -18,7 +19,7 @@ const LandingPageHeader = () => (
       <FontAwesomeIcon
         title="Link to my github page"
         className="landing-page-header-github-icon"
-        icon={faGithub as any}
+        icon={faGithub as IconProp}
       />
       <span className="landing-page-header-github-text">GitHub</span>
     </Link>

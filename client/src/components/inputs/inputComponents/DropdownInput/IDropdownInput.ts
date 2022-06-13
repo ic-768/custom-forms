@@ -21,7 +21,7 @@ interface IDropdownInput<T extends string = string> {
   options: IDropdownOption<T>[];
   // callback for when an option is selected
   onChange?: (v: string) => void;
-  selection?: Partial<T>;
+  value?: Partial<T>;
   className?: string;
   // icon of the currently selected option
   selectionIcon?: IconDefinition;

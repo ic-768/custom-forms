@@ -47,7 +47,7 @@ const BorderType = ({ borderWidth, onChange }: IBorderType) => {
     <DropdownInput
       title="Border Type"
       subtitle="Choose a border type"
-      selection={borderType}
+      value={borderType}
       options={[
         { label: "Box", value: "Box" },
         { label: "Underline", value: "Underline" },

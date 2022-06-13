@@ -16,7 +16,7 @@ const DropdownInput = <T extends string>({
   style,
   options,
   onChange,
-  selection,
+  value,
   selectionIcon,
 }: IDropdownInput<T>) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -41,7 +41,7 @@ const DropdownInput = <T extends string>({
   const placeholderClasses = classNames({
     "dropdown-input-placeholder": true,
     "showing-options": showOptions,
-    "is-option-selected": selection,
+    "is-option-selected": value,
   });
 
   const dropdownOptionsClasses = classNames({
@@ -76,7 +76,7 @@ const DropdownInput = <T extends string>({
                 icon={selectionIcon}
               />
             )}
-            {selection || placeholder}
+            {value || placeholder}
             <FontAwesomeIcon
               className="dropdown-input-chevron-icon"
               icon={showOptions ? faChevronUp : faChevronDown}

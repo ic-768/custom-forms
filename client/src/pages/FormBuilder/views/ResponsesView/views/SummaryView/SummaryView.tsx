@@ -1,8 +1,9 @@
+import { IForm } from "resources/shared";
 import "./SummaryView.scss";
 
 type groupedResponses = { [title: string]: string[] };
 
-const SummaryView = ({ responses }: { responses?: any[] }) => {
+const SummaryView = ({ responses }: { responses?: IForm["submissions"] }) => {
   const groupedResponses: groupedResponses = {};
 
   if (!responses || !responses.length) {
@@ -14,11 +15,11 @@ const SummaryView = ({ responses }: { responses?: any[] }) => {
   // like multiple-choice
   for (const response of responses) {
     for (const each of response) {
-      const title = each.title;
+      const title = each.title || "";
       if (!groupedResponses[title]) groupedResponses[title] = [];
       if (Array.isArray(each.value)) {
         // multiple choice
-        each.value.forEach((v: any) => {
+        each.value.forEach((v) => {
           if (v.isSelected) {
             groupedResponses[title].push(v.label);
           }

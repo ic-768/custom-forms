@@ -8,6 +8,15 @@ import TextInput, { ITextInput } from "./TextInput";
 import TimeInput, { ITimeInput } from "./TimeInput";
 import RangeInput, { IRangeInput } from "./RangeInput";
 
+export type IFormInput =
+  | IDropdownInput
+  | ITextInput
+  | INumberInput
+  | IDateInput
+  | ITimeInput
+  | IMultipleChoiceInput
+  | IRangeInput;
+
 export {
   DateInput,
   DropdownInput,
