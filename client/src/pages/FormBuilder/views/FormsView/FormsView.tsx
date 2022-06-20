@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, ReactElement } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -26,7 +26,7 @@ const FormsView = ({
   setEditedForm,
   haveFormsBeenFetched,
   setConfirmation,
-}: IFormsView) => {
+}: IFormsView): ReactElement => {
   const dispatch = useDispatch();
   const withLoader = useWithLoader();
   const notify = useNotification();
@@ -54,7 +54,7 @@ const FormsView = ({
     [selectedForms]
   );
 
-  const onAddNewForm = () => {
+  const onAddNewForm = (): void => {
     setEditedForm(emptyForm);
   };
 
@@ -66,7 +66,7 @@ const FormsView = ({
           selectedForms,
           token!
         );
-        dispatch(deleteMultipleForms(deletedForms));
+        dispatch(deleteMultipleForms(deletedForms as string[]));
         setSelectedForms([]);
         notify(
           { type: "success", message: "Deleted forms successfully!" },
@@ -79,7 +79,7 @@ const FormsView = ({
   }, [dispatch, withLoader, notify, selectedForms]);
 
   // set the confirmation modal with a callback to delete the forms
-  const onShowDeleteConfirmation = () => {
+  const onShowDeleteConfirmation = (): void => {
     setConfirmation({
       message: "Are you sure you want to delete these forms?",
       onConfirm: async () => {
@@ -95,7 +95,7 @@ const FormsView = ({
       <TextInput
         placeholder="Search forms ..."
         className="forms-view-form-filter"
-        onChange={(e) => setFilterQuery(e.target.value.toLowerCase())}
+        onChange={(e): void => setFilterQuery(e.target.value.toLowerCase())}
         value={filterQuery}
       />
       {selectedForms.length ? (

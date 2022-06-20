@@ -1,4 +1,4 @@
-import { ChangeEvent, CSSProperties } from "react";
+import { ChangeEvent, CSSProperties, ReactElement } from "react";
 
 import {
   FontColor,
@@ -29,7 +29,7 @@ interface IComponentModifiersList {
 const ComponentModifiersList = ({
   component,
   onChangeModifiers,
-}: IComponentModifiersList) => {
+}: IComponentModifiersList): ReactElement | null => {
   // changes (or adds if doesn't exist) a specific style property
   const onChangeStyle = <
     K extends keyof CSSProperties,
@@ -37,7 +37,7 @@ const ComponentModifiersList = ({
   >(
     style: K,
     value: V
-  ) =>
+  ): void =>
     onChangeModifiers({
       ...component,
       style: {
@@ -49,7 +49,7 @@ const ComponentModifiersList = ({
   const TitleModifier = (
     <Title
       title={component.title || ""}
-      onChange={(e: ChangeEvent<HTMLInputElement>) => {
+      onChange={(e: ChangeEvent<HTMLInputElement>): void => {
         onChangeModifiers({ ...component, title: e.target.value });
       }}
     />
@@ -58,7 +58,7 @@ const ComponentModifiersList = ({
   const FontSizeModifier = (
     <FontSize
       fontSize={(component.style?.fontSize as string) || "14px"}
-      onChange={(e: ChangeEvent<HTMLInputElement>) => {
+      onChange={(e: ChangeEvent<HTMLInputElement>): void => {
         onChangeStyle("fontSize", `${e.target.value || 0}px`);
       }}
     />
@@ -67,7 +67,7 @@ const ComponentModifiersList = ({
   const FontColorModifier = (
     <FontColor
       fontColor={component.style?.color as string}
-      onChange={(c) => {
+      onChange={(c): void => {
         onChangeStyle("color", `rgba(${Object.values(c.rgb)})`);
       }}
     />
@@ -76,7 +76,7 @@ const ComponentModifiersList = ({
   const HeightModifier = (
     <Height
       height={(component.style?.height as string) || "33px"}
-      onChange={(e: ChangeEvent<HTMLInputElement>) => {
+      onChange={(e: ChangeEvent<HTMLInputElement>): void => {
         onChangeStyle("height", `${e.target.value || 0}px`);
       }}
     />
@@ -85,7 +85,7 @@ const ComponentModifiersList = ({
   const BorderRadiusModifier = (
     <BorderRadius
       radius={(component.style?.borderRadius as string) || "5px"}
-      onChange={(e: ChangeEvent<HTMLInputElement>) => {
+      onChange={(e: ChangeEvent<HTMLInputElement>): void => {
         onChangeStyle("borderRadius", `${e.target.value || 0}px`);
       }}
     />
@@ -95,7 +95,7 @@ const ComponentModifiersList = ({
     <BorderColor
       /* get color from component style borderColor */
       color={component.style?.borderColor?.split(" ")[0] || "rgb(0,0,0,0)"}
-      onChange={(c) => {
+      onChange={(c): void => {
         onChangeStyle("borderColor", `rgba(${Object.values(c.rgb)})`);
       }}
     />
@@ -106,7 +106,7 @@ const ComponentModifiersList = ({
       borderWidth={
         (component.style?.borderWidth as BorderWidth) || "1px 1px 1px 1px"
       }
-      onChange={(t) => {
+      onChange={(t): void => {
         onChangeStyle("borderWidth", t);
       }}
     />
@@ -116,10 +116,10 @@ const ComponentModifiersList = ({
     <Margin
       marginTop={(component.style?.marginTop as string) || "0px"}
       marginBottom={(component.style?.marginBottom as string) || "0px"}
-      onChangeTopMargin={(e) => {
+      onChangeTopMargin={(e): void => {
         onChangeStyle("marginTop", `${e.target.value || 0}px`);
       }}
-      onChangeBottomMargin={(e) => {
+      onChangeBottomMargin={(e): void => {
         onChangeStyle("marginBottom", `${e.target.value || 0}px`);
       }}
     />
@@ -131,7 +131,7 @@ const ComponentModifiersList = ({
         <>
           {TitleModifier}
           <TextBody
-            onChange={(e) => {
+            onChange={(e): void => {
               onChangeModifiers({ ...component, text: e.target.value });
             }}
           />
@@ -153,7 +153,7 @@ const ComponentModifiersList = ({
           {BorderTypeModifier}
           {MarginModifier}
           <DropdownOptions
-            onChange={(options) => {
+            onChange={(options): void => {
               onChangeModifiers({ ...component, options });
             }}
           />
@@ -186,10 +186,10 @@ const ComponentModifiersList = ({
           <MinMax
             min={component.min}
             max={component.max}
-            onChangeMin={(e) =>
+            onChangeMin={(e): void =>
               onChangeModifiers({ ...component, min: Number(e.target.value) })
             }
-            onChangeMax={(e) =>
+            onChangeMax={(e): void =>
               onChangeModifiers({ ...component, max: Number(e.target.value) })
             }
           />
@@ -226,7 +226,7 @@ const ComponentModifiersList = ({
         <>
           {TitleModifier}
           <MultipleChoiceOptions
-            onChange={(choices) => {
+            onChange={(choices): void => {
               onChangeModifiers({ ...component, choices });
             }}
           />
@@ -246,16 +246,16 @@ const ComponentModifiersList = ({
           <MinMax
             min={component.min}
             max={component.max}
-            onChangeMin={(e) => {
+            onChangeMin={(e): void => {
               onChangeModifiers({ ...component, min: Number(e.target.value) });
             }}
-            onChangeMax={(e) =>
+            onChangeMax={(e): void =>
               onChangeModifiers({ ...component, max: Number(e.target.value) })
             }
           />
           <Step
             step={component.step}
-            onChange={(e) => {
+            onChange={(e): void => {
               onChangeModifiers({ ...component, step: Number(e.target.value) });
             }}
           />

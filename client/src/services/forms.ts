@@ -3,14 +3,17 @@ import { IForm, IFormSubmission } from "../resources/shared";
 
 let token: string | null = null;
 
-const setToken = (newToken: string) => {
+const setToken = (newToken: string): void => {
   token = `bearer ${newToken}`;
 };
 
 /**
  * Get a user form
  */
-const asyncGetForm = async (username: string, formId: IForm["_id"]) => {
+const asyncGetForm = async (
+  username: string,
+  formId: IForm["_id"]
+): Promise<unknown> => {
   if (formId) {
     try {
       const config = { headers: { username, formId } };
@@ -25,7 +28,7 @@ const asyncGetForm = async (username: string, formId: IForm["_id"]) => {
 /**
  * Get all of signed-in user's forms
  */
-const asyncGetForms = async (token: string) => {
+const asyncGetForms = async (token: string): Promise<unknown> => {
   try {
     const config = { headers: { Authorization: token } };
     const response = await axios.get("/forms", config);
@@ -38,7 +41,10 @@ const asyncGetForms = async (token: string) => {
 /**
  * Create a new form
  */
-const asyncPostForm = async (formData: IForm, token: string) => {
+const asyncPostForm = async (
+  formData: IForm,
+  token: string
+): Promise<unknown> => {
   try {
     const config = { headers: { Authorization: token } };
     const response = await axios.post("/forms", { formData }, config);
@@ -51,7 +57,10 @@ const asyncPostForm = async (formData: IForm, token: string) => {
 /**
  * Update a form
  */
-const asyncUpdateForm = async (formData: IForm, token: string) => {
+const asyncUpdateForm = async (
+  formData: IForm,
+  token: string
+): Promise<unknown> => {
   try {
     const config = { headers: { Authorization: token } };
     const response = await axios.put("/forms", { formData }, config);
@@ -64,7 +73,10 @@ const asyncUpdateForm = async (formData: IForm, token: string) => {
 /**
  * Delete a form
  */
-const asyncDeleteForm = async (formId: IForm["_id"], token: string) => {
+const asyncDeleteForm = async (
+  formId: IForm["_id"],
+  token: string
+): Promise<unknown> => {
   try {
     const config = { headers: { Authorization: token }, data: { formId } };
     const response = await axios.delete("/forms", config);
@@ -80,7 +92,7 @@ const asyncDeleteForm = async (formId: IForm["_id"], token: string) => {
 const asyncDeleteMultipleForms = async (
   formIds: IForm["_id"][],
   token: string
-) => {
+): Promise<unknown> => {
   try {
     const config = { headers: { Authorization: token }, data: { formIds } };
     const response = await axios.delete("/forms/multiple", config);
@@ -97,7 +109,7 @@ const asyncSubmitForm = async (
   username: string,
   formId: IForm["_id"],
   submissions: IFormSubmission
-) => {
+): Promise<unknown> => {
   try {
     const response = await axios.post("/forms/form-to-submit", {
       username,

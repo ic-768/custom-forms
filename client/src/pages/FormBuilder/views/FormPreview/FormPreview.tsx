@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { ReactElement, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import BackButton from "components/BackButton";
@@ -16,7 +16,7 @@ const FormPreview = ({
   forms: IForm[];
   form: IForm;
   setForm: (form: IForm) => void;
-}) => {
+}): ReactElement => {
   const navigate = useNavigate();
   const params = useParams();
 

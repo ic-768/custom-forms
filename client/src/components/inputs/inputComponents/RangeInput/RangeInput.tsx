@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
@@ -15,7 +16,7 @@ const RangeInput = ({
   max,
   step,
   placeholder,
-}: IRangeInput) => {
+}: IRangeInput): ReactElement => {
   const inputClasses = classNames({
     "range-input": true,
     [className!]: !!className,

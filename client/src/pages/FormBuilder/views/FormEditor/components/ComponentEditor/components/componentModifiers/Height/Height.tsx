@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, ReactElement } from "react";
 
 import { NumberInput } from "components/inputs/inputComponents";
 
@@ -7,7 +7,7 @@ interface IHeight {
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const Height = ({ height, onChange }: IHeight) => {
+const Height = ({ height, onChange }: IHeight): ReactElement => {
   const heightValue = Number(height.match(/\d+/)![0]).toString();
 
   return (

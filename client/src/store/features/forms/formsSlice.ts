@@ -35,7 +35,7 @@ const formsSlice = createSlice({
   },
 });
 
-const selectForms = (state: RootState) => state.forms.forms;
+const selectForms = (state: RootState): IForm[] => state.forms.forms;
 const { setForms, addForm, updateForm, deleteForm, deleteMultipleForms } =
   formsSlice.actions;
 

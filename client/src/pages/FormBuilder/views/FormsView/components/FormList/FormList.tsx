@@ -1,11 +1,11 @@
-import { useCallback, useMemo } from "react";
+import { ReactElement, useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
 
 import FormListItem from "../FormListItem/FormListItem";
 import { addForm, deleteForm } from "store/features/forms/formsSlice";
 import { useNotification, useWithLoader } from "store/hooks";
 import { asyncDeleteForm, asyncPostForm, token } from "services/forms";
-import { IForm } from "resources/shared";
+import { IForm, isForm } from "resources/shared";
 import { IConfirmationModal } from "components/ConfirmationModal";
 
 import "./FormList.scss";
@@ -29,7 +29,7 @@ const FormList = ({
   forms,
   haveFormsBeenFetched,
   setConfirmation,
-}: IFormList) => {
+}: IFormList): ReactElement => {
   const dispatch = useDispatch();
   const withLoader = useWithLoader();
   const notify = useNotification();
@@ -64,11 +64,13 @@ const FormList = ({
           try {
             const copiedForm = { ...form, name: `${form.name} (copy)` };
             const returnedForm = await asyncPostForm(copiedForm, token);
-            dispatch(addForm(returnedForm));
-            notify(
-              { type: "success", message: "Copied form successfully!" },
-              3000
-            );
+            if (isForm(returnedForm)) {
+              dispatch(addForm(returnedForm));
+              notify(
+                { type: "success", message: "Copied form successfully!" },
+                3000
+              );
+            }
           } catch {
             notify({ type: "error", message: "Something went wrong!" }, 3000);
           }
@@ -81,7 +83,7 @@ const FormList = ({
   // List of links to edit each of user's forms
   const formList = useMemo(() => {
     // function to delete the form
-    const onShowDeleteConfirmation = (id: IForm["_id"]) => {
+    const onShowDeleteConfirmation = (id: IForm["_id"]): void => {
       setConfirmation({
         message: "Are you sure you want to delete this form?",
         onConfirm: async () => {
@@ -97,12 +99,12 @@ const FormList = ({
         key={f._id}
         form={f}
         isSelected={selectedForms.includes(f._id)}
-        onSelectForm={() => onSelectForm(f._id)}
-        onCopyForm={(e) => {
+        onSelectForm={(): void => onSelectForm(f._id)}
+        onCopyForm={(e): void => {
           e.stopPropagation();
           onCopyForm(f);
         }}
-        onDeleteForm={(e) => {
+        onDeleteForm={(e): void => {
           e.stopPropagation();
           onShowDeleteConfirmation(f._id);
         }}

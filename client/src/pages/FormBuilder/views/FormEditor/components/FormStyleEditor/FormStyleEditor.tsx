@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, ReactElement } from "react";
 import { ColorChangeHandler } from "react-color";
 
 import { useNotification } from "store/hooks";
@@ -20,15 +20,15 @@ const FormStyleEditor = ({
   form: IForm;
   setForm: (form: IForm) => void;
   onCancel: () => void;
-}) => {
+}): ReactElement => {
   const notify = useNotification();
 
-  const onChangeButtonStyle = (o: string) => {
+  const onChangeButtonStyle = (o: string): void => {
     const buttonStyle = o as IForm["styles"]["buttonStyle"];
     setEditedStyles({ ...editedStyles, buttonStyle });
   };
 
-  const onChangeBackgroundPosition = (o: string) => {
+  const onChangeBackgroundPosition = (o: string): void => {
     const backgroundPosition = o as IForm["styles"]["backgroundPosition"];
     setEditedStyles({ ...editedStyles, backgroundPosition });
   };
@@ -47,7 +47,7 @@ const FormStyleEditor = ({
       } else {
         const reader = new FileReader();
 
-        reader.onloadend = function () {
+        reader.onloadend = function (): void {
           setEditedStyles({
             ...editedStyles,
             backgroundImage: reader.result as string,
@@ -58,14 +58,14 @@ const FormStyleEditor = ({
     }
   };
 
-  const onClearBackgroundImage = () => {
+  const onClearBackgroundImage = (): void => {
     setEditedStyles({
       ...editedStyles,
       backgroundImage: undefined,
     });
   };
 
-  const onSave = () => {
+  const onSave = (): void => {
     if (editedStyles) {
       setForm({ ...form, styles: editedStyles });
       setEditedStyles(null);

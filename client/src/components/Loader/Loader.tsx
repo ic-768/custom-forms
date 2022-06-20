@@ -1,6 +1,7 @@
+import { ReactElement } from "react";
 import "./Loader.scss";
 
-const Loader = () => (
+const Loader = (): ReactElement => (
   <div className="bouncing-loader">
     <div />
     <div />

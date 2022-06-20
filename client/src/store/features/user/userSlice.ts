@@ -22,7 +22,7 @@ const userSlice = createSlice({
   },
 });
 
-const selectUser = (state: RootState) => state.user.username;
+const selectUser = (state: RootState): string => state.user.username;
 const { removeUser, setUser } = userSlice.actions;
 
 export { selectUser, removeUser, setUser };

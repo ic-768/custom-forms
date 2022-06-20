@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, ReactElement } from "react";
 
 import { NumberInput } from "components/inputs/inputComponents";
 
@@ -7,7 +7,7 @@ interface IBorderRadius {
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const BorderRadius = ({ radius, onChange }: IBorderRadius) => {
+const BorderRadius = ({ radius, onChange }: IBorderRadius): ReactElement => {
   const borderRadiusValue = Number(radius.match(/\d+/)![0]);
 
   return (

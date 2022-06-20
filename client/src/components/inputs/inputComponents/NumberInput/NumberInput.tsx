@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
@@ -15,7 +16,7 @@ const NumberInput = ({
   min,
   max,
   style,
-}: INumberInput) => {
+}: INumberInput): ReactElement => {
   const inputClasses = classNames({
     "number-input": true,
     [className!]: !!className,

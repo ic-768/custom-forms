@@ -1,5 +1,5 @@
-import classNames from "classnames";
 import { FormEvent, ReactElement } from "react";
+import classNames from "classnames";
 
 import { IForm } from "resources/shared";
 import SubmitButton from "../SubmitButton";
@@ -16,7 +16,7 @@ const FormPage = ({
   onSubmit?: (e: FormEvent<HTMLButtonElement>) => void;
   className?: string;
   styles: IForm["styles"];
-}) => {
+}): ReactElement => {
   const formClass = classNames({
     "form-page": true,
     [className!]: className,

@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import TextDescription, { ITextDescription } from "../TextDescription";
 
 import {
@@ -13,7 +14,11 @@ import {
 
 type IFormComponent = IFormInput | ITextDescription;
 
-const FormComponent = ({ component }: { component: IFormComponent }) => {
+const FormComponent = ({
+  component,
+}: {
+  component: IFormComponent;
+}): ReactElement | null => {
   switch (component.type) {
     case "Date":
       return <DateInput {...component} />;

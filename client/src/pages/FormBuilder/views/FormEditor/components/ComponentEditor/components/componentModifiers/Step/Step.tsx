@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, ReactElement } from "react";
 
 import { NumberInput } from "components/inputs/inputComponents";
 
@@ -7,7 +7,7 @@ interface IStep {
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const Step = ({ step, onChange }: IStep) => {
+const Step = ({ step, onChange }: IStep): ReactElement => {
   const stepValue = (step || 0).toString();
 
   return (

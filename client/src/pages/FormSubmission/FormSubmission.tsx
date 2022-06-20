@@ -1,4 +1,4 @@
-import { FormEventHandler, useEffect, useState } from "react";
+import { FormEventHandler, ReactElement, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { addOnChange, addState } from "./helpers";
@@ -6,11 +6,11 @@ import { asyncGetForm, asyncSubmitForm } from "services/forms";
 import { IFormInput } from "components/inputs/inputComponents";
 import FormPage from "components/FormPage";
 import FormComponent from "components/FormComponent";
-import { IForm, IFormAnswer, IFormSubmission } from "resources/shared";
+import { IForm, IFormAnswer, IFormSubmission, isForm } from "resources/shared";
 
 import "./FormSubmission.scss";
 
-const FormSubmission = () => {
+const FormSubmission = (): ReactElement | null => {
   const params = useParams();
   const [form, setForm] = useState<IForm>();
 
@@ -21,7 +21,7 @@ const FormSubmission = () => {
 
   useEffect(() => {
     asyncGetForm(params.user!, params.formId).then((f) => {
-      if (!form) setForm(f);
+      if (!form && isForm(f)) setForm(f);
     });
 
     setSubmissions(new Array(form?.components.length).fill("")); // fill submission array
@@ -30,7 +30,7 @@ const FormSubmission = () => {
   if (!form) return null;
 
   // Provide input components with onChange and state values
-  const enrichComponent = (c: IFormInput, idx: number) => {
+  const enrichComponent = (c: IFormInput, idx: number): IFormInput => {
     const withOnChange = addOnChange(c, idx, setSubmissions, submissions);
     const enrichedComponent = addState(withOnChange, idx, submissions);
     return enrichedComponent;

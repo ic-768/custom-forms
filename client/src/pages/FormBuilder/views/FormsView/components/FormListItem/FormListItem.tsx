@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, ReactElement } from "react";
 import { Link } from "react-router-dom";
 import { faCopy, faLink, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,7 +22,7 @@ const FormListItem = ({
   onSelectForm,
   onDeleteForm,
   onCopyForm,
-}: IFormListItem) => {
+}: IFormListItem): ReactElement => {
   const { name, _id } = form;
   const username = useAppSelector((state) => state.user.username);
   const notify = useNotification();

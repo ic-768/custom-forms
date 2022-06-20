@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
+import { ReactElement, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { token, asyncGetForms } from "services/forms";
@@ -18,7 +18,7 @@ import ResponsesView from "./views/ResponsesView";
 
 import "./FormBuilder.scss";
 
-const FormBuilder = () => {
+const FormBuilder = (): ReactElement => {
   const dispatch = useDispatch();
   const forms = useAppSelector(selectForms);
   const withLoader = useWithLoader();
@@ -40,7 +40,7 @@ const FormBuilder = () => {
     withLoader(async () => {
       if (token) {
         const userForms = await asyncGetForms(token);
-        dispatch(setForms(userForms || []));
+        dispatch(setForms((userForms as IForm[]) || []));
         setHaveFormsBeenFetched(true);
       }
     });

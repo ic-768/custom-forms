@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
@@ -15,7 +16,7 @@ const TextInput = ({
   maxLength,
   style,
   autoFocus,
-}: ITextInput) => {
+}: ITextInput): ReactElement => {
   const inputClasses = classNames({
     "text-input": true,
     [className!]: !!className,

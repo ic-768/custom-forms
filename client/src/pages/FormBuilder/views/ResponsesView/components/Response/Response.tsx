@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { IFormSubmission } from "resources/shared";
 
 import "./Response.scss";
 
-const Response = ({ answers }: { answers: IFormSubmission }) => {
+const Response = ({ answers }: { answers: IFormSubmission }): ReactElement => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const toggleExpansion = () => setIsExpanded(!isExpanded);
+  const toggleExpansion = (): void => setIsExpanded(!isExpanded);
 
   const responses = answers.map((t, j) => {
     return (

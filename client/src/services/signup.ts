@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const signup = async (credentials: { username: string; password: string }) => {
+const signup = async (credentials: {
+  username: string;
+  password: string;
+}): Promise<void> => {
   try {
     await axios.post("/add-user", credentials);
   } catch {

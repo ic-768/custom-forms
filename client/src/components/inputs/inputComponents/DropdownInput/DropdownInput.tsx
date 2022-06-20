@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, ReactElement } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
@@ -18,7 +18,7 @@ const DropdownInput = <T extends string>({
   onChange,
   value,
   selectionIcon,
-}: IDropdownInput<T>) => {
+}: IDropdownInput<T>): ReactElement => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
   const onOptionSelect = (e: MouseEvent<HTMLLIElement>): void => {
@@ -60,14 +60,14 @@ const DropdownInput = <T extends string>({
         <div
           style={{ marginBottom }}
           className={dropdownClasses}
-          onMouseLeave={() => setShowOptions(false)}
+          onMouseLeave={(): void => setShowOptions(false)}
         >
           <div
             className={placeholderClasses}
             role="button"
             tabIndex={0}
             onClick={toggleOptionsVisibility}
-            onMouseEnter={() => setShowOptions(true)}
+            onMouseEnter={(): void => setShowOptions(true)}
             style={placeholderStyle}
           >
             {selectionIcon && (

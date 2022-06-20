@@ -1,8 +1,9 @@
+import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 
 import "./Home.scss";
 
-const Home = () => (
+const Home = (): ReactElement => (
   <div className="home-view-container">
     <div className="home-view-intro">
       <span className="home-view-intro-title">Custom Forms</span>

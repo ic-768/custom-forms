@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
@@ -9,12 +10,12 @@ import { setForms } from "store/features/forms/formsSlice";
 
 import "./FormBuilderHeader.scss";
 
-const FormBuilderHeader = () => {
+const FormBuilderHeader = (): ReactElement => {
   const username = useAppSelector((state) => state.user.username);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onLogOut = () => {
+  const onLogOut = (): void => {
     window.localStorage.removeItem("loggedUser");
     dispatch(removeUser());
     dispatch(setForms([]));

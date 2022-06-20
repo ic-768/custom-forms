@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 
 import "./EditorPartial.scss";
 
@@ -10,7 +10,7 @@ const EditorPartial = ({
   onSave: () => void;
   onCancel: () => void;
   content: ReactNode;
-}) => (
+}): ReactElement => (
   <div className="editor-partial">
     <div className="editor-partial-options-container">{content}</div>
     <div className="editor-partial-buttons-container">

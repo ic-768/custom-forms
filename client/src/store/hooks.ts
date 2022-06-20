@@ -7,13 +7,17 @@ import {
   setIsLoading,
   INotification,
 } from "./features/notifications/notificationsSlice";
+import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 
 // helper function to wait for a set duration
-const sleep = (time: number) =>
+const sleep = (time: number): Promise<unknown> =>
   new Promise((resolve) => setTimeout(resolve, time));
 
 // hook that sets a notification and removes it after a set time
-export const useNotification = () => {
+export const useNotification = (): ((
+  notification: INotification,
+  duration: number
+) => Promise<void>) => {
   const dispatch = useDispatch();
 
   return useCallback(
@@ -27,11 +31,13 @@ export const useNotification = () => {
 };
 
 // hook that sets a loader and removes it after an action has taken place
-export const useWithLoader = () => {
+export const useWithLoader = (): ((
+  action: () => Promise<void>
+) => Promise<void>) => {
   const dispatch = useDispatch();
 
   return useCallback(
-    async (action: () => Promise<unknown>) => {
+    async (action: () => Promise<void>) => {
       dispatch(setIsLoading(true));
       await action();
       dispatch(setIsLoading(false));
@@ -40,5 +46,9 @@ export const useWithLoader = () => {
   );
 };
 
-export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppDispatch = (): ThunkDispatch<
+  RootState,
+  undefined,
+  AnyAction
+> => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

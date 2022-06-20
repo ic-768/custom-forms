@@ -18,7 +18,7 @@ const InputContainer = ({
   title,
   subtitle,
   className,
-}: IInputContainer) => {
+}: IInputContainer): ReactElement => {
   const inputContainerClasses = classNames({
     "input-container": true,
     [className!]: !!className,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import classNames from "classnames";
 import { ChromePicker } from "react-color";
 
@@ -14,7 +14,7 @@ const ColorInput = ({
   value,
   onChange,
   style, //TODO
-}: IColorInput) => {
+}: IColorInput): ReactElement => {
   const [showColor, setShowColor] = useState(false);
 
   const inputClasses = classNames({
@@ -22,8 +22,8 @@ const ColorInput = ({
     [className!]: !!className,
   });
 
-  const toggleShowColor = () => setShowColor((c) => !c);
-  const hideShowColor = () => setShowColor(false);
+  const toggleShowColor = (): void => setShowColor((c) => !c);
+  const hideShowColor = (): void => setShowColor(false);
 
   return (
     <InputContainer

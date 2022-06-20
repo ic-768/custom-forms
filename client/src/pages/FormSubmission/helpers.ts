@@ -21,7 +21,7 @@ export const addOnChange = (
     case "Date":
       return {
         ...component,
-        onChange: (e: ChangeEvent<HTMLInputElement>) => {
+        onChange: (e: ChangeEvent<HTMLInputElement>): void => {
           setSubmissions(
             submissions.map((s, i) => (i === idx ? e.target.value : s))
           );

@@ -1,8 +1,13 @@
+import { ReactElement } from "react";
 import { INotification } from "store/features/notifications/notificationsSlice";
 
 import "./Notification.scss";
 
-const Notification = ({ notification }: { notification: INotification }) => {
+const Notification = ({
+  notification,
+}: {
+  notification: INotification;
+}): ReactElement => {
   const notificationClasses = `notification-body ${[notification.type]}`;
 
   return (

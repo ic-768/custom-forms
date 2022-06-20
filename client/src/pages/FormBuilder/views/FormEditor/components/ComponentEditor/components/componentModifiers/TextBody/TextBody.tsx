@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, ReactElement } from "react";
 
 import { TextInput } from "components/inputs/inputComponents";
 
@@ -7,7 +7,7 @@ interface ITextBody {
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const TextBody = ({ text, onChange }: ITextBody) => (
+const TextBody = ({ text, onChange }: ITextBody): ReactElement => (
   <TextInput
     title="Text Body"
     subtitle="The explanatory text"

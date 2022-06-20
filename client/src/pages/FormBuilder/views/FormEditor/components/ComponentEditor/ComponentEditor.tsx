@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 import { IFormComponent } from "components/FormComponent";
 import { IEditedComponent, IForm } from "resources/shared";
 import { DropdownInput } from "components/inputs/inputComponents";
@@ -21,11 +23,11 @@ const ComponentEditor = ({
   setEditedComponent,
   form,
   setForm,
-}: IComponentEditor) => {
+}: IComponentEditor): ReactElement | null => {
   if (!editedComponent) return null;
 
   // replace form's component with newly edited one
-  const onUpdateForm = (component: IFormComponent) => {
+  const onUpdateForm = (component: IFormComponent): void => {
     if (component) {
       setForm({
         ...form,
@@ -36,22 +38,22 @@ const ComponentEditor = ({
     }
   };
 
-  const onSave = () => {
+  const onSave = (): void => {
     onUpdateForm({ ...editedComponent.component });
     setEditedComponent(null);
   };
 
-  const onCancel = () => {
+  const onCancel = (): void => {
     setEditedComponent(null);
   };
 
   // edit component - keep index
-  const editComponent = (component: IFormComponent) => {
+  const editComponent = (component: IFormComponent): void => {
     setEditedComponent({ index: editedComponent.index, component });
   };
 
   // When changing component type, we keep the label and the id
-  const onComponentTypeSelect = (t: string) =>
+  const onComponentTypeSelect = (t: string): void =>
     editComponent({
       type: t,
       title: editedComponent.component.title,

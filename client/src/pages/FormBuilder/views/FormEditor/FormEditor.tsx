@@ -1,4 +1,10 @@
-import { useEffect, ChangeEvent, useState, MouseEventHandler } from "react";
+import {
+  useEffect,
+  ChangeEvent,
+  useState,
+  MouseEventHandler,
+  ReactElement,
+} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,7 +20,7 @@ import { useNotification, useWithLoader } from "store/hooks";
 import { asyncUpdateForm, asyncPostForm } from "services/forms";
 
 import FormPage from "components/FormPage";
-import { emptyForm, IEditedComponent, IForm } from "resources/shared";
+import { emptyForm, IEditedComponent, IForm, isForm } from "resources/shared";
 import { IFormComponent } from "components/FormComponent";
 import BackButton from "components/BackButton";
 import { TextInput } from "components/inputs/inputComponents";
@@ -40,7 +46,7 @@ const FormEditor = ({
   editedForm,
   setEditedForm,
   token,
-}: IFormEditor) => {
+}: IFormEditor): ReactElement => {
   // Draft component containing the currently edited input and its index in the form
   const [editedComponent, setEditedComponent] =
     useState<IEditedComponent>(null);
@@ -66,19 +72,21 @@ const FormEditor = ({
     }
   }, [formIdFromUrl, forms, setEditedForm, editedForm._id]);
 
-  const updateExistingForm = async (form: IForm) => {
+  const updateExistingForm = async (form: IForm): Promise<void> => {
     const updatedForm = await asyncUpdateForm(form, token!);
-    dispatch(updateForm(updatedForm));
+    if (isForm(updatedForm)) dispatch(updateForm(updatedForm));
   };
 
-  const addNewForm = async (form: IForm) => {
+  const addNewForm = async (form: IForm): Promise<void> => {
     const newForm = await asyncPostForm(form, token!);
-    dispatch(addForm(newForm));
-    navigate(`/edit/${newForm._id}`); // navigate away from '/new' to url with new id
+    if (isForm(newForm)) {
+      dispatch(addForm(newForm));
+      navigate(`/edit/${newForm._id}`); // navigate away from '/new' to url with new id
+    }
   };
 
   // Post form to DB, and update redux store
-  const onPublish = () => {
+  const onPublish = (): void => {
     withLoader(async () => {
       if (token) {
         if (!editedForm.name) {
@@ -102,7 +110,7 @@ const FormEditor = ({
   };
 
   // When form name is being changed
-  const onEditFormName = (e: ChangeEvent<HTMLInputElement>) =>
+  const onEditFormName = (e: ChangeEvent<HTMLInputElement>): void =>
     setEditedForm({ ...editedForm, name: e.target.value });
 
   // Add component to form and set editedComponent's index to shadow the new component for editing
@@ -154,15 +162,15 @@ const FormEditor = ({
       }
     };
 
-  const onGoBack = () => {
+  const onGoBack = (): void => {
     setEditedComponent(null);
     setEditedForm(emptyForm);
   };
 
-  const onEditFormStyles = () => setEditedStyles(editedForm.styles);
-  const onCancelStylesEdit = () => setEditedStyles(null);
+  const onEditFormStyles = (): void => setEditedStyles(editedForm.styles);
+  const onCancelStylesEdit = (): void => setEditedStyles(null);
 
-  const onPreview = () => navigate(`/${editedForm._id}`);
+  const onPreview = (): void => navigate(`/${editedForm._id}`);
 
   const isEditing = !!(editedComponent || editedStyles);
 

@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, ReactElement } from "react";
 import classNames from "classnames";
 
 import "./TextDescription.scss";
@@ -11,7 +11,11 @@ export interface ITextDescription {
   id?: string;
 }
 
-const TextDescription = ({ title, text, style }: ITextDescription) => {
+const TextDescription = ({
+  title,
+  text,
+  style,
+}: ITextDescription): ReactElement => {
   const descriptionClasses = classNames({
     "text-description-body": true,
     "has-placeholder": !text,

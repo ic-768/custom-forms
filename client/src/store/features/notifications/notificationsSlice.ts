@@ -36,8 +36,10 @@ const notificationsSlice = createSlice({
   },
 });
 
-const getIsLoading = (state: RootState) => state.notifications.isLoading;
-const getNotification = (state: RootState) => state.notifications.notification;
+const getIsLoading = (state: RootState): boolean =>
+  state.notifications.isLoading;
+const getNotification = (state: RootState): INotification =>
+  state.notifications.notification;
 
 const { setIsLoading, setNotification } = notificationsSlice.actions;
 

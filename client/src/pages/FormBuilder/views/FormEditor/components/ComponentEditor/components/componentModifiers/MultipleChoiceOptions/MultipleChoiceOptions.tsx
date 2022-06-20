@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 
 import { TextInput } from "components/inputs/inputComponents";
 import { IMultipleChoiceOption } from "components/inputs/inputComponents/MultipleChoiceInput";
@@ -10,13 +10,15 @@ interface IMultipleChoiceOptions {
   onChange: (options: IMultipleChoiceOption[]) => void;
 }
 
-const MultipleChoiceOptions = ({ onChange }: IMultipleChoiceOptions) => {
+const MultipleChoiceOptions = ({
+  onChange,
+}: IMultipleChoiceOptions): ReactElement => {
   const [multipleChoiceOptions, setMultipleChoiceOptions] = useState<
     IMultipleChoiceOption[]
   >([{ label: "" }]);
 
   // update local and outer state
-  const updateOptions = (options: IMultipleChoiceOption[]) => {
+  const updateOptions = (options: IMultipleChoiceOption[]): void => {
     setMultipleChoiceOptions(options);
     onChange(options);
   };
@@ -33,7 +35,7 @@ const MultipleChoiceOptions = ({ onChange }: IMultipleChoiceOptions) => {
               className="multiple-choice-options-modifier-option"
             >
               <TextInput
-                onChange={(e) => {
+                onChange={(e): void => {
                   const updatedOptions = multipleChoiceOptions.map(
                     (option, idx) =>
                       i === idx ? { ...option, label: e.target.value } : option
@@ -43,7 +45,7 @@ const MultipleChoiceOptions = ({ onChange }: IMultipleChoiceOptions) => {
                 value={o.label}
               />
               <div
-                onClick={() => {
+                onClick={(): void => {
                   const updatedOptions = multipleChoiceOptions.filter(
                     (_, idx) => i !== idx
                   );
@@ -57,7 +59,7 @@ const MultipleChoiceOptions = ({ onChange }: IMultipleChoiceOptions) => {
           ))}
           <div
             className="multiple-choice-options-add-button"
-            onClick={() =>
+            onClick={(): void =>
               setMultipleChoiceOptions(
                 multipleChoiceOptions.concat({ label: "" })
               )

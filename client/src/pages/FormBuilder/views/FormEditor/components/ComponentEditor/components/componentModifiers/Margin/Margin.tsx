@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, ReactElement } from "react";
 
 import { NumberInput } from "components/inputs/inputComponents";
 import InputContainer from "components/inputs/InputContainer";
@@ -17,7 +17,7 @@ const Margin = ({
   marginBottom,
   onChangeTopMargin,
   onChangeBottomMargin,
-}: IMargin) => {
+}: IMargin): ReactElement => {
   const marginTopValue = Number(marginTop.match(/\d+/)![0]).toString();
   const marginBottomValue = Number(marginBottom.match(/\d+/)![0]).toString();
 

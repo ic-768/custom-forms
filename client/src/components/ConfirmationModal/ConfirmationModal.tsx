@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import "./ConfirmationModal.scss";
 
 export interface IConfirmationModal {
@@ -6,7 +7,7 @@ export interface IConfirmationModal {
   onCancel: () => void;
 }
 
-const ConfirmationModal = (confirmation: IConfirmationModal) => (
+const ConfirmationModal = (confirmation: IConfirmationModal): ReactElement => (
   <>
     <div className="confirmation-modal-background-overlay" />
     <div className="confirmation-modal-container">

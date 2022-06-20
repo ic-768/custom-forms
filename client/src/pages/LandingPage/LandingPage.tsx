@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Home from "./views/Home";
@@ -7,7 +8,7 @@ import LandingPageHeader from "./components/LandingPageHeader";
 
 import "./LandingPage.scss";
 
-const LandingPage = () => (
+const LandingPage = (): ReactElement => (
   <div
     style={{ backgroundImage: "url('/images/background.png')" }}
     className="landing-page-container"

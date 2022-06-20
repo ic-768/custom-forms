@@ -48,6 +48,11 @@ interface IForm {
   submissions: IFormSubmission[];
 }
 
+export const isForm = (form: unknown): form is IForm => {
+  if (typeof form !== "object" || !form) return false;
+  return "name" in form && "components" in form && "submissions" in form;
+};
+
 /**
  * Component being edited in FormBuilder, also contains its index in the form inputs
  */

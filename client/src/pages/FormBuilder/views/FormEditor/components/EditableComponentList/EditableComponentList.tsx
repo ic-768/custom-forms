@@ -1,4 +1,4 @@
-import { MouseEventHandler, useMemo } from "react";
+import { MouseEventHandler, ReactElement, useMemo } from "react";
 import {
   DragDropContext,
   Draggable,
@@ -34,13 +34,13 @@ const EditableComponentList = ({
   editedForm,
   setEditedForm,
   isEditing,
-}: IEditableComponentList) => {
+}: IEditableComponentList): ReactElement => {
   // function to reorder items in an array
   const reorder = (
     components: IForm["components"],
     startIndex: number,
     endIndex: number
-  ) => {
+  ): IForm["components"] => {
     const result = Array.from(components);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
@@ -49,7 +49,7 @@ const EditableComponentList = ({
   };
 
   // reorder components on drag and drop
-  const onDragEnd = (result: DropResult) => {
+  const onDragEnd = (result: DropResult): void => {
     if (result.destination) {
       setEditedForm({
         ...editedForm,
@@ -73,7 +73,7 @@ const EditableComponentList = ({
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="editableComponentList">
-        {(provided, droppableSnapshot) => (
+        {(provided, droppableSnapshot): ReactElement => (
           <div
             className="editable-component-list-container"
             ref={provided.innerRef}
@@ -94,7 +94,7 @@ const EditableComponentList = ({
                   key={component.id}
                   index={i}
                 >
-                  {(provided) => (
+                  {(provided): ReactElement => (
                     <EditableComponent
                       ref={provided.innerRef}
                       draggableProps={provided.draggableProps}

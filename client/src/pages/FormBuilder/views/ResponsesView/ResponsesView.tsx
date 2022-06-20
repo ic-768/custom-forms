@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import ModeToggle from "./components/ModeToggle";
@@ -9,7 +9,7 @@ import BackButton from "components/BackButton";
 
 import "./ResponsesView.scss";
 
-const ResponsesView = ({ forms }: { forms: IForm[] }) => {
+const ResponsesView = ({ forms }: { forms: IForm[] }): ReactElement => {
   const formIdFromUrl = useParams().id;
   const [form, setForm] = useState<IForm>();
   const [viewMode, setViewMode] = useState<"individual" | "summary">("summary");

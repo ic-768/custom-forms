@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import { DropdownInput } from "components/inputs/inputComponents";
 
 const borderWidths = {
@@ -17,7 +18,7 @@ interface IBorderType {
 /**
  * Allows user to choose which border sides will be colored
  */
-const BorderType = ({ borderWidth, onChange }: IBorderType) => {
+const BorderType = ({ borderWidth, onChange }: IBorderType): ReactElement => {
   const borderTypeForWidth = (): BorderStyle => {
     switch (borderWidth) {
       case borderWidths.Box:
@@ -54,7 +55,7 @@ const BorderType = ({ borderWidth, onChange }: IBorderType) => {
         { label: "None", value: "None" },
       ]}
       placeholder="Border type"
-      onChange={(t) => {
+      onChange={(t): void => {
         onChange(borderWidthForType(t));
       }}
     />

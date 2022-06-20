@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, ReactElement, useState } from "react";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -16,7 +16,7 @@ const PasswordInput = ({
   title,
   password,
   onChangePassword,
-}: IPasswordInput) => {
+}: IPasswordInput): ReactElement => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -32,8 +32,8 @@ const PasswordInput = ({
           />
           <FontAwesomeIcon
             title="Show password"
-            onMouseDown={() => setShowPassword(true)}
-            onMouseUp={() => setShowPassword(false)}
+            onMouseDown={(): void => setShowPassword(true)}
+            onMouseUp={(): void => setShowPassword(false)}
             className="password-input-eye-icon"
             icon={faEye}
           />

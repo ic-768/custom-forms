@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import { ColorChangeHandler } from "react-color";
 
 import ColorInput from "components/inputs/inputComponents/ColorInput";
@@ -7,7 +8,7 @@ interface IFontColor {
   onChange: ColorChangeHandler;
 }
 
-const FontColor = ({ fontColor, onChange }: IFontColor) => (
+const FontColor = ({ fontColor, onChange }: IFontColor): ReactElement => (
   <ColorInput
     title="Input text color"
     subtitle="The font color for the input text"

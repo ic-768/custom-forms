@@ -1,9 +1,14 @@
+import { ReactElement } from "react";
 import { IForm } from "resources/shared";
 import "./SummaryView.scss";
 
 type groupedResponses = { [title: string]: string[] };
 
-const SummaryView = ({ responses }: { responses?: IForm["submissions"] }) => {
+const SummaryView = ({
+  responses,
+}: {
+  responses?: IForm["submissions"];
+}): ReactElement | null => {
   const groupedResponses: groupedResponses = {};
 
   if (!responses || !responses.length) {
@@ -37,7 +42,7 @@ const SummaryView = ({ responses }: { responses?: IForm["submissions"] }) => {
     formattedResponse,
   }: {
     formattedResponse: [string, string[]];
-  }) => {
+  }): ReactElement => {
     return (
       <div className="summary-view-response">
         <span className="summary-view-question">{formattedResponse[0]}</span>

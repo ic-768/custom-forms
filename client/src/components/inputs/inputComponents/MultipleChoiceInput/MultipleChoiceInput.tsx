@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
@@ -13,13 +14,15 @@ const MultipleChoiceInput = ({
   className,
   onChange,
   style,
-}: IMultipleChoiceInput) => {
+}: IMultipleChoiceInput): ReactElement => {
   const inputClasses = classNames({
     "multiple-choice-input": true,
     [className!]: !!className,
   });
 
-  const updateChoices = (choice: IMultipleChoiceOption) =>
+  const updateChoices = (
+    choice: IMultipleChoiceOption
+  ): IMultipleChoiceOption[] =>
     choices.map((c) =>
       choice.label === c.label ? { ...c, isSelected: !c.isSelected } : c
     );
@@ -37,7 +40,7 @@ const MultipleChoiceInput = ({
                 key={c.label}
               >
                 <div
-                  onClick={() => {
+                  onClick={(): void => {
                     if (!onChange) return;
                     onChange(updateChoices(c));
                   }}

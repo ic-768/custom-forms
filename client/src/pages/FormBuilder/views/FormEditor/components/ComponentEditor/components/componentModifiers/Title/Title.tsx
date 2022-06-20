@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, ReactElement } from "react";
 
 import { TextInput } from "components/inputs/inputComponents";
 
@@ -7,7 +7,7 @@ interface ITitle {
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const Title = ({ title, onChange }: ITitle) => (
+const Title = ({ title, onChange }: ITitle): ReactElement => (
   <TextInput
     title="Title"
     subtitle="The accompanying title for the component"

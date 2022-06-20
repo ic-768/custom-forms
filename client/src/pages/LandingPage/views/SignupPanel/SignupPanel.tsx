@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, ReactElement, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useNotification, useWithLoader } from "store/hooks";
@@ -9,14 +9,14 @@ import PasswordInput from "../../components/PasswordInput";
 
 import "./SignupPanel.scss";
 
-const SignupPanel = () => {
+const SignupPanel = (): ReactElement => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const notify = useNotification();
   const withLoader = useWithLoader();
 
-  const onSignup = (e: FormEvent) => {
+  const onSignup = (e: FormEvent): void => {
     e.preventDefault();
     withLoader(async () => {
       try {
@@ -45,12 +45,12 @@ const SignupPanel = () => {
         autoFocus
         title="Username"
         value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={(e): void => setUsername(e.target.value)}
       />
       <PasswordInput
         title="Password"
         password={password}
-        onChangePassword={(e) => setPassword(e.target.value)}
+        onChangePassword={(e): void => setPassword(e.target.value)}
       />
       <button type="submit" className="signup-panel-signup-button">
         Submit

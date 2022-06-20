@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, ReactElement } from "react";
 
 import { NumberInput } from "components/inputs/inputComponents";
 import InputContainer from "components/inputs/InputContainer";
@@ -12,7 +12,12 @@ interface IMinMax {
   onChangeMax: ChangeEventHandler<HTMLInputElement>;
 }
 
-const MinMax = ({ min, max, onChangeMin, onChangeMax }: IMinMax) => {
+const MinMax = ({
+  min,
+  max,
+  onChangeMin,
+  onChangeMax,
+}: IMinMax): ReactElement => {
   const minValue = (min || 0).toString();
   const maxValue = (max || 0).toString();
 

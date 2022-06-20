@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 
 import { TextInput } from "components/inputs/inputComponents";
 import { IDropdownOption } from "components/inputs/inputComponents/DropdownInput";
@@ -10,13 +10,13 @@ interface IDropdownOptions {
   onChange: (options: IDropdownOption[]) => void;
 }
 
-const DropdownOptions = ({ onChange }: IDropdownOptions) => {
+const DropdownOptions = ({ onChange }: IDropdownOptions): ReactElement => {
   const [dropdownOptions, setDropdownOptions] = useState<IDropdownOption[]>([
     { value: "", label: "" },
   ]);
 
   // update local and outer state
-  const updateOptions = (options: IDropdownOption[]) => {
+  const updateOptions = (options: IDropdownOption[]): void => {
     setDropdownOptions(options);
     onChange(options);
   };
@@ -33,7 +33,7 @@ const DropdownOptions = ({ onChange }: IDropdownOptions) => {
               className="dropdown-options-modifier-option"
             >
               <TextInput
-                onChange={(e) => {
+                onChange={(e): void => {
                   const updatedOptions = dropdownOptions.map((option, idx) =>
                     i === idx ? { ...option, label: e.target.value } : option
                   );
@@ -42,7 +42,7 @@ const DropdownOptions = ({ onChange }: IDropdownOptions) => {
                 value={o.label}
               />
               <div
-                onClick={() => {
+                onClick={(): void => {
                   const updatedOptions = dropdownOptions.filter(
                     (_, idx) => i !== idx
                   );
@@ -56,7 +56,7 @@ const DropdownOptions = ({ onChange }: IDropdownOptions) => {
           ))}
           <div
             className="dropdown-options-add-button"
-            onClick={() =>
+            onClick={(): void =>
               setDropdownOptions(
                 dropdownOptions.concat({ label: "", value: "" })
               )
