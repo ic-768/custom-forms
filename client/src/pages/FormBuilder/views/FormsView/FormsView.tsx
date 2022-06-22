@@ -1,4 +1,10 @@
-import { useState, useEffect, useCallback, ReactElement } from "react";
+import {
+  useState,
+  useEffect,
+  useCallback,
+  ReactElement,
+  ChangeEventHandler,
+} from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -90,12 +96,15 @@ const FormsView = ({
     });
   };
 
+  const onQueryChange: ChangeEventHandler<HTMLInputElement> = (e): void =>
+    setFilterQuery(e.target.value.toLowerCase());
+
   return (
     <div className="forms-view-container">
       <TextInput
         placeholder="Search forms ..."
         className="forms-view-form-filter"
-        onChange={(e): void => setFilterQuery(e.target.value.toLowerCase())}
+        onChange={onQueryChange}
         value={filterQuery}
       />
       {selectedForms.length ? (

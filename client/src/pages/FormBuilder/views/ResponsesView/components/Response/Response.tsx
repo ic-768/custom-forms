@@ -13,6 +13,7 @@ const Response = ({ answers }: { answers: IFormSubmission }): ReactElement => {
       <div onClick={toggleExpansion} key={`${t.title}-${j}`}>
         <span className="response-title">{t.title}</span>
         {Array.isArray(t.value) ? (
+          // is multiple choice
           t.value
             .filter((v) => v.isSelected)
             .map((s, i: number) => {

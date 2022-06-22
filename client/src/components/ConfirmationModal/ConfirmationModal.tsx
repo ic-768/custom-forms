@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+
 import "./ConfirmationModal.scss";
 
 export interface IConfirmationModal {

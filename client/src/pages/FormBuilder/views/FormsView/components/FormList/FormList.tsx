@@ -62,7 +62,11 @@ const FormList = ({
       withLoader(async () => {
         if (token) {
           try {
-            const copiedForm = { ...form, name: `${form.name} (copy)` };
+            const copiedForm = {
+              ...form,
+              name: `${form.name} (copy)`,
+              submissions: [],
+            };
             const returnedForm = await asyncPostForm(copiedForm, token);
             if (isForm(returnedForm)) {
               dispatch(addForm(returnedForm));

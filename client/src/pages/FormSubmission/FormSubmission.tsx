@@ -43,17 +43,13 @@ const FormSubmission = (): ReactElement | null => {
       // remove submissions with no value, and submissions created for text-description components
       .filter((c, i) => c && form.components[i].type !== "Text-Description")
       // add corresponding titles and types
-      .map((s, i) => ({
+      .map((value, i) => ({
         title: form.components[i].title,
         type: form.components[i].type,
-        value: s,
-      }));
+        value,
+      })) as IFormSubmission;
 
-    asyncSubmitForm(
-      params.user!,
-      params.formId,
-      formattedSubmissions as IFormSubmission
-    );
+    asyncSubmitForm(params.user!, params.formId, formattedSubmissions);
   };
 
   return (
