@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import TextDescription, { ITextDescription } from "../TextDescription";
+import TextDescription, { TextDescriptionProps } from "../TextDescription";
 
 import {
   DateInput,
@@ -9,15 +9,15 @@ import {
   TextInput,
   TimeInput,
   RangeInput,
-  IFormInput,
+  FormInputProps,
 } from "../../components/inputs/inputComponents";
 
-type IFormComponent = IFormInput | ITextDescription;
+type FormComponentProps = FormInputProps | TextDescriptionProps;
 
 const FormComponent = ({
   component,
 }: {
-  component: IFormComponent;
+  component: FormComponentProps;
 }): ReactElement | null => {
   switch (component.type) {
     case "Date":
@@ -42,4 +42,4 @@ const FormComponent = ({
 };
 
 export default FormComponent;
-export type { IFormComponent, IFormInput };
+export type { FormComponentProps, FormInputProps };

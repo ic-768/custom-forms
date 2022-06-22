@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import BackButton from "components/BackButton";
 import FormComponent from "components/FormComponent";
-import FormPage from "components/FormPage";
-import { IForm } from "resources/shared";
+import Form from "components/Form";
+import { FormProps } from "resources/shared";
 
 import "./FormPreview.scss";
 
@@ -13,9 +13,9 @@ const FormPreview = ({
   form,
   setForm,
 }: {
-  forms: IForm[];
-  form: IForm;
-  setForm: (form: IForm) => void;
+  forms: FormProps[];
+  form: FormProps;
+  setForm: (form: FormProps) => void;
 }): ReactElement => {
   const navigate = useNavigate();
   const formIdFromUrl = useParams().id;
@@ -32,7 +32,7 @@ const FormPreview = ({
   return (
     <>
       <BackButton link={`/edit/${form._id}`} />
-      <FormPage
+      <Form
         styles={form.styles}
         content={
           <>

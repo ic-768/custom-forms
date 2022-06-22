@@ -1,5 +1,5 @@
 import TimeInput from "./TimeInput";
-import ITimeInput from "./ITimeInput";
+import TimeInputProps from "./TimeInputProps";
 
 export default TimeInput;
-export type { ITimeInput };
+export type { TimeInputProps };

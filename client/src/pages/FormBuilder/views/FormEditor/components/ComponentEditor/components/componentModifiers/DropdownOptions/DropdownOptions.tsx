@@ -1,22 +1,22 @@
 import { ReactElement, useState } from "react";
 
 import { TextInput } from "components/inputs/inputComponents";
-import { IDropdownOption } from "components/inputs/inputComponents/DropdownInput";
+import { DropdownOption } from "components/inputs/inputComponents/DropdownInput";
 import InputContainer from "components/inputs/InputContainer";
 
 import "./DropdownOptions.scss";
 
-interface IDropdownOptions {
-  onChange: (options: IDropdownOption[]) => void;
+interface DropdownOptionsProps {
+  onChange: (options: DropdownOption[]) => void;
 }
 
-const DropdownOptions = ({ onChange }: IDropdownOptions): ReactElement => {
-  const [dropdownOptions, setDropdownOptions] = useState<IDropdownOption[]>([
+const DropdownOptions = ({ onChange }: DropdownOptionsProps): ReactElement => {
+  const [dropdownOptions, setDropdownOptions] = useState<DropdownOption[]>([
     { value: "", label: "" },
   ]);
 
   // update local and outer state
-  const updateOptions = (options: IDropdownOption[]): void => {
+  const updateOptions = (options: DropdownOption[]): void => {
     setDropdownOptions(options);
     onChange(options);
   };

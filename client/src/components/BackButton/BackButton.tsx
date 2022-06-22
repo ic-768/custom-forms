@@ -6,15 +6,17 @@ import classNames from "classnames";
 
 import "./BackButton.scss";
 
+interface BackButtonProps {
+  link?: string;
+  onClick?: MouseEventHandler;
+  className?: string;
+}
+
 const BackButton = ({
   link = "/",
   onClick,
   className,
-}: {
-  link?: string;
-  onClick?: MouseEventHandler;
-  className?: string;
-}): ReactElement => {
+}: BackButtonProps): ReactElement => {
   const buttonClasses = classNames({
     "back-button": true,
     [className!]: className,

@@ -1,24 +1,24 @@
 import { ReactElement, useState } from "react";
 
 import { TextInput } from "components/inputs/inputComponents";
-import { IMultipleChoiceOption } from "components/inputs/inputComponents/MultipleChoiceInput";
+import { MultipleChoiceOption } from "components/inputs/inputComponents/MultipleChoiceInput";
 import InputContainer from "components/inputs/InputContainer";
 
 import "./MultipleChoiceOptions.scss";
 
-interface IMultipleChoiceOptions {
-  onChange: (options: IMultipleChoiceOption[]) => void;
+interface MultipleChoiceOptionsProps {
+  onChange: (options: MultipleChoiceOption[]) => void;
 }
 
 const MultipleChoiceOptions = ({
   onChange,
-}: IMultipleChoiceOptions): ReactElement => {
+}: MultipleChoiceOptionsProps): ReactElement => {
   const [multipleChoiceOptions, setMultipleChoiceOptions] = useState<
-    IMultipleChoiceOption[]
+    MultipleChoiceOption[]
   >([{ label: "" }]);
 
   // update local and outer state
-  const updateOptions = (options: IMultipleChoiceOption[]): void => {
+  const updateOptions = (options: MultipleChoiceOption[]): void => {
     setMultipleChoiceOptions(options);
     onChange(options);
   };

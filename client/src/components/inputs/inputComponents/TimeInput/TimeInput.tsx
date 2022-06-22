@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
-import ITimeInput from "./ITimeInput";
+import TimeInputProps from "./TimeInputProps";
 
 import "./TimeInput.scss";
 
@@ -13,7 +13,7 @@ const TimeInput = ({
   onChange,
   style,
   placeholder,
-}: ITimeInput): ReactElement => {
+}: TimeInputProps): ReactElement => {
   const inputClasses = classNames({
     "time-input": true,
     [className!]: !!className,

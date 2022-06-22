@@ -1,5 +1,5 @@
 import ColorInput from "./ColorInput";
-import IColorInput from "./IColorInput";
+import ColorInputProps from "./ColorInputProps";
 
 export default ColorInput;
-export type { IColorInput };
+export type { ColorInputProps };

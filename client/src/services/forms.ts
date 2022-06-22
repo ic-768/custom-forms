@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IForm, IFormSubmission } from "../resources/shared";
+import { FormProps, FormSubmission } from "../resources/shared";
 
 let token: string | null = null;
 
@@ -12,7 +12,7 @@ const setToken = (newToken: string): void => {
  */
 const asyncGetForm = async (
   username: string,
-  formId: IForm["_id"]
+  formId: FormProps["_id"]
 ): Promise<unknown> => {
   if (formId) {
     try {
@@ -42,7 +42,7 @@ const asyncGetForms = async (token: string): Promise<unknown> => {
  * Create a new form
  */
 const asyncPostForm = async (
-  formData: IForm,
+  formData: FormProps,
   token: string
 ): Promise<unknown> => {
   try {
@@ -58,7 +58,7 @@ const asyncPostForm = async (
  * Update a form
  */
 const asyncUpdateForm = async (
-  formData: IForm,
+  formData: FormProps,
   token: string
 ): Promise<unknown> => {
   try {
@@ -74,7 +74,7 @@ const asyncUpdateForm = async (
  * Delete a form
  */
 const asyncDeleteForm = async (
-  formId: IForm["_id"],
+  formId: FormProps["_id"],
   token: string
 ): Promise<unknown> => {
   try {
@@ -90,7 +90,7 @@ const asyncDeleteForm = async (
  * Batch - delete forms
  */
 const asyncDeleteMultipleForms = async (
-  formIds: IForm["_id"][],
+  formIds: FormProps["_id"][],
   token: string
 ): Promise<unknown> => {
   try {
@@ -107,14 +107,14 @@ const asyncDeleteMultipleForms = async (
  */
 const asyncSubmitForm = async (
   username: string,
-  formId: IForm["_id"],
-  submissions: IFormSubmission
+  formId: FormProps["_id"],
+  submission: FormSubmission
 ): Promise<unknown> => {
   try {
     const response = await axios.post("/forms/form-to-submit", {
       username,
       formId,
-      submissions,
+      submission,
     });
     return response.data;
   } catch (e) {

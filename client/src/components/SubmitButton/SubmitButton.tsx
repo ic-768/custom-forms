@@ -3,17 +3,19 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 
-import { IForm } from "resources/shared";
+import { FormProps } from "resources/shared";
 
 import "./SubmitButton.scss";
+
+interface SubmitButtonProps {
+  buttonStyle: FormProps["styles"]["buttonStyle"];
+  onSubmit?: FormEventHandler;
+}
 
 const SubmitButton = ({
   buttonStyle,
   onSubmit = (e): void => e.preventDefault(),
-}: {
-  buttonStyle: IForm["styles"]["buttonStyle"];
-  onSubmit?: FormEventHandler;
-}): ReactElement => {
+}: SubmitButtonProps): ReactElement => {
   const isFloating = buttonStyle === "floating";
   const buttonClass = classNames({
     "submit-button": true,

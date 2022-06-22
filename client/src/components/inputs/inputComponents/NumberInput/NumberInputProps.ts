@@ -1,14 +1,17 @@
 import { ChangeEventHandler, CSSProperties } from "react";
 
-interface ITimeInput {
-  type?: "Time";
+interface NumberInputProps {
+  type?: "Number";
+  value?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
-  value: string;
-  className?: string;
   placeholder?: string;
+  className?: string;
+  min?: number;
+  max?: number;
   title?: string;
+  subtitle?: string;
   style?: CSSProperties;
   id?: string;
 }
 
-export default ITimeInput;
+export default NumberInputProps;

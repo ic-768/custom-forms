@@ -2,7 +2,7 @@ import { ChangeEventHandler, ReactElement } from "react";
 import { ColorChangeHandler } from "react-color";
 
 import { useNotification } from "store/hooks";
-import { IForm } from "resources/shared";
+import { FormProps } from "resources/shared";
 import { DropdownInput } from "components/inputs/inputComponents";
 import InputContainer from "components/inputs/InputContainer";
 import ColorInput from "components/inputs/inputComponents/ColorInput";
@@ -15,21 +15,21 @@ const FormStyleEditor = ({
   setEditedStyles,
   onCancel,
 }: {
-  editedStyles: IForm["styles"] | null;
-  setEditedStyles: (styles: IForm["styles"] | null) => void;
-  form: IForm;
-  setForm: (form: IForm) => void;
+  editedStyles: FormProps["styles"] | null;
+  setEditedStyles: (styles: FormProps["styles"] | null) => void;
+  form: FormProps;
+  setForm: (form: FormProps) => void;
   onCancel: () => void;
 }): ReactElement => {
   const notify = useNotification();
 
   const onChangeButtonStyle = (o: string): void => {
-    const buttonStyle = o as IForm["styles"]["buttonStyle"];
+    const buttonStyle = o as FormProps["styles"]["buttonStyle"];
     setEditedStyles({ ...editedStyles, buttonStyle });
   };
 
   const onChangeBackgroundPosition = (o: string): void => {
-    const backgroundPosition = o as IForm["styles"]["backgroundPosition"];
+    const backgroundPosition = o as FormProps["styles"]["backgroundPosition"];
     setEditedStyles({ ...editedStyles, backgroundPosition });
   };
 

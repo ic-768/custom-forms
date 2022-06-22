@@ -5,9 +5,9 @@ import { useDispatch } from "react-redux";
 import { token, asyncGetForms } from "services/forms";
 import { useAppSelector, useWithLoader } from "store/hooks";
 import { selectForms, setForms } from "store/features/forms/formsSlice";
-import { emptyForm, IForm } from "resources/shared";
+import { emptyForm, FormProps } from "resources/shared";
 import ConfirmationModal, {
-  IConfirmationModal,
+  ConfirmationModalProps,
 } from "components/ConfirmationModal";
 
 import FormBuilderHeader from "./components/FormBuilderHeader";
@@ -25,22 +25,21 @@ const FormBuilder = (): ReactElement => {
 
   // A draft of the currently edited form.
   // Any time an input edit is saved, this'll be updated with the new input
-  const [editedForm, setEditedForm] = useState<IForm>(emptyForm);
+  const [editedForm, setEditedForm] = useState<FormProps>(emptyForm);
 
   const [haveFormsBeenFetched, setHaveFormsBeenFetched] =
     useState<boolean>(false);
 
   // used to display a confirmation message with actions attached to the buttons
-  const [confirmation, setConfirmation] = useState<IConfirmationModal | null>(
-    null
-  );
+  const [confirmation, setConfirmation] =
+    useState<ConfirmationModalProps | null>(null);
 
   // populate user's forms on page load
   useEffect(() => {
     withLoader(async () => {
       if (token) {
         const userForms = await asyncGetForms(token);
-        dispatch(setForms((userForms as IForm[]) || []));
+        dispatch(setForms((userForms as FormProps[]) || []));
         setHaveFormsBeenFetched(true);
       }
     });

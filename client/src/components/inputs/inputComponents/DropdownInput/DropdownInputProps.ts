@@ -4,7 +4,7 @@ import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 /**
  * Single option of the dropdown list
  */
-export interface IDropdownOption<T extends string = string> {
+export interface DropdownOption<T extends string = string> {
   // value produced if option is selected
   value: string;
   label: T;
@@ -14,11 +14,11 @@ export interface IDropdownOption<T extends string = string> {
 /**
  * Dropdown list of selectable options
  */
-interface IDropdownInput<T extends string = string> {
+interface DropdownInputProps<T extends string = string> {
   type?: "Dropdown";
   placeholder?: string;
   // options for the list to display
-  options: IDropdownOption<T>[];
+  options: DropdownOption<T>[];
   // callback for when an option is selected
   onChange?: (v: string) => void;
   value?: Partial<T>;
@@ -31,4 +31,4 @@ interface IDropdownInput<T extends string = string> {
   id?: string;
 }
 
-export default IDropdownInput;
+export default DropdownInputProps;

@@ -5,18 +5,18 @@ import FormListItem from "../FormListItem/FormListItem";
 import { addForm, deleteForm } from "store/features/forms/formsSlice";
 import { useNotification, useWithLoader } from "store/hooks";
 import { asyncDeleteForm, asyncPostForm, token } from "services/forms";
-import { IForm, isForm } from "resources/shared";
-import { IConfirmationModal } from "components/ConfirmationModal";
+import { FormProps, isForm } from "resources/shared";
+import { ConfirmationModalProps } from "components/ConfirmationModal";
 
 import "./FormList.scss";
 
-interface IFormList {
-  selectedForms: IForm["_id"][];
-  setSelectedForms: (forms: IForm["_id"][]) => void;
-  onSelectForm: (formId: IForm["_id"]) => void;
-  forms: IForm[];
+interface FormListProps {
+  selectedForms: FormProps["_id"][];
+  setSelectedForms: (forms: FormProps["_id"][]) => void;
+  onSelectForm: (formId: FormProps["_id"]) => void;
+  forms: FormProps[];
   haveFormsBeenFetched: boolean;
-  setConfirmation: (confirmation: IConfirmationModal | null) => void;
+  setConfirmation: (confirmation: ConfirmationModalProps | null) => void;
 }
 
 /**
@@ -29,13 +29,13 @@ const FormList = ({
   forms,
   haveFormsBeenFetched,
   setConfirmation,
-}: IFormList): ReactElement => {
+}: FormListProps): ReactElement => {
   const dispatch = useDispatch();
   const withLoader = useWithLoader();
   const notify = useNotification();
 
   const onDeleteForm = useCallback(
-    async (id: IForm["_id"]) =>
+    async (id: FormProps["_id"]) =>
       await withLoader(async () => {
         if (token) {
           try {
@@ -58,7 +58,7 @@ const FormList = ({
   );
 
   const onCopyForm = useCallback(
-    async (form: IForm) => {
+    async (form: FormProps) => {
       withLoader(async () => {
         if (token) {
           try {
@@ -87,7 +87,7 @@ const FormList = ({
   // List of links to edit each of user's forms
   const formList = useMemo(() => {
     // function to delete the form
-    const onShowDeleteConfirmation = (id: IForm["_id"]): void => {
+    const onShowDeleteConfirmation = (id: FormProps["_id"]): void => {
       setConfirmation({
         message: "Are you sure you want to delete this form?",
         onConfirm: async () => {

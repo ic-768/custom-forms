@@ -1,9 +1,9 @@
 import { ReactElement, useState } from "react";
-import { IFormSubmission } from "resources/shared";
+import { FormSubmission } from "resources/shared";
 
 import "./Response.scss";
 
-const Response = ({ answers }: { answers: IFormSubmission }): ReactElement => {
+const Response = ({ answers }: { answers: FormSubmission }): ReactElement => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpansion = (): void => setIsExpanded(!isExpanded);

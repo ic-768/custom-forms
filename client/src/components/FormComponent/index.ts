@@ -1,4 +1,4 @@
-import FormComponent, { IFormComponent } from "./FormComponent";
+import FormComponent, { FormComponentProps } from "./FormComponent";
 
 export default FormComponent;
-export type { IFormComponent };
+export type { FormComponentProps };

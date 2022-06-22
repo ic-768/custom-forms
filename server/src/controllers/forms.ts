@@ -199,7 +199,7 @@ formsRouter.post("/form-to-submit", async (request, response) => {
 
   const { matchedCount } = await userCollection.updateOne(
     { username, "forms._id": formId },
-    { $push: { "forms.$.submissions": request.body.submissions } }
+    { $push: { "forms.$.submissions": request.body.submission } }
   );
 
   if (matchedCount === 0) {

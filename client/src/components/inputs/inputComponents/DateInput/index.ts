@@ -1,5 +1,5 @@
 import DateInput from "./DateInput";
-import IDateInput from "./IDateInput";
+import DateInputProps from "./DateInputProps";
 
 export default DateInput;
-export type { IDateInput };
+export type { DateInputProps };

@@ -1,21 +1,21 @@
-import DateInput, { IDateInput } from "./DateInput";
-import DropdownInput, { IDropdownInput } from "./DropdownInput";
+import DateInput, { DateInputProps } from "./DateInput";
+import DropdownInput, { DropdownInputProps } from "./DropdownInput";
 import MultipleChoiceInput, {
-  IMultipleChoiceInput,
+  MultipleChoiceInputProps,
 } from "./MultipleChoiceInput";
-import NumberInput, { INumberInput } from "./NumberInput";
-import TextInput, { ITextInput } from "./TextInput";
-import TimeInput, { ITimeInput } from "./TimeInput";
-import RangeInput, { IRangeInput } from "./RangeInput";
+import NumberInput, { NumberInputProps } from "./NumberInput";
+import TextInput, { TextInputProps } from "./TextInput";
+import TimeInput, { TimeInputProps } from "./TimeInput";
+import RangeInput, { RangeInputProps } from "./RangeInput";
 
-export type IFormInput =
-  | IDropdownInput
-  | ITextInput
-  | INumberInput
-  | IDateInput
-  | ITimeInput
-  | IMultipleChoiceInput
-  | IRangeInput;
+export type FormInputProps =
+  | DropdownInputProps
+  | TextInputProps
+  | NumberInputProps
+  | DateInputProps
+  | TimeInputProps
+  | MultipleChoiceInputProps
+  | RangeInputProps;
 
 export {
   DateInput,
@@ -28,11 +28,11 @@ export {
 };
 
 export type {
-  IDateInput,
-  IDropdownInput,
-  IMultipleChoiceInput,
-  INumberInput,
-  ITextInput,
-  ITimeInput,
-  IRangeInput,
+  DateInputProps,
+  DropdownInputProps,
+  MultipleChoiceInputProps,
+  NumberInputProps,
+  TextInputProps,
+  TimeInputProps,
+  RangeInputProps,
 };

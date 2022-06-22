@@ -1,12 +1,12 @@
 import { FormEvent, ReactElement } from "react";
 import classNames from "classnames";
 
-import { IForm } from "resources/shared";
+import { FormProps } from "resources/shared";
 import SubmitButton from "../SubmitButton";
 
-import "./FormPage.scss";
+import "./Form.scss";
 
-const FormPage = ({
+const Form = ({
   content,
   onSubmit,
   className,
@@ -15,10 +15,10 @@ const FormPage = ({
   content: ReactElement;
   onSubmit?: (e: FormEvent<HTMLButtonElement>) => void;
   className?: string;
-  styles: IForm["styles"];
+  styles: FormProps["styles"];
 }): ReactElement => {
   const formClass = classNames({
-    "form-page": true,
+    form: true,
     [className!]: className,
   });
 
@@ -30,8 +30,8 @@ const FormPage = ({
     <form
       style={{
         backgroundColor: styles.backgroundColor,
-        backgroundImage,
         backgroundPosition: styles.backgroundPosition,
+        backgroundImage,
       }}
       className={formClass}
     >
@@ -40,4 +40,4 @@ const FormPage = ({
     </form>
   );
 };
-export default FormPage;
+export default Form;

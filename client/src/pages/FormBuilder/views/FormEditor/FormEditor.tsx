@@ -19,9 +19,14 @@ import { addForm, updateForm } from "store/features/forms/formsSlice";
 import { useNotification, useWithLoader } from "store/hooks";
 import { asyncUpdateForm, asyncPostForm } from "services/forms";
 
-import FormPage from "components/FormPage";
-import { emptyForm, IEditedComponent, IForm, isForm } from "resources/shared";
-import { IFormComponent } from "components/FormComponent";
+import Form from "components/Form";
+import {
+  emptyForm,
+  EditedComponent,
+  FormProps,
+  isForm,
+} from "resources/shared";
+import { FormComponentProps } from "components/FormComponent";
 import BackButton from "components/BackButton";
 import { TextInput } from "components/inputs/inputComponents";
 import EditableComponentList from "./components/EditableComponentList";
@@ -31,10 +36,10 @@ import FormStyleEditor from "./components/FormStyleEditor";
 
 import "./FormEditor.scss";
 
-interface IFormEditor {
-  forms: IForm[];
-  editedForm: IForm;
-  setEditedForm: (form: IForm) => void;
+interface FormEditorProps {
+  forms: FormProps[];
+  editedForm: FormProps;
+  setEditedForm: (form: FormProps) => void;
   token: string | null;
 }
 
@@ -46,13 +51,12 @@ const FormEditor = ({
   editedForm,
   setEditedForm,
   token,
-}: IFormEditor): ReactElement => {
+}: FormEditorProps): ReactElement => {
   // Draft component containing the currently edited input and its index in the form
-  const [editedComponent, setEditedComponent] =
-    useState<IEditedComponent>(null);
+  const [editedComponent, setEditedComponent] = useState<EditedComponent>(null);
 
   // Draft styles component for currently edited form styles
-  const [editedStyles, setEditedStyles] = useState<IForm["styles"] | null>(
+  const [editedStyles, setEditedStyles] = useState<FormProps["styles"] | null>(
     null
   );
 
@@ -71,12 +75,12 @@ const FormEditor = ({
     }
   }, [formIdFromUrl, forms, setEditedForm, editedForm._id, navigate]);
 
-  const updateExistingForm = async (form: IForm): Promise<void> => {
+  const updateExistingForm = async (form: FormProps): Promise<void> => {
     const updatedForm = await asyncUpdateForm(form, token!);
     if (isForm(updatedForm)) dispatch(updateForm(updatedForm));
   };
 
-  const addNewForm = async (form: IForm): Promise<void> => {
+  const addNewForm = async (form: FormProps): Promise<void> => {
     const newForm = await asyncPostForm(form, token!);
     if (isForm(newForm)) {
       dispatch(addForm(newForm));
@@ -115,7 +119,7 @@ const FormEditor = ({
   // Add component to form and set editedComponent's index to shadow the new component for editing
   const onAddNewComponent: MouseEventHandler = (e) => {
     e.preventDefault();
-    const component: IFormComponent = {
+    const component: FormComponentProps = {
       type: "Text",
       id: uuid(),
     };
@@ -195,7 +199,7 @@ const FormEditor = ({
         />
       )}
 
-      <FormPage
+      <Form
         styles={editedStyles || editedForm.styles}
         content={
           <>

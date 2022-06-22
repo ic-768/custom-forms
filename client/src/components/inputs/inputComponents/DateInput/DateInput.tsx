@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
-import IDateInput from "./IDateInput";
+import DateInputProps from "./DateInputProps";
 
 import "./DateInput.scss";
 
@@ -15,7 +15,7 @@ const DateInput = ({
   style,
   min,
   max,
-}: IDateInput): ReactElement => {
+}: DateInputProps): ReactElement => {
   const inputClasses = classNames({
     "date-input": true,
     [className!]: !!className,

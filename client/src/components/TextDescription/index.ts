@@ -1,4 +1,4 @@
-import TextDescription, { ITextDescription } from "./TextDescription";
+import TextDescription, { TextDescriptionProps } from "./TextDescription";
 
-export type { ITextDescription };
+export type { TextDescriptionProps };
 export default TextDescription;

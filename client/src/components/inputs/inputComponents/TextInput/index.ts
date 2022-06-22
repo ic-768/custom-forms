@@ -1,5 +1,5 @@
 import TextInput from "./TextInput";
-import ITextInput from "./ITextInput";
+import TextInputProps from "./TextInputProps";
 
 export default TextInput;
-export type { ITextInput };
+export type { TextInputProps };

@@ -10,18 +10,18 @@ import {
   DraggableProvidedDragHandleProps,
 } from "react-beautiful-dnd";
 
-import FormComponent, { IFormComponent } from "components/FormComponent";
+import FormComponent, { FormComponentProps } from "components/FormComponent";
 
 import "./EditableComponent.scss";
 
 /**
  * Component that can be dragged to be reordered and edited by clicking accompanying buttons
  */
-interface IEditableComponent {
+interface EditableComponentProps {
   ref?: ForwardedRef<HTMLDivElement>;
   draggableProps?: DraggableProvidedDraggableProps;
   dragHandleProps?: DraggableProvidedDragHandleProps;
-  component: IFormComponent;
+  component: FormComponentProps;
   showControls: boolean;
   showDragControl: boolean;
   onSelectComponent: MouseEventHandler;
@@ -38,7 +38,7 @@ const EditableComponent = forwardRef(
       showDragControl,
       onSelectComponent,
       onDeleteComponent,
-    }: IEditableComponent,
+    }: EditableComponentProps,
     ref: ForwardedRef<HTMLDivElement>
   ) => (
     <div

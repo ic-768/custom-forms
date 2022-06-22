@@ -1,17 +1,14 @@
 import { ChangeEventHandler, CSSProperties } from "react";
 
-interface IDateInput {
-  type?: "Date";
+interface TimeInputProps {
+  type?: "Time";
   onChange?: ChangeEventHandler<HTMLInputElement>;
-  title?: string;
-  subtitle?: string;
+  value: string;
   className?: string;
   placeholder?: string;
-  value?: string;
-  min?: string;
-  max?: string;
+  title?: string;
   style?: CSSProperties;
   id?: string;
 }
 
-export default IDateInput;
+export default TimeInputProps;

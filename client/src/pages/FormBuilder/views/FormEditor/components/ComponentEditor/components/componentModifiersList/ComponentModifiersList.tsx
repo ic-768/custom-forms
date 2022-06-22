@@ -16,11 +16,11 @@ import {
   TextBody,
 } from "../componentModifiers";
 import { BorderWidth } from "../componentModifiers/BorderType/BorderType";
-import { IFormComponent } from "components/FormComponent";
+import { FormComponentProps } from "components/FormComponent";
 
-interface IComponentModifiersList {
-  component: IFormComponent;
-  onChangeModifiers: (props: IFormComponent) => void;
+interface ComponentModifiersListProps {
+  component: FormComponentProps;
+  onChangeModifiers: (props: FormComponentProps) => void;
 }
 
 /**
@@ -29,7 +29,7 @@ interface IComponentModifiersList {
 const ComponentModifiersList = ({
   component,
   onChangeModifiers,
-}: IComponentModifiersList): ReactElement | null => {
+}: ComponentModifiersListProps): ReactElement | null => {
   // changes (or adds if doesn't exist) a specific style property
   const onChangeStyle = <
     K extends keyof CSSProperties,

@@ -1,13 +1,13 @@
 import { useCallback } from "react";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 
 import { RootState, AppDispatch } from "./store";
 import {
   setNotification,
   setIsLoading,
-  INotification,
+  NotificationProps,
 } from "./features/notifications/notificationsSlice";
-import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 
 // helper function to wait for a set duration
 const sleep = (time: number): Promise<unknown> =>
@@ -15,13 +15,13 @@ const sleep = (time: number): Promise<unknown> =>
 
 // hook that sets a notification and removes it after a set time
 export const useNotification = (): ((
-  notification: INotification,
+  notification: NotificationProps,
   duration: number
 ) => Promise<void>) => {
   const dispatch = useDispatch();
 
   return useCallback(
-    async (notification: INotification, duration: number) => {
+    async (notification: NotificationProps, duration: number) => {
       dispatch(setNotification(notification));
       await sleep(duration);
       dispatch(setNotification({ type: "success", message: "" }));

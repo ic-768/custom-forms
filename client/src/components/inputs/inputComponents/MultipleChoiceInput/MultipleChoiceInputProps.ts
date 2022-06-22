@@ -1,18 +1,18 @@
 import { Dispatch, SetStateAction, CSSProperties } from "react";
 
-export interface IMultipleChoiceOption {
+export interface MultipleChoiceOption {
   label: string;
   isSelected?: boolean;
 }
 
-interface IMultipleChoiceInput {
+interface MultipleChoiceInputProps {
   type?: "Multiple Choice";
-  choices: IMultipleChoiceOption[];
-  onChange?: Dispatch<SetStateAction<IMultipleChoiceOption[]>>;
+  choices: MultipleChoiceOption[];
+  onChange?: Dispatch<SetStateAction<MultipleChoiceOption[]>>;
   className?: string;
   title?: string;
   style?: CSSProperties;
   id?: string;
 }
 
-export default IMultipleChoiceInput;
+export default MultipleChoiceInputProps;

@@ -4,7 +4,7 @@ import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
-import IDropdownInput from "./IDropdownInput";
+import DropdownInputProps from "./DropdownInputProps";
 
 import "./DropdownInput.scss";
 
@@ -18,7 +18,7 @@ const DropdownInput = <T extends string>({
   onChange,
   value,
   selectionIcon,
-}: IDropdownInput<T>): ReactElement => {
+}: DropdownInputProps<T>): ReactElement => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
   const onOptionSelect = (e: MouseEvent<HTMLLIElement>): void => {

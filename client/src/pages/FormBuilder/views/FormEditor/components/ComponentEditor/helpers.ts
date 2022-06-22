@@ -1,6 +1,6 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
-import { IDropdownOption } from "components/inputs/inputComponents/DropdownInput";
+import { DropdownOption } from "components/inputs/inputComponents/DropdownInput";
 import { componentTypes, componentLabelToIcon } from "./resources";
 
 /**
@@ -15,7 +15,7 @@ export const getComponentIcon = (
  * Format the component types to be displayed in the dropdown menu
  */
 export const componentsForDropdown = componentTypes.map(
-  (type: typeof componentTypes[number]): IDropdownOption<typeof type> => ({
+  (type: typeof componentTypes[number]): DropdownOption<typeof type> => ({
     value: type,
     label: type,
     icon: getComponentIcon(type),

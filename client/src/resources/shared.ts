@@ -1,19 +1,19 @@
 import { v4 as uuid } from "uuid";
 
-import { IFormInput } from "components/inputs/inputComponents";
-import { IFormComponent } from "components/FormComponent";
+import { FormInputProps } from "components/inputs/inputComponents";
+import { FormComponentProps } from "components/FormComponent";
 import {
-  IMultipleChoiceInput,
-  IMultipleChoiceOption,
+  MultipleChoiceInputProps,
+  MultipleChoiceOption,
 } from "components/inputs/inputComponents/MultipleChoiceInput";
 
-type horizontalPosition = "left" | "right";
-type verticalPosition = "top" | "bottom";
-type completePosition = `${verticalPosition} ${horizontalPosition}` | "center";
+type HorizontalPosition = "left" | "right";
+type VerticalPosition = "top" | "bottom";
+type CompletePosition = `${VerticalPosition} ${HorizontalPosition}` | "center";
 
-interface IFormStyles {
+interface FormStyles {
   backgroundImage?: string;
-  backgroundPosition?: horizontalPosition | verticalPosition | completePosition;
+  backgroundPosition?: HorizontalPosition | VerticalPosition | CompletePosition;
   backgroundColor?: string;
   buttonStyle?: "floating" | "regular";
 }
@@ -21,34 +21,34 @@ interface IFormStyles {
 /**
  * An answer to a single form question
  */
-export interface IFormAnswer<T extends IFormInput = IFormInput> {
+export interface FormAnswer<T extends FormInputProps = FormInputProps> {
   title?: string;
   type: T["type"];
-  value: T extends IMultipleChoiceInput ? IMultipleChoiceOption[] : string;
+  value: T extends MultipleChoiceInputProps ? MultipleChoiceOption[] : string;
 }
 
 /**
  * A single form submission (answers to many questions)
  */
-export type IFormSubmission = IFormAnswer[];
+export type FormSubmission = FormAnswer[];
 
 /**
  * A single user form
  */
-interface IForm {
+interface FormProps {
   // Form name
   name: string;
-  // ID given assigned from backend when first created
+  // DProps given assigned from backend when first created
   _id?: string;
   // The components that make up the form
-  components: IFormComponent[];
+  components: FormComponentProps[];
   // general form styles like background color/image, submit button style, etc.
-  styles: IFormStyles;
+  styles: FormStyles;
   // Info from all the times this form has been filled out.
-  submissions: IFormSubmission[];
+  submissions: FormSubmission[];
 }
 
-export const isForm = (form: unknown): form is IForm => {
+export const isForm = (form: unknown): form is FormProps => {
   if (typeof form !== "object" || !form) return false;
   return "name" in form && "components" in form && "submissions" in form;
 };
@@ -56,15 +56,15 @@ export const isForm = (form: unknown): form is IForm => {
 /**
  * Component being edited in FormBuilder, also contains its index in the form inputs
  */
-type IEditedComponent = {
-  component: IFormComponent;
+type EditedComponent = {
+  component: FormComponentProps;
   index: number;
 } | null;
 
 /**
  * Used to instantiate a new form
  */
-const emptyForm: IForm = {
+const emptyForm: FormProps = {
   name: "",
   components: [{ type: "Text", id: uuid() }],
   styles: {},
@@ -72,4 +72,4 @@ const emptyForm: IForm = {
 };
 
 export { emptyForm };
-export type { IForm, IEditedComponent };
+export type { FormProps, EditedComponent };

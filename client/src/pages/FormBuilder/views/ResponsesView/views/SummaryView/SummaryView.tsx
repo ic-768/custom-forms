@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 
-import { IForm } from "resources/shared";
+import { FormProps } from "resources/shared";
 import { SummarisedResponses, summariseResponses } from "../../helpers";
 
 import "./SummaryView.scss";
@@ -8,7 +8,7 @@ import "./SummaryView.scss";
 const SummaryView = ({
   responses,
 }: {
-  responses?: IForm["submissions"];
+  responses?: FormProps["submissions"];
 }): ReactElement | null => {
   if (!responses || !responses.length) return null;
 

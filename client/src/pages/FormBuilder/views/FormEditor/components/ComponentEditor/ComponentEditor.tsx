@@ -1,18 +1,18 @@
 import { ReactElement } from "react";
 
-import { IFormComponent } from "components/FormComponent";
-import { IEditedComponent, IForm } from "resources/shared";
+import { FormComponentProps } from "components/FormComponent";
+import { EditedComponent, FormProps } from "resources/shared";
 import { DropdownInput } from "components/inputs/inputComponents";
 
 import EditorPartial from "../EditorPartial";
 import ComponentModifiersList from "./components/componentModifiersList";
 import { getComponentIcon, componentsForDropdown } from "./helpers";
 
-interface IComponentEditor {
-  editedComponent: IEditedComponent;
-  setEditedComponent: (component: IEditedComponent) => void;
-  form: IForm;
-  setForm: (form: IForm) => void;
+interface ComponentEditorProps {
+  editedComponent: EditedComponent;
+  setEditedComponent: (component: EditedComponent) => void;
+  form: FormProps;
+  setForm: (form: FormProps) => void;
 }
 
 /**
@@ -23,11 +23,11 @@ const ComponentEditor = ({
   setEditedComponent,
   form,
   setForm,
-}: IComponentEditor): ReactElement | null => {
+}: ComponentEditorProps): ReactElement | null => {
   if (!editedComponent) return null;
 
   // replace form's component with newly edited one
-  const onUpdateForm = (component: IFormComponent): void => {
+  const onUpdateForm = (component: FormComponentProps): void => {
     if (component) {
       setForm({
         ...form,
@@ -48,7 +48,7 @@ const ComponentEditor = ({
   };
 
   // edit component - keep index
-  const editComponent = (component: IFormComponent): void => {
+  const editComponent = (component: FormComponentProps): void => {
     setEditedComponent({ index: editedComponent.index, component });
   };
 
@@ -58,7 +58,7 @@ const ComponentEditor = ({
       type: t,
       title: editedComponent.component.title,
       id: editedComponent.component.id,
-    } as IFormComponent);
+    } as FormComponentProps);
 
   return (
     <EditorPartial

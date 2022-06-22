@@ -1,5 +1,5 @@
 import ConfirmationModal from "./ConfirmationModal";
-import { IConfirmationModal } from "./ConfirmationModal";
+import { ConfirmationModalProps } from "./ConfirmationModal";
 
 export default ConfirmationModal;
-export type { IConfirmationModal };
+export type { ConfirmationModalProps };

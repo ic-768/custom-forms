@@ -1,5 +1,5 @@
 import RangeInput from "./RangeInput";
-import IRangeInput from "./IRangeInput";
+import RangeInputProps from "./RangeInputProps";
 
 export default RangeInput;
-export type { IRangeInput };
+export type { RangeInputProps };

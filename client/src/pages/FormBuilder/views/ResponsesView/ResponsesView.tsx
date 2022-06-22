@@ -4,14 +4,14 @@ import { useParams } from "react-router-dom";
 import ModeToggle from "./components/ModeToggle";
 import IndividualView from "./views/IndividualView";
 import SummaryView from "./views/SummaryView";
-import { IForm } from "resources/shared";
+import { FormProps } from "resources/shared";
 import BackButton from "components/BackButton";
 
 import "./ResponsesView.scss";
 
-const ResponsesView = ({ forms }: { forms: IForm[] }): ReactElement => {
+const ResponsesView = ({ forms }: { forms: FormProps[] }): ReactElement => {
   const formIdFromUrl = useParams().id;
-  const [form, setForm] = useState<IForm>();
+  const [form, setForm] = useState<FormProps>();
   const [viewMode, setViewMode] = useState<"individual" | "summary">("summary");
 
   // Set form based on url param

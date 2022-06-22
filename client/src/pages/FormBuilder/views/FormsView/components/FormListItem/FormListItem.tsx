@@ -4,12 +4,12 @@ import { faCopy, faLink, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useAppSelector, useNotification } from "store/hooks";
-import { IForm } from "resources/shared";
+import { FormProps } from "resources/shared";
 
 import "./FormListItem.scss";
 
-interface IFormListItem {
-  form: IForm;
+interface FormListItemProps {
+  form: FormProps;
   isSelected: boolean;
   onSelectForm: () => void;
   onDeleteForm: MouseEventHandler<SVGSVGElement>;
@@ -22,7 +22,7 @@ const FormListItem = ({
   onSelectForm,
   onDeleteForm,
   onCopyForm,
-}: IFormListItem): ReactElement => {
+}: FormListItemProps): ReactElement => {
   const { name, _id } = form;
   const username = useAppSelector((state) => state.user.username);
   const notify = useNotification();

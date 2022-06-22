@@ -1,6 +1,6 @@
-import { IFormSubmission } from "resources/shared";
+import { FormSubmission } from "resources/shared";
 
-export const response: IFormSubmission[] = [
+export const response: FormSubmission[] = [
   [
     { title: "How high?", type: "Number", value: "4" },
     { title: "What is it?", type: "Text", value: "A cat" },
@@ -16,7 +16,7 @@ export const response: IFormSubmission[] = [
   ],
 ];
 
-export const responseWithAllInputs: IFormSubmission[] = [
+export const responseWithAllInputs: FormSubmission[] = [
   [
     {
       title: "Which of these ice-creams do you like?",

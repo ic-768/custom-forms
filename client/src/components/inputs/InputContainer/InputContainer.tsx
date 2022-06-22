@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import "./InputContainer.scss";
 
-interface IInputContainer {
+interface InputContainerProps {
   component: ReactElement;
   className?: string;
   title?: string;
@@ -18,7 +18,7 @@ const InputContainer = ({
   title,
   subtitle,
   className,
-}: IInputContainer): ReactElement => {
+}: InputContainerProps): ReactElement => {
   const inputContainerClasses = classNames({
     "input-container": true,
     [className!]: !!className,

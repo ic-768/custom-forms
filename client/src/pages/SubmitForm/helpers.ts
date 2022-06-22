@@ -1,18 +1,18 @@
 import { ChangeEvent } from "react";
-import { IMultipleChoiceOption } from "components/inputs/inputComponents/MultipleChoiceInput";
-import { IFormInput } from "components/inputs/inputComponents";
-import { IFormAnswer } from "resources/shared";
+import { MultipleChoiceOption } from "components/inputs/inputComponents/MultipleChoiceInput";
+import { FormInputProps } from "components/inputs/inputComponents";
+import { FormAnswer } from "resources/shared";
 
 /**
  * Helper functions used to enrich the component with appropriate onChange
  * hooks and state values
  */
 export const addOnChange = (
-  component: IFormInput,
+  component: FormInputProps,
   idx: number,
-  setSubmissions: (s: IFormAnswer["value"][]) => void,
-  submissions: IFormAnswer["value"][]
-): IFormInput => {
+  setSubmissions: (s: FormAnswer["value"][]) => void,
+  submissions: FormAnswer["value"][]
+): FormInputProps => {
   switch (component.type) {
     case "Text":
     case "Number":
@@ -31,20 +31,20 @@ export const addOnChange = (
     case "Dropdown":
       return {
         ...component,
-        onChange: (v: string | IMultipleChoiceOption[]) => {
+        onChange: (v: string | MultipleChoiceOption[]) => {
           setSubmissions(submissions.map((s, i) => (i === idx ? v : s)));
         },
-      } as IFormInput;
+      } as FormInputProps;
     default:
       return component;
   }
 };
 
 export const addState = (
-  component: IFormInput,
+  component: FormInputProps,
   idx: number,
-  submissions: IFormAnswer["value"][]
-): IFormInput => {
+  submissions: FormAnswer["value"][]
+): FormInputProps => {
   switch (component.type) {
     case "Text":
     case "Number":
@@ -56,7 +56,7 @@ export const addState = (
       return {
         ...component,
         choices:
-          (submissions[idx] as IMultipleChoiceOption[]) || component.choices,
+          (submissions[idx] as MultipleChoiceOption[]) || component.choices,
       };
     case "Dropdown":
       return { ...component, value: submissions[idx] as string };

@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 
-import { IForm } from "resources/shared";
+import { FormProps } from "resources/shared";
 import Response from "../../components/Response";
 
 import "./IndividualView.scss";
@@ -8,7 +8,7 @@ import "./IndividualView.scss";
 const IndividualView = ({
   responses,
 }: {
-  responses?: IForm["submissions"];
+  responses?: FormProps["submissions"];
 }): ReactElement | null => {
   if (!responses || !responses.length) return null;
 

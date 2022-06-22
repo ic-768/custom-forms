@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { ColorChangeHandler } from "react-color";
 
-interface IColorInput {
+interface ColorInputProps {
   type?: "Color";
   onChange?: ColorChangeHandler;
   value?: string;
@@ -12,4 +12,4 @@ interface IColorInput {
   id?: string;
 }
 
-export default IColorInput;
+export default ColorInputProps;

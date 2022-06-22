@@ -1,17 +1,17 @@
 import { ChangeEventHandler, CSSProperties } from "react";
 
-interface IRangeInput {
-  type?: "Range";
+interface TextInputProps {
   onChange?: ChangeEventHandler<HTMLInputElement>;
-  value: string;
+  value?: string;
+  type?: "Text";
+  title?: string;
+  subtitle?: string;
   className?: string;
   placeholder?: string;
-  min?: number;
-  max?: number;
-  step?: number;
-  title?: string;
+  maxLength?: number;
   style?: CSSProperties;
   id?: string;
+  autoFocus?: boolean;
 }
 
-export default IRangeInput;
+export default TextInputProps;

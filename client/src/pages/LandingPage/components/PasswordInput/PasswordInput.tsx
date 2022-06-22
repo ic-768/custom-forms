@@ -6,7 +6,7 @@ import InputContainer from "components/inputs/InputContainer";
 
 import "./PasswordInput.scss";
 
-interface IPasswordInput {
+interface PasswordInputProps {
   title: string;
   password: string;
   onChangePassword: ChangeEventHandler<HTMLInputElement>;
@@ -16,7 +16,7 @@ const PasswordInput = ({
   title,
   password,
   onChangePassword,
-}: IPasswordInput): ReactElement => {
+}: PasswordInputProps): ReactElement => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (

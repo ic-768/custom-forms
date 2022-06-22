@@ -1,5 +1,5 @@
 import DropdownInput from "./DropdownInput";
-import IDropdownInput, { IDropdownOption } from "./IDropdownInput";
+import DropdownInputProps, { DropdownOption } from "./DropdownInputProps";
 
 export default DropdownInput;
-export type { IDropdownOption, IDropdownInput };
+export type { DropdownOption, DropdownInputProps };

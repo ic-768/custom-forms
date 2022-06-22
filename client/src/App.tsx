@@ -11,7 +11,7 @@ import { setToken } from "services/forms";
 
 import LandingPage from "pages/LandingPage";
 import FormBuilder from "pages/FormBuilder";
-import FormSubmission from "pages/FormSubmission";
+import SubmitForm from "pages/SubmitForm";
 import Loader from "components/Loader";
 import Notification from "components/Notification";
 
@@ -39,7 +39,7 @@ const App = (): ReactElement => {
 
       <Routes>
         {/* Route for form submission - we allow unauthenticated submissions for now */}
-        <Route path="submit/:user/:formId" element={<FormSubmission />} />
+        <Route path="submit/:user/:formId" element={<SubmitForm />} />
 
         {/* Route for users to build forms if they're logged in, or the homepage if they're not */}
         <Route path="*" element={user ? <FormBuilder /> : <LandingPage />} />

@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
 
-import IRangeInput from "./IRangeInput";
+import RangeInputProps from "./RangeInputProps";
 import "./RangeInput.scss";
 
 const RangeInput = ({
@@ -16,7 +16,7 @@ const RangeInput = ({
   max,
   step,
   placeholder,
-}: IRangeInput): ReactElement => {
+}: RangeInputProps): ReactElement => {
   const inputClasses = classNames({
     "range-input": true,
     [className!]: !!className,

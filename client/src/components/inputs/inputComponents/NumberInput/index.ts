@@ -1,5 +1,5 @@
 import NumberInput from "./NumberInput";
-import INumberInput from "./INumberInput";
+import NumberInputProps from "./NumberInputProps";
 
 export default NumberInput;
-export type { INumberInput };
+export type { NumberInputProps };

@@ -1,4 +1,4 @@
-import { IForm } from "resources/shared";
+import { FormProps } from "resources/shared";
 
 // hash map to group responses to respective question
 type GroupedResponses = { [title: string]: string[] };
@@ -7,7 +7,7 @@ export type SummarisedResponses = { title: string; responses: string[] };
 
 /* Populate hash table with responses*/
 export const summariseResponses = (
-  responses: IForm["submissions"]
+  responses: FormProps["submissions"]
 ): SummarisedResponses[] => {
   const groupedResponses: GroupedResponses = {};
 

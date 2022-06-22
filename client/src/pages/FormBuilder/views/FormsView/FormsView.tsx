@@ -13,18 +13,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNotification, useWithLoader } from "store/hooks";
 import { token, asyncDeleteMultipleForms } from "services/forms";
 import { deleteMultipleForms } from "store/features/forms/formsSlice";
-import { emptyForm, IForm } from "resources/shared";
-import { IConfirmationModal } from "components/ConfirmationModal";
+import { emptyForm, FormProps } from "resources/shared";
+import { ConfirmationModalProps } from "components/ConfirmationModal";
 import { TextInput } from "components/inputs/inputComponents";
 import FormList from "./components/FormList";
 
 import "./FormsView.scss";
 
-interface IFormsView {
-  forms: IForm[];
-  setEditedForm: (form: IForm) => void;
+interface FormsViewProps {
+  forms: FormProps[];
+  setEditedForm: (form: FormProps) => void;
   haveFormsBeenFetched: boolean;
-  setConfirmation: (confirmation: IConfirmationModal | null) => void;
+  setConfirmation: (confirmation: ConfirmationModalProps | null) => void;
 }
 
 const FormsView = ({
@@ -32,25 +32,25 @@ const FormsView = ({
   setEditedForm,
   haveFormsBeenFetched,
   setConfirmation,
-}: IFormsView): ReactElement => {
+}: FormsViewProps): ReactElement => {
   const dispatch = useDispatch();
   const withLoader = useWithLoader();
   const notify = useNotification();
   // To filter forms by name
-  const [filteredForms, setFilteredForms] = useState<IForm[]>(forms);
+  const [filteredForms, setFilteredForms] = useState<FormProps[]>(forms);
   const [filterQuery, setFilterQuery] = useState<string>("");
 
   // To batch-delete multiple forms
-  const [selectedForms, setSelectedForms] = useState<IForm["_id"][]>([]);
+  const [selectedForms, setSelectedForms] = useState<FormProps["_id"][]>([]);
 
   useEffect(() => {
     setFilteredForms(
-      forms.filter((f: IForm) => f.name.toLowerCase().includes(filterQuery))
+      forms.filter((f: FormProps) => f.name.toLowerCase().includes(filterQuery))
     );
   }, [filterQuery, forms]);
 
   const toggleIsFormSelected = useCallback(
-    (formId: IForm["_id"]) => {
+    (formId: FormProps["_id"]) => {
       if (selectedForms.includes(formId)) {
         setSelectedForms(selectedForms.filter((id) => id !== formId));
       } else {

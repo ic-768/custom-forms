@@ -3,19 +3,24 @@ import { useParams } from "react-router-dom";
 
 import { addOnChange, addState } from "./helpers";
 import { asyncGetForm, asyncSubmitForm } from "services/forms";
-import { IFormInput } from "components/inputs/inputComponents";
-import FormPage from "components/FormPage";
+import { FormInputProps } from "components/inputs/inputComponents";
+import Form from "components/Form";
 import FormComponent from "components/FormComponent";
-import { IForm, IFormAnswer, IFormSubmission, isForm } from "resources/shared";
+import {
+  FormProps,
+  FormAnswer,
+  FormSubmission,
+  isForm,
+} from "resources/shared";
 
-import "./FormSubmission.scss";
+import "./SubmitForm.scss";
 
-const FormSubmission = (): ReactElement | null => {
+const SubmitForm = (): ReactElement | null => {
   const params = useParams();
-  const [form, setForm] = useState<IForm>();
+  const [form, setForm] = useState<FormProps>();
 
   // Array of answers - one for each form component
-  const [submissions, setSubmissions] = useState<IFormAnswer["value"][]>(
+  const [submissions, setSubmissions] = useState<FormAnswer["value"][]>(
     Array(form?.components.length)
   );
 
@@ -30,7 +35,7 @@ const FormSubmission = (): ReactElement | null => {
   if (!form) return null;
 
   // Provide input components with onChange and state values
-  const enrichComponent = (c: IFormInput, idx: number): IFormInput => {
+  const enrichComponent = (c: FormInputProps, idx: number): FormInputProps => {
     const withOnChange = addOnChange(c, idx, setSubmissions, submissions);
     const enrichedComponent = addState(withOnChange, idx, submissions);
     return enrichedComponent;
@@ -47,26 +52,26 @@ const FormSubmission = (): ReactElement | null => {
         title: form.components[i].title,
         type: form.components[i].type,
         value,
-      })) as IFormSubmission;
+      })) as FormSubmission;
 
     asyncSubmitForm(params.user!, params.formId, formattedSubmissions);
   };
 
   return (
-    <div className="form-submission-view-background">
-      <FormPage
+    <div className="submit-form-view-background">
+      <Form
         styles={form.styles}
-        className="form-submission-form"
+        className="submit-form-form"
         content={
           <>
-            <h2 className="form-submission-form-name">{form.name}</h2>
+            <h2 className="submit-form-form-name">{form.name}</h2>
             {form.components.map((c, idx) => (
               <FormComponent
                 key={c.id || idx}
                 component={
                   c.type === "Text-Description"
                     ? c
-                    : enrichComponent(c as IFormInput, idx)
+                    : enrichComponent(c as FormInputProps, idx)
                 }
               />
             ))}
@@ -78,4 +83,4 @@ const FormSubmission = (): ReactElement | null => {
   );
 };
 
-export default FormSubmission;
+export default SubmitForm;

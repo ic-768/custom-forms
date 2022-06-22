@@ -6,19 +6,19 @@ import {
   DropResult,
 } from "react-beautiful-dnd";
 
-import { IFormComponent } from "components/FormComponent";
-import { IEditedComponent, IForm } from "resources/shared";
+import { FormComponentProps } from "components/FormComponent";
+import { EditedComponent, FormProps } from "resources/shared";
 import EditableComponent from "../EditableComponent";
 
 import "./EditableComponentList.scss";
 
-interface IEditableComponentList {
-  components: IFormComponent[];
-  editedComponent: IEditedComponent;
+interface EditableComponentListProps {
+  components: FormComponentProps[];
+  editedComponent: EditedComponent;
   onSelectComponent: (index: number) => MouseEventHandler;
   onDeleteComponent: (index: number) => MouseEventHandler;
-  editedForm: IForm;
-  setEditedForm: (form: IForm) => void;
+  editedForm: FormProps;
+  setEditedForm: (form: FormProps) => void;
   isEditing: boolean;
 }
 
@@ -34,13 +34,13 @@ const EditableComponentList = ({
   editedForm,
   setEditedForm,
   isEditing,
-}: IEditableComponentList): ReactElement => {
+}: EditableComponentListProps): ReactElement => {
   // function to reorder items in an array
   const reorder = (
-    components: IForm["components"],
+    components: FormProps["components"],
     startIndex: number,
     endIndex: number
-  ): IForm["components"] => {
+  ): FormProps["components"] => {
     const result = Array.from(components);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);

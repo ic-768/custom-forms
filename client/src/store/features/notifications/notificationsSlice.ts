@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "store/store";
 
-export type INotification = {
+export type NotificationProps = {
   message: string;
   type: "success" | "error";
 };
 
 export interface NotificationsState {
   isLoading: boolean;
-  notification: INotification;
+  notification: NotificationProps;
 }
 
 const initialState: NotificationsState = {
@@ -38,7 +38,7 @@ const notificationsSlice = createSlice({
 
 const getIsLoading = (state: RootState): boolean =>
   state.notifications.isLoading;
-const getNotification = (state: RootState): INotification =>
+const getNotification = (state: RootState): NotificationProps =>
   state.notifications.notification;
 
 const { setIsLoading, setNotification } = notificationsSlice.actions;
