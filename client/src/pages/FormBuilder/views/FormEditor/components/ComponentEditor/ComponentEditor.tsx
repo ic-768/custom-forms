@@ -5,7 +5,7 @@ import { EditedComponent, FormProps } from "resources/shared";
 import { DropdownInput } from "components/inputs/inputComponents";
 
 import EditorPartial from "../EditorPartial";
-import ComponentModifiersList from "./components/componentModifiersList";
+import ComponentModifiersList from "./components/ComponentModifiersList";
 import { getComponentIcon, componentsForDropdown } from "./helpers";
 
 interface ComponentEditorProps {
