@@ -62,15 +62,14 @@ const FormEditor = ({
   const notify = useNotification();
   const withLoader = useWithLoader();
 
-  // Set form based on url param
+  // Set form based on url param - navigate to home if invalid id
   useEffect(() => {
-    if (forms) {
+    if (forms.length && editedForm._id !== formIdFromUrl) {
       const foundForm = forms.find((f) => f._id === formIdFromUrl);
-      if (foundForm && foundForm._id !== editedForm._id) {
-        setEditedForm(foundForm);
-      }
+      if (foundForm) setEditedForm(foundForm);
+      else navigate("/");
     }
-  }, [formIdFromUrl, forms, setEditedForm, editedForm._id]);
+  }, [formIdFromUrl, forms, setEditedForm, editedForm._id, navigate]);
 
   const updateExistingForm = async (form: IForm): Promise<void> => {
     const updatedForm = await asyncUpdateForm(form, token!);

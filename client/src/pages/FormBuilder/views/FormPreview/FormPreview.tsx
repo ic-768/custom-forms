@@ -18,18 +18,16 @@ const FormPreview = ({
   setForm: (form: IForm) => void;
 }): ReactElement => {
   const navigate = useNavigate();
-  const params = useParams();
+  const formIdFromUrl = useParams().id;
 
-  // Set edited form based on url - navigate to home if none
+  // Set form based on url param - navigate to home if invalid id
   useEffect(() => {
-    const paramId = params.id;
-    if (form._id !== paramId) {
-      const foundForm = forms.find((f) => f._id === paramId);
-      if (!foundForm) {
-        navigate("/");
-      } else setForm(foundForm);
+    if (forms.length && form._id !== formIdFromUrl) {
+      const foundForm = forms.find((f) => f._id === formIdFromUrl);
+      if (foundForm) setForm(foundForm);
+      else navigate("/");
     }
-  }, [form._id, forms, navigate, params.id, setForm]);
+  }, [formIdFromUrl, forms, setForm, form._id, navigate]);
 
   return (
     <>
