@@ -18,8 +18,8 @@ const useUpdateForm = (): ((
   const notify = useNotification();
 
   return async (
-    form: FormProps,
-    token: string | null,
+    form,
+    token,
     successMessage = "Form updated successfully",
     errorMessage = "Something went wrong"
   ) => {

@@ -1,4 +1,4 @@
-import { FormEvent, ReactElement } from "react";
+import { FormEventHandler, ReactElement } from "react";
 
 import BackButton from "components/BackButton";
 import { TextInput } from "components/inputs/inputComponents";
@@ -18,7 +18,7 @@ const CredentialsPanel = ({
 
   const withLoader = useWithLoader();
 
-  const onSubmit = (e: FormEvent): void => {
+  const onSubmit: FormEventHandler = (e): void => {
     e.preventDefault();
     withLoader(async () => {
       await action(username, password);

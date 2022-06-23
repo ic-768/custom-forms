@@ -21,7 +21,7 @@ export const useNotification = (): ((
   const dispatch = useDispatch();
 
   return useCallback(
-    async (notification: NotificationProps, duration: number) => {
+    async (notification, duration) => {
       dispatch(setNotification(notification));
       await sleep(duration);
       dispatch(setNotification({ type: "success", message: "" }));

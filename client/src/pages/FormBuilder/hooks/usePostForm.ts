@@ -18,8 +18,8 @@ const usePostForm = (): ((
   const notify = useNotification();
 
   return async (
-    form: FormProps,
-    token: string | null,
+    form,
+    token,
     successMessage = "Form has been saved",
     errorMessage = "Something went wrong"
   ) => {
