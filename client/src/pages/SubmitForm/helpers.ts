@@ -1,11 +1,10 @@
 import { ChangeEvent } from "react";
 import { MultipleChoiceOption } from "components/inputs/inputComponents/MultipleChoiceInput";
 import { FormInputProps } from "components/inputs/inputComponents";
-import { FormAnswer } from "resources/shared";
+import { FormAnswer, FormProps, FormSubmission } from "resources/shared";
 
 /**
- * Helper functions used to enrich the component with appropriate onChange
- * hooks and state values
+ * Enrich the component with appropriate onChange functions
  */
 export const addOnChange = (
   component: FormInputProps,
@@ -40,6 +39,9 @@ export const addOnChange = (
   }
 };
 
+/**
+ * Enrich the component with appropriate state values
+ */
 export const addState = (
   component: FormInputProps,
   idx: number,
@@ -64,3 +66,20 @@ export const addState = (
       return component;
   }
 };
+
+/**
+ * Format submissions to post to backend
+ */
+export const formatSubmissions = (
+  form: FormProps,
+  submissions: (string | MultipleChoiceOption[])[]
+): FormSubmission =>
+  submissions
+    // remove submissions with no value, and submissions created for text-description components
+    .filter((c, i) => c && form.components[i].type !== "Text-Description")
+    // add corresponding titles and types
+    .map((value, i) => ({
+      title: form.components[i].title,
+      type: form.components[i].type,
+      value,
+    })) as FormSubmission;

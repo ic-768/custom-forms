@@ -20,7 +20,6 @@ const CredentialsPanel = ({
 
   const onSubmit = (e: FormEvent): void => {
     e.preventDefault();
-
     withLoader(async () => {
       await action(username, password);
     });

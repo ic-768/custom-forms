@@ -1,22 +1,19 @@
 import { FormEventHandler, ReactElement, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { addOnChange, addState } from "./helpers";
+import { addOnChange, addState, formatSubmissions } from "./helpers";
 import { asyncGetForm, asyncSubmitForm } from "services/forms";
 import { FormInputProps } from "components/inputs/inputComponents";
 import Form from "components/Form";
 import FormComponent from "components/FormComponent";
-import {
-  FormProps,
-  FormAnswer,
-  FormSubmission,
-  isForm,
-} from "resources/shared";
+import { FormProps, FormAnswer, isForm } from "resources/shared";
+import { useNotification } from "store/hooks";
 
 import "./SubmitForm.scss";
 
 const SubmitForm = (): ReactElement | null => {
   const params = useParams();
+  const notify = useNotification();
   const [form, setForm] = useState<FormProps>();
 
   // Array of answers - one for each form component
@@ -43,17 +40,17 @@ const SubmitForm = (): ReactElement | null => {
   const onSubmit: FormEventHandler = (e) => {
     e.preventDefault();
 
-    const formattedSubmissions = submissions
-      // remove submissions with no value, and submissions created for text-description components
-      .filter((c, i) => c && form.components[i].type !== "Text-Description")
-      // add corresponding titles and types
-      .map((value, i) => ({
-        title: form.components[i].title,
-        type: form.components[i].type,
-        value,
-      })) as FormSubmission;
+    const formattedSubmissions = formatSubmissions(form, submissions);
 
-    asyncSubmitForm(params.user!, params.formId, formattedSubmissions);
+    try {
+      asyncSubmitForm(params.user!, params.formId, formattedSubmissions);
+      notify(
+        { message: "Thank you for your submission!", type: "success" },
+        5000
+      );
+    } catch {
+      notify({ message: "Something went wrong", type: "error" }, 5000);
+    }
   };
 
   return (
