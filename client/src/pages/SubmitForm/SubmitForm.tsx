@@ -14,11 +14,11 @@ import "./SubmitForm.scss";
 const SubmitForm = (): ReactElement | null => {
   const { user, formIdFromUrl } = useParams();
   const [form, setForm] = useState<FormProps>();
+
   // Array of answers - one for each form component
   const [submissions, setSubmissions] = useState<FormAnswer["value"][]>(
     Array(form?.components.length)
   );
-
   const submit = useSubmitForm();
 
   useEffect(() => {

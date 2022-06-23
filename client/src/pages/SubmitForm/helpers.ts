@@ -30,7 +30,7 @@ export const addOnChange = (
     case "Dropdown":
       return {
         ...component,
-        onChange: (v: string | MultipleChoiceOption[]) => {
+        onChange: (v: string) => {
           setSubmissions(submissions.map((s, i) => (i === idx ? v : s)));
         },
       } as FormInputProps;
@@ -72,7 +72,7 @@ export const addState = (
  */
 export const formatSubmissions = (
   form: FormProps,
-  submissions: (string | MultipleChoiceOption[])[]
+  submissions: FormAnswer["value"][]
 ): FormSubmission =>
   submissions
     // remove submissions with no value, and submissions created for text-description components

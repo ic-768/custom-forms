@@ -1,13 +1,12 @@
-import { MultipleChoiceOption } from "components/inputs/inputComponents/MultipleChoiceInput";
 import { FormEventHandler } from "react";
-import { FormProps } from "resources/shared";
+import { FormAnswer, FormProps } from "resources/shared";
 import { asyncSubmitForm } from "services/forms";
 import { useNotification } from "store/hooks";
 import { formatSubmissions } from "../helpers";
 
 const useSubmitForm = (): ((
   form: FormProps,
-  submissions: (string | MultipleChoiceOption[])[],
+  submissions: FormAnswer["value"][],
   user?: string
 ) => FormEventHandler) => {
   const notify = useNotification();
