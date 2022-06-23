@@ -1,11 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { NotificationProps } from "components/Notification/Notification";
 
 import { RootState } from "store/store";
-
-export type NotificationProps = {
-  message: string;
-  type: "success" | "error";
-};
 
 export interface NotificationsState {
   isLoading: boolean;

@@ -1,39 +1,25 @@
-import { FormEvent, ReactElement, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { FormEvent, ReactElement } from "react";
 
-import { useNotification, useWithLoader } from "store/hooks";
-import { signup } from "services/signup";
+import { useWithLoader } from "store/hooks";
 import BackButton from "components/BackButton";
 import { TextInput } from "components/inputs/inputComponents";
 import PasswordInput from "../../components/PasswordInput";
+import useSignup from "../../hooks/useSignup";
+import useCredentials from "../../hooks/useCredentials";
 
 import "./SignupPanel.scss";
 
 const SignupPanel = (): ReactElement => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const notify = useNotification();
+  const { username, password, changeUsername, changePassword } =
+    useCredentials();
+
   const withLoader = useWithLoader();
+  const signup = useSignup();
 
   const onSignup = (e: FormEvent): void => {
     e.preventDefault();
     withLoader(async () => {
-      try {
-        await signup({ username, password });
-        navigate("/login");
-        notify(
-          {
-            type: "success",
-            message: "Successfully signed up! You can log in now.",
-          },
-          5000
-        );
-      } catch (e) {
-        if (e instanceof Error) {
-          notify({ type: "error", message: e.message }, 5000);
-        }
-      }
+      await signup(username, password);
     });
   };
 
@@ -45,12 +31,12 @@ const SignupPanel = (): ReactElement => {
         autoFocus
         title="Username"
         value={username}
-        onChange={(e): void => setUsername(e.target.value)}
+        onChange={changeUsername}
       />
       <PasswordInput
         title="Password"
         password={password}
-        onChangePassword={(e): void => setPassword(e.target.value)}
+        onChangePassword={changePassword}
       />
       <button type="submit" className="signup-panel-signup-button">
         Submit

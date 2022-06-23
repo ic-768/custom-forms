@@ -6,8 +6,8 @@ import { RootState, AppDispatch } from "./store";
 import {
   setNotification,
   setIsLoading,
-  NotificationProps,
 } from "./features/notifications/notificationsSlice";
+import { NotificationProps } from "components/Notification/Notification";
 
 // helper function to wait for a set duration
 const sleep = (time: number): Promise<unknown> =>

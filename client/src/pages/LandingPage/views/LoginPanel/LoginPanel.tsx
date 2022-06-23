@@ -1,48 +1,25 @@
-import { FormEvent, ReactElement, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { FormEvent, ReactElement } from "react";
 
 import BackButton from "components/BackButton";
 import { TextInput } from "components/inputs/inputComponents";
-import { setToken } from "services/forms";
-import { isLoginData, login } from "services/login";
-import { setUser } from "store/features/user/userSlice";
-import { useNotification, useWithLoader } from "store/hooks";
+import { useWithLoader } from "store/hooks";
 import PasswordInput from "../../components/PasswordInput";
+import useLogin from "../../hooks/useLogin";
+import useCredentials from "../../hooks/useCredentials";
 
 import "./LoginPanel.scss";
 
 const LoginPanel = (): ReactElement => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const notify = useNotification();
+  const { username, password, changeUsername, changePassword } =
+    useCredentials();
   const withLoader = useWithLoader();
+  const login = useLogin();
 
   const onLogin = (e: FormEvent): void => {
     e.preventDefault();
 
     withLoader(async () => {
-      try {
-        const loginData = await login({ username, password });
-        if (isLoginData(loginData)) {
-          window.localStorage.setItem("loggedUser", JSON.stringify(loginData));
-          dispatch(setUser(loginData));
-          setToken(loginData.token);
-          navigate("/");
-          notify({ type: "success", message: "Welcome!" }, 5000);
-        } else {
-          notify(
-            { type: "error", message: "There was an error during login" },
-            5000
-          );
-        }
-      } catch (e) {
-        if (e instanceof Error) {
-          notify({ type: "error", message: e.message }, 5000);
-        }
-      }
+      await login(username, password);
     });
   };
 
@@ -54,12 +31,12 @@ const LoginPanel = (): ReactElement => {
         autoFocus
         title="Username"
         value={username}
-        onChange={(e): void => setUsername(e.target.value)}
+        onChange={changeUsername}
       />
       <PasswordInput
         title="Password"
         password={password}
-        onChangePassword={(e): void => setPassword(e.target.value)}
+        onChangePassword={changePassword}
       />
       <button type="submit" className="login-panel-login-button">
         Submit

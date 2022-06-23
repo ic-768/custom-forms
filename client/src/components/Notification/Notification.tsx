@@ -1,7 +1,10 @@
 import { ReactElement } from "react";
-import { NotificationProps } from "store/features/notifications/notificationsSlice";
-
 import "./Notification.scss";
+
+export type NotificationProps = {
+  message: string;
+  type: "success" | "error";
+};
 
 const Notification = ({
   notification,
