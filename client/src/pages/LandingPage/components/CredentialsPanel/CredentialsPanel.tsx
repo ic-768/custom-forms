@@ -1,32 +1,35 @@
 import { FormEvent, ReactElement } from "react";
 
-import { useWithLoader } from "store/hooks";
 import BackButton from "components/BackButton";
 import { TextInput } from "components/inputs/inputComponents";
+import { useWithLoader } from "store/hooks";
 import PasswordInput from "../../components/PasswordInput";
-import useSignup from "../../hooks/useSignup";
 import useCredentials from "../../hooks/useCredentials";
 
-import "./SignupPanel.scss";
+import "./CredentialsPanel.scss";
 
-const SignupPanel = (): ReactElement => {
+const CredentialsPanel = ({
+  action,
+}: {
+  action: (username: string, password: string) => Promise<void>;
+}): ReactElement => {
   const { username, password, changeUsername, changePassword } =
     useCredentials();
 
   const withLoader = useWithLoader();
-  const signup = useSignup();
 
-  const onSignup = (e: FormEvent): void => {
+  const onSubmit = (e: FormEvent): void => {
     e.preventDefault();
+
     withLoader(async () => {
-      await signup(username, password);
+      await action(username, password);
     });
   };
 
   return (
-    <form className="signup-panel-container" onSubmit={onSignup}>
-      <BackButton className="signup-panel-back-arrow" />
-      <span className="signup-panel-container-title">Sign Up</span>
+    <form className="credentials-panel-container" onSubmit={onSubmit}>
+      <BackButton className="credentials-panel-back-arrow" />
+      <span className="credentials-panel-container-title">Log In</span>
       <TextInput
         autoFocus
         title="Username"
@@ -38,11 +41,11 @@ const SignupPanel = (): ReactElement => {
         password={password}
         onChangePassword={changePassword}
       />
-      <button type="submit" className="signup-panel-signup-button">
+      <button type="submit" className="credentials-panel-login-button">
         Submit
       </button>
     </form>
   );
 };
 
-export default SignupPanel;
+export default CredentialsPanel;
