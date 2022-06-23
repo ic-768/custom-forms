@@ -2,11 +2,12 @@ import { ReactElement, useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
 
 import FormListItem from "../FormListItem/FormListItem";
-import { addForm, deleteForm } from "store/features/forms/formsSlice";
+import { deleteForm } from "store/features/forms/formsSlice";
 import { useNotification, useWithLoader } from "store/hooks";
-import { asyncDeleteForm, asyncPostForm, token } from "services/forms";
-import { FormProps, isForm } from "resources/shared";
+import { asyncDeleteForm, token } from "services/forms";
+import { FormProps } from "resources/shared";
 import { ConfirmationModalProps } from "components/ConfirmationModal";
+import usePostForm from "pages/FormBuilder/hooks/usePostForm";
 
 import "./FormList.scss";
 
@@ -33,6 +34,7 @@ const FormList = ({
   const dispatch = useDispatch();
   const withLoader = useWithLoader();
   const notify = useNotification();
+  const postForm = usePostForm();
 
   const onDeleteForm = useCallback(
     async (id: FormProps["_id"]) =>
@@ -60,28 +62,15 @@ const FormList = ({
   const onCopyForm = useCallback(
     async (form: FormProps) => {
       withLoader(async () => {
-        if (token) {
-          try {
-            const copiedForm = {
-              ...form,
-              name: `${form.name} (copy)`,
-              submissions: [],
-            };
-            const returnedForm = await asyncPostForm(copiedForm, token);
-            if (isForm(returnedForm)) {
-              dispatch(addForm(returnedForm));
-              notify(
-                { type: "success", message: "Copied form successfully!" },
-                3000
-              );
-            }
-          } catch {
-            notify({ type: "error", message: "Something went wrong!" }, 3000);
-          }
-        }
+        const copiedForm = {
+          ...form,
+          name: `${form.name} (copy)`,
+          submissions: [],
+        };
+        await postForm(copiedForm, token, "Form copied successfully!");
       });
     },
-    [dispatch, notify, withLoader]
+    [postForm, withLoader]
   );
 
   // List of links to edit each of user's forms

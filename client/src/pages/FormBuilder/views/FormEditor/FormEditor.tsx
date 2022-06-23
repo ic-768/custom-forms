@@ -1,12 +1,5 @@
-import {
-  useEffect,
-  ChangeEvent,
-  useState,
-  MouseEventHandler,
-  ReactElement,
-} from "react";
+import { ChangeEvent, useState, MouseEventHandler, ReactElement } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { v4 as uuid } from "uuid";
 import {
@@ -15,17 +8,9 @@ import {
   faEye,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { addForm, updateForm } from "store/features/forms/formsSlice";
-import { useNotification, useWithLoader } from "store/hooks";
-import { asyncUpdateForm, asyncPostForm } from "services/forms";
-
+import { useWithLoader } from "store/hooks";
 import Form from "components/Form";
-import {
-  emptyForm,
-  EditedComponent,
-  FormProps,
-  isForm,
-} from "resources/shared";
+import { emptyForm, EditedComponent, FormProps } from "resources/shared";
 import { FormComponentProps } from "components/FormComponent";
 import BackButton from "components/BackButton";
 import { TextInput } from "components/inputs/inputComponents";
@@ -33,6 +18,9 @@ import EditableComponentList from "./components/EditableComponentList";
 import ComponentEditor from "./components/ComponentEditor";
 import SettingsButton from "./components/SettingsButton";
 import FormStyleEditor from "./components/FormStyleEditor";
+import useFormFromParam from "../../hooks/useFormFromParam";
+import usePostForm from "../../hooks/usePostForm";
+import useUpdateForm from "../../hooks/useUpdateForm";
 
 import "./FormEditor.scss";
 
@@ -60,55 +48,23 @@ const FormEditor = ({
     null
   );
 
-  const formIdFromUrl = useParams().id;
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const notify = useNotification();
   const withLoader = useWithLoader();
-
-  // Set form based on url param - navigate to home if invalid id
-  useEffect(() => {
-    if (forms.length && editedForm._id !== formIdFromUrl) {
-      const foundForm = forms.find((f) => f._id === formIdFromUrl);
-      if (foundForm) setEditedForm(foundForm);
-      else navigate("/");
-    }
-  }, [formIdFromUrl, forms, setEditedForm, editedForm._id, navigate]);
-
-  const updateExistingForm = async (form: FormProps): Promise<void> => {
-    const updatedForm = await asyncUpdateForm(form, token!);
-    if (isForm(updatedForm)) dispatch(updateForm(updatedForm));
-  };
+  const postForm = usePostForm();
+  const updateForm = useUpdateForm();
+  useFormFromParam(forms, editedForm._id, useParams().id, setEditedForm);
 
   const addNewForm = async (form: FormProps): Promise<void> => {
-    const newForm = await asyncPostForm(form, token!);
-    if (isForm(newForm)) {
-      dispatch(addForm(newForm));
-      navigate(`/edit/${newForm._id}`); // navigate away from '/new' to url with new id
-    }
+    const newForm = await postForm(form, token);
+    if (!(newForm instanceof Error)) navigate(`/edit/${newForm._id}`); // navigate away from '/new' to url with new id
   };
 
   // Post form to DB, and update redux store
   const onPublish = (): void => {
     withLoader(async () => {
-      if (token) {
-        if (!editedForm.name) {
-          notify(
-            { type: "error", message: "Please provide a name for your form" },
-            3000
-          );
-        } else {
-          try {
-            editedForm._id
-              ? await updateExistingForm(editedForm)
-              : await addNewForm(editedForm);
-
-            notify({ type: "success", message: "Form has been saved!" }, 5000);
-          } catch (e) {
-            notify({ type: "error", message: "Something went wrong" }, 5000);
-          }
-        }
-      }
+      editedForm._id
+        ? await updateForm(editedForm, token)
+        : await addNewForm(editedForm);
     });
   };
 
@@ -172,7 +128,6 @@ const FormEditor = ({
 
   const onEditFormStyles = (): void => setEditedStyles(editedForm.styles);
   const onCancelStylesEdit = (): void => setEditedStyles(null);
-
   const onPreview = (): void => navigate(`/${editedForm._id}`);
 
   const isEditing = !!(editedComponent || editedStyles);
