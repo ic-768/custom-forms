@@ -1,6 +1,8 @@
 .dropdown-options-add-button {
+  border: none;
+  background-color: white;
   cursor: pointer;
-  width: 100%;
+  align-self: center;
   font-size: 22px;
   text-align: center;
   transition: color 0.2s;
@@ -21,6 +23,8 @@
 
 .dropdown-options-remove-option-button {
   cursor: pointer;
+  background-color: white;
+  border: none;
   position: absolute;
   top: 8px;
   right: 10px;

@@ -10,7 +10,7 @@ const borderWidths = {
 type BorderStyle = keyof typeof borderWidths;
 export type BorderWidth = typeof borderWidths[BorderStyle];
 
-interface IBorderType {
+interface BorderType {
   borderWidth: BorderWidth;
   onChange: (borderType: BorderWidth) => void;
 }
@@ -18,7 +18,7 @@ interface IBorderType {
 /**
  * Allows user to choose which border sides will be colored
  */
-const BorderType = ({ borderWidth, onChange }: IBorderType): ReactElement => {
+const BorderType = ({ borderWidth, onChange }: BorderType): ReactElement => {
   const borderTypeForWidth = (): BorderStyle => {
     switch (borderWidth) {
       case borderWidths.Box:
