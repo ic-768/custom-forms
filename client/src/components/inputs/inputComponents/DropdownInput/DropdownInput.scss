@@ -47,22 +47,23 @@
 }
 
 .dropdown-input-options {
-  position: absolute;
-  z-index: 101;
   display: none;
-  background-color: white;
-  overflow: hidden;
-  list-style: none;
-  transform-origin: top;
-  border-bottom-left-radius: var(--input-border-radius);
-  border-bottom-right-radius: var(--input-border-radius);
-  font-size: 12px;
-  left: 0px;
-  right: 0px;
-  border: 1px solid var(--input-border-color);
 
   &.showing-options {
+    min-height: 33px;
     display: block;
+    position: absolute;
+    z-index: 101;
+    border: 1px solid var(--input-border-color);
+    background-color: white;
+    overflow: hidden;
+    list-style: none;
+    transform-origin: top;
+    border-bottom-left-radius: var(--input-border-radius);
+    border-bottom-right-radius: var(--input-border-radius);
+    font-size: 12px;
+    left: 0px;
+    right: 0px;
   }
 }
 

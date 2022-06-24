@@ -19,6 +19,7 @@ const FormPreview = ({
   setForm: (form: FormProps) => void;
 }): ReactElement => {
   useFormFromParam(forms, form._id, useParams().id, setForm);
+
   return (
     <>
       <BackButton link={`/edit/${form._id}`} />

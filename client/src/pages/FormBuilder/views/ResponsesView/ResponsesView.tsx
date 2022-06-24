@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import ModeToggle from "./components/ModeToggle";
@@ -6,6 +6,7 @@ import IndividualView from "./views/IndividualView";
 import SummaryView from "./views/SummaryView";
 import { FormProps } from "resources/shared";
 import BackButton from "components/BackButton";
+import useFormFromParam from "../../hooks/useFormFromParam";
 
 import "./ResponsesView.scss";
 
@@ -14,13 +15,7 @@ const ResponsesView = ({ forms }: { forms: FormProps[] }): ReactElement => {
   const [form, setForm] = useState<FormProps>();
   const [viewMode, setViewMode] = useState<"individual" | "summary">("summary");
 
-  // Set form based on url param
-  useEffect(() => {
-    if (forms) {
-      const foundForm = forms.find((f) => f._id === formIdFromUrl);
-      foundForm && setForm(foundForm);
-    }
-  }, [forms, formIdFromUrl]);
+  useFormFromParam(forms, form?._id, formIdFromUrl, setForm);
 
   const submissionsLength = form?.submissions.length;
 

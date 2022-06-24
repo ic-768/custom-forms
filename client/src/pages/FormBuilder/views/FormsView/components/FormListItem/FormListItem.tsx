@@ -23,24 +23,17 @@ const FormListItem = ({
   onDeleteForm,
   onCopyForm,
 }: FormListItemProps): ReactElement => {
-  const { name, _id } = form;
+  const { name, _id: formId } = form;
   const username = useAppSelector((state) => state.user.username);
   const notify = useNotification();
 
   const numSubmissions = form.submissions.length;
-  const formId = _id?.toString();
   const onCopyURL: MouseEventHandler<SVGSVGElement> = (e) => {
     e.stopPropagation();
     navigator.clipboard.writeText(
       `${window.location.origin}/submit/${username}/${formId}`
     );
-    notify(
-      {
-        message: "Copied link to clipboard",
-        type: "success",
-      },
-      3000
-    );
+    notify({ message: "Copied link to clipboard", type: "success" }, 3000);
   };
 
   return (

@@ -4,7 +4,7 @@ import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
-import DropdownInputProps from "./DropdownInputProps";
+import DropdownInputProps, { DropdownOption } from "./DropdownInputProps";
 
 import "./DropdownInput.scss";
 
@@ -49,6 +49,27 @@ const DropdownInput = <T extends string>({
     "showing-options": showOptions,
   });
 
+  const hasOptions = options?.length;
+
+  const Option = ({ option }: { option: DropdownOption }): ReactElement => (
+    <li
+      className="dropdown-input-option"
+      role="button"
+      tabIndex={0}
+      value={option.value}
+      onClick={onOptionSelect}
+    >
+      {option.icon && (
+        <FontAwesomeIcon className="dropdown-input-icon" icon={option.icon} />
+      )}
+      {option.label}
+    </li>
+  );
+  const emptyOption: DropdownOption = {
+    label: " ",
+    value: " ",
+  };
+
   const { marginBottom, ...placeholderStyle } = { ...style };
 
   return (
@@ -83,25 +104,13 @@ const DropdownInput = <T extends string>({
             />
           </div>
           <ul className={dropdownOptionsClasses}>
-            {options &&
+            {hasOptions ? (
               options.map((o, i) => (
-                <li
-                  className="dropdown-input-option"
-                  role="button"
-                  tabIndex={0}
-                  key={`dropdown-input-${i}`}
-                  value={o.value}
-                  onClick={onOptionSelect}
-                >
-                  {o.icon && (
-                    <FontAwesomeIcon
-                      className="dropdown-input-icon"
-                      icon={o.icon}
-                    />
-                  )}
-                  {o.label}
-                </li>
-              ))}
+                <Option key={`dropdown-input-${i}`} option={o} />
+              ))
+            ) : (
+              <Option option={emptyOption} />
+            )}
           </ul>
         </div>
       }

@@ -27,35 +27,47 @@ const MultipleChoiceInput = ({
       choice.label === c.label ? { ...c, isSelected: !c.isSelected } : c
     );
 
+  const hasChoices = choices?.length;
+
+  const Option = ({
+    option,
+  }: {
+    option: MultipleChoiceOption;
+  }): ReactElement => (
+    <div className="multiple-choice-input-choice-container" key={option.label}>
+      <div
+        onClick={(): void => {
+          if (!onChange) return;
+          onChange(updateChoices(option));
+        }}
+        className="multiple-choice-input-choice-icon-container"
+      >
+        <input
+          type="checkbox"
+          defaultChecked={option.isSelected || false}
+          value={option.label || ""}
+        />
+      </div>
+
+      <span>{option.label}</span>
+    </div>
+  );
+
+  const emptyOption: MultipleChoiceOption = {
+    label: " ",
+  };
+
   return (
     <InputContainer
       title={title}
       className={className}
       component={
         <div style={style} className={inputClasses}>
-          {choices &&
-            choices.map((c) => (
-              <div
-                className="multiple-choice-input-choice-container"
-                key={c.label}
-              >
-                <div
-                  onClick={(): void => {
-                    if (!onChange) return;
-                    onChange(updateChoices(c));
-                  }}
-                  className="multiple-choice-input-choice-icon-container"
-                >
-                  <input
-                    type="checkbox"
-                    defaultChecked={c.isSelected || false}
-                    value={c.label || ""}
-                  />
-                </div>
-
-                <span>{c.label}</span>
-              </div>
-            ))}
+          {hasChoices ? (
+            choices.map((c, i) => <Option key={`${c.label}${i}`} option={c} />)
+          ) : (
+            <Option option={emptyOption} />
+          )}
         </div>
       }
     />
