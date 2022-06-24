@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { useDebounce } from "hooks/useDebounce";
 import { useNotification, useWithLoader } from "store/hooks";
 import { token, asyncDeleteMultipleForms } from "services/forms";
 import { deleteMultipleForms } from "store/features/forms/formsSlice";
@@ -40,14 +41,17 @@ const FormsView = ({
   const [filteredForms, setFilteredForms] = useState<FormProps[]>(forms);
   const [filterQuery, setFilterQuery] = useState<string>("");
 
+  const debouncedFilterQuery = useDebounce(filterQuery, 250);
   // To batch-delete multiple forms
   const [selectedForms, setSelectedForms] = useState<FormProps["_id"][]>([]);
 
   useEffect(() => {
     setFilteredForms(
-      forms.filter((f: FormProps) => f.name.toLowerCase().includes(filterQuery))
+      forms.filter((f: FormProps) =>
+        f.name.toLowerCase().includes(debouncedFilterQuery)
+      )
     );
-  }, [filterQuery, forms]);
+  }, [debouncedFilterQuery, forms]);
 
   const toggleIsFormSelected = useCallback(
     (formId: FormProps["_id"]) => {
