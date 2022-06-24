@@ -1,6 +1,8 @@
 .multiple-choice-options-add-button {
+  border: none;
+  background-color: white;
   cursor: pointer;
-  width: 100%;
+  align-self: center;
   font-size: 22px;
   text-align: center;
   transition: color 0.2s;
@@ -20,6 +22,8 @@
 }
 
 .multiple-choice-options-remove-option-button {
+  background-color: white;
+  border: none;
   cursor: pointer;
   position: absolute;
   top: 8px;

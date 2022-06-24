@@ -8,6 +8,7 @@
   border: 1px solid var(--input-border-color);
   padding: var(--input-padding);
   border-radius: var(--input-border-radius);
+  background-color: white;
 
   &.has-placeholder {
     color: var(--input-placeholder-fg);
