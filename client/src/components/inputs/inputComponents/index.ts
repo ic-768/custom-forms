@@ -7,6 +7,7 @@ import NumberInput, { NumberInputProps } from "./NumberInput";
 import TextInput, { TextInputProps } from "./TextInput";
 import TimeInput, { TimeInputProps } from "./TimeInput";
 import RangeInput, { RangeInputProps } from "./RangeInput";
+import MultipleEntryInput from "./MultipleEntryInput";
 
 export type FormInputProps =
   | DropdownInputProps
@@ -25,6 +26,7 @@ export {
   TextInput,
   TimeInput,
   RangeInput,
+  MultipleEntryInput,
 };
 
 export type {

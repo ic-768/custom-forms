@@ -1,4 +1,4 @@
-.multiple-choice-options-add-button {
+.multiple-entry-options-add-button {
   border: none;
   background-color: white;
   cursor: pointer;
@@ -11,17 +11,17 @@
   }
 }
 
-.multiple-choice-options-modifier-options {
+.multiple-entry-options-modifier-options {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.multiple-choice-options-modifier-option {
+.multiple-entry-options-modifier-option {
   position: relative;
 }
 
-.multiple-choice-options-remove-option-button {
+.multiple-entry-options-remove-option-button {
   background-color: white;
   border: none;
   cursor: pointer;

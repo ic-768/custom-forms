@@ -153,6 +153,7 @@ const ComponentModifiersList = ({
           {BorderTypeModifier}
           {MarginModifier}
           <DropdownOptions
+            options={component.options}
             onChange={(options): void => {
               onChangeModifiers({ ...component, options });
             }}
@@ -226,6 +227,7 @@ const ComponentModifiersList = ({
         <>
           {TitleModifier}
           <MultipleChoiceOptions
+            options={component.choices}
             onChange={(choices): void => {
               onChangeModifiers({ ...component, choices });
             }}
