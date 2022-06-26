@@ -9,9 +9,16 @@ import {
 } from "./features/notifications/notificationsSlice";
 import { NotificationProps } from "components/Notification/Notification";
 
+// Used to clear previous notifications if they're still active while a new one is triggered
+let sleepId: number | null = null;
+
 // helper function to wait for a set duration
-const sleep = (time: number): Promise<unknown> =>
-  new Promise((resolve) => setTimeout(resolve, time));
+const sleep = (time: number): Promise<unknown> => {
+  if (sleepId) clearTimeout(sleepId);
+  return new Promise((resolve) => {
+    sleepId = setTimeout(resolve, time);
+  });
+};
 
 // hook that sets a notification and removes it after a set time
 export const useNotification = (): ((
@@ -51,4 +58,5 @@ export const useAppDispatch = (): ThunkDispatch<
   undefined,
   AnyAction
 > => useDispatch<AppDispatch>();
+
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
