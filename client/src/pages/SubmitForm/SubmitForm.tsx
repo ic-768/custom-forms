@@ -12,7 +12,7 @@ import useSubmitForm from "./hooks/useSubmitForm";
 import "./SubmitForm.scss";
 
 const SubmitForm = (): ReactElement | null => {
-  const { user, formIdFromUrl } = useParams();
+  const { user, formId } = useParams();
   const [form, setForm] = useState<FormProps>();
 
   // Array of answers - one for each form component
@@ -22,12 +22,12 @@ const SubmitForm = (): ReactElement | null => {
   const submit = useSubmitForm();
 
   useEffect(() => {
-    asyncGetForm(user!, formIdFromUrl).then((f) => {
+    asyncGetForm(user!, formId).then((f) => {
       if (!form && isForm(f)) setForm(f);
     });
 
     setSubmissions(new Array(form?.components.length).fill("")); // fill submission array
-  }, [user, formIdFromUrl, form]);
+  }, [user, formId, form]);
 
   if (!form) return null;
 
