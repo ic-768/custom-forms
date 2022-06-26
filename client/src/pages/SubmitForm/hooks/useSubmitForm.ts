@@ -20,6 +20,7 @@ const useSubmitForm = (): ((
         { message: "You've already made a submission", type: "success" },
         5000
       );
+
       return;
     }
 

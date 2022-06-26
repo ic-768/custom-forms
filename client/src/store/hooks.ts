@@ -15,6 +15,7 @@ let sleepId: number | null = null;
 // helper function to wait for a set duration
 const sleep = (time: number): Promise<unknown> => {
   if (sleepId) clearTimeout(sleepId);
+
   return new Promise((resolve) => {
     sleepId = setTimeout(resolve, time);
   });

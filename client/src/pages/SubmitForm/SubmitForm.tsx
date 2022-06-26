@@ -42,6 +42,7 @@ const SubmitForm = (): ReactElement | null => {
   // Provide input components with onChange and state values
   const enrichComponent = (c: FormInputProps, idx: number): FormInputProps => {
     const withOnChange = addOnChange(c, idx, setSubmissions, submissions);
+
     return addState(withOnChange, idx, submissions);
   };
 

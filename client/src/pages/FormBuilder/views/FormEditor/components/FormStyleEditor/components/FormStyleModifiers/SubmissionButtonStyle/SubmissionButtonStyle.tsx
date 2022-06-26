@@ -15,6 +15,7 @@ const SubmissionButtonStyle = ({
     const buttonStyle = o as FormProps["styles"]["buttonStyle"];
     setEditedStyles({ ...editedStyles, buttonStyle });
   };
+
   return (
     <DropdownInput
       title="Submission button style"

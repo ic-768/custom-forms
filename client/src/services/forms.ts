@@ -18,6 +18,7 @@ const asyncGetForm = async (
     try {
       const config = { headers: { username, formId } };
       const response = await axios.get("/forms/form-to-submit", config);
+
       return response.data;
     } catch (e) {
       throw new Error("Error fetching forms " + e);
@@ -32,6 +33,7 @@ const asyncGetForms = async (token: string): Promise<unknown> => {
   try {
     const config = { headers: { Authorization: token } };
     const response = await axios.get("/forms", config);
+
     return response.data;
   } catch (e) {
     throw new Error("Error fetching forms " + e);
@@ -48,6 +50,7 @@ const asyncPostForm = async (
   try {
     const config = { headers: { Authorization: token } };
     const response = await axios.post("/forms", { formData }, config);
+
     return response.data;
   } catch (e) {
     throw new Error("Error posting form: " + e);
@@ -64,6 +67,7 @@ const asyncUpdateForm = async (
   try {
     const config = { headers: { Authorization: token } };
     const response = await axios.put("/forms", { formData }, config);
+
     return response.data;
   } catch (e) {
     throw new Error("Error updating form: " + e);
@@ -80,6 +84,7 @@ const asyncDeleteForm = async (
   try {
     const config = { headers: { Authorization: token }, data: { formId } };
     const response = await axios.delete("/forms", config);
+
     return response.data;
   } catch (e) {
     throw new Error("Error deleting form: " + e);
@@ -96,6 +101,7 @@ const asyncDeleteMultipleForms = async (
   try {
     const config = { headers: { Authorization: token }, data: { formIds } };
     const response = await axios.delete("/forms/multiple", config);
+
     return response.data;
   } catch (e) {
     throw new Error("Error deleting form: " + e);
@@ -116,6 +122,7 @@ const asyncSubmitForm = async (
       formId,
       submission,
     });
+
     return response.data;
   } catch (e) {
     throw new Error("Error submitting form: " + e);

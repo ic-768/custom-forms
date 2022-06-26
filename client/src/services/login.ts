@@ -5,6 +5,7 @@ type LoginData = { username: string; token: string };
 
 export const isLoginData = (data: unknown): data is LoginData => {
   if (typeof data !== "object" || !data) return false;
+
   return "username" in data && "token" in data;
 };
 
@@ -14,6 +15,7 @@ const login = async (credentials: {
 }): Promise<unknown> => {
   try {
     const response = await axios.post("/login", credentials);
+
     return response.data;
   } catch {
     throw new Error(

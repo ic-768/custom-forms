@@ -16,6 +16,7 @@ const BackgroundColor = ({
     const backgroundColor = `rgba(${Object.values(c.rgb)})`;
     setEditedStyles({ ...editedStyles, backgroundColor });
   };
+
   return (
     <ColorInput
       title="Background color"

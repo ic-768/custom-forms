@@ -26,6 +26,7 @@ const usePostForm = (): ((
     if (!token) return Error("No token");
     if (!form.name) {
       notify({ type: "error", message: "Form name can't be empty" }, 5000);
+
       return Error("Empty form name");
     }
     try {
@@ -33,13 +34,16 @@ const usePostForm = (): ((
       if (isForm(newForm)) {
         dispatch(addForm(newForm));
         notify({ type: "success", message: successMessage }, 5000);
+
         return newForm;
       } else {
         notify({ type: "error", message: errorMessage }, 5000);
+
         return Error("Something wrong with form");
       }
     } catch {
       notify({ type: "error", message: errorMessage }, 5000);
+
       return Error("Request failed");
     }
   };

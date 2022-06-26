@@ -19,6 +19,7 @@ const ModeToggle = ({ viewMode, setViewMode }: IModeToggle): ReactElement => {
     "components-view-mode-toggle": true,
     active: viewMode === "summary",
   });
+
   return (
     <div className="components-view-mode-toggle-container">
       <button

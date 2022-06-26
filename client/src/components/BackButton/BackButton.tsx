@@ -21,6 +21,7 @@ const BackButton = ({
     "back-button": true,
     [className!]: className,
   });
+
   return (
     <Link className={buttonClasses} to={link} onClick={onClick}>
       <FontAwesomeIcon title="Go back" icon={faArrowLeft} />
