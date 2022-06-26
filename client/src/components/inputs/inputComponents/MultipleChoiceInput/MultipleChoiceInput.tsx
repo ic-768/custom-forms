@@ -54,12 +54,15 @@ const MultipleChoiceInput = ({
     </div>
   );
 
+  const { marginTop, ...inputStyle } = { ...style };
+
   return (
     <InputContainer
       title={title}
       className={className}
+      style={{ marginTop }}
       component={
-        <div style={style} className={inputClasses}>
+        <div style={inputStyle} className={inputClasses}>
           {hasChoices ? (
             choices.map((c, i) => <Option key={`${c.label}${i}`} option={c} />)
           ) : (

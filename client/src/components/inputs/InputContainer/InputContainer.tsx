@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { CSSProperties, ReactElement } from "react";
 import classNames from "classnames";
 
 import "./InputContainer.scss";
@@ -8,6 +8,7 @@ interface InputContainerProps {
   className?: string;
   title?: string;
   subtitle?: string;
+  style?: CSSProperties;
 }
 
 /**
@@ -18,6 +19,7 @@ const InputContainer = ({
   title,
   subtitle,
   className,
+  style,
 }: InputContainerProps): ReactElement => {
   const inputContainerClasses = classNames({
     "input-container": true,
@@ -25,7 +27,7 @@ const InputContainer = ({
   });
 
   return (
-    <div className={inputContainerClasses}>
+    <div style={style} className={inputContainerClasses}>
       <div className="input-title-container">
         {title && <span>{title}</span>}
         {subtitle && <span className="input-subtitle">{subtitle}</span>}

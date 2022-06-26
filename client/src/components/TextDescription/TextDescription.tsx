@@ -21,11 +21,13 @@ const TextDescription = ({
     "has-placeholder": !text,
   });
 
+  const { marginTop, ...innerStyle } = { ...style };
+
   return (
-    <div className="text-description-container">
+    <div style={{ marginTop }} className="text-description-container">
       {title && <span>{title}</span>}
 
-      <span style={style} className={descriptionClasses}>
+      <span style={innerStyle} className={descriptionClasses}>
         {text || "Your explanatory text will go here"}
       </span>
     </div>

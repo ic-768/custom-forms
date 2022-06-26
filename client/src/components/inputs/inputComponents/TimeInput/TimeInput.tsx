@@ -19,16 +19,19 @@ const TimeInput = ({
     [className!]: !!className,
   });
 
+  const { marginTop, ...inputStyle } = { ...style };
+
   return (
     <InputContainer
       title={title}
       className={className}
+      style={{ marginTop }}
       component={
         <input
           onChange={onChange}
           placeholder={placeholder}
           value={value}
-          style={style}
+          style={inputStyle}
           className={inputClasses}
           type="time"
         />

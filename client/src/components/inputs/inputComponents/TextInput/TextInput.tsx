@@ -22,17 +22,20 @@ const TextInput = ({
     [className!]: !!className,
   });
 
+  const { marginTop, ...inputStyle } = { ...style };
+
   return (
     <InputContainer
       title={title}
       subtitle={subtitle}
       className={className}
+      style={{ marginTop }}
       component={
         <input
           autoFocus={autoFocus}
           onChange={onChange}
           value={value}
-          style={style}
+          style={inputStyle}
           className={inputClasses}
           type="text"
           placeholder={placeholder}

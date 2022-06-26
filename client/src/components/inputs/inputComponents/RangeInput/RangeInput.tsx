@@ -22,10 +22,13 @@ const RangeInput = ({
     [className!]: !!className,
   });
 
+  const { marginTop, ...inputStyle } = { ...style };
+
   return (
     <InputContainer
       title={title}
       className={className}
+      style={{ marginTop }}
       component={
         <div className="range-input-container">
           {value !== undefined && <span>{value}</span>}
@@ -33,7 +36,7 @@ const RangeInput = ({
             onChange={onChange}
             placeholder={placeholder}
             value={value}
-            style={style}
+            style={inputStyle}
             min={min}
             max={max}
             step={step}

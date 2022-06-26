@@ -21,13 +21,16 @@ const DateInput = ({
     [className!]: !!className,
   });
 
+  const { marginTop, ...inputStyle } = { ...style };
+
   return (
     <InputContainer
       title={title}
       className={className}
+      style={{ marginTop }}
       component={
         <input
-          style={style}
+          style={inputStyle}
           value={value}
           onChange={onChange}
           type="date"

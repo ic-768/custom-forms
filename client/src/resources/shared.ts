@@ -48,5 +48,5 @@ export const isForm = (form: unknown): form is FormProps => {
 export const areForms = (forms: unknown): forms is FormProps[] => {
   if (!Array.isArray(forms) || !forms) return false;
 
-  return forms.every((f) => isForm(f));
+  return forms.every(isForm);
 };

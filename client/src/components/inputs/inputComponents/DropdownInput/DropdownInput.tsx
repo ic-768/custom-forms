@@ -67,16 +67,16 @@ const DropdownInput = <T extends string>({
     </li>
   );
 
-  const { marginBottom, ...placeholderStyle } = { ...style };
+  const { marginTop, marginBottom, ...placeholderStyle } = { ...style };
 
   return (
     <InputContainer
       title={title}
       subtitle={subtitle}
       className={className}
+      style={{ marginTop, marginBottom }}
       component={
         <div
-          style={{ marginBottom }}
           className={dropdownClasses}
           onMouseLeave={(): void => setShowOptions(false)}
         >
