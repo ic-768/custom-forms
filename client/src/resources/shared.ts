@@ -6,12 +6,13 @@ import {
   MultipleChoiceInputProps,
   MultipleChoiceOption,
 } from "components/inputs/inputComponents/MultipleChoiceInput";
+import { DropdownOption } from "components/inputs/inputComponents/DropdownInput";
 
 type HorizontalPosition = "left" | "right";
 type VerticalPosition = "top" | "bottom";
 type CompletePosition = `${VerticalPosition} ${HorizontalPosition}` | "center";
 
-interface FormStyles {
+export interface FormStyles {
   backgroundImage?: string;
   backgroundPosition?: HorizontalPosition | VerticalPosition | CompletePosition;
   backgroundColor?: string;
@@ -35,7 +36,7 @@ export type FormSubmission = FormAnswer[];
 /**
  * A single user form
  */
-interface FormProps {
+export interface FormProps {
   // Form name
   name: string;
   // DProps given assigned from backend when first created
@@ -55,22 +56,20 @@ export const isForm = (form: unknown): form is FormProps => {
 };
 
 /**
- * Component being edited in FormBuilder, also contains its index in the form inputs
- */
-type EditedComponent = {
-  component: FormComponentProps;
-  index: number;
-} | null;
-
-/**
  * Used to instantiate a new form
  */
-const emptyForm: FormProps = {
+export const emptyForm: FormProps = {
   name: "",
   components: [{ type: "Text", id: uuid() }],
   styles: {},
   submissions: [],
 };
 
-export { emptyForm };
-export type { FormProps, EditedComponent };
+export const emptyDropdownOption: DropdownOption = {
+  label: "",
+  value: "",
+};
+
+export const emptyMultipleChoiceOption: MultipleChoiceOption = {
+  label: "",
+};

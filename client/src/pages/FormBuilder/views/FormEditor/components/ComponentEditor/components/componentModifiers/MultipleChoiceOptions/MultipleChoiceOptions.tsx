@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 
 import MultipleEntryInput from "components/inputs/inputComponents/MultipleEntryInput";
 import { MultipleChoiceOption } from "components/inputs/inputComponents/MultipleChoiceInput";
+import { emptyMultipleChoiceOption } from "resources/shared";
 
 interface MultipleChoiceOptionsProps {
   onChange: (options: MultipleChoiceOption[]) => void;
@@ -17,7 +18,7 @@ const MultipleChoiceOptions = ({
     subtitle="The options for the multiple choice input"
     initialOptions={options}
     onChange={onChange}
-    emptyOption={{ label: "" }}
+    emptyOption={emptyMultipleChoiceOption}
   />
 );
 export default MultipleChoiceOptions;

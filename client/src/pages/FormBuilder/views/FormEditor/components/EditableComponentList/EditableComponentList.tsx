@@ -7,7 +7,8 @@ import {
 } from "react-beautiful-dnd";
 
 import { FormComponentProps } from "components/FormComponent";
-import { EditedComponent, FormProps } from "resources/shared";
+import { FormProps } from "resources/shared";
+import { EditedComponent } from "../../resources";
 import EditableComponent from "../EditableComponent";
 
 import "./EditableComponentList.scss";

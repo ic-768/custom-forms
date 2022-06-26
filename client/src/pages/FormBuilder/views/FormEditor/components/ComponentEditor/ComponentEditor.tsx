@@ -1,10 +1,10 @@
 import { ReactElement } from "react";
 
 import { FormComponentProps } from "components/FormComponent";
-import { EditedComponent, FormProps } from "resources/shared";
+import { FormProps } from "resources/shared";
 import { DropdownInput } from "components/inputs/inputComponents";
-
 import EditorPartial from "../EditorPartial";
+import { EditedComponent } from "../../resources";
 import ComponentModifiersList from "./components/ComponentModifiersList";
 import { getComponentIcon, componentsForDropdown } from "./helpers";
 

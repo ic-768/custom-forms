@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 
 import { DropdownOption } from "components/inputs/inputComponents/DropdownInput";
 import MultipleEntryInput from "components/inputs/inputComponents/MultipleEntryInput";
+import { emptyDropdownOption } from "resources/shared";
 
 interface DropdownOptionsProps {
   onChange: (options: DropdownOption[]) => void;
@@ -17,7 +18,7 @@ const DropdownOptions = ({
     subtitle="The options for the dropdown input"
     initialOptions={options}
     onChange={onChange}
-    emptyOption={{ label: "", value: "" }}
+    emptyOption={emptyDropdownOption}
   />
 );
 export default DropdownOptions;

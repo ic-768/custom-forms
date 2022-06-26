@@ -5,6 +5,7 @@ import InputContainer from "../../InputContainer";
 import MultipleChoiceInputProps, {
   MultipleChoiceOption,
 } from "./MultipleChoiceInputProps";
+import { emptyMultipleChoiceOption } from "resources/shared";
 
 import "./MultipleChoiceInput.scss";
 
@@ -53,10 +54,6 @@ const MultipleChoiceInput = ({
     </div>
   );
 
-  const emptyOption: MultipleChoiceOption = {
-    label: " ",
-  };
-
   return (
     <InputContainer
       title={title}
@@ -66,7 +63,7 @@ const MultipleChoiceInput = ({
           {hasChoices ? (
             choices.map((c, i) => <Option key={`${c.label}${i}`} option={c} />)
           ) : (
-            <Option option={emptyOption} />
+            <Option option={emptyMultipleChoiceOption} />
           )}
         </div>
       }

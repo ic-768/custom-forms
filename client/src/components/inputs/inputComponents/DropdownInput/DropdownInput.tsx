@@ -5,6 +5,7 @@ import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
 import DropdownInputProps, { DropdownOption } from "./DropdownInputProps";
+import { emptyDropdownOption } from "resources/shared";
 
 import "./DropdownInput.scss";
 
@@ -65,10 +66,6 @@ const DropdownInput = <T extends string>({
       {option.label}
     </li>
   );
-  const emptyOption: DropdownOption = {
-    label: " ",
-    value: " ",
-  };
 
   const { marginBottom, ...placeholderStyle } = { ...style };
 
@@ -109,7 +106,7 @@ const DropdownInput = <T extends string>({
                 <Option key={`dropdown-input-${i}`} option={o} />
               ))
             ) : (
-              <Option option={emptyOption} />
+              <Option option={emptyDropdownOption} />
             )}
           </ul>
         </div>
