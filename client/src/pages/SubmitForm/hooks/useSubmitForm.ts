@@ -1,4 +1,4 @@
-import { FormEventHandler } from "react";
+import { FormEventHandler, useState } from "react";
 import { FormAnswer, FormProps } from "resources/shared";
 import { asyncSubmitForm } from "services/forms";
 import { useNotification } from "store/hooks";
@@ -10,9 +10,18 @@ const useSubmitForm = (): ((
   user?: string
 ) => FormEventHandler) => {
   const notify = useNotification();
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
   return (form, submissions, user) => (e) => {
     e.preventDefault();
     if (!user) return;
+    if (hasSubmitted) {
+      notify(
+        { message: "You've already made a submission", type: "success" },
+        5000
+      );
+      return;
+    }
 
     const formattedSubmissions = formatSubmissions(form, submissions);
 
@@ -22,6 +31,7 @@ const useSubmitForm = (): ((
         { message: "Thank you for your submission!", type: "success" },
         5000
       );
+      setHasSubmitted(true);
     } catch {
       notify({ message: "Something went wrong", type: "error" }, 5000);
     }
