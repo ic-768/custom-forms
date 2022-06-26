@@ -5,10 +5,11 @@ import { useDispatch } from "react-redux";
 import { token, asyncGetForms } from "services/forms";
 import { useAppSelector, useWithLoader } from "store/hooks";
 import { selectForms, setForms } from "store/features/forms/formsSlice";
-import { emptyForm, FormProps } from "resources/shared";
+import { areForms, FormProps } from "resources/shared";
 import ConfirmationModal, {
   ConfirmationModalProps,
 } from "components/ConfirmationModal";
+import { emptyForm } from "./resources";
 
 import FormBuilderHeader from "./components/FormBuilderHeader";
 import FormPreview from "./views/FormPreview";
@@ -39,7 +40,11 @@ const FormBuilder = (): ReactElement => {
     withLoader(async () => {
       if (token) {
         const userForms = await asyncGetForms(token);
-        dispatch(setForms((userForms as FormProps[]) || []));
+        if (areForms(userForms)) {
+          dispatch(setForms(userForms));
+        } else {
+          dispatch(setForms([]));
+        }
         setHaveFormsBeenFetched(true);
       }
     });

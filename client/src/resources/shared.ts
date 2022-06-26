@@ -1,12 +1,5 @@
-import { v4 as uuid } from "uuid";
-
-import { FormInputProps } from "components/inputs/inputComponents";
 import { FormComponentProps } from "components/FormComponent";
-import {
-  MultipleChoiceInputProps,
-  MultipleChoiceOption,
-} from "components/inputs/inputComponents/MultipleChoiceInput";
-import { DropdownOption } from "components/inputs/inputComponents/DropdownInput";
+import { FormAnswer } from "pages/SubmitForm/resources";
 
 type HorizontalPosition = "left" | "right";
 type VerticalPosition = "top" | "bottom";
@@ -17,15 +10,6 @@ export interface FormStyles {
   backgroundPosition?: HorizontalPosition | VerticalPosition | CompletePosition;
   backgroundColor?: string;
   buttonStyle?: "floating" | "regular";
-}
-
-/**
- * An answer to a single form question
- */
-export interface FormAnswer<T extends FormInputProps = FormInputProps> {
-  title?: string;
-  type: T["type"];
-  value: T extends MultipleChoiceInputProps ? MultipleChoiceOption[] : string;
 }
 
 /**
@@ -49,6 +33,9 @@ export interface FormProps {
   submissions: FormSubmission[];
 }
 
+/**
+ * Check if value is a valid form
+ */
 export const isForm = (form: unknown): form is FormProps => {
   if (typeof form !== "object" || !form) return false;
 
@@ -56,20 +43,10 @@ export const isForm = (form: unknown): form is FormProps => {
 };
 
 /**
- * Used to instantiate a new form
+ * Check if array of valid forms
  */
-export const emptyForm: FormProps = {
-  name: "",
-  components: [{ type: "Text", id: uuid() }],
-  styles: {},
-  submissions: [],
-};
+export const areForms = (forms: unknown): forms is FormProps[] => {
+  if (!Array.isArray(forms) || !forms) return false;
 
-export const emptyDropdownOption: DropdownOption = {
-  label: "",
-  value: "",
-};
-
-export const emptyMultipleChoiceOption: MultipleChoiceOption = {
-  label: "",
+  return forms.every((f) => isForm(f));
 };

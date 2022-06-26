@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 import InputContainer from "../../InputContainer";
 import DropdownInputProps, { DropdownOption } from "./DropdownInputProps";
-import { emptyDropdownOption } from "resources/shared";
+import { emptyDropdownOption } from "./resources";
 
 import "./DropdownInput.scss";
 

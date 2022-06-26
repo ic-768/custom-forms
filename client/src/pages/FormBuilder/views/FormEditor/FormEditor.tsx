@@ -10,8 +10,9 @@ import {
 
 import { useWithLoader } from "store/hooks";
 import Form from "components/Form";
-import { emptyForm, FormProps } from "resources/shared";
+import { FormProps } from "resources/shared";
 import { EditedComponent } from "./resources";
+import { emptyForm } from "../../resources";
 import { FormComponentProps } from "components/FormComponent";
 import BackButton from "components/BackButton";
 import { TextInput } from "components/inputs/inputComponents";

@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 
 import MultipleEntryInput from "components/inputs/inputComponents/MultipleEntryInput";
 import { MultipleChoiceOption } from "components/inputs/inputComponents/MultipleChoiceInput";
-import { emptyMultipleChoiceOption } from "resources/shared";
+import { emptyMultipleChoiceOption } from "components/inputs/inputComponents/MultipleChoiceInput/resources";
 
 interface MultipleChoiceOptionsProps {
   onChange: (options: MultipleChoiceOption[]) => void;

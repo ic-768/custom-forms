@@ -1,12 +1,12 @@
 import { ReactElement } from "react";
 
-import { FormProps } from "resources/shared";
+import { FormProps, FormStyles } from "resources/shared";
 import EditorPartial from "../EditorPartial";
 import FormStyleModifiersList from "./components/FormStyleModifiersList";
 
 interface FormStyleEditorProps {
-  editedStyles: FormProps["styles"] | null;
-  setEditedStyles: (styles: FormProps["styles"] | null) => void;
+  editedStyles: FormStyles | null;
+  setEditedStyles: (styles: FormStyles | null) => void;
   form: FormProps;
   setForm: (form: FormProps) => void;
   onCancel: () => void;

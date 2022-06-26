@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 
 import { DropdownOption } from "components/inputs/inputComponents/DropdownInput";
 import MultipleEntryInput from "components/inputs/inputComponents/MultipleEntryInput";
-import { emptyDropdownOption } from "resources/shared";
+import { emptyDropdownOption } from "components/inputs/inputComponents/DropdownInput/resources";
 
 interface DropdownOptionsProps {
   onChange: (options: DropdownOption[]) => void;

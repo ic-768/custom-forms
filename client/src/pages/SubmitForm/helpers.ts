@@ -1,7 +1,8 @@
 import { ChangeEvent } from "react";
 import { MultipleChoiceOption } from "components/inputs/inputComponents/MultipleChoiceInput";
 import { FormInputProps } from "components/inputs/inputComponents";
-import { FormAnswer, FormProps, FormSubmission } from "resources/shared";
+import { FormProps, FormSubmission } from "resources/shared";
+import { FormAnswer } from "./resources";
 
 /**
  * Enrich the component with appropriate onChange functions

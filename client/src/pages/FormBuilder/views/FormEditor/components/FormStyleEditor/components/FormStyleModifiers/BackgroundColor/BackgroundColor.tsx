@@ -1,11 +1,11 @@
 import ColorInput from "components/inputs/inputComponents/ColorInput";
 import { ReactElement } from "react";
 import { ColorChangeHandler } from "react-color";
-import { FormProps } from "resources/shared";
+import { FormStyles } from "resources/shared";
 
 interface BackgroundColorProps {
-  editedStyles: FormProps["styles"] | null;
-  setEditedStyles: (styles: FormProps["styles"] | null) => void;
+  editedStyles: FormStyles | null;
+  setEditedStyles: (styles: FormStyles | null) => void;
 }
 
 const BackgroundColor = ({

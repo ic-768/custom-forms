@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { FormProps } from "resources/shared";
+import { FormProps, FormStyles } from "resources/shared";
 
 import {
   SubmissionButtonStyle,
@@ -9,8 +9,8 @@ import {
 } from "../FormStyleModifiers";
 
 interface FormStyleModifiersListProps {
-  editedStyles: FormProps["styles"] | null;
-  setEditedStyles: (styles: FormProps["styles"] | null) => void;
+  editedStyles: FormStyles | null;
+  setEditedStyles: (styles: FormStyles | null) => void;
   form: FormProps;
 }
 

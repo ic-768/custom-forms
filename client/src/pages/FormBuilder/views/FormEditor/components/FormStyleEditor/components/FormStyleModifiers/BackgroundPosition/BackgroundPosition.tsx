@@ -1,10 +1,10 @@
 import { DropdownInput } from "components/inputs/inputComponents";
 import { ReactElement } from "react";
-import { FormProps } from "resources/shared";
+import { FormStyles } from "resources/shared";
 
 interface BackgroundPositionProps {
-  editedStyles: FormProps["styles"] | null;
-  setEditedStyles: (styles: FormProps["styles"] | null) => void;
+  editedStyles: FormStyles | null;
+  setEditedStyles: (styles: FormStyles | null) => void;
 }
 
 const BackgroundPosition = ({
@@ -12,7 +12,7 @@ const BackgroundPosition = ({
   setEditedStyles,
 }: BackgroundPositionProps): ReactElement => {
   const onChangeBackgroundPosition = (o: string): void => {
-    const backgroundPosition = o as FormProps["styles"]["backgroundPosition"];
+    const backgroundPosition = o as FormStyles["backgroundPosition"];
     setEditedStyles({ ...editedStyles, backgroundPosition });
   };
 

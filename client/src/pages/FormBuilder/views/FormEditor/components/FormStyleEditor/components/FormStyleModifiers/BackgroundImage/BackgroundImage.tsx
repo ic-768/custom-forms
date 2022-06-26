@@ -1,12 +1,12 @@
 import InputContainer from "components/inputs/InputContainer";
 import { ChangeEventHandler, ReactElement } from "react";
-import { FormProps } from "resources/shared";
+import { FormStyles } from "resources/shared";
 import { useNotification } from "store/hooks";
 
 interface BackgroundImageProps {
-  formBackground: FormProps["styles"]["backgroundImage"];
-  editedStyles: FormProps["styles"] | null;
-  setEditedStyles: (styles: FormProps["styles"] | null) => void;
+  formBackground: FormStyles["backgroundImage"];
+  editedStyles: FormStyles | null;
+  setEditedStyles: (styles: FormStyles | null) => void;
 }
 
 const BackgroundImage = ({

@@ -1,8 +1,9 @@
 import { FormEventHandler, useState } from "react";
-import { FormAnswer, FormProps } from "resources/shared";
+import { FormProps } from "resources/shared";
 import { asyncSubmitForm } from "services/forms";
 import { useNotification } from "store/hooks";
 import { formatSubmissions } from "../helpers";
+import { FormAnswer } from "../resources";
 
 const useSubmitForm = (): ((
   form: FormProps,

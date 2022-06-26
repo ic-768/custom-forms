@@ -14,10 +14,11 @@ import { useDebounce } from "hooks/useDebounce";
 import { useNotification, useWithLoader } from "store/hooks";
 import { token, asyncDeleteMultipleForms } from "services/forms";
 import { deleteMultipleForms } from "store/features/forms/formsSlice";
-import { emptyForm, FormProps } from "resources/shared";
+import { FormProps } from "resources/shared";
 import { ConfirmationModalProps } from "components/ConfirmationModal";
 import { TextInput } from "components/inputs/inputComponents";
 import FormList from "./components/FormList";
+import { emptyForm } from "../../resources";
 
 import "./FormsView.scss";
 

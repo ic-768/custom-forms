@@ -1,10 +1,10 @@
 import { DropdownInput } from "components/inputs/inputComponents";
 import { ReactElement } from "react";
-import { FormProps } from "resources/shared";
+import { FormStyles } from "resources/shared";
 
 interface SubmissionButtonStyleProps {
-  editedStyles: FormProps["styles"] | null;
-  setEditedStyles: (styles: FormProps["styles"] | null) => void;
+  editedStyles: FormStyles | null;
+  setEditedStyles: (styles: FormStyles | null) => void;
 }
 
 const SubmissionButtonStyle = ({
@@ -12,7 +12,7 @@ const SubmissionButtonStyle = ({
   setEditedStyles,
 }: SubmissionButtonStyleProps): ReactElement => {
   const onChangeButtonStyle = (o: string): void => {
-    const buttonStyle = o as FormProps["styles"]["buttonStyle"];
+    const buttonStyle = o as FormStyles["buttonStyle"];
     setEditedStyles({ ...editedStyles, buttonStyle });
   };
 

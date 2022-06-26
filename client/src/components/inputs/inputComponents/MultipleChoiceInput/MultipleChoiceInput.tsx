@@ -5,7 +5,7 @@ import InputContainer from "../../InputContainer";
 import MultipleChoiceInputProps, {
   MultipleChoiceOption,
 } from "./MultipleChoiceInputProps";
-import { emptyMultipleChoiceOption } from "resources/shared";
+import { emptyMultipleChoiceOption } from "./resources";
 
 import "./MultipleChoiceInput.scss";
 

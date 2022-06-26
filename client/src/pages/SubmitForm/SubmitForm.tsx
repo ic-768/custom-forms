@@ -6,9 +6,10 @@ import { asyncGetForm } from "services/forms";
 import { FormInputProps } from "components/inputs/inputComponents";
 import Form from "components/Form";
 import FormComponent from "components/FormComponent";
-import { FormProps, FormAnswer, isForm } from "resources/shared";
-import useSubmitForm from "./hooks/useSubmitForm";
+import { FormProps, isForm } from "resources/shared";
 import { useNotification } from "store/hooks";
+import useSubmitForm from "./hooks/useSubmitForm";
+import { FormAnswer } from "./resources";
 
 import "./SubmitForm.scss";
 

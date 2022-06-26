@@ -3,12 +3,12 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 
-import { FormProps } from "resources/shared";
+import { FormStyles } from "resources/shared";
 
 import "./SubmitButton.scss";
 
 interface SubmitButtonProps {
-  buttonStyle: FormProps["styles"]["buttonStyle"];
+  buttonStyle: FormStyles["buttonStyle"];
   onSubmit?: FormEventHandler;
 }
 
