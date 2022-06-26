@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { addOnChange, addState } from "./helpers";
 import { asyncGetForm } from "services/forms";
@@ -8,6 +8,7 @@ import Form from "components/Form";
 import FormComponent from "components/FormComponent";
 import { FormProps, FormAnswer, isForm } from "resources/shared";
 import useSubmitForm from "./hooks/useSubmitForm";
+import { useNotification } from "store/hooks";
 
 import "./SubmitForm.scss";
 
@@ -20,14 +21,21 @@ const SubmitForm = (): ReactElement | null => {
     Array(form?.components.length)
   );
   const submit = useSubmitForm();
+  const navigate = useNavigate();
+  const notify = useNotification();
 
   useEffect(() => {
-    asyncGetForm(user!, formId).then((f) => {
-      if (!form && isForm(f)) setForm(f);
-    });
+    asyncGetForm(user!, formId)
+      .then((f) => {
+        if (!form && isForm(f)) setForm(f);
+      })
+      .catch(() => {
+        notify({ message: "Couldn't find that form", type: "error" }, 5000);
+        navigate("/");
+      });
 
     setSubmissions(new Array(form?.components.length).fill("")); // fill submission array
-  }, [user, formId, form]);
+  }, [user, formId, form, navigate, notify]);
 
   if (!form) return null;
 
