@@ -5,8 +5,8 @@ import { faCog } from "@fortawesome/free-solid-svg-icons";
 import "./SettingsButton.scss";
 
 const SettingsButton = ({ onClick }: { onClick: () => void }): ReactElement => (
-  <div className="settings-button" onClick={onClick} tabIndex={0} role="button">
+  <button className="settings-button" onClick={onClick}>
     <FontAwesomeIcon className="settings-button-icon" icon={faCog} />
-  </div>
+  </button>
 );
 export default SettingsButton;

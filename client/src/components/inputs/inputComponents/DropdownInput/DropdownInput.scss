@@ -9,6 +9,7 @@
 .dropdown-input-placeholder {
   display: flex;
   height: var(--input-height);
+  width: 100%;
   background-color: white;
   align-items: center;
   padding: var(--input-padding);
@@ -74,6 +75,8 @@
 }
 
 .dropdown-input-option {
+  border: none;
+  background: none;
   padding: var(--input-padding);
   display: flex;
 

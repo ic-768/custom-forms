@@ -22,7 +22,7 @@ const DropdownInput = <T extends string>({
 }: DropdownInputProps<T>): ReactElement => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
-  const onOptionSelect = (e: MouseEvent<HTMLLIElement>): void => {
+  const onOptionSelect = (e: MouseEvent<HTMLButtonElement>): void => {
     if (!onChange) return;
     const target = e.target as HTMLLIElement;
     const option = target.textContent as T;
@@ -53,17 +53,13 @@ const DropdownInput = <T extends string>({
   const hasOptions = options?.length;
 
   const Option = ({ option }: { option: DropdownOption }): ReactElement => (
-    <li
-      className="dropdown-input-option"
-      role="button"
-      tabIndex={0}
-      value={option.value}
-      onClick={onOptionSelect}
-    >
+    <li>
       {option.icon && (
         <FontAwesomeIcon className="dropdown-input-icon" icon={option.icon} />
       )}
-      {option.label}
+      <button className="dropdown-input-option" onClick={onOptionSelect}>
+        {option.label}
+      </button>
     </li>
   );
 
@@ -80,10 +76,9 @@ const DropdownInput = <T extends string>({
           className={dropdownClasses}
           onMouseLeave={(): void => setShowOptions(false)}
         >
-          <div
+          <button
+            type="button"
             className={placeholderClasses}
-            role="button"
-            tabIndex={0}
             onClick={toggleOptionsVisibility}
             onMouseEnter={(): void => setShowOptions(true)}
             style={placeholderStyle}
@@ -99,8 +94,8 @@ const DropdownInput = <T extends string>({
               className="dropdown-input-chevron-icon"
               icon={showOptions ? faChevronUp : faChevronDown}
             />
-          </div>
-          <ul className={dropdownOptionsClasses}>
+          </button>
+          <div role="list" className={dropdownOptionsClasses}>
             {hasOptions ? (
               options.map((o, i) => (
                 <Option key={`dropdown-input-${i}`} option={o} />
@@ -108,7 +103,7 @@ const DropdownInput = <T extends string>({
             ) : (
               <Option option={emptyDropdownOption} />
             )}
-          </ul>
+          </div>
         </div>
       }
     />

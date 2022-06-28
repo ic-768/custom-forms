@@ -37,7 +37,7 @@ const FormListItem = ({
   };
 
   return (
-    <div onClick={onSelectForm} className="form-list-item">
+    <button onClick={onSelectForm} className="form-list-item">
       <input
         checked={isSelected}
         onChange={onSelectForm}
@@ -75,7 +75,7 @@ const FormListItem = ({
           icon={faTrash}
         />
       </div>
-    </div>
+    </button>
   );
 };
 

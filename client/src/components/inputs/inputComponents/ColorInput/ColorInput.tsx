@@ -32,7 +32,7 @@ const ColorInput = ({
       className={inputClasses}
       component={
         <>
-          <div
+          <button
             style={{ backgroundImage: "url(/images/picker-background.png)" }}
             className="color-input-container"
             onClick={toggleShowColor}
@@ -43,7 +43,7 @@ const ColorInput = ({
               }}
               className="color-input-color-block"
             />
-          </div>
+          </button>
 
           {showColor && (
             <div

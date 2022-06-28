@@ -1,16 +1,12 @@
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 import { FormSubmission } from "resources/shared";
 
 import "./Response.scss";
 
 const Response = ({ answers }: { answers: FormSubmission }): ReactElement => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleExpansion = (): void => setIsExpanded(!isExpanded);
-
   const responses = answers.map((t, j) => {
     return (
-      <div onClick={toggleExpansion} key={`${t.title}-${j}`}>
+      <div key={`${t.title}-${j}`}>
         <span className="response-title">{t.title}</span>
         {Array.isArray(t.value) ? (
           // is multiple choice

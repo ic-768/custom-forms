@@ -35,8 +35,13 @@ const MultipleChoiceInput = ({
   }: {
     option: MultipleChoiceOption;
   }): ReactElement => (
-    <div className="multiple-choice-input-choice-container" key={option.label}>
-      <div
+    <div
+      role="listitem"
+      className="multiple-choice-input-choice-container"
+      key={option.label}
+    >
+      <button
+        type="button"
         onClick={(): void => {
           if (!onChange) return;
           onChange(updateChoices(option));
@@ -48,7 +53,7 @@ const MultipleChoiceInput = ({
           defaultChecked={option.isSelected || false}
           value={option.label || ""}
         />
-      </div>
+      </button>
 
       <span>{option.label}</span>
     </div>
@@ -62,7 +67,7 @@ const MultipleChoiceInput = ({
       className={className}
       style={{ marginTop }}
       component={
-        <div style={inputStyle} className={inputClasses}>
+        <div role="list" style={inputStyle} className={inputClasses}>
           {hasChoices ? (
             choices.map((c, i) => <Option key={`${c.label}${i}`} option={c} />)
           ) : (

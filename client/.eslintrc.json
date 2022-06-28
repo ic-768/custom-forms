@@ -7,6 +7,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -20,6 +21,7 @@
   "plugins": [
     "react",
     "react-hooks",
+    "jsx-a11y",
     "@typescript-eslint"
   ],
   "rules": {
@@ -35,6 +37,7 @@
       "error",
       "always"
     ],
+    "jsx-a11y/no-autofocus":"off",
     "newline-before-return":"warn",
     "react/react-in-jsx-scope": "off",
     "react-hooks/rules-of-hooks": "error",

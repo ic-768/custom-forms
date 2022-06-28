@@ -193,20 +193,20 @@ const FormEditor = ({
       />
 
       <div className="form-editor-form-buttons">
-        <div className="form-editor-upload-form-button" onClick={onPublish}>
+        <button className="form-editor-upload-form-button" onClick={onPublish}>
           <FontAwesomeIcon
             className="form-editor-button-icon"
             title="Save"
             icon={faCloudUploadAlt}
           />
-        </div>
-        <div className="form-editor-preview-form-button" onClick={onPreview}>
+        </button>
+        <button className="form-editor-preview-form-button" onClick={onPreview}>
           <FontAwesomeIcon
             className="form-editor-button-icon"
             title="Preview"
             icon={faEye}
           />
-        </div>
+        </button>
       </div>
     </>
   );
