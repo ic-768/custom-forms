@@ -22,7 +22,9 @@ const Form = ({
     [className!]: className,
   });
 
-  const { backgroundColor, backgroundPosition, buttonStyle } = { ...styles };
+  const { backgroundSize, backgroundColor, backgroundPosition, buttonStyle } = {
+    ...styles,
+  };
 
   const backgroundImage = styles.backgroundImage
     ? `url(${styles.backgroundImage})`
@@ -31,9 +33,10 @@ const Form = ({
   return (
     <form
       style={{
-        backgroundColor: backgroundColor,
-        backgroundPosition: backgroundPosition,
+        backgroundColor,
+        backgroundPosition,
         backgroundImage,
+        backgroundSize,
       }}
       className={formClass}
     >

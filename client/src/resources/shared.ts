@@ -13,6 +13,7 @@ export interface FormStyles {
   backgroundPosition?: HorizontalPosition | VerticalPosition | CompletePosition;
   backgroundColor?: string;
   buttonStyle?: "floating" | "regular";
+  backgroundSize?: "cover" | "contain" | "auto";
 }
 
 /**

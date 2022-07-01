@@ -6,6 +6,7 @@ import {
   BackgroundImage,
   BackgroundColor,
   BackgroundPosition,
+  BackgroundSize,
 } from "../FormStyleModifiers";
 
 interface FormStyleModifiersListProps {
@@ -36,10 +37,16 @@ const FormStyleModifiersList = ({
     />
 
     {editedStyles?.backgroundImage && (
-      <BackgroundPosition
-        editedStyles={editedStyles}
-        setEditedStyles={setEditedStyles}
-      />
+      <>
+        <BackgroundPosition
+          editedStyles={editedStyles}
+          setEditedStyles={setEditedStyles}
+        />
+        <BackgroundSize
+          editedStyles={editedStyles}
+          setEditedStyles={setEditedStyles}
+        />
+      </>
     )}
   </>
 );
