@@ -5,7 +5,7 @@ import InputContainer from "components/inputs/InputContainer";
 
 import "./MinMax.scss";
 
-interface IMinMax {
+interface MinMaxProps {
   min?: number;
   max?: number;
   onChangeMin: ChangeEventHandler<HTMLInputElement>;
@@ -17,7 +17,7 @@ const MinMax = ({
   max,
   onChangeMin,
   onChangeMax,
-}: IMinMax): ReactElement => {
+}: MinMaxProps): ReactElement => {
   const minValue = (min || 0).toString();
   const maxValue = (max || 0).toString();
 

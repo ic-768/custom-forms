@@ -2,12 +2,12 @@ import { ChangeEventHandler, ReactElement } from "react";
 
 import { NumberInput } from "components/inputs/inputComponents";
 
-interface IHeight {
+interface HeightProps {
   height: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const Height = ({ height, onChange }: IHeight): ReactElement => {
+const Height = ({ height, onChange }: HeightProps): ReactElement => {
   const heightValue = Number(height.match(/\d+/)![0]).toString();
 
   return (

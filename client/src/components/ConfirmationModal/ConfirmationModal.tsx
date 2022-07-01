@@ -8,24 +8,23 @@ export interface ConfirmationModalProps {
   onCancel: () => void;
 }
 
-const ConfirmationModal = (
-  confirmation: ConfirmationModalProps
-): ReactElement => (
+const ConfirmationModal = ({
+  message,
+  onConfirm,
+  onCancel,
+}: ConfirmationModalProps): ReactElement => (
   <>
     <div className="confirmation-modal-background-overlay" />
     <div className="confirmation-modal-container">
-      <span className="confirmation-modal-message">{confirmation.message}</span>
+      <span className="confirmation-modal-message">{message}</span>
       <div className="confirmation-modal-buttons-container">
         <button
           className="confirmation-modal-confirm-button"
-          onClick={confirmation.onConfirm}
+          onClick={onConfirm}
         >
           Confirm
         </button>
-        <button
-          className="confirmation-modal-cancel-button"
-          onClick={confirmation.onCancel}
-        >
+        <button className="confirmation-modal-cancel-button" onClick={onCancel}>
           Cancel
         </button>
       </div>

@@ -3,12 +3,12 @@ import { ColorChangeHandler } from "react-color";
 
 import ColorInput from "components/inputs/inputComponents/ColorInput";
 
-interface IBorderColor {
+interface BorderColorProps {
   color: string;
   onChange: ColorChangeHandler;
 }
 
-const BorderColor = ({ color, onChange }: IBorderColor): ReactElement => (
+const BorderColor = ({ color, onChange }: BorderColorProps): ReactElement => (
   <ColorInput
     title="Border color"
     subtitle="Set the color for the borders of the input"

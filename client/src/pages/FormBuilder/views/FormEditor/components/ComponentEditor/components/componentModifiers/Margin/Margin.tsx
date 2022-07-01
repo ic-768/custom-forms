@@ -5,7 +5,7 @@ import InputContainer from "components/inputs/InputContainer";
 
 import "./Margin.scss";
 
-interface IMargin {
+interface MarginProps {
   marginTop: string;
   marginBottom: string;
   onChangeTopMargin: ChangeEventHandler<HTMLInputElement>;
@@ -17,7 +17,7 @@ const Margin = ({
   marginBottom,
   onChangeTopMargin,
   onChangeBottomMargin,
-}: IMargin): ReactElement => {
+}: MarginProps): ReactElement => {
   const marginTopValue = Number(marginTop.match(/\d+/)![0]).toString();
   const marginBottomValue = Number(marginBottom.match(/\d+/)![0]).toString();
 
