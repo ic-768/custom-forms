@@ -1,4 +1,4 @@
-import { ChangeEvent, CSSProperties, ReactElement } from "react";
+import { ChangeEvent, ReactElement } from "react";
 
 import {
   FontColor,
@@ -9,6 +9,7 @@ import {
   DropdownOptions,
   Height,
   Title,
+  TitleColor,
   MinMax,
   Step,
   MultipleChoiceOptions,
@@ -18,6 +19,7 @@ import {
 } from "../componentModifiers";
 import { BorderWidth } from "../componentModifiers/BorderType/BorderType";
 import { FormComponentProps } from "components/FormComponent";
+import { CustomInputStyles } from "resources/shared";
 
 interface ComponentModifiersListProps {
   component: FormComponentProps;
@@ -33,8 +35,8 @@ const ComponentModifiersList = ({
 }: ComponentModifiersListProps): ReactElement | null => {
   // changes (or adds if doesn't exist) a specific style property
   const onChangeStyle = <
-    K extends keyof CSSProperties,
-    V extends CSSProperties[K]
+    K extends keyof CustomInputStyles,
+    V extends CustomInputStyles[K]
   >(
     style: K,
     value: V
@@ -52,6 +54,15 @@ const ComponentModifiersList = ({
       title={component.title || ""}
       onChange={(e: ChangeEvent<HTMLInputElement>): void => {
         onChangeModifiers({ ...component, title: e.target.value });
+      }}
+    />
+  );
+
+  const TitleColorModifier = (
+    <TitleColor
+      titleColor={component.style?.titleColor as string}
+      onChange={(c): void => {
+        onChangeStyle("titleColor", `rgba(${Object.values(c.rgb)})`);
       }}
     />
   );
@@ -140,6 +151,7 @@ const ComponentModifiersList = ({
       return (
         <>
           {TitleModifier}
+          {TitleColorModifier}
           <TextBody
             onChange={(e): void => {
               onChangeModifiers({ ...component, text: e.target.value });
@@ -158,6 +170,7 @@ const ComponentModifiersList = ({
       return (
         <>
           {TitleModifier}
+          {TitleColorModifier}
           {HeightModifier}
           {BackgroundColorModifier}
           {BorderColorModifier}
@@ -176,6 +189,7 @@ const ComponentModifiersList = ({
       return (
         <>
           {TitleModifier}
+          {TitleColorModifier}
           {FontSizeModifier}
           {FontColorModifier}
           {HeightModifier}
@@ -190,6 +204,7 @@ const ComponentModifiersList = ({
       return (
         <>
           {TitleModifier}
+          {TitleColorModifier}
           {FontSizeModifier}
           {FontColorModifier}
           {HeightModifier}
@@ -214,6 +229,7 @@ const ComponentModifiersList = ({
       return (
         <>
           {TitleModifier}
+          {TitleColorModifier}
           {FontSizeModifier}
           {FontColorModifier}
           {HeightModifier}
@@ -228,6 +244,7 @@ const ComponentModifiersList = ({
       return (
         <>
           {TitleModifier}
+          {TitleColorModifier}
           {FontSizeModifier}
           {FontColorModifier}
           {HeightModifier}
@@ -242,6 +259,7 @@ const ComponentModifiersList = ({
       return (
         <>
           {TitleModifier}
+          {TitleColorModifier}
           <MultipleChoiceOptions
             options={component.choices}
             onChange={(choices): void => {
@@ -260,6 +278,7 @@ const ComponentModifiersList = ({
       return (
         <>
           {TitleModifier}
+          {TitleColorModifier}
           {HeightModifier}
           {MarginModifier}
           <MinMax

@@ -1,4 +1,5 @@
-import { ChangeEventHandler, CSSProperties } from "react";
+import { ChangeEventHandler } from "react";
+import { CustomInputStyles } from "resources/shared";
 
 interface NumberInputProps {
   type?: "Number";
@@ -10,7 +11,7 @@ interface NumberInputProps {
   max?: number;
   title?: string;
   subtitle?: string;
-  style?: CSSProperties;
+  style?: CustomInputStyles;
   id?: string;
 }
 

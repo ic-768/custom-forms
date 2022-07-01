@@ -59,13 +59,13 @@ const MultipleChoiceInput = ({
     </div>
   );
 
-  const { marginTop, ...inputStyle } = { ...style };
+  const { titleColor, marginTop, ...inputStyle } = { ...style };
 
   return (
     <InputContainer
       title={title}
       className={className}
-      style={{ marginTop }}
+      style={{ titleColor, marginTop }}
       component={
         <div role="list" style={inputStyle} className={inputClasses}>
           {hasChoices ? (

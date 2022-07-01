@@ -1,5 +1,7 @@
-import { CSSProperties, ReactElement } from "react";
+import { ReactElement } from "react";
 import classNames from "classnames";
+
+import { CustomInputStyles } from "resources/shared";
 
 import "./TextDescription.scss";
 
@@ -7,7 +9,7 @@ export interface TextDescriptionProps {
   type?: "Text-Description";
   title?: string;
   text?: string;
-  style?: CSSProperties;
+  style?: CustomInputStyles;
   id?: string;
 }
 
@@ -21,11 +23,11 @@ const TextDescription = ({
     "has-placeholder": !text,
   });
 
-  const { marginTop, ...innerStyle } = { ...style };
+  const { titleColor, marginTop, ...innerStyle } = { ...style };
 
   return (
     <div style={{ marginTop }} className="text-description-container">
-      {title && <span>{title}</span>}
+      {title && <span style={{ color: titleColor }}>{title}</span>}
 
       <span style={innerStyle} className={descriptionClasses}>
         {text || "Your explanatory text will go here"}

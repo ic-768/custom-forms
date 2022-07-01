@@ -1,4 +1,6 @@
-import { ChangeEventHandler, CSSProperties } from "react";
+import { ChangeEventHandler } from "react";
+
+import { CustomInputStyles } from "resources/shared";
 
 interface DateInputProps {
   type?: "Date";
@@ -10,7 +12,7 @@ interface DateInputProps {
   value?: string;
   min?: string;
   max?: string;
-  style?: CSSProperties;
+  style?: CustomInputStyles;
   id?: string;
 }
 

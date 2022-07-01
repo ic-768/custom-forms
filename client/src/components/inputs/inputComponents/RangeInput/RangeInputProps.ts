@@ -1,4 +1,6 @@
-import { ChangeEventHandler, CSSProperties } from "react";
+import { ChangeEventHandler } from "react";
+
+import { CustomInputStyles } from "resources/shared";
 
 interface RangeInputProps {
   type?: "Range";
@@ -10,7 +12,7 @@ interface RangeInputProps {
   max?: number;
   step?: number;
   title?: string;
-  style?: CSSProperties;
+  style?: CustomInputStyles;
   id?: string;
 }
 

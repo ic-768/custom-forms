@@ -1,5 +1,8 @@
+import { CSSProperties } from "react";
 import { FormComponentProps } from "components/FormComponent";
 import { FormAnswer } from "pages/SubmitForm/resources";
+
+export type CustomInputStyles = CSSProperties & { titleColor?: string };
 
 type HorizontalPosition = "left" | "right";
 type VerticalPosition = "top" | "bottom";

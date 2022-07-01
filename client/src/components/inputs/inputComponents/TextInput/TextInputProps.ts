@@ -1,4 +1,6 @@
-import { ChangeEventHandler, CSSProperties } from "react";
+import { ChangeEventHandler } from "react";
+
+import { CustomInputStyles } from "resources/shared";
 
 interface TextInputProps {
   onChange?: ChangeEventHandler<HTMLInputElement>;
@@ -9,7 +11,7 @@ interface TextInputProps {
   className?: string;
   placeholder?: string;
   maxLength?: number;
-  style?: CSSProperties;
+  style?: CustomInputStyles;
   id?: string;
   autoFocus?: boolean;
 }

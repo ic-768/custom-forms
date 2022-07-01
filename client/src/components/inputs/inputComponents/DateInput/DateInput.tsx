@@ -21,13 +21,13 @@ const DateInput = ({
     [className!]: !!className,
   });
 
-  const { marginTop, ...inputStyle } = { ...style };
+  const { titleColor, marginTop, ...inputStyle } = { ...style };
 
   return (
     <InputContainer
       title={title}
       className={className}
-      style={{ marginTop }}
+      style={{ marginTop, titleColor }}
       component={
         <input
           style={inputStyle}

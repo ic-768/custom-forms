@@ -1,4 +1,6 @@
-import { ChangeEventHandler, CSSProperties } from "react";
+import { ChangeEventHandler } from "react";
+
+import { CustomInputStyles } from "resources/shared";
 
 interface TimeInputProps {
   type?: "Time";
@@ -7,7 +9,7 @@ interface TimeInputProps {
   className?: string;
   placeholder?: string;
   title?: string;
-  style?: CSSProperties;
+  style?: CustomInputStyles;
   id?: string;
 }
 

@@ -1,5 +1,6 @@
-import { CSSProperties } from "react";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+
+import { CustomInputStyles } from "resources/shared";
 
 /**
  * Single option of the dropdown list
@@ -25,7 +26,7 @@ interface DropdownInputProps<T extends string = string> {
   className?: string;
   // icon of the currently selected option
   selectionIcon?: IconDefinition;
-  style?: CSSProperties;
+  style?: CustomInputStyles;
   title?: string;
   subtitle?: string;
   id?: string;

@@ -22,13 +22,13 @@ const RangeInput = ({
     [className!]: !!className,
   });
 
-  const { marginTop, ...inputStyle } = { ...style };
+  const { titleColor, marginTop, ...inputStyle } = { ...style };
 
   return (
     <InputContainer
       title={title}
       className={className}
-      style={{ marginTop }}
+      style={{ titleColor, marginTop }}
       component={
         <div className="range-input-container">
           {value !== undefined && <span>{value}</span>}

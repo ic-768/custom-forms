@@ -1,4 +1,6 @@
-import { Dispatch, SetStateAction, CSSProperties } from "react";
+import { Dispatch, SetStateAction } from "react";
+
+import { CustomInputStyles } from "resources/shared";
 
 export interface MultipleChoiceOption {
   label: string;
@@ -11,7 +13,7 @@ interface MultipleChoiceInputProps {
   onChange?: Dispatch<SetStateAction<MultipleChoiceOption[]>>;
   className?: string;
   title?: string;
-  style?: CSSProperties;
+  style?: CustomInputStyles;
   id?: string;
 }
 

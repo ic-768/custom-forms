@@ -22,14 +22,14 @@ const NumberInput = ({
     [className!]: !!className,
   });
 
-  const { marginTop, ...inputStyle } = { ...style };
+  const { titleColor, marginTop, ...inputStyle } = { ...style };
 
   return (
     <InputContainer
       title={title}
       subtitle={subtitle}
       className={className}
-      style={{ marginTop }}
+      style={{ titleColor, marginTop }}
       component={
         <input
           style={inputStyle}

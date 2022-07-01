@@ -67,14 +67,16 @@ const DropdownInput = <T extends string>({
     </li>
   );
 
-  const { marginTop, marginBottom, ...placeholderStyle } = { ...style };
+  const { titleColor, marginTop, marginBottom, ...placeholderStyle } = {
+    ...style,
+  };
 
   return (
     <InputContainer
       title={title}
       subtitle={subtitle}
       className={className}
-      style={{ marginTop, marginBottom }}
+      style={{ titleColor, marginTop, marginBottom }}
       component={
         <div
           className={dropdownClasses}

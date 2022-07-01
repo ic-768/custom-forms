@@ -1,4 +1,5 @@
 import Title from "./Title";
+import TitleColor from "./TitleColor";
 import FontSize from "./FontSize";
 import FontColor from "./FontColor";
 import BorderRadius from "./BorderRadius";
@@ -15,6 +16,7 @@ import BackgroundColor from "./BackgroundColor";
 
 export {
   Title,
+  TitleColor,
   FontSize,
   FontColor,
   BorderRadius,

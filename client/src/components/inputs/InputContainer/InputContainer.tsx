@@ -1,5 +1,7 @@
-import { CSSProperties, ReactElement } from "react";
+import { ReactElement } from "react";
 import classNames from "classnames";
+
+import { CustomInputStyles } from "resources/shared";
 
 import "./InputContainer.scss";
 
@@ -8,7 +10,7 @@ interface InputContainerProps {
   className?: string;
   title?: string;
   subtitle?: string;
-  style?: CSSProperties;
+  style?: CustomInputStyles;
 }
 
 /**
@@ -26,10 +28,12 @@ const InputContainer = ({
     [className!]: !!className,
   });
 
+  const { titleColor, ...containerStyle } = { ...style };
+
   return (
-    <div style={style} className={inputContainerClasses}>
+    <div style={containerStyle} className={inputContainerClasses}>
       <div className="input-title-container">
-        {title && <span>{title}</span>}
+        {title && <span style={{ color: titleColor }}>{title}</span>}
         {subtitle && <span className="input-subtitle">{subtitle}</span>}
       </div>
       {component}

@@ -1,5 +1,6 @@
-import { CSSProperties } from "react";
 import { ColorChangeHandler } from "react-color";
+
+import { CustomInputStyles } from "resources/shared";
 
 interface ColorInputProps {
   type?: "Color";
@@ -8,7 +9,7 @@ interface ColorInputProps {
   className?: string;
   title?: string;
   subtitle?: string;
-  style?: CSSProperties;
+  style?: CustomInputStyles;
   id?: string;
 }
 
