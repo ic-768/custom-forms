@@ -17,7 +17,10 @@ const PasswordInput = ({
   password,
   onChangePassword,
 }: PasswordInputProps): ReactElement => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const hidePassword = (): void => setIsPasswordVisible(false);
+  const revealPassword = (): void => setIsPasswordVisible(true);
 
   return (
     <InputContainer
@@ -28,12 +31,13 @@ const PasswordInput = ({
             className="password-input"
             value={password}
             onChange={onChangePassword}
-            type={showPassword ? "text" : "password"}
+            type={isPasswordVisible ? "text" : "password"}
           />
           <FontAwesomeIcon
             title="Show password"
-            onMouseDown={(): void => setShowPassword(true)}
-            onMouseUp={(): void => setShowPassword(false)}
+            onMouseDown={revealPassword}
+            onMouseUp={hidePassword}
+            onMouseLeave={hidePassword}
             className="password-input-eye-icon"
             icon={faEye}
           />
