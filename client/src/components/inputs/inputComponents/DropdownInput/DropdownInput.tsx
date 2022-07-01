@@ -54,10 +54,14 @@ const DropdownInput = <T extends string>({
 
   const Option = ({ option }: { option: DropdownOption }): ReactElement => (
     <li>
-      {option.icon && (
-        <FontAwesomeIcon className="dropdown-input-icon" icon={option.icon} />
-      )}
-      <button className="dropdown-input-option" onClick={onOptionSelect}>
+      <button
+        type="button"
+        className="dropdown-input-option"
+        onClick={onOptionSelect}
+      >
+        {option.icon && (
+          <FontAwesomeIcon className="dropdown-input-icon" icon={option.icon} />
+        )}
         {option.label}
       </button>
     </li>
