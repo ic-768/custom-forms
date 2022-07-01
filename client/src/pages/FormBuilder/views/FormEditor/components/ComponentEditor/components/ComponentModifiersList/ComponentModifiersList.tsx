@@ -14,6 +14,7 @@ import {
   MultipleChoiceOptions,
   Margin,
   TextBody,
+  BackgroundColor,
 } from "../componentModifiers";
 import { BorderWidth } from "../componentModifiers/BorderType/BorderType";
 import { FormComponentProps } from "components/FormComponent";
@@ -125,6 +126,15 @@ const ComponentModifiersList = ({
     />
   );
 
+  const BackgroundColorModifier = (
+    <BackgroundColor
+      color={component.style?.backgroundColor as string}
+      onChange={(c): void => {
+        onChangeStyle("backgroundColor", `rgba(${Object.values(c.rgb)})`);
+      }}
+    />
+  );
+
   switch (component.type) {
     case "Text-Description":
       return (
@@ -137,6 +147,7 @@ const ComponentModifiersList = ({
           />
           {FontSizeModifier}
           {HeightModifier}
+          {BackgroundColorModifier}
           {BorderRadiusModifier}
           {BorderTypeModifier}
           {BorderColorModifier}
@@ -148,6 +159,7 @@ const ComponentModifiersList = ({
         <>
           {TitleModifier}
           {HeightModifier}
+          {BackgroundColorModifier}
           {BorderColorModifier}
           {BorderRadiusModifier}
           {BorderTypeModifier}
@@ -167,6 +179,7 @@ const ComponentModifiersList = ({
           {FontSizeModifier}
           {FontColorModifier}
           {HeightModifier}
+          {BackgroundColorModifier}
           {BorderRadiusModifier}
           {BorderTypeModifier}
           {BorderColorModifier}
@@ -180,6 +193,7 @@ const ComponentModifiersList = ({
           {FontSizeModifier}
           {FontColorModifier}
           {HeightModifier}
+          {BackgroundColorModifier}
           {BorderRadiusModifier}
           {BorderTypeModifier}
           {BorderColorModifier}
@@ -203,6 +217,7 @@ const ComponentModifiersList = ({
           {FontSizeModifier}
           {FontColorModifier}
           {HeightModifier}
+          {BackgroundColorModifier}
           {BorderRadiusModifier}
           {BorderTypeModifier}
           {BorderColorModifier}
@@ -216,6 +231,7 @@ const ComponentModifiersList = ({
           {FontSizeModifier}
           {FontColorModifier}
           {HeightModifier}
+          {BackgroundColorModifier}
           {BorderRadiusModifier}
           {BorderTypeModifier}
           {BorderColorModifier}
@@ -233,6 +249,7 @@ const ComponentModifiersList = ({
             }}
           />
           {FontSizeModifier}
+          {BackgroundColorModifier}
           {BorderRadiusModifier}
           {BorderTypeModifier}
           {BorderColorModifier}

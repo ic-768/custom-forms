@@ -11,6 +11,7 @@ import Step from "./Step";
 import MultipleChoiceOptions from "./MultipleChoiceOptions";
 import Margin from "./Margin";
 import TextBody from "./TextBody";
+import BackgroundColor from "./BackgroundColor";
 
 export {
   Title,
@@ -26,4 +27,5 @@ export {
   Margin,
   BorderType,
   TextBody,
+  BackgroundColor,
 };
