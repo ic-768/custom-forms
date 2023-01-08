@@ -179,16 +179,15 @@ formsRouter.get("/form-to-submit", async (request, response) => {
   try {
     formattedFormId = new ObjectId(formId);
   } catch {
-    return response.status(400).json({ error: "Invalid form Id" });
+    // TODO  better error handling
+    return response.status(200).json(null);
   }
 
-  const form = userForms?.find(
+  const form = userForms?.filter(
     (f: any) => f._id.toString() === formattedFormId.toString()
   );
 
-  return form
-    ? response.status(200).json(form)
-    : response.status(404).json({ error: "Couldn't find the form" });
+  return response.status(200).json(form[0]);
 });
 
 /**
@@ -204,7 +203,7 @@ formsRouter.post("/form-to-submit", async (request, response) => {
   );
 
   if (matchedCount === 0) {
-    return response.status(401).json({ error: "Couldn't submit the form" });
+    return response.status(4041).json({ error: "Couldn't submit the form" });
   }
 
   return response.sendStatus(200);
