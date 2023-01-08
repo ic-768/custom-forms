@@ -1,3 +1,3 @@
-import BackgroundSize from "./BackgroundSize"
+import BackgroundSize from "./BackgroundSize";
 
-export default BackgroundSize
+export default BackgroundSize;
