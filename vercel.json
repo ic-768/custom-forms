@@ -1,0 +1,10 @@
+ {
+  "version": 2,
+  "name": "custom-forms",
+  "builds": [
+    { "src": "script.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "server/dist/src/index.js" }
+  ]
+}
