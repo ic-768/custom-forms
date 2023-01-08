@@ -5,7 +5,4 @@ This entails (among other things) developing aesthetically customisable and func
 
 Built with React and Node, with Typescript 
 
-## Live Demo
-`https://r-custom-forms.herokuapp.com/`
-
 ![image](https://i.imgur.com/wxIwYJ6.png)
