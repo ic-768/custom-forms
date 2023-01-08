@@ -1,10 +1,18 @@
- {
-  "version": 2,
-  "name": "custom-forms",
-  "builds": [
-    { "src": "script.js", "use": "@vercel/node" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "server/dist/src/index.js" }
-  ]
+{
+    "version": 2,
+    "buildCommand": "CI=''  npm install typescript@latest -g && cd client && npm i && npm run build && cd ../server && npm i && tsc",
+    "outputDirectory": "server/dist/src",
+    "devCommand": "npm start",
+    "builds": [
+        {
+            "src": "./server/dist/src/index.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "./server/(.*)",
+            "dest": "./server/"
+        }
+    ]
 }
