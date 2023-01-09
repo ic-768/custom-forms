@@ -8,4 +8,7 @@ Built with React and Node, with Typescript
 ## Live Demo:
 https://custom-nyre.onrender.com/
 
+Demo credentials: Username: 'a',
+                  Password: 'a'
+
 ![image](https://i.imgur.com/wxIwYJ6.png)
